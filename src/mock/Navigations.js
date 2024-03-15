@@ -9,151 +9,11 @@ import {
   IconVisitors,
   IconHash,
   IconDot,
+  IconLinkedin,
+  IconYoutube,
+  IconInstagram,
+  IconFacebook,
 } from "../themes/Icons";
-
-export const SidebarData = [
-  {
-    id: 1,
-    icon: <IconAnalytics />,
-    title: "Home",
-    path: "/admin/home",
-  },
-
-  {
-    id: 2,
-    icon: <IconVisitors />,
-    title: "Our Team",
-    path: "/admin/team",
-  },
-  {
-    id: 3,
-    icon: <IconEnquiries />,
-    title: "Enquiries",
-    path: "/admin/enquiries",
-  },
-
-  {
-    id: 4,
-    icon: <IconCareers />,
-    iconopen: <IconUpArrow />,
-    iconclose: <IconDownArrow />,
-    title: "Careers",
-    submenuid: 4,
-    submenu: [
-      {
-        id: 1,
-        icon: <IconDot />,
-        title: "Job Positions",
-        subnavitemid: 41,
-        path: "/admin/careers/job-positions",
-      },
-      {
-        id: 2,
-        icon: <IconDot />,
-        subnavitemid: 42,
-        title: "Applications",
-        path: "/admin/careers/applications",
-      },
-
-      {
-        id: 3,
-        icon: <IconDot />,
-        subnavitemid: 43,
-        title: "Employees Reviews",
-        path: "/admin/careers/employees-reviews",
-      },
-    ],
-  },
-
-  {
-    id: 5,
-    icon: <IconLAKCS />,
-    title: "Life @ KTECH",
-    path: "/admin/life-at-ktech",
-  },
-
-  {
-    id: 6,
-    icon: <IconLAKCS />,
-    title: "Webinars",
-    iconopen: <IconUpArrow />,
-    iconclose: <IconDownArrow />,
-    submenuid: 6,
-    submenu: [
-      {
-        id: 1,
-        icon: <IconDot />,
-        subnavitemid: 61,
-        title: "Webinars List",
-        path: "/admin/webinars/list",
-      },
-      {
-        id: 2,
-        icon: <IconDot />,
-        subnavitemid: 62,
-        title: "Registrations",
-        path: "/admin/webinars/registrations",
-      },
-    ],
-  },
-
-  {
-    id: 7,
-    icon: <IconCareers />,
-    iconopen: <IconUpArrow />,
-    iconclose: <IconDownArrow />,
-    title: "Website",
-    submenuid: 7,
-    submenu: [
-      {
-        id: 1,
-        icon: <IconDot />,
-        subnavitemid: 71,
-        title: "Banners",
-        path: "/admin/website/banners",
-      },
-      {
-        id: 2,
-        icon: <IconDot />,
-        subnavitemid: 72,
-        title: "Web Pictures",
-        path: "/admin/website/web-pictures",
-      },
-
-      {
-        id: 3,
-        icon: <IconDot />,
-        subnavitemid: 73,
-        title: "Logos",
-        path: "/admin/website/logos",
-      },
-    ],
-  },
-  {
-    id: 8,
-    icon: <IconCareers />,
-    iconopen: <IconUpArrow />,
-    iconclose: <IconDownArrow />,
-    title: "Feedbacks",
-    submenuid: 8,
-    submenu: [
-      {
-        id: 1,
-        icon: <IconDot />,
-        subnavitemid: 81,
-        title: "Monthly Feedbacks",
-        path: "/admin/feedbacks/monthly-feedbacks",
-      },
-      {
-        id: 2,
-        icon: <IconDot />,
-        subnavitemid: 82,
-        title: "Testimonials",
-        path: "/admin/feedbacks/testimonials",
-      },
-    ],
-  },
-];
 
 // ------------------------------------------------------------- Main Website
 
@@ -200,7 +60,7 @@ export const NavData = [
           {
             id: 1,
             title: "SAP Consulting Services ",
-            path: "/services/infor-consulting-services",
+            path: "/services/sap-consulting",
             icon: <FiArrowDownRight />,
           },
           {
@@ -244,7 +104,7 @@ export const NavData = [
                 id: 1,
                 title: "Managed Services for Infor",
                 icon: <FiArrowDownRight />,
-                path: "/services/managed-services-for-Infor",
+                path: "/services/infor-consulting",
               },
             ],
           },
@@ -415,22 +275,37 @@ export const Services = [
     submenu: [
       {
         id: 1,
-        title: "KT Finstaa",
-        icon: <FiArrowDownRight />,
-        // path: "",
-      },
-      {
-        id: 2,
-        title: "KT Fleet Management",
-        icon: <FiArrowDownRight />,
-        // path: "",
-      },
-      {
-        id: 3,
-        title: "KT Mobillor",
+        title: "Finstaa",
         icon: <FiArrowDownRight />,
         // path: "",
       },
     ],
+  },
+];
+
+export const SocialMediaLinks = [
+  {
+    id: 1,
+    name: "Linkedin",
+    icon: <IconLinkedin />,
+    link: "",
+  },
+  {
+    id: 2,
+    name: "Youtube",
+    icon: <IconYoutube />,
+    link: "",
+  },
+  {
+    id: 3,
+    name: "Instagram",
+    icon: <IconInstagram />,
+    link: "",
+  },
+  {
+    id: 4,
+    name: "Facebook",
+    icon: <IconFacebook />,
+    link: "",
   },
 ];

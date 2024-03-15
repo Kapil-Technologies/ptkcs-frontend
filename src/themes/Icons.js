@@ -21,9 +21,14 @@ import {
   FiTrash,
   FiEdit,
   FiMenu,
+  FiFacebook,
+  FiLinkedin,
+  FiInstagram,
+  FiYoutube,
 } from "react-icons/fi";
 import { styled } from "@mui/material/styles";
 import { VscCircleFilled } from "react-icons/vsc";
+import { AiOutlineCopyrightCircle } from "react-icons/ai";
 
 // ------------------------------------------------------------  Navbar
 
@@ -121,3 +126,17 @@ export const IconEdit = styled(FiEdit)(({ theme, color }) => ({}));
 // VscCircleFilled
 
 export const IconDot = styled(VscCircleFilled)(({ theme, color }) => ({}));
+
+// -----------------------------------------------------------------------------  Social Media
+
+export const IconFacebook = styled(FiFacebook)(({ theme, color }) => ({}));
+
+export const IconLinkedin = styled(FiLinkedin)(({ theme, color }) => ({}));
+
+export const IconInstagram = styled(FiInstagram)(({ theme, color }) => ({}));
+
+export const IconYoutube = styled(FiYoutube)(({ theme, color }) => ({}));
+
+export const IconCopyright = styled(AiOutlineCopyrightCircle)(
+  ({ theme, color }) => ({})
+);

@@ -1,14 +1,20 @@
-import { Button, Stack, Typography } from "@mui/material";
+import { Button, Stack, Typography, useMediaQuery } from "@mui/material";
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Paths } from "../../config";
 import { useDispatch } from "react-redux";
 import { isNavigated, enquiryfrom } from "../../redux/slices/Enquiry";
+// import useMediaQuery from "../../Hooks/MediaQueries";
 
 function CTA() {
   const { pathname } = useLocation();
   const Navigate = useNavigate();
   const dispatch = useDispatch();
+  const Mobile = useMediaQuery((theme) =>
+    theme.breakpoints.between("xs", "sm")
+  );
+
+  const Tab = useMediaQuery((theme) => theme.breakpoints.between("sm", "md"));
 
   let ctatext;
 
@@ -55,20 +61,20 @@ function CTA() {
       }}
     >
       <Stack
-        direction="row"
+        direction={Mobile ? "column" : "row"}
         alignItems="center"
-        justifyContent="space-between"
-        sx={{ width: "60%", p: 3 }}
+        justifyContent={Mobile ? "center" : "space-between"}
+        sx={{ width: Mobile || Tab ? "100%" : "60%", p: 3 }}
+        spacing={2}
       >
-        <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+        <Typography
+          variant="h5"
+          sx={{ fontWeight: "bold", textAlign: "center" }}
+        >
           {ctatext}
         </Typography>
 
-        <Button
-          variant="contained"
-          sx={{ px: 2, py: 1 }}
-          onClick={handleNavigate}
-        >
+        <Button variant="contained" onClick={handleNavigate}>
           Contact Us
         </Button>
       </Stack>

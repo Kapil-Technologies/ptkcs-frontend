@@ -101,7 +101,7 @@ const MainNavList = styled("ul")(({ theme, Toggle }) => ({
     flexDirection: "column",
     alignItems: "left",
     overflowY: "scroll",
-    left: Toggle ? 0 : "-100%",
+    left: Toggle ? 0 : "-200%",
   },
 
   [theme.breakpoints.between("md", "lg")]: {
@@ -423,7 +423,7 @@ function Navbar({ Admin }) {
                 item.id !== 3 ? (
                   <SubNavList>
                     {item.submenu.map((item) => (
-                      <SubNavItem>
+                      <SubNavItem key={item.id}>
                         {item.path ? (
                           <SubNavLink to={item.path}>
                             <IconDot />

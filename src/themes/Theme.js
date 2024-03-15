@@ -39,10 +39,10 @@ export const CustomTheme = createTheme({
     // font-family: 'Noto Sans Mono', monospace;
   },
   breakpoints: {
-    mobile: "",
-    tabs: "",
-    desktops: "",
-    large: "",
-    xlarge: "",
+    xs: 0,
+    sm: 600,
+    md: 900,
+    lg: 1200,
+    xl: 1500,
   },
 });
