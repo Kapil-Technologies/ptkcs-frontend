@@ -40,8 +40,6 @@ function Contactus() {
           alignItems="center"
           justifyContent="start"
           layercolor={theme.palette.terinary.main}
-          sx={{ position: "relative" }}
-          transition={{ duration: 0.5 }}
         >
           <Stack
             direction="column"
@@ -52,7 +50,8 @@ function Contactus() {
             initial={{ y: "30px" }}
             animate={{ y: 0 }}
             exit={{ y: "30px" }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            sx={{ textAlign: "center" }}
           >
             <Typography variant="h4" sx={{ fontWeight: "bold", pt: "120px" }}>
               Get in Touch with us !
@@ -72,7 +71,7 @@ function Contactus() {
         initial={{ y: "50px" }}
         animate={{ y: 0 }}
         exit={{ y: "50px" }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
       >
         <Card
           component={Grid}
@@ -131,7 +130,7 @@ function Contactus() {
                 alignItems="center"
                 spacing={2}
                 component={Link}
-                to="mailto:info@ptkcs.com"
+                to="mailto:info@kapiltech.com"
                 sx={{
                   color: "white",
                   textDecoration: "none",
@@ -140,7 +139,7 @@ function Contactus() {
                 }}
               >
                 <IconEmail />
-                <Typography variant="body1">info@ptkcs.com</Typography>
+                <Typography variant="body1">info@kapiltech.com</Typography>
               </Stack>
 
               <Stack

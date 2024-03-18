@@ -174,12 +174,12 @@ export const NavData = [
       {
         id: 2,
         title: "Events ",
-        // path: "/join-us/events",
+        path: "/join-us/events",
       },
       {
         id: 3,
         title: "Life @KTECH",
-        // path: "/join-us/life-@-ktech",
+        path: "/join-us/life-@-ktech",
       },
     ],
   },
