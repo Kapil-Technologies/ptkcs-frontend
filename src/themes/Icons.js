@@ -63,13 +63,9 @@ export const IconID = styled(FiBriefcase)(({ theme, color }) => ({
   fontSize: "25px",
 }));
 
-export const IconEmail = styled(FiMail)(({ theme, color }) => ({
-  fontSize: "25px",
-}));
+export const IconEmail = styled(FiMail)(({ theme, color }) => ({}));
 
-export const IconMobile = styled(FiSmartphone)(({ theme, color }) => ({
-  fontSize: "25px",
-}));
+export const IconMobile = styled(FiSmartphone)(({ theme, color }) => ({}));
 
 export const IconDepartment = styled(FiPackage)(({ theme, color }) => ({
   fontSize: "25px",

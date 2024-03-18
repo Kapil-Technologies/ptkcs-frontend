@@ -2,11 +2,19 @@ import { useMediaQuery } from "@mui/material";
 import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 // import { ViewCount } from "../api/Main";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { Paths } from "../../config";
+import { useDispatch } from "react-redux";
+import { domainname } from "../../redux/slices/Domain";
 
-function Page({ name, description, keywords,pagename }) {
+function Page({ name, description, keywords, pagename }) {
   const { pathname } = useLocation();
+  const hostname = window.location.hostname;
+  const dispatch = useDispatch();
+  const { jobid, aid, wid } = useParams();
+
+  // console.log(hostname); // This will log the hostname to the console
+
   // ----------------------------------------------------- Browser Details
 
   const Browser = navigator.userAgentData.brands[0];
@@ -79,40 +87,41 @@ function Page({ name, description, keywords,pagename }) {
 
   // ----------------------------------------------------------------- View Count
 
-  // useEffect(() => {
-  //   const SiteData = {
-  //     browsername:
-  //       BrowserName === "Not_A Brand" || BrowserName === "Not=A?Brand"
-  //         ? "Unknown Brand"
-  //         : BrowserName,
-  //     browserversion: BrowserVersion,
-  //     deviceSizeType: devicesize,
-  //     deviceVP: deviceViewport,
-  //     page: pagevisited,
-  //   };
-  //   // console.log(SiteData)
+  useEffect(() => {
+    dispatch(domainname(hostname));
+    const SiteData = {
+      browsername:
+        BrowserName === "Not_A Brand" || BrowserName === "Not=A? Brand"
+          ? "Unknown Brand"
+          : BrowserName,
+      browserversion: BrowserVersion,
+      deviceSizeType: devicesize,
+      deviceVP: deviceViewport,
+      page: pagevisited,
+    };
+    // console.log(SiteData)
 
-  //   ViewCount(SiteData)
-  //     .then((res) => {
-  //       // console.log(res);
-  //     })
-  //     .catch((err) => {
-  //       // console.log(err);
-  //     });
-  // }, []);
+    // ViewCount(SiteData)
+    //   .then((res) => {
+    //     // console.log(res);
+    //   })
+    //   .catch((err) => {
+    //     // console.log(err);
+    //   });
+  }, []);
 
   return (
     <Helmet>
-      <title>{`${name} | PT KCS Technologies Indonesia`}</title>
+      <title>{`${name} | PT KCS Technologies Indonesia `}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
       <meta charset="utf-8" />
       <meta name="robots" content="noindex" />
       <meta name="template" content={pagename} />
-     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1, safari=1" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1, safari=1" />
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <link rel="canonical" href={pathname}  />
+      <link rel="canonical" href={pathname} />
     </Helmet>
   );
 }

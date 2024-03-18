@@ -114,13 +114,13 @@ function Footer() {
           alignItems="center"
           justifyContent="space-between"
           spacing={1}
-          sx={{ width: "100%", px: 1, py: 3 }}
+          sx={{ width: "100%", px: 1, py: 3, backgroundColor: "lightgray" }}
         >
           <Typography
             variant="h5"
             sx={{ fontWeight: "bold", textAlign: "center" }}
           >
-            PT KCS Technologies Indonesia
+            Kapil Technologies Pvt Ltd
           </Typography>
 
           <MailLink to="mailto:info@ptkcs.com">info@ptkcs.com</MailLink>

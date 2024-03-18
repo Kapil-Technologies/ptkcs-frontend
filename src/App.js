@@ -9,7 +9,7 @@ import { useLocation } from "react-router-dom";
 import GlobalRoutes from "./router/GlobalRoutes";
 import { SnackbarProvider } from "notistack";
 import Navbar from "./components/common/Navbar";
-
+import { AnimatePresence } from "framer-motion";
 import { Provider as ReduxProvider } from "react-redux";
 import { store } from "./redux/store";
 import CTA from "./components/common/CTA";
@@ -25,11 +25,13 @@ function App() {
     <ReduxProvider store={store}>
       <ThemeProvider theme={CustomTheme}>
         <SnackbarProvider maxSnack={3} autoHideDuration={3000}>
-          <div className="App">
-            {condition ? null : <Navbar />}
-            <GlobalRoutes />
-            {condition ? null : <Footer />}
-          </div>
+          <AnimatePresence>
+            <div className="App">
+              {condition ? null : <Navbar />}
+              <GlobalRoutes />
+              {condition ? null : <Footer />}
+            </div>
+          </AnimatePresence>
         </SnackbarProvider>
       </ThemeProvider>
     </ReduxProvider>

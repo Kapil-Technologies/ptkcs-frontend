@@ -2,8 +2,8 @@ import React from "react";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import { Box, Stack } from "@mui/material";
 
-export const MainContainer = styled(Box)(({ theme }) => ({
-  height: "500px",
+export const MainContainer = styled(Box)(({ theme,mainheight }) => ({
+  height:mainheight,
   width: "100%",
   position: "relative",
   display: "flex",
@@ -34,12 +34,12 @@ export const Image = styled("img")(({ theme }) => ({
   },
 }));
 
-export const Layer = styled(Stack)(({ theme }) => ({
+export const Layer = styled(Stack)(({ theme, layercolor }) => ({
   width: "inherit",
   height: "inherit",
   position: "absolute",
   top: 0,
-  backgroundColor: "rgba(0,0,0,0.3)",
+  backgroundColor: layercolor,
 
   [theme.breakpoints.between("xs", "md")]: {
     //  mobile
@@ -48,9 +48,9 @@ export const Layer = styled(Stack)(({ theme }) => ({
 
 function Home() {
   return (
-    <MainContainer>
+    <MainContainer mainheight="500px" >
       Image
-      <Layer />
+      <Layer layercolor="rgba(0,0,0,0.3)" />
     </MainContainer>
   );
 }
