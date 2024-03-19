@@ -120,7 +120,7 @@ function Footer() {
             variant="h5"
             sx={{ fontWeight: "bold", textAlign: "center" }}
           >
-            Kapil Technologies Pvt Ltd
+            PT KCS Technologies Indonesia
           </Typography>
 
           <MailLink to="mailto:info@ptkcs.com">info@ptkcs.com</MailLink>

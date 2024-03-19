@@ -91,15 +91,13 @@ export const IconLeftArrow = styled(FiChevronLeft)(({ theme, color }) => ({
   fontSize: "25px",
 }));
 
-export const IconUpArrow = styled(FiChevronUp)(
-  ({ theme, color, condition }) => ({
-    fontSize: condition ? "25px" : "20px",
-  })
-);
+export const IconUpArrow = styled(FiChevronUp)(({ theme, color, font }) => ({
+  fontSize: font,
+}));
 
 export const IconDownArrow = styled(FiChevronDown)(
-  ({ theme, color, condition }) => ({
-    fontSize: condition ? "25px" : "20px",
+  ({ theme, color, font }) => ({
+    fontSize: font,
   })
 );
 

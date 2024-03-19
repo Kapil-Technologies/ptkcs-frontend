@@ -445,7 +445,7 @@ function Navbar({ Admin }) {
                 ) : (
                   <SubNavList>
                     {Services.map((item) => (
-                      <SubNavItem onClick={() => handleOpenSubmenu2(item.id)}>
+                      <SubNavItem key={item.id} onClick={() => handleOpenSubmenu2(item.id)}>
                         {!item.path ? (
                           <SubNavText>
                             <Typography variant="body">{item.title}</Typography>
@@ -463,7 +463,7 @@ function Navbar({ Admin }) {
                         item.submenul3 === Menudatal3 ? (
                           <SubNavList1>
                             {item.submenu.map((item) => (
-                              <SubNavItem1>
+                              <SubNavItem1 key={item.id}>
                                 {item.path ? (
                                   <SubNavLink1 to={item.path}>
                                     <IconDot />
@@ -570,6 +570,7 @@ function Navbar({ Admin }) {
                                   alignItems="start"
                                   justifyContent="space-between"
                                   sx={{ height: "auto" }}
+                                  key={item.id}
                                 >
                                   <Typography
                                     variant="h6"

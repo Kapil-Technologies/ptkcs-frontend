@@ -88,7 +88,7 @@ function GlobalRoutes() {
                   element: <Navigate to="join-us/job-openings" exact replace />,
                 },
                 {
-                  path: "life-@-ktech",
+                  path: "life-@-ptkcs",
                   element: <LifeatKCS />,
                 },
               ],

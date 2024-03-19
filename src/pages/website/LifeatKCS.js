@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import Page from "../../components/common/Page";
 import { Layer, MainContainer } from "../../sections/Banners/Home";
 import { useTheme } from "@emotion/react";
@@ -7,37 +7,94 @@ import {
   AccordionDetails,
   AccordionSummary,
   Divider,
+  Grid,
   Stack,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import { motion } from "framer-motion";
-import { IconDownArrow } from "../../themes/Icons";
+import { IconDownArrow, IconUpArrow } from "../../themes/Icons";
 import { styled } from "@mui/material/styles";
+import { useSelector } from "react-redux";
 
 const LAK = [
   {
     id: 1,
-    eventname: "event name 1",
-    domain: "kapiltech.com",
-    image: "",
-    showimage: "Yes",
-    foldername: "event name 1",
+    domain: ["kapiltech.com", "kcs-tech.com", "ptkcs.com"],
+    month: "January",
+    year: 2023,
+    images: [
+      {
+        id: 11,
+        imageUrl: "https://example.com/image3.jpg",
+        imagetext: "Image 1",
+        showimage: "yes",
+      },
+      {
+        id: 12,
+        imageUrl: "https://example.com/image3.jpg",
+        imagetext: "Image 2",
+        showimage: "yes",
+      },
+      {
+        id: 13,
+        imageUrl: "https://example.com/image3.jpg",
+        imagetext: "Image 3",
+        showimage: "yes",
+      },
+    ],
   },
   {
     id: 2,
-    eventname: "event name 2",
-    domain: "kapiltech.com",
-    image: "",
-    showimage: "Yes",
-    foldername: "event name 2",
+    domain: ["kapiltech.com", "kcs-tech.com", "ptkcs.com"],
+    month: "Febraury",
+    year: 2023,
+    images: [
+      {
+        id: 21,
+        imageUrl: "https://example.com/image3.jpg",
+        imagetext: "Image 1",
+        showimage: "yes",
+      },
+      {
+        id: 22,
+        imageUrl: "https://example.com/image3.jpg",
+        imagetext: "Image 2",
+        showimage: "yes",
+      },
+      {
+        id: 23,
+        imageUrl: "https://example.com/image3.jpg",
+        imagetext: "Image 3",
+        showimage: "yes",
+      },
+    ],
   },
   {
     id: 3,
-    eventname: "event name 3",
-    domain: "kapiltech.com",
-    image: "",
-    showimage: "Yes",
-    foldername: "event name 3",
+    domain: ["kapiltech.com", "kcs-tech.com", "ptkcs.com"],
+    month: "March",
+    year: 2023,
+    images: [
+      {
+        id: 31,
+        imageUrl: "https://example.com/image3.jpg",
+        imagetext: "Image 1",
+        showimage: "yes",
+      },
+      {
+        id: 32,
+        imageUrl: "https://example.com/image3.jpg",
+        imagetext: "Image 2",
+        showimage: "yes",
+      },
+      {
+        id: 33,
+        imageUrl: "https://example.com/image3.jpg",
+        imagetext: "Image 3",
+        showimage: "yes",
+      },
+    ],
   },
 ];
 
@@ -48,18 +105,34 @@ export const Line = styled("hr")(({ theme, layercolor }) => ({
 
 function LifeatKCS() {
   const theme = useTheme();
+  // const domain = useSelector((state) => state.domain.domain);
+  const domain = "ptkcs.com";
+  // console.log(domain);
 
-  const [expanded, setExpanded] = React.useState(false);
+  const Mobile = useMediaQuery((theme) =>
+    theme.breakpoints.between("xs", "sm")
+  );
+  const Tab = useMediaQuery((theme) => theme.breakpoints.between("sm", "md"));
 
-  const handleChange = (panel) => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
+  const [expand, setExpand] = useState(false);
+  const [imgid, setimgid] = useState(0);
+
+  const handleOpenEvent = (id) => {
+    setimgid(id);
+    setExpand(true);
   };
+
+  useEffect(() => {
+    // Automatically expand the accordion for "event name 1" on component mount
+    handleOpenEvent(1);
+  }, []); // Empty dependency array ensures this effect runs only once on mount
+
   return (
     <Stack direction="column" alignItems="center" justifyContent="center">
       <Page
         name="Life @ PT KCS"
         description="PT KCS Technologies, an esteemed Infor Alliance Partner, offers a wide array of services including Infor and SAP consulting, as well as custom application development, among others."
-        pagename="Life @ KTECH Page"
+        pagename="Life @ PT KCS Page"
       />
       <MainContainer mainheight="400px">
         <Layer
@@ -78,7 +151,7 @@ function LifeatKCS() {
             animate={{ y: 0 }}
             exit={{ y: "30px" }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            sx={{ height: "inherit", textAlign: "left" }}
+            sx={{ height: "inherit", textAlign: "left", p: 2 }}
           >
             <Typography variant="h4" sx={{ fontWeight: "bold" }}>
               Life @ PT KCS
@@ -105,29 +178,93 @@ function LifeatKCS() {
         transition={{ duration: 0.8, delay: 0.2 }}
         spacing={3}
       >
-        {LAK.map((item) => (
-          <Stack
-            sx={{ width: "100%", position: "relative" }}
-            direction="row"
-            alignItems="center"
-            justifyContent="space-between"
-          >
-            <Typography
-              variant="h6"
-              sx={{
-                position: "absolute",
-                backgroundColor: "white",
-                px: 2,
-                textTransform: "capitalize",
-                fontWeight: "bold",
-              }}
+        {LAK.map((item) =>
+          item.domain.includes(domain) ? (
+            <Stack
+              key={item.id}
+              sx={{ width: "100%", position: "relative" }}
+              direction="column"
+              alignItems="center"
+              justifyContent="space-between"
+              spacing={1}
             >
-              {item.foldername}
-            </Typography>
-            <Line />
-            <IconDownArrow />
-          </Stack>
-        ))}
+              <Stack
+                sx={{ width: "100%", position: "relative" }}
+                direction="row"
+                alignItems="center"
+                justifyContent="space-between"
+              >
+                <Typography
+                  variant="h6"
+                  sx={{
+                    position: "absolute",
+                    backgroundColor: "white",
+                    px: 1,
+                    textTransform: "capitalize",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {item.month} {item.year}
+                </Typography>
+                <Line />
+                <Stack
+                  direction="row"
+                  alignItems="center"
+                  justifyContent="center"
+                  sx={{ px: 1, cursor: "pointer" }}
+                  onClick={() => handleOpenEvent(item.id)}
+                >
+                  {expand && imgid === item.id ? (
+                    <IconUpArrow font="20px" />
+                  ) : (
+                    <IconDownArrow font="20px" />
+                  )}
+                </Stack>
+              </Stack>
+              <Stack
+                direction={Mobile || Tab ? "column" : "row"}
+                alignItems="center"
+                justifyContent={Mobile || Tab ? "center" : "space-evenly"}
+                sx={{
+                  width: "90%",
+                  height: expand ? "auto" : 0,
+                  // border: "1px solid #d3e1ea",
+                  p: expand && imgid === item.id ? 1 : 0,
+                }}
+              >
+                {expand && imgid === item.id
+                  ? item.images.map((item) => (
+                      <Stack
+                        direction="column"
+                        alignItems="center"
+                        justifyContent="space-evenly"
+                        sx={{ width: "100%", p: 1 }}
+                        key={item.id}
+                      >
+                        {item.showimage === "yes" ? (
+                          <Stack
+                            direction="column"
+                            alignItems="center"
+                            justifyContent="center"
+                            component={Grid}
+                            container
+                            sx={{
+                              width: "100%",
+                              height: "200px",
+                              border: "1px solid #d3e1ea",
+                            }}
+                            // spacing={2}
+                          >
+                            <Grid item>{item.imagetext}</Grid>
+                          </Stack>
+                        ) : null}
+                      </Stack>
+                    ))
+                  : null}
+              </Stack>
+            </Stack>
+          ) : null
+        )}
       </Stack>
     </Stack>
   );
