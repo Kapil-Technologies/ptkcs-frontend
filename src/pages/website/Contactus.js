@@ -130,7 +130,7 @@ function Contactus() {
                 alignItems="center"
                 spacing={2}
                 component={Link}
-                to="mailto:info@kapiltech.com"
+                to="mailto:info@ptkcs.com"
                 sx={{
                   color: "white",
                   textDecoration: "none",
@@ -139,7 +139,7 @@ function Contactus() {
                 }}
               >
                 <IconEmail />
-                <Typography variant="body1">info@kapiltech.com</Typography>
+                <Typography variant="body1">info@ptkcs.com</Typography>
               </Stack>
 
               <Stack

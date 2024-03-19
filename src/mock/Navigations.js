@@ -13,6 +13,7 @@ import {
   IconYoutube,
   IconInstagram,
   IconFacebook,
+  IconArrowRight,
 } from "../themes/Icons";
 
 // ------------------------------------------------------------- Main Website
@@ -47,14 +48,14 @@ export const NavData = [
 
   {
     id: 3,
-    title: "Services",
+    title: "What we do",
     openicon: <IconUpArrow />,
     closeicon: <IconDownArrow />,
     submenudata: 3,
     submenu: [
       {
         id: 1,
-        title: "Professional Services",
+        title: "Consulting",
         submenul3: 1,
         submenu: [
           {
@@ -77,7 +78,7 @@ export const NavData = [
           },
           {
             id: 4,
-            title: "Enterprise Software Development",
+            title: "ERP Software Development",
             icon: <FiArrowDownRight />,
             // path: "/services/infor-consulting-services/ref4",
           },
@@ -87,45 +88,31 @@ export const NavData = [
             icon: <FiArrowDownRight />,
             // path: "/services/infor-consulting-services/ref5",
           },
+          {
+            id: 6,
+            title: "Infor Consulting Services",
+            icon: <FiArrowDownRight />,
+            path: "/services/infor-consulting",
+          },
         ],
       },
+
       {
         id: 2,
-        // title: "Managed Services",
-        submenul3: 2,
-
+        title: "Other Services",
+        submenul3: 3,
         submenu: [
           {
             id: 1,
-            title: "Managed Services",
-            submenul3: 2,
-            submenu: [
-              {
-                id: 1,
-                title: "Managed Services for Infor",
-                icon: <FiArrowDownRight />,
-                path: "/services/infor-consulting",
-              },
-            ],
+            title: "Staffing Services",
+            icon: <FiArrowDownRight />,
+            // path: "/services/infor-consulting-services",
           },
           {
             id: 2,
-            title: "Other Services",
-            submenul3: 2,
-            submenu: [
-              {
-                id: 1,
-                title: "Staffing Services",
-                icon: <FiArrowDownRight />,
-                // path: "/services/infor-consulting-services",
-              },
-              {
-                id: 2,
-                title: "TaaS (Testing as a Service)",
-                icon: <FiArrowDownRight />,
-                // path: "/services/infor-consulting-services",
-              },
-            ],
+            title: "TaaS (Testing as a Service)",
+            icon: <FiArrowDownRight />,
+            // path: "/services/infor-consulting-services",
           },
         ],
       },
@@ -137,19 +124,19 @@ export const NavData = [
         submenu: [
           {
             id: 1,
-            title: " KT Finstaa",
+            title: " Finstaa",
             icon: <FiArrowDownRight />,
             // path: "",
           },
           {
             id: 2,
-            title: "KT Fleet Management",
+            title: "Fleet Management",
             icon: <FiArrowDownRight />,
             // path: "",
           },
           {
             id: 3,
-            title: "KT Mobillor",
+            title: "Mobillor",
             icon: <FiArrowDownRight />,
             // path: "",
           },
@@ -178,8 +165,8 @@ export const NavData = [
       },
       {
         id: 3,
-        title: "Life @ PT KCS",
-        path: "/join-us/life-@-ptkcs",
+        title: "Life @KTECH",
+        path: "/join-us/life-@-ktech",
       },
     ],
   },
@@ -190,18 +177,19 @@ export const NavData = [
   },
 ];
 
-export const Services = [
+export const ServicesNew = [
   {
     id: 1,
-    title: "Professional ",
+    title: "Consulting",
     submenul3: 1,
     openicon: <IconUpArrow />,
     closeicon: <IconDownArrow />,
+    icon: <IconArrowRight />,
     submenu: [
       {
         id: 1,
         title: "SAP Consulting Services ",
-        path: "/services/sap-consulting-services",
+        path: "/services/sap-consulting",
         icon: <FiArrowDownRight />,
       },
       {
@@ -218,7 +206,7 @@ export const Services = [
       },
       {
         id: 4,
-        title: "Enterprise Software Development",
+        title: "ERP Software Development",
         icon: <FiArrowDownRight />,
         // path: "/services/infor-consulting-services/ref4",
       },
@@ -228,29 +216,22 @@ export const Services = [
         icon: <FiArrowDownRight />,
         // path: "/services/infor-consulting-services/ref5",
       },
-    ],
-  },
-  {
-    id: 2,
-    title: "Managed ",
-    submenul3: 2,
-    openicon: <IconUpArrow />,
-    closeicon: <IconDownArrow />,
-    submenu: [
       {
-        id: 1,
-        title: "Managed Services for Infor",
+        id: 5,
+        title: "Infor Consulting Services",
         icon: <FiArrowDownRight />,
-        path: "/services/managed-services-for-Infor",
+        path: "/services/infor-consulting",
       },
     ],
   },
+
   {
-    id: 3,
+    id: 2,
     title: "Other Services",
-    submenul3: 3,
+    submenul3: 2,
     openicon: <IconUpArrow />,
     closeicon: <IconDownArrow />,
+    icon: <IconArrowRight />,
     submenu: [
       {
         id: 1,
@@ -266,16 +247,30 @@ export const Services = [
       },
     ],
   },
+
   {
-    id: 4,
+    id: 3,
     title: "Products",
-    submenul3: 4,
+    submenul3: 3,
     openicon: <IconUpArrow />,
     closeicon: <IconDownArrow />,
+    icon: <IconArrowRight />,
     submenu: [
       {
         id: 1,
-        title: "Finstaa",
+        title: " Finstaa",
+        icon: <FiArrowDownRight />,
+        // path: "",
+      },
+      {
+        id: 2,
+        title: "Fleet Management",
+        icon: <FiArrowDownRight />,
+        // path: "",
+      },
+      {
+        id: 3,
+        title: "Mobillor",
         icon: <FiArrowDownRight />,
         // path: "",
       },

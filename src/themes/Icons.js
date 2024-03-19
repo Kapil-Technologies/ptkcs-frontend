@@ -25,6 +25,7 @@ import {
   FiLinkedin,
   FiInstagram,
   FiYoutube,
+  FiArrowRight,
 } from "react-icons/fi";
 import { styled } from "@mui/material/styles";
 import { VscCircleFilled } from "react-icons/vsc";
@@ -96,6 +97,12 @@ export const IconUpArrow = styled(FiChevronUp)(({ theme, color, font }) => ({
 }));
 
 export const IconDownArrow = styled(FiChevronDown)(
+  ({ theme, color, font }) => ({
+    fontSize: font,
+  })
+);
+
+export const IconArrowRight = styled(FiArrowRight)(
   ({ theme, color, font }) => ({
     fontSize: font,
   })

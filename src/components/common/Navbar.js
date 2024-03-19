@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link, NavLink, useLocation, useParams } from "react-router-dom";
 import { Box, Icon, Stack, Typography, useMediaQuery } from "@mui/material";
@@ -10,7 +10,7 @@ import {
   IconRightArrow,
   IconUpArrow,
 } from "../../themes/Icons";
-import { NavData, Services } from "../../mock/Navigations";
+import { NavData, Services, ServicesNew } from "../../mock/Navigations";
 
 // -----------------------------------------------------------------------------------
 
@@ -87,6 +87,34 @@ const ResponsiveContainer = styled(Stack)(({ theme }) => ({
   },
 }));
 
+// const MainNavList = styled("ul")(({ theme, Toggle }) => ({
+//   display: "flex",
+//   alignItems: "center",
+//   padding: "10px",
+
+//   [theme.breakpoints.between("xs", "md")]: {
+//     top: "75px",
+//     background: theme.palette.primary.main,
+//     height: "100%",
+//     width: "300px",
+//     margin: "auto",
+//     position: "fixed",
+//     overflowY: "scroll",
+//     left: Toggle ? 0 : "-200%",
+//     display: "flex",
+//     alignItems: "flex-start",
+//     justifyContent: "center",
+//     flexDirection: "column",
+//     border: "1px solid white",
+//   },
+
+//   [theme.breakpoints.between("md", "lg")]: {
+//     // Desktop
+//   },
+
+//   [theme.breakpoints.up("xl")]: {},
+// }));
+
 const MainNavList = styled("ul")(({ theme, Toggle }) => ({
   display: "flex",
   alignItems: "center",
@@ -95,13 +123,17 @@ const MainNavList = styled("ul")(({ theme, Toggle }) => ({
   [theme.breakpoints.between("xs", "md")]: {
     top: "75px",
     background: theme.palette.primary.main,
-    height: "100%",
+    height: "calc(100% - 75px)",
     width: "300px",
+    margin: "auto",
     position: "fixed",
-    flexDirection: "column",
-    alignItems: "left",
     overflowY: "scroll",
     left: Toggle ? 0 : "-200%",
+    display: "flex",
+    alignItems: "start",
+    justifyContent: "start",
+    flexDirection: "column",
+    // border: "1px solid white",
   },
 
   [theme.breakpoints.between("md", "lg")]: {
@@ -116,14 +148,15 @@ const MainNavItem = styled("li")(({ theme }) => ({
 
   [theme.breakpoints.between("xs", "md")]: {
     position: "relative",
-    top: "20px",
-    padding: "10px",
-    display: "flex",
-    alignItems: "left",
-    justifyContent: "left",
-    width: "inherit",
+    top: "10px",
+    paddingBottom: "10px",
+    paddingTop: "10px",
+    // display: "flex",
+    // alignItems: "left",
+    // justifyContent: "center",
+    width: "100%",
     height: "auto",
-    flexDirection: "column",
+    // flexDirection: "column",
     left: "60px",
   },
 
@@ -177,7 +210,7 @@ const MainNavText = styled(Box)(({ theme }) => ({
 
 const SubNavList = styled("ul")(({ theme, menuid }) => ({
   display: "flex",
-  alignItems: "left",
+  alignItems: "start",
   justifyContent: "left",
   flexDirection: menuid ? "row" : "column",
   gap: 2,
@@ -192,7 +225,8 @@ const SubNavList = styled("ul")(({ theme, menuid }) => ({
     position: "relative",
     top: "5px",
     background: theme.palette.primary.main,
-    width: "160px",
+    width: "100%",
+    left: 0,
   },
 
   [theme.breakpoints.between("md", "lg")]: {
@@ -208,6 +242,11 @@ const SubNavItem = styled("li")(({ theme, menuid }) => ({
   textAlign: "left",
   [theme.breakpoints.between("xs", "md")]: {
     width: "100%",
+    flexDirection: "column",
+    display: "flex",
+    alignItems: "left",
+    justifyContent: "left",
+    left: 0,
   },
 
   [theme.breakpoints.between("md", "lg")]: {
@@ -225,6 +264,7 @@ const SubNavLink = styled(NavLink)(({ theme, menuid }) => ({
     display: "flex",
     alignItems: "center",
     color: "white",
+    width: "100%",
   },
 
   [theme.breakpoints.between("md", "lg")]: {
@@ -240,6 +280,7 @@ const SubNavText = styled(Box)(({ theme, menuid }) => ({
     alignItems: "center",
     color: "white",
     cursor: "pointer",
+    gap: 2,
   },
 
   [theme.breakpoints.between("md", "lg")]: {
@@ -295,6 +336,7 @@ const SubNavLink1 = styled(NavLink)(({ theme, menuid }) => ({
     alignItems: "center",
     color: "white",
     width: "100%",
+    marginLeft: "-18px",
   },
 
   [theme.breakpoints.between("md", "lg")]: {
@@ -311,6 +353,7 @@ const SubNavText1 = styled(Box)(({ theme, menuid }) => ({
     justifyContent: "left",
     color: "white",
     width: "100%",
+    marginLeft: "-18px",
   },
 
   [theme.breakpoints.between("md", "lg")]: {
@@ -384,11 +427,30 @@ function Navbar({ Admin }) {
 
   const condition = Menuid === 2 || Menuid === 3 || Menuid === 4;
 
+  // -------------------------------------------------------------------------  Color Change When Scrollerd
+
+  const [scrolling, setScrolling] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 40) {
+        setScrolling(true);
+      } else {
+        setScrolling(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <MainContainer
       onMouseLeave={handleMouseLeaves}
-      hover={hover && condition}
-      toggle={toggle}
+      hover={(hover && condition) || scrolling}
+      toggle={toggle || scrolling}
       className="MainNavbar"
     >
       <ResponsiveContainer onClick={handleToggle}>
@@ -444,10 +506,14 @@ function Navbar({ Admin }) {
                   </SubNavList>
                 ) : (
                   <SubNavList>
-                    {Services.map((item) => (
-                      <SubNavItem key={item.id} onClick={() => handleOpenSubmenu2(item.id)}>
+                    {ServicesNew.map((item) => (
+                      <SubNavItem
+                        key={item.id}
+                        onClick={() => handleOpenSubmenu2(item.id)}
+                      >
                         {!item.path ? (
                           <SubNavText>
+                            {item.icon}
                             <Typography variant="body">{item.title}</Typography>
                             {item.submenu &&
                             Click1 &&
@@ -467,7 +533,9 @@ function Navbar({ Admin }) {
                                 {item.path ? (
                                   <SubNavLink1 to={item.path}>
                                     <IconDot />
-                                    <Typography>{item.title}</Typography>
+                                    <Typography variant="body1">
+                                      {item.title}
+                                    </Typography>
                                   </SubNavLink1>
                                 ) : (
                                   <SubNavText1>
@@ -525,87 +593,43 @@ function Navbar({ Admin }) {
                         variant="h5"
                         sx={{ fontWeight: "bold", p: 2, color: "primary.main" }}
                       >
-                        Services We Provide
+                        Services at a Glance
                       </Typography>
 
                       <SubNavList1>
-                        {item.submenu.map((item) =>
-                          item.id !== 2 ? (
-                            <SubNavItem1 key={item.id}>
-                              <Typography
-                                variant="h6"
-                                sx={{ fontWeight: "bold" }}
-                                gutterBottom
+                        {item.submenu.map((item) => (
+                          <SubNavItem1 key={item.id}>
+                            <Typography
+                              variant="h6"
+                              sx={{ fontWeight: "bold" }}
+                              gutterBottom
+                            >
+                              {item.title}
+                            </Typography>
+                            {item.submenu.map((item) => (
+                              <Stack
+                                direction="row"
+                                alignItems="center"
+                                key={item.id}
+                                spacing={1}
+                                sx={{ marginBottom: "10px" }}
                               >
-                                {item.title}
-                              </Typography>
-                              {item.submenu.map((item) => (
-                                <Stack
-                                  direction="row"
-                                  alignItems="center"
-                                  key={item.id}
-                                  spacing={1}
-                                  sx={{ marginBottom: "10px" }}
-                                >
-                                  <IconDot />
-                                  {item.path ? (
-                                    <SubNavLink1 to={item.path}>
-                                      {item.title}
-                                    </SubNavLink1>
-                                  ) : (
-                                    <SubNavText1>
-                                      <Typography variant="body1">
-                                        {item.title}
-                                      </Typography>
-                                    </SubNavText1>
-                                  )}
-                                </Stack>
-                              ))}
-                            </SubNavItem1>
-                          ) : (
-                            <SubNavItem1>
-                              {item.submenu.map((item) => (
-                                <Stack
-                                  direction="column"
-                                  alignItems="start"
-                                  justifyContent="space-between"
-                                  sx={{ height: "auto" }}
-                                  key={item.id}
-                                >
-                                  <Typography
-                                    variant="h6"
-                                    sx={{ fontWeight: "bold" }}
-                                    gutterBottom
-                                  >
+                                <IconDot />
+                                {item.path ? (
+                                  <SubNavLink1 to={item.path}>
                                     {item.title}
-                                  </Typography>
-                                  {item.submenu.map((item) => (
-                                    <Stack
-                                      direction="row"
-                                      alignItems="center"
-                                      key={item.id}
-                                      spacing={1}
-                                      sx={{ marginBottom: "10px" }}
-                                    >
-                                      <IconDot />
-                                      {item.path ? (
-                                        <SubNavLink1 to={item.path}>
-                                          {item.title}
-                                        </SubNavLink1>
-                                      ) : (
-                                        <SubNavText1>
-                                          <Typography variant="body1">
-                                            {item.title}
-                                          </Typography>
-                                        </SubNavText1>
-                                      )}
-                                    </Stack>
-                                  ))}
-                                </Stack>
-                              ))}
-                            </SubNavItem1>
-                          )
-                        )}
+                                  </SubNavLink1>
+                                ) : (
+                                  <SubNavText1>
+                                    <Typography variant="body1">
+                                      {item.title}
+                                    </Typography>
+                                  </SubNavText1>
+                                )}
+                              </Stack>
+                            ))}
+                          </SubNavItem1>
+                        ))}
                       </SubNavList1>
                     </Stack>
                   </SubNavList>
