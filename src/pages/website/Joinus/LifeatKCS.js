@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
-import Page from "../../components/common/Page";
-import { Layer, MainContainer } from "../../sections/Banners/Home";
+import Page from "../../../components/common/Page";
+import { Layer, MainContainer } from "../../../sections/Banners/Home";
 import { useTheme } from "@emotion/react";
 import {
   Accordion,
@@ -13,7 +13,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { motion } from "framer-motion";
-import { IconDownArrow, IconUpArrow } from "../../themes/Icons";
+import { IconDownArrow, IconUpArrow } from "../../../themes/Icons";
 import { styled } from "@mui/material/styles";
 import { useSelector } from "react-redux";
 

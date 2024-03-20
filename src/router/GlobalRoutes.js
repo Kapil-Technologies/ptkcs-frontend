@@ -1,14 +1,15 @@
 import React, { lazy } from "react";
 import { Navigate, useRoutes } from "react-router-dom";
 import NotFound from "../pages/others/NotFound";
-import LifeatKCS from "../pages/website/LifeatKCS";
+import LifeatKCS from "../pages/website/Joinus/LifeatKCS";
 import MainHome from "../pages/website/MainHome";
-import Careers from "../pages/website/Careers";
-import Company from "../pages/website/Company";
-import Team from "../pages/website/Team";
+import Careers from "../pages/website/Joinus/Careers";
+import Company from "../pages/website/About/Company";
 import SAP from "../pages/website/Services/SAP";
 import Infor from "../pages/website/Services/Infor";
 import Contactus from "../pages/website/Contactus";
+import Events from "../pages/website/Joinus/Events";
+import Leadership from "../pages/website/About/Leadership";
 
 // ------------------------------------------------------
 
@@ -91,6 +92,10 @@ function GlobalRoutes() {
                   path: "life-@-ptkcs",
                   element: <LifeatKCS />,
                 },
+                {
+                  path: "Events",
+                  element: <Events />,
+                },
               ],
             },
             {
@@ -109,7 +114,7 @@ function GlobalRoutes() {
                 },
                 {
                   path: "our-team",
-                  element: <Team />,
+                  element: <Leadership />,
                 },
               ],
             },

@@ -219,7 +219,7 @@ const SubNavList = styled("ul")(({ theme, menuid }) => ({
   right: menuid ? 0 : null,
   width: menuid ? "100%" : "auto",
   background: theme.palette.secondary.main,
-  height: menuid ? "250px" : "auto",
+  height: menuid ? "300px" : "auto",
 
   [theme.breakpoints.between("xs", "md")]: {
     position: "relative",
@@ -295,7 +295,7 @@ const SubNavText = styled(Box)(({ theme, menuid }) => ({
 const SubNavList1 = styled("ul")(({ theme, menuid }) => ({
   display: "flex",
   alignItems: "start",
-  justifyContent: "space-between",
+  justifyContent: "space-evenly",
   width: "70%",
   padding: "5px",
 

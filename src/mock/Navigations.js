@@ -165,8 +165,8 @@ export const NavData = [
       },
       {
         id: 3,
-        title: "Life @KTECH",
-        path: "/join-us/life-@-ktech",
+        title: "Life @ PT KCS",
+        path: "/join-us/life-@-ptkcs",
       },
     ],
   },
