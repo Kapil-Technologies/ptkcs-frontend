@@ -1,7 +1,40 @@
-import { Card, Grid, Stack, TextField, Typography } from "@mui/material";
-import React from "react";
+import {
+  Card,
+  Grid,
+  MenuItem,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
+import React, { useContext, useEffect, useState } from "react";
+import { CountriesList } from "../App";
+import { getBranches } from "../api/GetRequests";
+import { useSnackbar } from "notistack";
 
 function GlobalFootPrints() {
+  const { enqueueSnackbar } = useSnackbar();
+  const countriesdata = useContext(CountriesList);
+
+  const [branches, setBranches] = useState([]);
+
+  useEffect(() => {
+    getBranches()
+      .then((res) => {
+        // console.log(res);
+        const status = res.data.success;
+        if (status) {
+          // enqueueSnackbar(res.data.message, { variant: "success" });
+          setBranches(res.data.response);
+        } else {
+          enqueueSnackbar(res.data.message, { variant: "error" });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        enqueueSnackbar(err.message, { variant: "error" });
+      });
+  }, []);
+
   return (
     <Stack
       direction="column"
@@ -19,12 +52,26 @@ function GlobalFootPrints() {
         <Typography variant="h5" sx={{ fontWeight: "bold" }}>
           Our Global Offices
         </Typography>
-        {/* <TextField size="small" label="Search a Country">
-                  
-            </TextField> */}
+        <TextField
+          size="small"
+          label="Search a Country"
+          select
+          sx={{ width: "40%" }}
+        >
+          {countriesdata.map((item) =>
+            item.branch ? <MenuItem>{item.countryname}</MenuItem> : null
+          )}
+        </TextField>
       </Stack>
 
-      <Grid sx={{direction:'row',alignItems:'center',justifyContent:'space-evenly',width:'80%'}}>
+      <Grid
+        sx={{
+          direction: "row",
+          alignItems: "center",
+          justifyContent: "space-evenly",
+          width: "80%",
+        }}
+      >
         <Card
           item
           sx={{
@@ -32,8 +79,8 @@ function GlobalFootPrints() {
             alignItems: "center",
             justifyContent: "left",
             width: "300px",
-              height: "300px",
-            border:'1px solid lightgray'
+            height: "300px",
+            border: "1px solid lightgray",
           }}
         ></Card>
       </Grid>

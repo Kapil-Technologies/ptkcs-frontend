@@ -16,6 +16,8 @@ import { motion } from "framer-motion";
 import { IconDownArrow, IconUpArrow } from "../../../themes/Icons";
 import { styled } from "@mui/material/styles";
 import { useSelector } from "react-redux";
+import { getLAKTECH } from "../../../api/GetRequests";
+import { useSnackbar } from "notistack";
 
 const LAK = [
   {
@@ -105,8 +107,9 @@ export const Line = styled("hr")(({ theme, layercolor }) => ({
 
 function LifeatKCS() {
   const theme = useTheme();
+  const { enqueueSnackbar } = useSnackbar();
   // const domain = useSelector((state) => state.domain.domain);
-  const domain = "ptkcs.com";
+  const domain = "kapiltech.com";
   // console.log(domain);
 
   const Mobile = useMediaQuery((theme) =>
@@ -116,6 +119,7 @@ function LifeatKCS() {
 
   const [expand, setExpand] = useState(false);
   const [imgid, setimgid] = useState(0);
+  const [Limgid, setLimgid] = useState([]);
 
   const handleOpenEvent = (id) => {
     setimgid(id);
@@ -127,12 +131,30 @@ function LifeatKCS() {
     handleOpenEvent(1);
   }, []); // Empty dependency array ensures this effect runs only once on mount
 
+  useEffect(() => {
+    getLAKTECH()
+      .then((res) => {
+        // console.log(res);
+        const status = res.data.success;
+        if (status) {
+          // enqueueSnackbar(res.data.message, { variant: "success" });
+          setLimgid(res.data.response);
+        } else {
+          enqueueSnackbar(res.data.message, { variant: "error" });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        enqueueSnackbar(err.message, { variant: "error" });
+      });
+  }, []);
+
   return (
     <Stack direction="column" alignItems="center" justifyContent="center">
       <Page
-        name="Life @ PT KCS"
-        description="PT KCS Technologies, an esteemed Infor Alliance Partner, offers a wide array of services including Infor and SAP consulting, as well as custom application development, among others."
-        pagename="Life @ PT KCS Page"
+        name="Life @ KTECH"
+        description="Kapil Technologies, an esteemed Infor Alliance Partner, offers a wide array of services including Infor and SAP consulting, as well as custom application development, among others."
+        pagename="Life @ KTECH Page"
       />
       <MainContainer mainheight="400px">
         <Layer
@@ -154,7 +176,7 @@ function LifeatKCS() {
             sx={{ height: "inherit", textAlign: "left", p: 2 }}
           >
             <Typography variant="h4" sx={{ fontWeight: "bold" }}>
-              Life @ PT KCS
+              Life @ KTECH
             </Typography>
 
             <Typography variant="body1">
@@ -178,7 +200,30 @@ function LifeatKCS() {
         transition={{ duration: 0.8, delay: 0.2 }}
         spacing={3}
       >
-        {LAK.map((item) =>
+        <Stack
+          direction="column"
+          alignItems="center"
+          justifyContent="space-evenly"
+          sx={{ width: "100%", p: 1 }}
+          // key={item.id}
+        >
+          <Stack
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
+            component={Grid}
+            container
+            sx={{
+              width: "500px",
+              height: "250px",
+              border: "1px solid lightgray",
+            }}
+            // spacing={2}
+          >
+            <Grid item>Image</Grid>
+          </Stack>
+        </Stack>
+        {/* {LAK.map((item) =>
           item.domain.includes(domain) ? (
             <Stack
               key={item.id}
@@ -264,7 +309,7 @@ function LifeatKCS() {
               </Stack>
             </Stack>
           ) : null
-        )}
+        )} */}
       </Stack>
     </Stack>
   );

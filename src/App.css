@@ -12,6 +12,8 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  position: relative;
+  
   /* justify-content: space-between; */
 }
 
@@ -42,4 +44,29 @@
 
 .MainNavbar {
   transition: all 0.5s ease-in-out;
+}
+.circle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}
+
+.outer-circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 2px solid black;
+  position: relative;
+}
+
+.inner-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

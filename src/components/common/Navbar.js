@@ -487,7 +487,7 @@ function Navbar({ Admin }) {
                     {item.submenu.map((item) => (
                       <SubNavItem key={item.id}>
                         {item.path ? (
-                          <SubNavLink to={item.path}>
+                          <SubNavLink to={item.path} onClick={handleRemoveClick}>
                             <IconDot />
                             <Typography variant="body1">
                               {item.title}
@@ -531,7 +531,7 @@ function Navbar({ Admin }) {
                             {item.submenu.map((item) => (
                               <SubNavItem1 key={item.id}>
                                 {item.path ? (
-                                  <SubNavLink1 to={item.path}>
+                                  <SubNavLink1 to={item.path} onClick={handleRemoveClick}>
                                     <IconDot />
                                     <Typography variant="body1">
                                       {item.title}

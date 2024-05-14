@@ -53,11 +53,16 @@ function Contactus() {
             transition={{ duration: 0.5, delay: 0.1 }}
             sx={{ textAlign: "center" }}
           >
-            <Typography variant="h4" sx={{ fontWeight: "bold", pt: "120px" }}>
+            <Typography
+              variant={Mobile || Tab ? "h5" : "h4"}
+              sx={{ fontWeight: "bold", pt: "120px" }}
+            >
               Get in Touch with us !
             </Typography>
 
-            <Typography variant="body1">Get in Touch with us !</Typography>
+            <Typography variant="body1">
+              Stay Connected, Reach Out Today!
+            </Typography>
           </Stack>
         </Layer>
       </MainContainer>
@@ -96,7 +101,7 @@ function Contactus() {
               justifyContent: "start",
               flexDirection: "column",
               // border: "1px solid blue",
-              height: Mobile || Tab ? "400px" : "inherit",
+              height: Mobile || Tab ? "500px" : "inherit",
               position: "relative",
               backgroundColor: theme.palette.primary.main,
               color: "white",

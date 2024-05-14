@@ -1,4 +1,4 @@
-import { Stack, useTheme } from "@mui/material";
+import { Card, Grid, Stack, Typography, useTheme } from "@mui/material";
 import React, { Fragment } from "react";
 import Page from "../../../components/common/Page";
 import { Layer, MainContainer } from "../../../sections/Banners/Home";
@@ -38,19 +38,54 @@ function Leadership() {
         justifyContent="start"
         sx={{ width: "100%" }}
       >
-        <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="center"
+        <Grid
           sx={{
             width: "95%",
             px: "15px",
             py: "30px",
-            border: "1px solid blue",
+            // border: "1px solid blue",
+            direction: "row",
+            alignItems: "center",
+            justifyContent: "space-evenly",
           }}
+          container
+          columnGap={2}
+          rowGap={2}
         >
-          Data
-        </Stack>
+          <Card
+            sx={{
+              display: "flex",
+              alignItems: "left",
+              justifyContent: "left",
+              flexDirection: "column",
+              width: "250px",
+              height: "350px",
+              gap: 2,
+              border: "1px solid gray",
+              boxShadow: 3,
+              p: 2,
+            }}
+          >
+            <Stack
+              direction="row"
+              alignItems="center"
+              justifyContent="center"
+              style={{
+                height: "inherit",
+                width: "inherit",
+                border: "1px solid blue",
+              }}
+            >
+              Image
+            </Stack>
+            <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+              Employees Name
+            </Typography>
+            <Typography variant="body1" sx={{ textAlign: "left" }}>
+              Employees Designation
+            </Typography>
+          </Card>
+        </Grid>
       </Stack>
     </Fragment>
   );

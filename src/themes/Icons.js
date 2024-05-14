@@ -26,6 +26,8 @@ import {
   FiInstagram,
   FiYoutube,
   FiArrowRight,
+  FiArrowLeft,
+  FiArrowUp,
 } from "react-icons/fi";
 import { styled } from "@mui/material/styles";
 import { VscCircleFilled } from "react-icons/vsc";
@@ -83,13 +85,13 @@ export const IconPasswordClose = styled(FiEyeOff)(({ theme, color }) => ({
 // ------------------------------------------------------------  Arrows
 
 export const IconRightArrow = styled(FiChevronRight)(
-  ({ theme, color, condition }) => ({
-    fontSize: condition ? "25px" : "20px",
+  ({ theme, color, font }) => ({
+    fontSize: font,
   })
 );
 
-export const IconLeftArrow = styled(FiChevronLeft)(({ theme, color }) => ({
-  fontSize: "25px",
+export const IconLeftArrow = styled(FiChevronLeft)(({ theme, font }) => ({
+  fontSize: font,
 }));
 
 export const IconUpArrow = styled(FiChevronUp)(({ theme, color, font }) => ({
@@ -105,8 +107,21 @@ export const IconDownArrow = styled(FiChevronDown)(
 export const IconArrowRight = styled(FiArrowRight)(
   ({ theme, color, font }) => ({
     fontSize: font,
+   
   })
 );
+
+
+export const IconArrowTop = styled(FiArrowUp)(
+  ({ theme, color, font }) => ({
+    fontSize: font,
+   
+  })
+);
+
+export const IconArrowLeft = styled(FiArrowLeft)(({ theme, color, font }) => ({
+  fontSize: font,
+}));
 
 export const IconHash = styled(FiHash)(({ theme, color }) => ({
   fontSize: "20px",

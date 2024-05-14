@@ -67,7 +67,7 @@ export const NavData = [
           {
             id: 2,
             title: "Digital Transformation",
-            // path: "/services/infor-consulting-services/ref2",
+            path: "/services/digital-transformation",
             icon: <FiArrowDownRight />,
           },
           {
@@ -156,7 +156,7 @@ export const NavData = [
       {
         id: 1,
         title: "Job Openings",
-        path: "/join-us/job-openings",
+        path: "/join-us/search-jobs",
       },
       {
         id: 2,
@@ -165,8 +165,8 @@ export const NavData = [
       },
       {
         id: 3,
-        title: "Life @ PT KCS",
-        path: "/join-us/life-@-ptkcs",
+        title: "Life @KTECH",
+        path: "/join-us/life-@-ktech",
       },
     ],
   },
@@ -297,6 +297,7 @@ export const SocialMediaLinks = [
     icon: <IconInstagram />,
     link: "",
   },
+  
   {
     id: 4,
     name: "Facebook",

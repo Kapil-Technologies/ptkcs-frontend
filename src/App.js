@@ -1,4 +1,10 @@
-import React, { Fragment, Suspense, useState } from "react";
+import React, {
+  Fragment,
+  Suspense,
+  createContext,
+  useEffect,
+  useState,
+} from "react";
 import "./App.css";
 import { CustomTheme } from "./themes/Theme";
 import { ThemeProvider, styled } from "@mui/material/styles";
@@ -15,16 +21,48 @@ import { store } from "./redux/store";
 import CTA from "./components/common/CTA";
 import ScrollToTop from "./components/common/ScrolltoTop";
 import GlobalScrolltotop from "./components/common/GlobalScrolltotop";
+import { getCountries } from "./api/Main";
+
+// GlobalContext
+
+export const CountriesList = createContext(null);
+
+export const Domain = createContext(null);
+
+
+// --------------------------------------------------------   App
 
 function App() {
   const { pathname } = useLocation();
+
+
   const theme = useTheme();
 
   // console.log(Condition);
 
   const condition = pathname === "/404";
 
+  const hostname = window.location.hostname;
+
+
   const Mobile = theme.breakpoints.between("xs", "md");
+
+  // ------------------------------------------------------ APIs
+
+  const [countries, setCountries] = useState([]);
+
+  useEffect(() => {
+    getCountries()
+      .then((res) => {
+        // console.log(res);
+        setCountries(res.data.response)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  // console.log(countries)
 
   return (
     <ReduxProvider store={store}>
@@ -34,7 +72,11 @@ function App() {
             <div className="App">
               <ScrollToTop />
               {condition ? null : <Navbar />}
-              <GlobalRoutes />
+              <CountriesList.Provider value={countries}>
+                <Domain.Provider value={hostname}>
+                  <GlobalRoutes />
+                </Domain.Provider>
+              </CountriesList.Provider>
               {condition ? null : <Footer />}
               {/* {Mobile ? null : condition ? null : <GlobalScrolltotop />} */}
             </div>

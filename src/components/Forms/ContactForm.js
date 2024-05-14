@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
@@ -21,6 +21,8 @@ import {
 } from "@mui/material";
 import { countrys } from "../../mock/FormFields";
 import { useSelector } from "react-redux";
+import { CountriesList, Domain } from "../../App";
+import { raiseEnquiry } from "../../api/PostRequests";
 
 // -----------------------------------------------  Form Components
 
@@ -29,10 +31,10 @@ const schema = yup.object({
   company: yup.string().required(" Company is Required !"),
   email: yup.string().required(" Email is Required !"),
   country: yup.string().required(" Country  is Required !"),
-  ccode: yup.string().required(" Code is Required !"),
-  mobile: yup.string().required("Mobile is Required !"),
+  ccode: yup.string(),
+  mobile: yup.string(),
   industry: yup.string().required("Industry is Required !"),
-  message: yup.string().required("Message is Required !"),
+  message: yup.string(),
   tc: yup.string(),
 });
 
@@ -54,6 +56,7 @@ function ContactForm() {
   const { enqueueSnackbar } = useSnackbar();
   const Navigate = useNavigate();
   const domain = useSelector((state) => state.domain.domain);
+  const page = useSelector((state) => state.enquiry.enquiryfrompage);
   //   console.log(domain);
   const Mobile = useMediaQuery((theme) =>
     theme.breakpoints.between("xs", "sm")
@@ -73,6 +76,10 @@ function ContactForm() {
     defaultValues,
   });
 
+  const countrydata = useContext(CountriesList);
+
+  // console.log(countrydata);
+
   const onSubmit = (data) => {
     console.log(data);
 
@@ -84,7 +91,24 @@ function ContactForm() {
       mobile: `${data.ccode} - ${data.mobile}`,
       message: data.message,
       tc: data.tc,
+      domain: domain,
+      page:page === null ? "Contact" : page
     };
+
+    raiseEnquiry(reqdata)
+      .then((res) => {
+        // console.log(res);
+        const status = res.data.success;
+        if (status) {
+          enqueueSnackbar(res.data.message, { variant: "success" });
+        } else {
+          enqueueSnackbar(res.data.message, { variant: "error" });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        enqueueSnackbar(err.message, { variant: "error" });
+      });
   };
 
   return (
@@ -150,22 +174,22 @@ function ContactForm() {
                 sx={{ width: "100%" }}
                 value={
                   value
-                    ? countrys.find((option) => {
-                        return value == option.label;
+                    ? countrydata.find((option) => {
+                        return value == option.countryname;
                       }) ?? null
                     : null
                 }
                 getOptionLabel={(option) => {
-                  return `${option.label} (${option.id})`;
+                  return `${option.countryname}`;
                 }}
-                options={countrys}
-                // onChange={(e, newValue) => {
-                //   onChange(newValue ? newValue.dail : null);
-                // }}
+                options={countrydata}
+                onChange={(e, newValue) => {
+                  onChange(newValue ? newValue.countryname : null);
+                }}
                 renderInput={(params) => (
                   <TextField
                     {...params}
-                    label="Country "
+                    label="Country"
                     variant="standard"
                     error={errors.country}
                     helperText={errors.country?.message}
@@ -185,7 +209,7 @@ function ContactForm() {
         spacing={2}
       >
         <Stack
-          direction="row"
+          direction={Mobile || Tab ? "column" : "row"}
           alignItems="center"
           justifyContent="center"
           spacing={2}
@@ -198,21 +222,21 @@ function ContactForm() {
               const { onChange, value } = field;
               return (
                 <Autocomplete
-                  sx={{ width: "20%" }}
+                  sx={{ width: "100%" }}
                   value={
                     value
-                      ? countrys.find((option) => {
-                          return value == option.dail;
+                      ? countrydata.find((option) => {
+                          return value == option.countrydailcode;
                         }) ?? null
                       : null
                   }
                   getOptionLabel={(option) => {
-                    return `${option.dail} (${option.id})`;
+                    return `${option.countrydailcode} (${option.countrycode})`;
                   }}
-                  options={countrys}
-                  // onChange={(e, newValue) => {
-                  //   onChange(newValue ? newValue.dail : null);
-                  // }}
+                  options={countrydata}
+                  onChange={(e, newValue) => {
+                    onChange(newValue ? newValue.countrydailcode : null);
+                  }}
                   renderInput={(params) => (
                     <TextField
                       {...params}

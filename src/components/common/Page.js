@@ -49,17 +49,47 @@ function Page({ name, description, keywords, pagename }) {
     case pathname === Paths.home:
       pagevisited = "Home";
       break;
-    case pathname === Paths.Infor:
+    // About us
+    case pathname === Paths.aboutus.company:
+      pagevisited = "company";
+      break;
+
+    case pathname === Paths.aboutus.leadership:
+      pagevisited = "leadership";
+      break;
+
+    // Services
+    case pathname === Paths.consulting.inforconsulting:
       pagevisited = "Infor";
       break;
-    case pathname === Paths.sap:
+    case pathname === Paths.consulting.sapconsulting:
       pagevisited = "SAP";
       break;
-    case pathname === Paths.contactus:
-      pagevisited = "Contact";
+    case pathname === Paths.consulting.digitaltransformation:
+      pagevisited = "Digital Transformation";
       break;
-    case pathname === Paths.jobopenings:
+    case pathname === Paths.other.staffing:
+      pagevisited = "Staffing";
+      break;
+    case pathname === Paths.solutions.finsta:
+      pagevisited = "Finsta";
+      break;
+    // Joinus
+    case pathname === Paths.joinus.searchjobs:
       pagevisited = "Job Openings";
+      break;
+    case pathname === Paths.joinus.events:
+      pagevisited = "Events";
+      break;
+    case pathname === Paths.joinus.webinar:
+      pagevisited = "Webinars";
+      break;
+    case pathname === Paths.joinus.lifeatktech:
+      pagevisited = "Life @ Ktech";
+      break;
+    // Contact us
+    case pathname === Paths.contactus:
+      pagevisited = "Contact us";
       break;
   }
 
@@ -112,7 +142,7 @@ function Page({ name, description, keywords, pagename }) {
 
   return (
     <Helmet>
-      <title>{`${name} | PT KCS Technologies Indonesia `}</title>
+      <title>{`${name} | PT. KCS Technologies Indonesia `}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
       <meta charset="utf-8" />
