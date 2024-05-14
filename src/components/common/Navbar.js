@@ -124,7 +124,7 @@ const MainNavList = styled("ul")(({ theme, Toggle }) => ({
     top: "75px",
     background: theme.palette.primary.main,
     height: "calc(100% - 75px)",
-    width: "300px",
+    width: "100%",
     margin: "auto",
     position: "fixed",
     overflowY: "scroll",
@@ -149,15 +149,10 @@ const MainNavItem = styled("li")(({ theme }) => ({
   [theme.breakpoints.between("xs", "md")]: {
     position: "relative",
     top: "10px",
-    paddingBottom: "10px",
-    paddingTop: "10px",
-    // display: "flex",
-    // alignItems: "left",
-    // justifyContent: "center",
-    width: "100%",
+    padding: "20px",
     height: "auto",
-    // flexDirection: "column",
-    left: "60px",
+    // border: "1px solid white",
+    left: "10%",
   },
 
   [theme.breakpoints.between("md", "lg")]: {
@@ -176,6 +171,7 @@ const MainNavLink = styled(NavLink)(({ theme }) => ({
   [theme.breakpoints.between("xs", "md")]: {
     textAlign: "left",
     padding: 0,
+   
   },
 
   [theme.breakpoints.between("md", "lg")]: {
@@ -197,6 +193,8 @@ const MainNavText = styled(Box)(({ theme }) => ({
   [theme.breakpoints.between("xs", "md")]: {
     textAlign: "left",
     padding: 0,
+    display: 'flex',
+    gap:'20px',
   },
 
   [theme.breakpoints.between("md", "lg")]: {
@@ -226,7 +224,7 @@ const SubNavList = styled("ul")(({ theme, menuid }) => ({
     top: "5px",
     background: theme.palette.primary.main,
     width: "100%",
-    left: 0,
+    left: "-10px",
   },
 
   [theme.breakpoints.between("md", "lg")]: {
@@ -265,6 +263,7 @@ const SubNavLink = styled(NavLink)(({ theme, menuid }) => ({
     alignItems: "center",
     color: "white",
     width: "100%",
+    gap: "15px",
   },
 
   [theme.breakpoints.between("md", "lg")]: {
@@ -278,9 +277,10 @@ const SubNavText = styled(Box)(({ theme, menuid }) => ({
   [theme.breakpoints.between("xs", "md")]: {
     display: "flex",
     alignItems: "center",
+    gap: "15px",
     color: "white",
     cursor: "pointer",
-    gap: 2,
+  
   },
 
   [theme.breakpoints.between("md", "lg")]: {
@@ -296,7 +296,7 @@ const SubNavList1 = styled("ul")(({ theme, menuid }) => ({
   display: "flex",
   alignItems: "start",
   justifyContent: "space-evenly",
-  width: "70%",
+  width: "100%",
   padding: "5px",
 
   [theme.breakpoints.between("xs", "md")]: {
@@ -334,9 +334,10 @@ const SubNavLink1 = styled(NavLink)(({ theme, menuid }) => ({
   [theme.breakpoints.between("xs", "md")]: {
     display: "flex",
     alignItems: "center",
+    gap: "10px",
     color: "white",
-    width: "100%",
-    marginLeft: "-18px",
+    width: "90%",
+    marginLeft: "-10px",
   },
 
   [theme.breakpoints.between("md", "lg")]: {
@@ -350,10 +351,10 @@ const SubNavText1 = styled(Box)(({ theme, menuid }) => ({
   [theme.breakpoints.between("xs", "md")]: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "left",
+    gap: "10px",
     color: "white",
-    width: "100%",
-    marginLeft: "-18px",
+    width: "90%",
+    marginLeft: "-10px",
   },
 
   [theme.breakpoints.between("md", "lg")]: {
@@ -487,7 +488,10 @@ function Navbar({ Admin }) {
                     {item.submenu.map((item) => (
                       <SubNavItem key={item.id}>
                         {item.path ? (
-                          <SubNavLink to={item.path} onClick={handleRemoveClick}>
+                          <SubNavLink
+                            to={item.path}
+                            onClick={handleRemoveClick}
+                          >
                             <IconDot />
                             <Typography variant="body1">
                               {item.title}
@@ -531,16 +535,25 @@ function Navbar({ Admin }) {
                             {item.submenu.map((item) => (
                               <SubNavItem1 key={item.id}>
                                 {item.path ? (
-                                  <SubNavLink1 to={item.path} onClick={handleRemoveClick}>
+                                  <SubNavLink1
+                                    to={item.path}
+                                    onClick={handleRemoveClick}
+                                  >
                                     <IconDot />
-                                    <Typography variant="body1">
+                                    <Typography
+                                      variant="body1"
+                                      sx={{ width: "80%" }}
+                                    >
                                       {item.title}
                                     </Typography>
                                   </SubNavLink1>
                                 ) : (
                                   <SubNavText1>
                                     <IconDot />
-                                    <Typography variant="body1">
+                                    <Typography
+                                      variant="body1"
+                                      sx={{ width: "80%" }}
+                                    >
                                       {item.title}
                                     </Typography>
                                   </SubNavText1>
