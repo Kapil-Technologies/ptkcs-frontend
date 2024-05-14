@@ -171,7 +171,6 @@ const MainNavLink = styled(NavLink)(({ theme }) => ({
   [theme.breakpoints.between("xs", "md")]: {
     textAlign: "left",
     padding: 0,
-   
   },
 
   [theme.breakpoints.between("md", "lg")]: {
@@ -193,8 +192,8 @@ const MainNavText = styled(Box)(({ theme }) => ({
   [theme.breakpoints.between("xs", "md")]: {
     textAlign: "left",
     padding: 0,
-    display: 'flex',
-    gap:'20px',
+    display: "flex",
+    gap: "20px",
   },
 
   [theme.breakpoints.between("md", "lg")]: {
@@ -209,7 +208,7 @@ const MainNavText = styled(Box)(({ theme }) => ({
 const SubNavList = styled("ul")(({ theme, menuid }) => ({
   display: "flex",
   alignItems: "start",
-  justifyContent: "left",
+  justifyContent: "space-between",
   flexDirection: menuid ? "row" : "column",
   gap: 2,
   position: "absolute",
@@ -217,7 +216,8 @@ const SubNavList = styled("ul")(({ theme, menuid }) => ({
   right: menuid ? 0 : null,
   width: menuid ? "100%" : "auto",
   background: theme.palette.secondary.main,
-  height: menuid ? "300px" : "auto",
+  height: menuid ? "350px" : "auto",
+  padding: menuid ? "10px" : null,
 
   [theme.breakpoints.between("xs", "md")]: {
     position: "relative",
@@ -280,7 +280,6 @@ const SubNavText = styled(Box)(({ theme, menuid }) => ({
     gap: "15px",
     color: "white",
     cursor: "pointer",
-  
   },
 
   [theme.breakpoints.between("md", "lg")]: {
@@ -295,7 +294,7 @@ const SubNavText = styled(Box)(({ theme, menuid }) => ({
 const SubNavList1 = styled("ul")(({ theme, menuid }) => ({
   display: "flex",
   alignItems: "start",
-  justifyContent: "space-evenly",
+  justifyContent: "space-between",
   width: "100%",
   padding: "5px",
 
@@ -313,7 +312,6 @@ const SubNavList1 = styled("ul")(({ theme, menuid }) => ({
 
 const SubNavItem1 = styled("li")(({ theme, menuid }) => ({
   listStyle: "none",
-  padding: "10px",
   textAlign: "left",
 
   [theme.breakpoints.between("xs", "md")]: {
@@ -330,14 +328,19 @@ const SubNavItem1 = styled("li")(({ theme, menuid }) => ({
 const SubNavLink1 = styled(NavLink)(({ theme, menuid }) => ({
   textDecoration: "none",
   color: "black",
+  padding: "10px",
+
+  "&:hover": {
+    textDecoration: "underline",
+  },
 
   [theme.breakpoints.between("xs", "md")]: {
     display: "flex",
     alignItems: "center",
-    gap: "10px",
+    gap: "5px",
     color: "white",
     width: "90%",
-    marginLeft: "-10px",
+    marginLeft: "5px",
   },
 
   [theme.breakpoints.between("md", "lg")]: {
@@ -348,10 +351,12 @@ const SubNavLink1 = styled(NavLink)(({ theme, menuid }) => ({
 }));
 
 const SubNavText1 = styled(Box)(({ theme, menuid }) => ({
+  padding: "5px",
+
   [theme.breakpoints.between("xs", "md")]: {
     display: "flex",
     alignItems: "center",
-    gap: "10px",
+    gap: "5px",
     color: "white",
     width: "90%",
     marginLeft: "-10px",
@@ -598,13 +603,18 @@ function Navbar({ Admin }) {
                   >
                     <Stack
                       direction="row"
-                      alignItems="start"
+                      alignItems="flex-start"
                       justifyContent="space-between"
                       sx={{ width: "100%" }}
                     >
                       <Typography
                         variant="h5"
-                        sx={{ fontWeight: "bold", p: 2, color: "primary.main" }}
+                        sx={{
+                          fontWeight: "bold",
+                          pl: "20px",
+                          color: "primary.main",
+                          width: "30%",
+                        }}
                       >
                         Services at a Glance
                       </Typography>
@@ -629,7 +639,10 @@ function Navbar({ Admin }) {
                               >
                                 <IconDot />
                                 {item.path ? (
-                                  <SubNavLink1 to={item.path}>
+                                  <SubNavLink1
+                                    to={item.path}
+                                    onClick={handleMouseLeaves}
+                                  >
                                     {item.title}
                                   </SubNavLink1>
                                 ) : (
@@ -651,7 +664,12 @@ function Navbar({ Admin }) {
                     {item.submenu.map((item) => (
                       <SubNavItem key={item.id}>
                         {item.path ? (
-                          <SubNavLink to={item.path}>{item.title}</SubNavLink>
+                          <SubNavLink
+                            to={item.path}
+                            onClick={handleMouseLeaves}
+                          >
+                            {item.title}
+                          </SubNavLink>
                         ) : (
                           <SubNavText>
                             <Typography variant="body1">

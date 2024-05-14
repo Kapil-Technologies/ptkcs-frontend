@@ -13,6 +13,7 @@ import Leadership from "../pages/website/About/Leadership";
 import Jobdescription from "../sections/Joinus/searchjobs/Jobdescription";
 import ApplicantStatus from "../sections/Joinus/searchjobs/ApplicantStatus";
 import DigitalTransformation from "../pages/website/Services/DigitalTransformation";
+import Mpdv from "../pages/website/Solutions/Mpdv";
 
 // ------------------------------------------------------
 
@@ -129,27 +130,56 @@ function GlobalRoutes() {
             },
 
             {
-              path: "services",
+              path: "consulting",
               children: [
                 {
-                  path: "sap-consulting",
+                  path: "sap",
                   element: <SAP />,
                   index: true,
                 },
                 {
-                  path: "services",
-                  element: (
-                    <Navigate to="services/sap-consulting" exact replace />
-                  ),
+                  path: "consulting",
+                  element: <Navigate to="consulting/sap" exact replace />,
                 },
                 {
-                  path: "infor-consulting",
+                  path: "infor",
                   element: <Infor />,
                 },
+              ],
+            },
 
+            {
+              path: "solutions",
+              children: [
+                {
+                  path: "mpdv",
+                  element: <Mpdv />,
+                  index: true,
+                },
+                {
+                  path: "solutions",
+                  element: <Navigate to="solutions/mpdv" exact replace />,
+                },
+              ],
+            },
+
+            {
+              path: "other-services",
+              children: [
                 {
                   path: "digital-transformation",
                   element: <DigitalTransformation />,
+                  index: true,
+                },
+                {
+                  path: "other-services",
+                  element: (
+                    <Navigate
+                      to="other-services/digital-transformation"
+                      exact
+                      replace
+                    />
+                  ),
                 },
               ],
             },
