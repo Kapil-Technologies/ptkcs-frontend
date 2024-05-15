@@ -359,7 +359,7 @@ const SubNavText1 = styled(Box)(({ theme, menuid }) => ({
     gap: "5px",
     color: "white",
     width: "90%",
-    marginLeft: "-10px",
+    marginLeft: "6px",
   },
 
   [theme.breakpoints.between("md", "lg")]: {
@@ -493,10 +493,7 @@ function Navbar({ Admin }) {
                     {item.submenu.map((item) => (
                       <SubNavItem key={item.id}>
                         {item.path ? (
-                          <SubNavLink
-                            to={item.path}
-                            onClick={handleRemoveClick}
-                          >
+                          <SubNavLink to={item.path} onClick={closeToggle}>
                             <IconDot />
                             <Typography variant="body1">
                               {item.title}
@@ -542,7 +539,7 @@ function Navbar({ Admin }) {
                                 {item.path ? (
                                   <SubNavLink1
                                     to={item.path}
-                                    onClick={handleRemoveClick}
+                                    onClick={closeToggle}
                                   >
                                     <IconDot />
                                     <Typography
