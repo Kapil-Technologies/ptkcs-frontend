@@ -218,7 +218,7 @@ function Mpdv() {
           FEDRA
         </Typography>
         <Stack
-          direction="row"
+          direction= {Mobile || Tab ? "column" : "row"}
           alignItems="center"
           justifyContent="space-between"
           sx={{ width: "90%", py: "10px", px: "10px" }}
@@ -232,7 +232,7 @@ function Mpdv() {
           HYDRA X
         </Typography>
         <Stack
-          direction="row"
+          direction= {Mobile || Tab ? "column" : "row"}
           alignItems="center"
           justifyContent="space-between"
           sx={{ width: "90%", py: "10px", px: "10px" }}

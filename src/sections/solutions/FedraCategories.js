@@ -1,4 +1,4 @@
-import { Stack, Typography } from "@mui/material";
+import { Stack, Typography, useMediaQuery } from "@mui/material";
 import React from "react";
 
 // --------------------------------------------------  Hydra
@@ -49,6 +49,10 @@ const fedracategories = [
 ];
 
 function FedraCategories() {
+   const Mobile = useMediaQuery((theme) =>
+     theme.breakpoints.between("xs", "sm")
+   );
+   const Tab = useMediaQuery((theme) => theme.breakpoints.between("sm", "md"));
   return (
     <Stack
       direction="column"
@@ -76,7 +80,7 @@ function FedraCategories() {
 
             position: "absolute",
 
-            left: "-220px",
+            left:Mobile || Tab ? "-200px" : "-220px",
             bottom: "20",
           }}
         >

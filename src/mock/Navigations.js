@@ -256,7 +256,7 @@ export const ServicesNew = [
         id: 1,
         title: "MPDV",
         icon: <FiArrowDownRight />,
-        path: "/solutions/mpdv",
+        path: "/products/mpdv",
       },
       {
         id: 2,
