@@ -17,6 +17,8 @@ function GlobalFootPrints() {
 
   const [branches, setBranches] = useState([]);
 
+  const [branchname, setbranchname] = useState("");
+
   useEffect(() => {
     getBranches()
       .then((res) => {
@@ -57,9 +59,13 @@ function GlobalFootPrints() {
           label="Search a Country"
           select
           sx={{ width: "40%" }}
+          value={branchname}
+          onChange={(e) => setbranchname(e.target.value)}
         >
           {countriesdata.map((item) =>
-            item.branch ? <MenuItem>{item.countryname}</MenuItem> : null
+            item.branch === "Yes" ? (
+              <MenuItem value={item.countrycode}>{item.countryname}</MenuItem>
+            ) : null
           )}
         </TextField>
       </Stack>

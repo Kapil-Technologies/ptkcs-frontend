@@ -149,7 +149,7 @@ function GlobalRoutes() {
             },
 
             {
-              path: "solutions",
+              path: "products",
               children: [
                 {
                   path: "mpdv",
@@ -157,8 +157,8 @@ function GlobalRoutes() {
                   index: true,
                 },
                 {
-                  path: "solutions",
-                  element: <Navigate to="solutions/mpdv" exact replace />,
+                  path: "products",
+                  element: <Navigate to="products/mpdv" exact replace />,
                 },
               ],
             },

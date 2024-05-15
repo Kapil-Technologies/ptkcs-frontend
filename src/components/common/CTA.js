@@ -82,6 +82,13 @@ function CTA() {
     case pathname === Paths.joinus.lifeatktech:
       pagename = "Life @ Ktech";
       break;
+    // Products
+    case pathname === Paths.solutions.mpdv:
+         ctatext =
+           "Transform production with FEDRA & HYDRA. Optimize planning, resources, efficiency.";
+      pagename = "MPDV";
+      break;
+
     // Contact us
     case pathname === Paths.contactus:
       ctatext = "Contact";
@@ -112,7 +119,7 @@ function CTA() {
         direction={Mobile ? "column" : "row"}
         alignItems="center"
         justifyContent={Mobile ? "center" : "space-between"}
-        sx={{ width: Mobile || Tab ? "100%" : "60%", p: 3 }}
+        sx={{ width: Mobile || Tab ? "100%" : "80%", p: 3 }}
         spacing={2}
       >
         <Stack

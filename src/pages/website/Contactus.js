@@ -152,16 +152,17 @@ function Contactus() {
                 alignItems="center"
                 spacing={2}
                 component={Link}
-                to="tel:"
+                // to="tel:"
                 sx={{
                   color: "white",
                   textDecoration: "none",
                   ml: "10px",
                   fontSize: "20px",
                 }}
+                to="tel:+62 852 1808 4208"
               >
                 <IconMobile />
-                <Typography variant="body1">+91 </Typography>
+                <Typography variant="body1">+62 852 1808 4208 </Typography>
               </Stack>
             </Stack>
             <Stack

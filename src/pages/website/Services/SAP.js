@@ -52,10 +52,8 @@ export const SectionContainer = styled("section")(({ theme, layercolor }) => ({
   height: "auto",
   display: "flex",
   alignItems: "center",
-  justifyContent: "center",
+  justifyContent: "start",
   flexDirection: "column",
-  marginTop: "10px",
-  marginBottom: "10px",
 
   [theme.breakpoints.between("xs", "md")]: {
     //  mobile
