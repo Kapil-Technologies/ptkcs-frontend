@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext, useEffect } from "react";
 import Page from "../../components/common/Page";
 import { Layer, MainContainer } from "../../sections/Banners/Home";
 import {
@@ -12,17 +12,49 @@ import {
 import ContactForm from "../../components/Forms/ContactForm";
 import { IconBase } from "react-icons";
 import { IconEmail, IconMobile } from "../../themes/Icons";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import GlobalFootPrints from "../../sections/GlobalFootPrints";
 import { motion } from "framer-motion";
+import { Banners } from "../../App";
+import BannerComponent from "../../components/common/BannerComponent";
 
 function Contactus() {
   const theme = useTheme();
+
+  const { pathname } = useLocation();
 
   const Mobile = useMediaQuery((theme) =>
     theme.breakpoints.between("xs", "sm")
   );
   const Tab = useMediaQuery((theme) => theme.breakpoints.between("sm", "md"));
+
+  const BannerText = () => {
+    return (
+      <Stack
+        direction="column"
+        alignItems="center"
+        justifyContent="start"
+        spacing={2}
+        component={motion.div}
+        initial={{ y: "30px" }}
+        animate={{ y: 0 }}
+        exit={{ y: "30px" }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        sx={{ textAlign: "center" }}
+      >
+        <Typography
+          variant={Mobile || Tab ? "h5" : "h4"}
+          sx={{ fontWeight: "bold", pt: "120px" }}
+        >
+          Get in Touch with us !
+        </Typography>
+
+        <Typography variant="body1">
+          Stay Connected, Reach Out Today!
+        </Typography>
+      </Stack>
+    );
+  };
 
   // -----------------------------------------------  Form Components
 
@@ -34,38 +66,15 @@ function Contactus() {
       sx={{ width: "100%", position: "relative", backgroundColor: "#E0F8F7" }}
     >
       <Page name="Contact Us" description="" pagename="Contact us Page" />
-      <MainContainer mainheight="500px">
-        <Layer
-          direction="column"
-          alignItems="center"
-          justifyContent="start"
-          layercolor={theme.palette.terinary.main}
-        >
-          <Stack
-            direction="column"
-            alignItems="center"
-            justifyContent="start"
-            spacing={2}
-            component={motion.div}
-            initial={{ y: "30px" }}
-            animate={{ y: 0 }}
-            exit={{ y: "30px" }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            sx={{ textAlign: "center" }}
-          >
-            <Typography
-              variant={Mobile || Tab ? "h5" : "h4"}
-              sx={{ fontWeight: "bold", pt: "120px" }}
-            >
-              Get in Touch with us !
-            </Typography>
 
-            <Typography variant="body1">
-              Stay Connected, Reach Out Today!
-            </Typography>
-          </Stack>
-        </Layer>
-      </MainContainer>
+      <BannerComponent
+        mainheight="500px"
+        layercolor={theme.palette.terinary.main}
+        // imagename={ }
+        // imagedata={}
+
+        textdispaly={<BannerText />}
+      />
 
       <Stack
         direction="row"
@@ -111,9 +120,6 @@ function Contactus() {
             xs={12}
             md={4}
           >
-            {/* <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
-            Contact Information
-          </Typography> */}
             <Stack
               direction="column"
               alignItems="left"

@@ -22,6 +22,7 @@ import CTA from "./components/common/CTA";
 import ScrollToTop from "./components/common/ScrolltoTop";
 import GlobalScrolltotop from "./components/common/GlobalScrolltotop";
 import { getCountries } from "./api/Main";
+import { getBanners } from "./api/GetRequests";
 
 // GlobalContext
 
@@ -29,12 +30,12 @@ export const CountriesList = createContext(null);
 
 export const Domain = createContext(null);
 
+export const Banners = createContext(null);
 
 // --------------------------------------------------------   App
 
 function App() {
   const { pathname } = useLocation();
-
 
   const theme = useTheme();
 
@@ -43,7 +44,6 @@ function App() {
   const condition = pathname === "/404";
 
   const hostname = window.location.hostname;
-
 
   const Mobile = theme.breakpoints.between("xs", "md");
 
@@ -55,14 +55,27 @@ function App() {
     getCountries()
       .then((res) => {
         // console.log(res);
-        setCountries(res.data.response)
+        setCountries(res.data.response);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
-  // console.log(countries)
+  // ------------------------------------------------------------- Banners
+
+  const [banners, setBanners] = useState([]);
+
+  useEffect(() => {
+    getBanners()
+      .then((res) => {
+        console.log(res);
+        setBanners(res.data.response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <ReduxProvider store={store}>
@@ -74,6 +87,9 @@ function App() {
               {condition ? null : <Navbar />}
               <CountriesList.Provider value={countries}>
                 <Domain.Provider value={hostname}>
+                  <Banners.Provider value={banners}>
+                    <GlobalRoutes />
+                  </Banners.Provider>
                   <GlobalRoutes />
                 </Domain.Provider>
               </CountriesList.Provider>

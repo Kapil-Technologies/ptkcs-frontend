@@ -6,10 +6,9 @@ const Local_Server = process.env.REACT_APP_LOCAL_HOST_URL;
 
 // export const APIURL = URL1
 
-export const APIURL = Test_Server;
+// export const APIURL = Test_Server;
 
-// export const APIURL = Local_Server;
-
+export const APIURL = Local_Server;
 
 export const Paths = {
   home: "/home",
