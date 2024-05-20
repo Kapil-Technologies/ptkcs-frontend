@@ -46,3 +46,84 @@ export const CustomTheme = createTheme({
     xl: 1500,
   },
 });
+
+
+
+const commonSettings = {
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: "capitalize",
+        },
+      },
+    },
+  },
+  typography: {
+    fontFamily: ["Work Sans", "sans-serif"].join(","),
+  },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1500,
+    },
+  },
+};
+
+const lightPalette = {
+  mode: "light",
+  primary: {
+    main: "#4357AD",
+  },
+  secondary: {
+    main: "#e4dfda",
+  },
+  terinary: {
+    main: "#d4b483",
+  },
+  regular: {
+    color1: "#3E3E3E",
+    color2: "#FFFFFF",
+    color3: "#d3e1ea",
+  },
+  others: {
+    c1: "#48A9A6",
+    c2: "#C1666B",
+  },
+};
+
+const darkPalette = {
+  mode: "dark",
+  primary: {
+    main: "#000000",
+  },
+  secondary: {
+    main: "#e4dfda",
+  },
+  terinary: {
+    main: "#d4b483",
+  },
+  regular: {
+    color1: "#FFFFFF",
+    color2: "#3E3E3E",
+    color3: "#d3e1ea",
+  },
+  others: {
+    c1: "#48A9A6",
+    c2: "#C1666B",
+  },
+};
+
+export const lightTheme = createTheme({
+  ...commonSettings,
+  palette: lightPalette,
+});
+
+export const darkTheme = createTheme({
+  ...commonSettings,
+  palette: darkPalette,
+});
+

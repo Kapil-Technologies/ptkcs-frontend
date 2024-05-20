@@ -6,7 +6,7 @@ import React, {
   useState,
 } from "react";
 import "./App.css";
-import { CustomTheme } from "./themes/Theme";
+import { CustomTheme, lightTheme, darkTheme } from "./themes/Theme";
 import { ThemeProvider, styled } from "@mui/material/styles";
 import Footer from "./components/common/Footer";
 
@@ -77,20 +77,28 @@ function App() {
       });
   }, []);
 
+  // ------------------------------------------------------------- Switch
+
+  const [toggleSwitch, setToggleSwitch] = useState(false);
+
+  const handleToggleSwitch = () => {
+    setToggleSwitch(!toggleSwitch);
+  };
+
   return (
     <ReduxProvider store={store}>
-      <ThemeProvider theme={CustomTheme}>
+      <ThemeProvider theme={toggleSwitch ? darkTheme : lightTheme}>
         <SnackbarProvider maxSnack={3} autoHideDuration={3000}>
           <AnimatePresence>
             <div className="App">
               <ScrollToTop />
-              {condition ? null : <Navbar />}
+              {condition ? null : <Navbar ToggleTheme={handleToggleSwitch} />}
               <CountriesList.Provider value={countries}>
                 <Domain.Provider value={hostname}>
                   <Banners.Provider value={banners}>
                     <GlobalRoutes />
                   </Banners.Provider>
-                  <GlobalRoutes />
+                  {/* <GlobalRoutes /> */}
                 </Domain.Provider>
               </CountriesList.Provider>
               {condition ? null : <Footer />}

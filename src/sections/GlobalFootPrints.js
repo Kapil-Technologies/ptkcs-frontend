@@ -5,19 +5,48 @@ import {
   Stack,
   TextField,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
-import React, { useContext, useEffect, useState } from "react";
+import { styled } from "@mui/material/styles";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import { CountriesList } from "../App";
 import { getBranches } from "../api/GetRequests";
 import { useSnackbar } from "notistack";
+import { IconEmail } from "../themes/Icons";
+import { Link } from "react-router-dom";
+
+const MailLink = styled(Link)(({ theme }) => ({
+  textDecoration: "none",
+  color: "black",
+  fontSize: "16px",
+
+  "&:hover": {
+    color: "red",
+    textDecoration: "underline",
+  },
+
+  [theme.breakpoints.between("xs", "md")]: {
+    //  mobile
+  },
+}));
+
+// ---------------------------------------------------------------------------------------   Styled Components
 
 function GlobalFootPrints() {
   const { enqueueSnackbar } = useSnackbar();
+
+  const Mobile = useMediaQuery((theme) =>
+    theme.breakpoints.between("xs", "sm")
+  );
+  const Tab = useMediaQuery((theme) => theme.breakpoints.between("sm", "md"));
+
   const countriesdata = useContext(CountriesList);
 
   const [branches, setBranches] = useState([]);
 
   const [branchname, setbranchname] = useState("");
+
+  console.log(branchname);
 
   useEffect(() => {
     getBranches()
@@ -49,7 +78,7 @@ function GlobalFootPrints() {
         direction="row"
         alignItems="center"
         justifyContent="space-between"
-        sx={{ width: "80%" }}
+        sx={{ width: Mobile || Tab ? "100%" : "80%" }}
       >
         <Typography variant="h5" sx={{ fontWeight: "bold" }}>
           Our Global Offices
@@ -64,31 +93,125 @@ function GlobalFootPrints() {
         >
           {countriesdata.map((item) =>
             item.branch === "Yes" ? (
-              <MenuItem value={item.countrycode}>{item.countryname}</MenuItem>
+              <MenuItem key={item.id} value={item.countryname}>{item.countryname}</MenuItem>
             ) : null
           )}
         </TextField>
       </Stack>
 
       <Grid
+        container
+        columnGap={2}
+        rowGap={2}
         sx={{
           direction: "row",
           alignItems: "center",
           justifyContent: "space-evenly",
-          width: "80%",
+          width: Mobile || Tab ? "100%" : "80%",
         }}
       >
-        <Card
-          item
-          sx={{
-            direction: "row",
-            alignItems: "center",
-            justifyContent: "left",
-            width: "300px",
-            height: "300px",
-            border: "1px solid lightgray",
-          }}
-        ></Card>
+        {branches
+          .filter((item) => item.country.includes(branchname))
+          .map((item) => (
+            <Card
+              key={item.id}
+              item
+              sx={{
+                display: "flex",
+                alignItems: "flex-start",
+                justifyContent: "space-evenly",
+                width: Mobile || Tab ? "100%" : "500px",
+                height: "300px",
+                border: "1px solid lightgray",
+                flexDirection: "column",
+                padding: "10px",
+                gap: "10px",
+              }}
+            >
+              <Stack
+                direction="row"
+                alignItems="center"
+                justifyContent="space-between"
+                sx={{ width: "100%" }}
+              >
+                <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+                  {item.country}
+                </Typography>
+                {/* <img
+                src={`data:image/svg+xml;base64,${item.flag}`}
+                alt={item.countryname}
+                style={{
+                  maxWidth: "100%",
+                  maxHeight: "100%",
+                  objectFit: "contain",
+                }}
+              /> */}
+              </Stack>
+
+              <Typography
+                variant="h5"
+                sx={{ fontWeight: "bold", color: "primary.main" }}
+              >
+                {item.companyname}
+              </Typography>
+
+              {item.subtype === "formerly" ? (
+                <Typography
+                  variant="body2"
+                  sx={{ fontWeight: "normal", fontStyle: "italic" }}
+                >
+                  ( {item.careof} )
+                </Typography>
+              ) : null}
+
+              <Typography variant="body1" sx={{ fontWeight: "normal" }}>
+                {item.add1}
+              </Typography>
+
+              {item.add2 ? (
+                <Typography variant="body1" sx={{ fontWeight: "normal" }}>
+                  {item.add2}
+                </Typography>
+              ) : null}
+              <Typography variant="body1" sx={{ fontWeight: "normal" }}>
+                {item.city}
+              </Typography>
+
+              <Stack
+                direction="row"
+                alignItems="center"
+                justifyContent="left"
+                spacing={1}
+                sx={{ width: "100%" }}
+              >
+                {item.state ? (
+                  <Typography variant="body1" sx={{ fontWeight: "normal" }}>
+                    {item.state}
+                  </Typography>
+                ) : null}
+
+                {item.state ? <Typography variant="body1">-</Typography> : null}
+
+                <Typography variant="body1" sx={{ fontWeight: "normal" }}>
+                  {item.zipcode}
+                </Typography>
+              </Stack>
+
+              <Stack
+                direction="row"
+                alignItems="center"
+                justifyContent="left"
+                spacing={1}
+                sx={{ width: "100%" }}
+              >
+                <IconEmail style={{ marginTop: "2px" }} />
+                <Typography variant="body1">:</Typography>
+                <MailLink to={`mailto: ${item.contactemail}`}>
+                  {item.contactemail}
+                </MailLink>
+              </Stack>
+            </Card>
+          ))}
       </Grid>
     </Stack>
   );
