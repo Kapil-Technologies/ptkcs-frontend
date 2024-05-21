@@ -93,7 +93,9 @@ function GlobalFootPrints() {
         >
           {countriesdata.map((item) =>
             item.branch === "Yes" ? (
-              <MenuItem key={item.id} value={item.countryname}>{item.countryname}</MenuItem>
+              <MenuItem key={item.id} value={item.countryname}>
+                {item.countryname}
+              </MenuItem>
             ) : null
           )}
         </TextField>
@@ -105,9 +107,9 @@ function GlobalFootPrints() {
         rowGap={2}
         sx={{
           direction: "row",
-          alignItems: "center",
-          justifyContent: "space-evenly",
-          width: Mobile || Tab ? "100%" : "80%",
+          alignItems: "left",
+          justifyContent: "center",
+          width: Mobile || Tab ? "100%" : "90%",
         }}
       >
         {branches
@@ -125,7 +127,6 @@ function GlobalFootPrints() {
                 border: "1px solid lightgray",
                 flexDirection: "column",
                 padding: "10px",
-                gap: "10px",
               }}
             >
               <Stack

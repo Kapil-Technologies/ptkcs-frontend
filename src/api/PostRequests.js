@@ -15,9 +15,30 @@ export const HeaderMedia = {
   //   Authorization: `Bearer ${token}`,
 };
 
-export const applyPosition = async () => {
-  const response = await axios.post(apiurls.openings, {
-    headers: HeaderData,
+export const applyPosition = async (data) => {
+  const formdata = new FormData();
+  formdata.append("firstname", data.firstname)
+  formdata.append("lastname", data.lastname);
+  formdata.append("email", data.email);
+  formdata.append("mobile", data.mobile);
+  formdata.append("appliedto", data.appliedto);
+  formdata.append("experience", data.experience);
+  formdata.append("relavent", data.relavent);
+  formdata.append("ctc", data.ctc);
+  formdata.append("ectc", data.ectc);
+  formdata.append("notice", data.noticeperiod);
+  formdata.append("clocation", data.location);
+  formdata.append("relocation", data.relocation);
+  formdata.append("referance", data.referance);
+  formdata.append("empid", data.empid);
+  formdata.append("empname", data.empname);
+  formdata.append("filename", data.filename);
+  formdata.append("resume", data.resume);
+  formdata.append("status", "applied");
+  formdata.append("domain", "ptkcs.com");
+
+  const response = await axios.post(apiurls.applications, formdata, {
+    headers: HeaderMedia,
   });
 
   return response;

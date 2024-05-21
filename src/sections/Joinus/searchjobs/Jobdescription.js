@@ -148,7 +148,7 @@ function Jobdescription() {
                   </Typography>
                 </Stack>
               </Stack>
-
+{/* 
               <Stack direction="column" alignItems="left" spacing={0.5}>
                 <Stack direction="row" alignItems="center" spacing={1}>
                   <Typography variant="body1" sx={{ fontWeight: "bold" }}>
@@ -156,7 +156,7 @@ function Jobdescription() {
                   </Typography>
                   <Typography variant="body1">:</Typography>
                 </Stack>
-              </Stack>
+              </Stack> */}
 
               <Stack direction="column" alignItems="left" spacing={0.5}>
                 <Stack direction="row" alignItems="center" spacing={1}>

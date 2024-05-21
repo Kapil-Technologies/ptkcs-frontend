@@ -18,8 +18,6 @@ import { useNavigate } from "react-router-dom";
 
 // --------------------------------------------- StyledComponents
 
-
-
 // --------------------------------------------- StyledComponents
 const CardItem = styled(Card)(({ theme, menuid }) => ({
   display: "flex",
@@ -82,7 +80,6 @@ const TextGridItem = styled(Grid)(({ theme }) => ({
 function Company() {
   const theme = useTheme();
   const Navigate = useNavigate();
- 
 
   // -----------------------------------------------------------------------------
 
@@ -155,7 +152,6 @@ function Company() {
         >
           Vission Mission
         </Stack>
-       
 
         <Stack
           direction="row"
@@ -171,13 +167,10 @@ function Company() {
                 Image
               </ImageGridItem>
             ) : (
-              <TextGridItem ref={ref} key={item.id} xs={12} md={6}>
+              <TextGridItem key={item.id} xs={12} md={6}>
                 {item.text.minititle ? (
                   <Typography
                     component={motion.div}
-                    // initial={{ x: "50%" }}
-                    // animate={isVisible ? { x: 0 } : { x: "50%" }}
-                    // transition={{ duration: 0.5, delay: 0.1 }}
                     variant="h6"
                     sx={{ textTransform: "uppercase", color: "blue" }}
                   >
@@ -185,35 +178,22 @@ function Company() {
                   </Typography>
                 ) : null}
                 {item.text.subtitle ? (
-                  <Typography
-                    variant="h4"
-                    sx={{ fontWeight: "bold" }}
-                    // component={motion.div}
-                    // initial={{ x: "50%" }}
-                    // animate={isVisible ? { x: 0 } : { x: "50%" }}
-                    // transition={{ duration: 0.5, delay: 0.2 }}
-                  >
+                  <Typography variant="h4" sx={{ fontWeight: "bold" }}>
                     {item.text.subtitle}
                   </Typography>
                 ) : null}
                 {item.text.text1 ? (
-                  <Typography
-                    variant="h6"
-                    component={motion.div}
-                    initial={{ x: "50%" }}
-                    animate={isVisible ? { x: 0 } : { x: "50%" }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
-                  >
+                  <Typography variant="h6">
                     {item.text.text1}
                   </Typography>
                 ) : null}
                 {item.text.text2 ? (
                   <Typography
                     variant="h6"
-                    component={motion.div}
-                    initial={{ x: "50%" }}
-                    animate={isVisible ? { x: 0 } : { x: "50%" }}
-                    transition={{ duration: 0.5, delay: 0.4 }}
+                    // component={motion.div}
+                    // initial={{ x: "0%" }}
+                    // // animate={isVisible ? { x: 0 } : { x: "50%" }}
+                    // transition={{ duration: 0.5, delay: 0.4 }}
                   >
                     {item.text.text2}
                   </Typography>

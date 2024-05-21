@@ -21,6 +21,7 @@ import {
   Typography,
 } from "@mui/material";
 import { CountriesList } from "../../App";
+import { applyPosition } from "../../api/PostRequests";
 
 const NpArray = [
   {
@@ -62,7 +63,7 @@ const schema = yup.object({
   firstname: yup.string().required(" First Name  is Required !"),
   lastname: yup.string().required(" Last Name is Required !"),
   email: yup.string().required(" Email is Required !"),
-  country: yup.string().required(" Country  is Required !"),
+  // country: yup.string().required(" Country  is Required !"),
   ccode: yup.string().required(" Code is Required !"),
   mobile: yup
     .string()
@@ -83,14 +84,13 @@ const schema = yup.object({
   location: yup.string().required("Location is Required !"),
   relocation: yup.string().required("Relocate is Required !"),
   referance: yup.string(),
-  empid: yup.string().required("Employee ID is Required !"),
-  empname: yup.string().required("Employee Name is Required !"),
+  empid: yup.string(),
+  empname: yup.string(),
   resume: yup
     .mixed()
-    .required("Resume is Required !")
-    .test("type", "Only the PDF documents are accepted ", (value) => {
-      // console.log(value);
-      return value ? value.type === "application/pdf" : null;
+    .required("Please upload your resume.")
+    .test("type", "Only PDF documents are accepted.", (value) => {
+      return value ? value.type === "application/pdf" : true;
     }),
 });
 
@@ -98,7 +98,6 @@ const defaultValues = {
   firstname: "",
   lastname: "",
   email: "",
-  country: "",
   ccode: "",
   mobile: "",
   appliedto: "",
@@ -145,17 +144,16 @@ function JobApplicationForm({ jobdata }) {
   const referedValue = values.referance;
 
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
 
-    const file = data.file;
+    const file = data.resume;
     const AMobile = `${data.country}-${data.mobile}`;
-    const AFilename = `${data.fname}-${data.lname}.pdf`;
+    const AFilename = `${data.firstname}-${data.lastname}.pdf`;
 
     const reqdata = {
       firstname: data.firstname,
       lastname: data.lastname,
       email: data.email,
-      country: data.country,
       mobile: AMobile,
       appliedto: data.appliedto,
       experience: data.experience,
@@ -166,11 +164,28 @@ function JobApplicationForm({ jobdata }) {
       location: data.location,
       relocation: data.relocation,
       referance: data.referance,
-      empid: data.empid,
-      empname: data.empname,
+      empid: referedValue === "Yes" ? data.empid : null,
+      empname: referedValue === "Yes" ? data.empname : null,
       resume: file,
       filename: AFilename,
     };
+
+    console.log(reqdata)
+
+    applyPosition(reqdata)
+      .then((res) => {
+        console.log(res);
+        const status = res.data.success;
+        if (status) {
+          enqueueSnackbar(res.data.message, { variant: "success" });
+        } else {
+          enqueueSnackbar(res.data.message, { variant: "error" });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        enqueueSnackbar(err.message, { variant: "error" });
+      });
   };
   return (
     <Grid
@@ -232,40 +247,6 @@ function JobApplicationForm({ jobdata }) {
           error={errors.email}
           helperText={errors.email?.message}
           {...register("email")}
-        />
-        <Controller
-          name="country"
-          control={control}
-          render={({ field }) => {
-            const { onChange, value } = field;
-            return (
-              <Autocomplete
-                sx={{ width: "100%" }}
-                value={
-                  value
-                    ? countrydata.find((option) => {
-                        return value == option.countryname;
-                      }) ?? null
-                    : null
-                }
-                getOptionLabel={(option) => {
-                  return option.countryname;
-                }}
-                options={countrydata}
-                onChange={(e, newValue) => {
-                  onChange(newValue ? newValue.countryname : null);
-                }}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    label="Country"
-                    error={errors.country}
-                    helperText={errors.country?.message}
-                  />
-                )}
-              />
-            );
-          }}
         />
       </Stack>
       <Stack
@@ -518,7 +499,12 @@ function JobApplicationForm({ jobdata }) {
       </FormControl>
 
       {referedValue === "Yes" ? (
-        <Stack direction="row" alignItems="center" spacing={2} sx={{width:'100%'}}>
+        <Stack
+          direction="row"
+          alignItems="center"
+          spacing={2}
+          sx={{ width: "100%" }}
+        >
           <TextField
             label="Employee ID"
             fullWidth
