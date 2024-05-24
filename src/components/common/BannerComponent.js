@@ -55,17 +55,15 @@ function BannerComponent({ mainheight, layercolor, textdispaly }) {
   const { pathname } = useLocation();
 
   const domain = useSelector((state) => state.domain.domain);
-  
+
   const [banners, setBanners] = useState([]);
 
   let imagedata;
 
   let imagename;
 
-  
-
   useEffect(() => {
-    getBanners(pathname,domain)
+    getBanners(pathname, domain)
       .then((res) => {
         console.log(res);
         setBanners(res.data.response);

@@ -183,11 +183,11 @@ export const NavData = [
         title: "Job Openings",
         path: "/join-us/search-jobs",
       },
-      // {
-      //   id: 2,
-      //   title: "Events ",
-      //   path: "/join-us/events",
-      // },
+      {
+        id: 2,
+        title: "Events ",
+        path: "/join-us/events",
+      },
       {
         id: 3,
         title: "Life @KTECH",

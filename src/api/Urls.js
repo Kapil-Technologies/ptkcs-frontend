@@ -12,4 +12,6 @@ export const apiurls = {
   lifeatktech: `${APIURL}get/lifeatktech`,
   leadership: `${APIURL}get/leadership`,
   globalfootprints: `${APIURL}get/globalbranches`,
+  events: `${APIURL}get/events`,
+  eventsregistrations: `${APIURL}events/register`,
 };

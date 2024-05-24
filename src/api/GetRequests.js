@@ -44,3 +44,11 @@ export const getBranches = async () => {
 
   return response;
 };
+
+export const getEvents = async () => {
+  const response = await axios.get(apiurls.events, {
+    headers: HeaderData,
+  });
+
+  return response;
+};
