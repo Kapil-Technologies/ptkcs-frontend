@@ -64,9 +64,9 @@ function DigitalTransformation() {
   return (
     <Fragment>
       <Page
-        name="Digital Transformation"
+        name="Application Development"
         description="Kapil Technologies, an esteemed Infor Alliance Partner, offers a wide array of services including Infor and SAP consulting, as well as custom application development, among others."
-        pagename="Digital Transformation Page"
+        pagename="Application Development Page"
       />
       <MainContainer mainheight="500px">
         <Layer

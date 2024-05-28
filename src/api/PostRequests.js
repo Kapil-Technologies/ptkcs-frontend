@@ -17,7 +17,7 @@ export const HeaderMedia = {
 
 export const applyPosition = async (data) => {
   const formdata = new FormData();
-  formdata.append("firstname", data.firstname)
+  formdata.append("firstname", data.firstname);
   formdata.append("lastname", data.lastname);
   formdata.append("email", data.email);
   formdata.append("mobile", data.mobile);
@@ -57,6 +57,37 @@ export const raiseEnquiry = async (data) => {
       tc: data.tc,
       domain: data.domain,
       page: data.page,
+    }),
+    {
+      headers: HeaderData,
+    }
+  );
+
+  return response;
+};
+
+
+
+export const eventRegister = async (data) => {
+  const response = await axios.post(
+    apiurls.eventsregistrations,
+    JSON.stringify({
+      firstname: data.firstname,
+      lastname: data.lastname,
+      company: data.company,
+      designation: data.designation,
+      email: data.email,
+      country: data.country,
+      mobile: data.mobile,
+      tc: data.tc,
+      eventid: data.eventid,
+      eventname: data.eventname,
+      eventdescription: data.eventdescription,
+      eventstarttime: data.eventstarttime,
+      duration: data.duration,
+      urllink: data.urllink,
+      status: "NEEDS ACTION",
+      domain:"ptkcs.com"
     }),
     {
       headers: HeaderData,

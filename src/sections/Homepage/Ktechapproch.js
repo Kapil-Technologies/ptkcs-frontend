@@ -17,7 +17,7 @@ function Ktechapproch() {
         direction="row"
         alignItems="center"
         justifyContent="center"
-        sx={{ width: "80%" }}
+        sx={{ width: "95%" }}
         component={Grid}
         container
         columnGap={2}

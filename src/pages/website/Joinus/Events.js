@@ -16,9 +16,11 @@ import { Layer, MainContainer } from "../../../sections/Banners/Home";
 import { motion } from "framer-motion";
 import BannerComponent from "../../../components/common/BannerComponent";
 import { getEvents } from "../../../api/GetRequests";
+import { useNavigate } from "react-router-dom";
 
 function Events() {
   const theme = useTheme();
+  const Navigate = useNavigate();
 
   const [eventlist, setEventlist] = useState([]);
 
@@ -35,6 +37,10 @@ function Events() {
         console.log(err);
       });
   }, []);
+
+  const handleNavigate = (item) => {
+    Navigate(`/join-us/events/${item.eventtype}/${item.eventid}`);
+  };
   return (
     <Fragment>
       <Page name="Events" pagename="Events Page" description="" />
@@ -93,7 +99,11 @@ function Events() {
                 </Typography>
                 <Typography variant="body1">{item.eventdescription}</Typography>
               </CardContent>
-              <CardActions>
+              <CardActions
+                onClick={() => {
+                  handleNavigate(item);
+                }}
+              >
                 <Button variant="contained">Register</Button>
               </CardActions>
             </Card>

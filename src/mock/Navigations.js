@@ -136,15 +136,15 @@ export const NavData = [
         submenu: [
           {
             id: 1,
-            title: "Digital Transformation",
-            path: "/other-services/digital-transformation",
+            title: "Application Development",
+            path: "/other-services/application-development",
             icon: <FiArrowDownRight />,
           },
           {
             id: 2,
             title: "IT Staffing Services",
             icon: <FiArrowDownRight />,
-            // path: "/services/infor-consulting-services",
+            path: "/other-services/it-staffing",
           },
           {
             id: 3,
@@ -295,15 +295,15 @@ export const ServicesNew = [
     submenu: [
       {
         id: 1,
-        title: "Digital Transformation",
-        path: "/other-services/digital-transformation",
+        title: "Application Development",
+        path: "/other-services/application-development",
         icon: <FiArrowDownRight />,
       },
       {
         id: 2,
         title: "IT Staffing Services",
         icon: <FiArrowDownRight />,
-        // path: "/services/infor-consulting-services",
+        path: "/other-services/it-staffing",
       },
       {
         id: 3,

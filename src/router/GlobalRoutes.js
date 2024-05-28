@@ -14,6 +14,8 @@ import Jobdescription from "../sections/Joinus/searchjobs/Jobdescription";
 import ApplicantStatus from "../sections/Joinus/searchjobs/ApplicantStatus";
 import DigitalTransformation from "../pages/website/Services/DigitalTransformation";
 import Mpdv from "../pages/website/Solutions/Mpdv";
+import EventDescription from "../sections/Joinus/Events/EventDescription";
+import Staffing from "../pages/website/Services/Staffing";
 
 // ------------------------------------------------------
 
@@ -105,8 +107,12 @@ function GlobalRoutes() {
                   element: <LifeatKCS />,
                 },
                 {
-                  path: "Events",
+                  path: "events",
                   element: <Events />,
+                },
+                {
+                  path: "events/:eventtype/:eventid",
+                  element: <EventDescription />,
                 },
               ],
             },
@@ -167,7 +173,7 @@ function GlobalRoutes() {
               path: "other-services",
               children: [
                 {
-                  path: "digital-transformation",
+                  path: "application-development",
                   element: <DigitalTransformation />,
                   index: true,
                 },
@@ -175,11 +181,17 @@ function GlobalRoutes() {
                   path: "other-services",
                   element: (
                     <Navigate
-                      to="other-services/digital-transformation"
+                      to="other-services/application-development"
                       exact
                       replace
                     />
                   ),
+                },
+
+                {
+                  path: "it-staffing",
+                  element: <Staffing />,
+                  index: true,
                 },
               ],
             },

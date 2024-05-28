@@ -508,7 +508,7 @@ function Navbar({ Admin, ToggleTheme }) {
   const [checked, setChecked] = React.useState(false);
 
   const handleChange = (e) => {
-    console.log( e ? "darkmode" : "lightmode")
+    console.log(e ? "darkmode" : "lightmode");
     ToggleTheme();
     setChecked(e.target.checked);
   };
@@ -745,14 +745,14 @@ function Navbar({ Admin, ToggleTheme }) {
         </MainNavList>
       ) : null}
 
-      <Stack
+      {/* <Stack
         direction="row"
         alignItems="center"
         justifyContent="center"
         sx={{ p: 2 }}
       >
         <MaterialUISwitch checked={checked} onChange={handleChange} />
-      </Stack>
+      </Stack> */}
     </MainContainer>
   );
 }

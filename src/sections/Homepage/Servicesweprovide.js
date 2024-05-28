@@ -40,8 +40,8 @@ function Servicesweprovide() {
           height: "420px",
           width: "60%",
           background: "lightgray",
-          ml: "50px",
-          p: 2,
+          ml: "20px",
+          p: 1,
           textAlign: "left",
         }}
         spacing={4}
@@ -65,9 +65,9 @@ function Servicesweprovide() {
         sx={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "left",
+          justifyContent: "right",
           position: "absolute",
-          width: "60%",
+          width: "65%",
           // border: "1px solid blue",
           right: "0",
           height: "100%",
@@ -83,7 +83,7 @@ function Servicesweprovide() {
               width: XstraLarge ? "250px" : "230px",
               height: "300px",
               textAlign: "left",
-              px: 2,
+              px: 1,
               py: 3,
             }}
           >
