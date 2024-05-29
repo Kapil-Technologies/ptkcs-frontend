@@ -112,12 +112,12 @@ function CTA() {
       justifyContent="center"
       sx={{
         width: "100%",
-        height: "calc(100vh - 0px)",
+        height: Mobile || Tab ? "auto" : "90vh",
         backgroundColor: "lightgray",
         py: "15px",
       }}
     >
-      <Typography variant="h4" sx={{ pb: "20px", fontWeight: "bold" }}>
+      <Typography variant="h4" sx={{ pb: "20px", fontWeight: "bold" ,textAlign:'center' }}>
         Value Statement - Contact us
       </Typography>
       <Grid
@@ -138,42 +138,87 @@ function CTA() {
             alignItems: "center",
             justifyContent: "center",
             // border: "1px solid blue",
-            height: "calc(100vh - 180px)",
+            height: Mobile || Tab ? "auto" : "calc(100vh - 180px)",
             padding: "10px",
           }}
         >
           <Grid
-          item
-          md="160px"
-            sx={{ width: "150px",bgcolor:'gray', border: "1px solid lightgray", height: "150px",borderRadius:'50%',display:'flex',alignItems:'center',justifyContent:'center' }}
+            item
+            md="160px"
+            sx={{
+              width: "150px",
+              bgcolor: "gray",
+              border: "1px solid lightgray",
+              height: "150px",
+              borderRadius: "50%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
             data
           </Grid>
           <Grid
-          item
-          md="160px"
-            sx={{ width: "150px",bgcolor:'gray', border: "1px solid lightgray", height: "150px",borderRadius:'50%',display:'flex',alignItems:'center',justifyContent:'center' }}
+            item
+            md="160px"
+            sx={{
+              width: "150px",
+              bgcolor: "gray",
+              border: "1px solid lightgray",
+              height: "150px",
+              borderRadius: "50%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
             data
           </Grid>
           <Grid
-          item
-          md="160px"
-            sx={{ width: "150px",bgcolor:'gray', border: "1px solid lightgray", height: "150px",borderRadius:'50%',display:'flex',alignItems:'center',justifyContent:'center' }}
+            item
+            md="160px"
+            sx={{
+              width: "150px",
+              bgcolor: "gray",
+              border: "1px solid lightgray",
+              height: "150px",
+              borderRadius: "50%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
             data
           </Grid>
           <Grid
-          item
-          md="160px"
-            sx={{ width: "150px",bgcolor:'gray', border: "1px solid lightgray", height: "150px",borderRadius:'50%',display:'flex',alignItems:'center',justifyContent:'center' }}
+            item
+            md="160px"
+            sx={{
+              width: "150px",
+              bgcolor: "gray",
+              border: "1px solid lightgray",
+              height: "150px",
+              borderRadius: "50%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
             data
           </Grid>
           <Grid
-          item
-          md="160px"
-            sx={{ width: "150px",bgcolor:'gray', border: "1px solid lightgray", height: "150px",borderRadius:'50%',display:'flex',alignItems:'center',justifyContent:'center' }}
+            item
+            md="160px"
+            sx={{
+              width: "150px",
+              bgcolor: "gray",
+              border: "1px solid lightgray",
+              height: "150px",
+              borderRadius: "50%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
             data
           </Grid>
