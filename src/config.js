@@ -23,7 +23,11 @@ export const Paths = {
     digitaltransformation: "/consulting/digital-transformation",
   },
   other: {
-    staffing: "/services/staffing",
+    staffing: "/other-services/staffing",
+    taas: "/other-services/taas",
+    applicationdevelopment: "/other-services/application-development",
+    ams: "/other-services/application-managed-services",
+    tts: "/other-services/technology-training-services",
   },
   solutions: {
     finsta: "/products/finsta",

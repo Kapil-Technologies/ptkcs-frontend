@@ -1,9 +1,10 @@
-import { Button, Stack, Typography, useMediaQuery } from "@mui/material";
+import { Button, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Paths } from "../../config";
 import { useDispatch } from "react-redux";
 import { isNavigated, enquiryfrom } from "../../redux/slices/Enquiry";
+import ContactForm from "../Forms/ContactForm";
 // import useMediaQuery from "../../Hooks/MediaQueries";
 
 function CTA() {
@@ -84,8 +85,8 @@ function CTA() {
       break;
     // Products
     case pathname === Paths.solutions.mpdv:
-         ctatext =
-           "Transform production with FEDRA & HYDRA. Optimize planning, resources, efficiency.";
+      ctatext =
+        "Transform production with FEDRA & HYDRA. Optimize planning, resources, efficiency.";
       pagename = "MPDV";
       break;
 
@@ -106,45 +107,93 @@ function CTA() {
 
   return (
     <Stack
-      direction="row"
+      direction="column"
       alignItems="center"
       justifyContent="center"
       sx={{
         width: "100%",
-        height: "auto",
-        backgroundColor: "gray",
+        height: "calc(100vh - 0px)",
+        backgroundColor: "lightgray",
+        py: "15px",
       }}
     >
-      <Stack
-        direction={Mobile ? "column" : "row"}
-        alignItems="center"
-        justifyContent={Mobile ? "center" : "space-between"}
-        sx={{ width: Mobile || Tab ? "100%" : "80%", p: 3 }}
-        spacing={2}
+      <Typography variant="h4" sx={{ pb: "20px", fontWeight: "bold" }}>
+        Value Statement - Contact us
+      </Typography>
+      <Grid
+        columnGap={2}
+        rowGap={2}
+        container
+        sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
       >
-        <Stack
-          direction="column"
-          alignItems="center"
-          justifyContent="center"
-          spacing={2}
+        <Grid
+          item
+          container
+          columnGap={2}
+          rowGap={2}
+          xs={12}
+          md={5.5}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            // border: "1px solid blue",
+            height: "calc(100vh - 180px)",
+            padding: "10px",
+          }}
         >
-          <Typography
-            variant="h5"
-            sx={{ fontWeight: "bold", textAlign: "center" }}
+          <Grid
+          item
+          md="160px"
+            sx={{ width: "150px",bgcolor:'gray', border: "1px solid lightgray", height: "150px",borderRadius:'50%',display:'flex',alignItems:'center',justifyContent:'center' }}
           >
-            {ctatext}
-          </Typography>
-
-          {subtitle ? (
-            <Typography variant="body1" sx={{ textAlign: "center" }}>
-              {subtitle}
-            </Typography>
-          ) : null}
-        </Stack>
-        <Button variant="contained" onClick={handleNavigate}>
-          Contact Us
-        </Button>
-      </Stack>
+            data
+          </Grid>
+          <Grid
+          item
+          md="160px"
+            sx={{ width: "150px",bgcolor:'gray', border: "1px solid lightgray", height: "150px",borderRadius:'50%',display:'flex',alignItems:'center',justifyContent:'center' }}
+          >
+            data
+          </Grid>
+          <Grid
+          item
+          md="160px"
+            sx={{ width: "150px",bgcolor:'gray', border: "1px solid lightgray", height: "150px",borderRadius:'50%',display:'flex',alignItems:'center',justifyContent:'center' }}
+          >
+            data
+          </Grid>
+          <Grid
+          item
+          md="160px"
+            sx={{ width: "150px",bgcolor:'gray', border: "1px solid lightgray", height: "150px",borderRadius:'50%',display:'flex',alignItems:'center',justifyContent:'center' }}
+          >
+            data
+          </Grid>
+          <Grid
+          item
+          md="160px"
+            sx={{ width: "150px",bgcolor:'gray', border: "1px solid lightgray", height: "150px",borderRadius:'50%',display:'flex',alignItems:'center',justifyContent:'center' }}
+          >
+            data
+          </Grid>
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          md={5.5}
+          sx={{
+            display: "flex",
+            alignItems: "start",
+            justifyContent: "center",
+            // border: "1px solid blue",
+            height: "auto",
+            padding: "10px",
+          }}
+        >
+          <ContactForm />
+        </Grid>
+      </Grid>
     </Stack>
   );
 }

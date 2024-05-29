@@ -1,15 +1,73 @@
 import React, { Fragment } from "react";
 import Page from "../../../components/common/Page";
 import BannerComponent from "../../../components/common/BannerComponent";
-import { Stack, styled, useTheme } from "@mui/material";
+import {
+  Button,
+  Card,
+  Grid,
+  Stack,
+  Typography,
+  styled,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { SectionContainer } from "./SAP";
+import {
+  Capabilities,
+  CapabilitiesElobaration,
+} from "../../../mock/whatwedo/others/StaffingMock";
 
-const MainContainer = styled("header")(({ theme, hover, toggle }) => ({
+const SectionContainer = styled("section")(({ theme }) => ({
+  width: "100%",
+  height: "auto",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "flex-start",
+  flexDirection: "column",
+
   [theme.breakpoints.between("xs", "md")]: {
     //  mobile
-    backgroundColor: toggle ? theme.palette.primary.main : "transparent",
+  },
+
+  [theme.breakpoints.up("xl")]: {},
+}));
+
+const ImageGridItem = styled(Grid)(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-evenly",
+  flexDirection: "column",
+  height: "calc(100vh - 60px)",
+  padding: "10px",
+  // border: "1px solid blue",
+  backgroundColor: theme.palette.terinary.main,
+
+  [theme.breakpoints.between("xs", "md")]: {},
+
+  [theme.breakpoints.between("md", "lg")]: {
+    // Desktop
+  },
+
+  [theme.breakpoints.up("xl")]: {},
+}));
+
+const TextGridItem = styled(Grid)(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  flexDirection: "column",
+  height: "calc(100vh - 60px)",
+  padding: "20px",
+  backgroundColor: "#F3F2F5",
+  // border: "1px solid blue",
+
+  [theme.breakpoints.between("xs", "md")]: {
+    height: "auto",
+  },
+
+  [theme.breakpoints.between("md", "lg")]: {
+    // Desktop
   },
 
   [theme.breakpoints.up("xl")]: {},
@@ -18,9 +76,17 @@ const MainContainer = styled("header")(({ theme, hover, toggle }) => ({
 function Staffing() {
   const theme = useTheme();
   const Navigate = useNavigate();
+  const Mobile = useMediaQuery((theme) =>
+    theme.breakpoints.between("xs", "sm")
+  );
+  const Tab = useMediaQuery((theme) => theme.breakpoints.between("sm", "md"));
+
+  const handleNavigate = () => {
+    Navigate("/contact-us");
+  };
   return (
     <Fragment>
-      <Page name="Events" pagename="Events Page" description="" />
+      <Page name="IT Staffing" pagename="Staffing Page" description="" />
       <BannerComponent
         mainheight="500px"
         layercolor={theme.palette.terinary.main}
@@ -41,7 +107,123 @@ function Staffing() {
           </Stack>
         }
       />
-      <SectionContainer></SectionContainer>
+      <SectionContainer sx={{ py: "5px" }}>
+        <Typography variant="h4" sx={{ fontWeight: "bold", p: 1 }}>
+          Value Statement
+        </Typography>
+        <Grid
+          container
+          columnGap={2}
+          rowGap={2}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-evenly",
+            width: "100%",
+            height: Mobile || Tab ? "auto" : "280px",
+          }}
+        >
+          {Capabilities.map((item) => (
+            <Grid
+              key={item.id}
+              item
+              xs={11}
+              md={3.5}
+              sx={{
+                p: 2,
+                display: "flex",
+                alignItems: "left",
+                justifyContent: "space-evenly",
+                flexDirection: "column",
+                height: "250px",
+                border: "1px solid lightgray",
+              }}
+              component={Card}
+            >
+              <Stack
+                direction="row"
+                alignItems="center"
+                justifyContent="left"
+                sx={{ p: 1, fontWeight: "bold" }}
+              >
+                Icons
+              </Stack>
+              <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+                {item.title}
+              </Typography>
+              <Typography variant="body1">text</Typography>
+            </Grid>
+          ))}
+        </Grid>
+        <Stack
+          direction="row"
+          alignItems="center"
+          justifyContent="space-evenly"
+          sx={{ width: "100%", height: "100px", bgcolor: "lightgray" }}
+        >
+          <Typography variant="h4" sx={{ fontWeight: "bold" }}>
+            CTA Statement
+          </Typography>
+          <Button variant="contained" onClick={handleNavigate}>
+            Contact us
+          </Button>
+        </Stack>
+        <Stack
+          direction="row"
+          alignItems="center"
+          justifyContent="center"
+          component={Grid}
+          container
+          sx={{ width: "100%" }}
+        >
+          {CapabilitiesElobaration.map((item) =>
+            item.type === "image" ? (
+              <ImageGridItem key={item.id} xs={12} md={6}>
+                Image
+              </ImageGridItem>
+            ) : (
+              <TextGridItem key={item.id} xs={12} md={6}>
+                <Typography
+                  variant="h4"
+                  gutterBottom
+                  sx={{ fontWeight: "bold" }}
+                >
+                  {item.title}
+                </Typography>
+
+                <Stack
+                  direction="column"
+                  alignItems="left"
+                  spacing={2}
+                  sx={{ width: "100%" }}
+                >
+                  {item.points.map((item) => (
+                    <Stack direction="row" alignItems="flex-start">
+                      <Typography>{item.id}</Typography>
+                      <Typography>.</Typography>
+                      <Typography>{item.text}</Typography>
+                    </Stack>
+                  ))}
+                </Stack>
+              </TextGridItem>
+            )
+          )}
+        </Stack>
+
+        <Stack
+          direction="column"
+          alignItems="center"
+          justifyContent="flex-start"
+          spacing={2}
+          sx={{ width: "100%", mb: "-5px", py: "10px" }}
+        >
+          <Typography variant="h4" sx={{ fontWeight: "bold" }}>
+            Tech Stack Value Statement
+          </Typography>
+
+          
+        </Stack>
+      </SectionContainer>
     </Fragment>
   );
 }

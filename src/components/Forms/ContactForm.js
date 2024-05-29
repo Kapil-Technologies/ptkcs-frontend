@@ -4,7 +4,7 @@ import * as yup from "yup";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { useSnackbar } from "notistack";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   Autocomplete,
   Button,
@@ -55,6 +55,9 @@ const defaultValues = {
 function ContactForm() {
   const { enqueueSnackbar } = useSnackbar();
   const Navigate = useNavigate();
+
+  const { pathname } = useLocation()
+  console.log(pathname)
   const domain = useSelector((state) => state.domain.domain);
   const page = useSelector((state) => state.enquiry.enquiryfrompage);
   //   console.log(domain);
@@ -77,6 +80,8 @@ function ContactForm() {
   });
 
   const countrydata = useContext(CountriesList);
+
+  const condition = pathname === "/contact-us"
 
   // console.log(countrydata);
 
@@ -119,7 +124,7 @@ function ContactForm() {
       sx={{ width: "100%", height: "inherit" }}
       component="form"
       onSubmit={handleSubmit(onSubmit)}
-      spacing={1}
+      spacing={condition ? 1 : 2}
     >
       <Stack
         direction={Mobile || Tab ? "column" : "row"}
@@ -129,7 +134,7 @@ function ContactForm() {
         spacing={2}
       >
         <TextField
-          variant="standard"
+          variant={condition ?  "standard" : "outlined"}
           label="Full Name"
           fullWidth
           autoComplete="off"
@@ -138,7 +143,7 @@ function ContactForm() {
           {...register("fullname")}
         />
         <TextField
-          variant="standard"
+          variant={condition ?  "standard" : "outlined"}
           label="Company"
           fullWidth
           autoComplete="off"
@@ -156,7 +161,7 @@ function ContactForm() {
         spacing={2}
       >
         <TextField
-          variant="standard"
+          variant={condition ?  "standard" : "outlined"}
           label="Work Email"
           fullWidth
           autoComplete="off"
@@ -190,7 +195,7 @@ function ContactForm() {
                   <TextField
                     {...params}
                     label="Country"
-                    variant="standard"
+                    variant={condition ?  "standard" : "outlined"}
                     error={errors.country}
                     helperText={errors.country?.message}
                   />
@@ -241,7 +246,7 @@ function ContactForm() {
                     <TextField
                       {...params}
                       label="Code "
-                      variant="standard"
+                      variant={condition ?  "standard" : "outlined"}
                       error={errors.ccode}
                       helperText={errors.ccode?.message}
                     />
@@ -251,7 +256,7 @@ function ContactForm() {
             }}
           />
           <TextField
-            variant="standard"
+            variant={condition ?  "standard" : "outlined"}
             label="Mobile"
             fullWidth
             autoComplete="off"
@@ -261,7 +266,7 @@ function ContactForm() {
           />
         </Stack>
         <TextField
-          variant="standard"
+          variant={condition ?  "standard" : "outlined"}
           label="Niche Industry"
           fullWidth
           autoComplete="off"
@@ -278,7 +283,7 @@ function ContactForm() {
         spacing={2}
       >
         <TextField
-          variant="standard"
+          variant={condition ?  "standard" : "outlined"}
           label="Message"
           multiline
           rows={2}
@@ -327,7 +332,7 @@ function ContactForm() {
       <Stack
         direction="row"
         alignItems="center"
-        justifyContent="right"
+        justifyContent="left"
         sx={{ width: "100%", pb: 2 }}
         spacing={2}
       >

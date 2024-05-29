@@ -114,7 +114,7 @@ function Footer() {
           alignItems="center"
           justifyContent="space-between"
           spacing={1}
-          sx={{ width: "100%", px: 1, py: 3,backgroundColor:'lightgray' }}
+          sx={{ width: "100%", px: 1, py: 3,backgroundColor:'lightblue' }}
         >
           <Typography
             variant="h5"
