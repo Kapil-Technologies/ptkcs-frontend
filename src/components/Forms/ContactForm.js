@@ -4,7 +4,7 @@ import * as yup from "yup";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { useSnackbar } from "notistack";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import {
   Autocomplete,
   Button,
@@ -23,6 +23,7 @@ import { countrys } from "../../mock/FormFields";
 import { useSelector } from "react-redux";
 import { CountriesList, Domain } from "../../App";
 import { raiseEnquiry } from "../../api/PostRequests";
+import { Paths } from "../../config";
 
 // -----------------------------------------------  Form Components
 
@@ -55,9 +56,10 @@ const defaultValues = {
 function ContactForm() {
   const { enqueueSnackbar } = useSnackbar();
   const Navigate = useNavigate();
+  const {eventid} = useParams()
 
-  const { pathname } = useLocation()
-  console.log(pathname)
+  const { pathname } = useLocation();
+  console.log(pathname);
   const domain = useSelector((state) => state.domain.domain);
   const page = useSelector((state) => state.enquiry.enquiryfrompage);
   //   console.log(domain);
@@ -81,9 +83,59 @@ function ContactForm() {
 
   const countrydata = useContext(CountriesList);
 
-  const condition = pathname === "/contact-us"
+  const condition = pathname === "/contact-us";
 
   // console.log(countrydata);
+
+  let pagevisited;
+
+  switch (true) {
+    case pathname === Paths.home:
+      pagevisited = "Home";
+      break;
+    // About us
+    case pathname === Paths.aboutus.company:
+      pagevisited = "company";
+      break;
+
+    case pathname === Paths.aboutus.leadership:
+      pagevisited = "leadership";
+      break;
+
+    // Services
+    case pathname === Paths.consulting.inforconsulting:
+      pagevisited = "Infor";
+      break;
+    case pathname === Paths.consulting.sapconsulting:
+      pagevisited = "SAP";
+      break;
+    case pathname === Paths.consulting.digitaltransformation:
+      pagevisited = "Digital Transformation";
+      break;
+    case pathname === Paths.other.staffing:
+      pagevisited = "Staffing";
+      break;
+    case pathname === Paths.solutions.finsta:
+      pagevisited = "Finsta";
+      break;
+    // Joinus
+    case pathname === Paths.joinus.searchjobs:
+      pagevisited = "Job Openings";
+      break;
+    case pathname === Paths.joinus.events:
+      pagevisited = "Events";
+      break;
+    case pathname === Paths.joinus.webinar:
+      pagevisited = `Webinar - ${eventid}`;
+      break;
+    case pathname === Paths.joinus.lifeatktech:
+      pagevisited = "Life @ Ktech";
+      break;
+    // Contact us
+    case pathname === Paths.contactus:
+      pagevisited = "Contact us";
+      break;
+  }
 
   const onSubmit = (data) => {
     console.log(data);
@@ -97,23 +149,23 @@ function ContactForm() {
       message: data.message,
       tc: data.tc,
       domain: domain,
-      page:page === null ? "Contact" : page
+      page: pagevisited,
     };
 
-    raiseEnquiry(reqdata)
-      .then((res) => {
-        // console.log(res);
-        const status = res.data.success;
-        if (status) {
-          enqueueSnackbar(res.data.message, { variant: "success" });
-        } else {
-          enqueueSnackbar(res.data.message, { variant: "error" });
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        enqueueSnackbar(err.message, { variant: "error" });
-      });
+    // raiseEnquiry(reqdata)
+    //   .then((res) => {
+    //     // console.log(res);
+    //     const status = res.data.success;
+    //     if (status) {
+    //       enqueueSnackbar(res.data.message, { variant: "success" });
+    //     } else {
+    //       enqueueSnackbar(res.data.message, { variant: "error" });
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //     enqueueSnackbar(err.message, { variant: "error" });
+    //   });
   };
 
   return (
@@ -134,7 +186,7 @@ function ContactForm() {
         spacing={2}
       >
         <TextField
-          variant={condition ?  "standard" : "outlined"}
+          variant={condition ? "standard" : "outlined"}
           label="Full Name"
           fullWidth
           autoComplete="off"
@@ -143,7 +195,7 @@ function ContactForm() {
           {...register("fullname")}
         />
         <TextField
-          variant={condition ?  "standard" : "outlined"}
+          variant={condition ? "standard" : "outlined"}
           label="Company"
           fullWidth
           autoComplete="off"
@@ -161,7 +213,7 @@ function ContactForm() {
         spacing={2}
       >
         <TextField
-          variant={condition ?  "standard" : "outlined"}
+          variant={condition ? "standard" : "outlined"}
           label="Work Email"
           fullWidth
           autoComplete="off"
@@ -195,7 +247,7 @@ function ContactForm() {
                   <TextField
                     {...params}
                     label="Country"
-                    variant={condition ?  "standard" : "outlined"}
+                    variant={condition ? "standard" : "outlined"}
                     error={errors.country}
                     helperText={errors.country?.message}
                   />
@@ -246,7 +298,7 @@ function ContactForm() {
                     <TextField
                       {...params}
                       label="Code "
-                      variant={condition ?  "standard" : "outlined"}
+                      variant={condition ? "standard" : "outlined"}
                       error={errors.ccode}
                       helperText={errors.ccode?.message}
                     />
@@ -256,7 +308,7 @@ function ContactForm() {
             }}
           />
           <TextField
-            variant={condition ?  "standard" : "outlined"}
+            variant={condition ? "standard" : "outlined"}
             label="Mobile"
             fullWidth
             autoComplete="off"
@@ -266,7 +318,7 @@ function ContactForm() {
           />
         </Stack>
         <TextField
-          variant={condition ?  "standard" : "outlined"}
+          variant={condition ? "standard" : "outlined"}
           label="Niche Industry"
           fullWidth
           autoComplete="off"
@@ -283,7 +335,7 @@ function ContactForm() {
         spacing={2}
       >
         <TextField
-          variant={condition ?  "standard" : "outlined"}
+          variant={condition ? "standard" : "outlined"}
           label="Message"
           multiline
           rows={2}

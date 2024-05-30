@@ -11,7 +11,7 @@ function Page({ name, description, keywords, pagename }) {
   const { pathname } = useLocation();
   const hostname = window.location.hostname;
   const dispatch = useDispatch();
-  const { jobid, aid, wid } = useParams();
+  const { eventid } = useParams();
 
   // console.log(hostname); // This will log the hostname to the console
 
@@ -82,7 +82,7 @@ function Page({ name, description, keywords, pagename }) {
       pagevisited = "Events";
       break;
     case pathname === Paths.joinus.webinar:
-      pagevisited = "Webinars";
+      pagevisited = `Webinar - ${eventid}`;
       break;
     case pathname === Paths.joinus.lifeatktech:
       pagevisited = "Life @ Ktech";

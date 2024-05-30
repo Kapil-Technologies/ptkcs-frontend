@@ -12,12 +12,17 @@ import React from "react";
 import { IconUpArrow } from "../../themes/Icons";
 import { Link } from "react-router-dom";
 import { ServicesProviding } from "../../mock/Homepage";
+import ServicesCarousel from "../../components/common/ServicesCarousel";
 
 function Servicesweprovide() {
+  const Mobile = useMediaQuery((theme) =>
+    theme.breakpoints.between("xs", "sm")
+  );
+  const Tab = useMediaQuery((theme) => theme.breakpoints.between("sm", "md"));
   const XstraLarge = useMediaQuery((theme) => theme.breakpoints.up("xl"));
   return (
     <Stack
-      direction="row"
+      direction={Mobile || Tab ? "column" :"row"}
       alignItems="center"
       justifyContent="space-between"
       sx={{
@@ -38,16 +43,16 @@ function Servicesweprovide() {
         item
         sx={{
           height: "420px",
-          width: "60%",
+          width:Mobile || Tab ? "90%" : "60%",
           background: "lightgray",
-          ml: "20px",
+          ml:Mobile || Tab ? 0:  "20px",
           p: 1,
           textAlign: "left",
         }}
         spacing={4}
       >
         <Typography variant="h6">Securing Everything</Typography>
-        <Typography variant="h4" sx={{ fontWeight: "bold" }}>
+        <Typography variant="h5" sx={{ fontWeight: "bold" }}>
           At Kapil Tech, We Provide...
         </Typography>
 
@@ -66,14 +71,15 @@ function Servicesweprovide() {
           display: "flex",
           alignItems: "center",
           justifyContent: "right",
-          position: "absolute",
-          width: "65%",
+          position: Mobile || Tab ? null : "absolute",
+          width: Mobile || Tab ? "100%" : "65%",
           // border: "1px solid blue",
           right: "0",
           height: "100%",
         }}
       >
-        {ServicesProviding.map((item) => (
+        <ServicesCarousel carouselImages={ServicesProviding} />
+        {/* {ServicesProviding.map((item) => (
           <Card
             sx={{
               display: "flex",
@@ -112,7 +118,7 @@ function Servicesweprovide() {
               Dive Deep
             </Typography>
           </Card>
-        ))}
+        ))} */}
       </Grid>
     </Stack>
   );

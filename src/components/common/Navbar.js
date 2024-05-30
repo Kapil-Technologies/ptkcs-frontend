@@ -344,7 +344,7 @@ const SubNavLink1 = styled(NavLink)(({ theme, menuid }) => ({
 
   [theme.breakpoints.between("xs", "md")]: {
     display: "flex",
-    alignItems: "center",
+    alignItems: "flex-start",
     gap: "5px",
     color: "white",
     width: "90%",
@@ -363,11 +363,12 @@ const SubNavText1 = styled(Box)(({ theme, menuid }) => ({
 
   [theme.breakpoints.between("xs", "md")]: {
     display: "flex",
-    alignItems: "center",
+    alignItems: "flex-start",
     gap: "5px",
     color: "white",
     width: "90%",
     marginLeft: "6px",
+    
   },
 
   [theme.breakpoints.between("md", "lg")]: {
@@ -602,7 +603,7 @@ function Navbar({ Admin, ToggleTheme }) {
                                     to={item.path}
                                     onClick={closeToggle}
                                   >
-                                    <IconDot />
+                                    <IconDot sx={{ mt: "3px" }} />
                                     <Typography
                                       variant="body1"
                                       sx={{ width: "80%" }}
@@ -612,7 +613,7 @@ function Navbar({ Admin, ToggleTheme }) {
                                   </SubNavLink1>
                                 ) : (
                                   <SubNavText1>
-                                    <IconDot />
+                                    <IconDot sx={{ mt: "3px" }} />
                                     <Typography
                                       variant="body1"
                                       sx={{ width: "80%" }}
