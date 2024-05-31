@@ -177,7 +177,7 @@ function MainHome() {
         sx={{ height: "auto", width: "100%", py: 2, textAlign: "center" }}
         spacing={1}
       >
-        <Typography variant="h4" sx={{ fontWeight: "bold" }}>
+        <Typography variant={Mobile || Tab ?"h5" : "h4"} sx={{ fontWeight: "bold" }}>
           Revitalize Legacy Applications with Kapil Tech
         </Typography>
         <Typography variant="h6">

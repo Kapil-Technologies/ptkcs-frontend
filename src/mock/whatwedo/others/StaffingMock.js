@@ -24,28 +24,7 @@ export const CapabilitiesElobaration = [
     id: 1,
     title: "Workforce Consulting",
     type: "text",
-    points: [
-      {
-        id: 1,
-        text: "",
-      },
-      {
-        id: 2,
-        text: "",
-      },
-      {
-        id: 3,
-        text: "",
-      },
-      {
-        id: 4,
-        text: "",
-      },
-      {
-        id: 5,
-        text: "",
-      },
-    ],
+    text: "Our experienced team combines extensive industry knowledge with cutting-edge technology to assist businesses in attracting, retaining, and developing outstanding personnel.",
   },
   {
     id: 2,
@@ -55,64 +34,22 @@ export const CapabilitiesElobaration = [
   },
   {
     id: 3,
-    title: "Contract Consulting",
+    title: "Direct-hire Recruiting",
     type: "text",
     type: "image",
     imgdetails: "",
   },
   {
     id: 4,
-    title: "Contract Consulting",
+    title: "Direct-hire Recruiting",
     type: "text",
-    points: [
-      {
-        id: 1,
-        text: "",
-      },
-      {
-        id: 2,
-        text: "",
-      },
-      {
-        id: 3,
-        text: "",
-      },
-      {
-        id: 4,
-        text: "",
-      },
-      {
-        id: 5,
-        text: "",
-      },
-    ],
+    text: "Our unrivaled services connect the top talent worldwide with the best opportunities, fostering growth, innovation, and clients’ long-term success.",
   },
   {
     id: 5,
-    title: "Direction Consulting",
+    title: "Contract Staffing",
     type: "text",
-    points: [
-      {
-        id: 1,
-        text: "",
-      },
-      {
-        id: 2,
-        text: "",
-      },
-      {
-        id: 3,
-        text: "",
-      },
-      {
-        id: 4,
-        text: "",
-      },
-      {
-        id: 5,
-        text: "",
-      },
-    ],
+    text: "Our contract staffing solutions meet the changing demands of businesses across a variety of industries, enabling organisations to achieve their growth objectives with agility and precision. ",
   },
   {
     id: 6,
@@ -121,4 +58,39 @@ export const CapabilitiesElobaration = [
     type: "image",
     imgdetails: "",
   },
+];
+
+
+export const TechnologyStack = [
+  {
+    id: 1,
+    icon:"icon",
+    techname: "Web/Mobile Apps",
+  },
+  {
+    id: 2,
+    icon:"icon",
+    techname: "UI/UX",
+  },
+  {
+    id: 3,
+    icon:"icon",
+    techname: "Database/Data Warehouse",
+  },
+  {
+    id: 4,
+    icon:"icon",
+    techname: "Cloud/Infrastructure/DevOps",
+  },
+  {
+    id: 5,
+    icon:"icon",
+    techname: "Data Science/AI/ML",
+  },
+  {
+    id: 6,
+    icon:"icon",
+    techname: "Big Data/Analytics",
+  },
+
 ];

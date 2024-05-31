@@ -1,16 +1,24 @@
-import { Stack, Typography, Grid, Box } from "@mui/material";
+import { Stack, Typography, Grid, Box, useMediaQuery } from "@mui/material";
 import React from "react";
 import { ApprochData } from "../../mock/Homepage";
 
 function Ktechapproch() {
+  const Mobile = useMediaQuery((theme) =>
+    theme.breakpoints.between("xs", "sm")
+  );
+  const Tab = useMediaQuery((theme) => theme.breakpoints.between("sm", "md"));
   return (
     <Stack
       direction="column"
       alignItems="center"
       justifyContent="center"
-      sx={{ width: "100%", background: "white", py: 4 }}
+      sx={{ width: "100%", background: "white", py: 2 }}
     >
-      <Typography variant="h3" sx={{ fontWeight: "bold" }} gutterBottom>
+      <Typography
+        variant={Mobile || Tab ? "h4" : "h3"}
+        sx={{ fontWeight: "bold", textAlign: "center" }}
+        gutterBottom
+      >
         Kapil Tech Approch
       </Typography>
       <Stack
@@ -39,7 +47,7 @@ function Ktechapproch() {
               alignItems="center"
               justifyContent="center"
               sx={{
-                width: "250px",
+                width: Mobile || Tab ? "350px" : "250px",
                 height: "80px",
                 border: "1px solid gray",
                 borderRadius: "5px",
@@ -54,8 +62,8 @@ function Ktechapproch() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                width: "250px",
-                height: "250px",
+                width: Mobile || Tab ? "350px" : "250px",
+                height: Mobile || Tab ? "350px" : "250px",
                 border: "1px solid gray",
                 borderBottomLeftRadius: "20px",
                 borderBottomRightRadius: "20px",

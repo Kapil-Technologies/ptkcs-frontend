@@ -84,7 +84,7 @@ export const NavData = [
           },
           {
             id: 5,
-            title: "Microsoft Dynamics Consulting",
+            title: "Microsoft Business Central",
             // path: "/consulting/microsoft-dynamics",
             icon: <FiArrowDownRight />,
           },
@@ -146,21 +146,16 @@ export const NavData = [
             icon: <FiArrowDownRight />,
             path: "/other-services/it-staffing",
           },
+
           {
             id: 3,
-            title: "Applications Managed Services",
-            icon: <FiArrowDownRight />,
-            // path: "/services/infor-consulting-services",
-          },
-          {
-            id: 4,
             title:
               "Testing Services  (IVV – Independent Verification & Validation)",
             icon: <FiArrowDownRight />,
             // path: "/services/infor-consulting-services",
           },
           {
-            id: 5,
+            id: 4,
             title: "Technology Training Services",
             icon: <FiArrowDownRight />,
             // path: "/services/infor-consulting-services",
@@ -307,19 +302,13 @@ export const ServicesNew = [
       },
       {
         id: 3,
-        title: "Applications Managed Services",
-        icon: <FiArrowDownRight />,
-        // path: "/services/infor-consulting-services",
-      },
-      {
-        id: 4,
         title:
           "Testing Services  (IVV – Independent Verification & Validation)",
         icon: <FiArrowDownRight />,
         // path: "/services/infor-consulting-services",
       },
       {
-        id: 5,
+        id: 4,
         title: "Technology Training Services",
         icon: <FiArrowDownRight />,
         // path: "/services/infor-consulting-services",

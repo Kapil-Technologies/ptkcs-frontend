@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import {
   Capabilities,
   CapabilitiesElobaration,
+  TechnologyStack,
 } from "../../../mock/whatwedo/others/StaffingMock";
 
 const SectionContainer = styled("section")(({ theme }) => ({
@@ -108,8 +109,12 @@ function Staffing() {
         }
       />
       <SectionContainer sx={{ py: "5px" }}>
-        <Typography variant="h4" sx={{ fontWeight: "bold", p: 1 }}>
-          Value Statement
+        <Typography
+          variant="h4"
+          sx={{ fontWeight: "bold", p: 1, textAlign: "center" }}
+        >
+          Our 360-degree strategy ensures seamless integration, fostering
+          excellence, and unmatched client value
         </Typography>
         <Grid
           container
@@ -191,20 +196,9 @@ function Staffing() {
                   {item.title}
                 </Typography>
 
-                <Stack
-                  direction="column"
-                  alignItems="left"
-                  spacing={2}
-                  sx={{ width: "100%" }}
-                >
-                  {item.points.map((item) => (
-                    <Stack direction="row" alignItems="flex-start">
-                      <Typography>{item.id}</Typography>
-                      <Typography>.</Typography>
-                      <Typography>{item.text}</Typography>
-                    </Stack>
-                  ))}
-                </Stack>
+                <Typography variant="body1" sx={{ textAlign: "justify" }}>
+                  {item.text}
+                </Typography>
               </TextGridItem>
             )
           )}
@@ -218,10 +212,54 @@ function Staffing() {
           sx={{ width: "100%", mb: "-5px", py: "10px" }}
         >
           <Typography variant="h4" sx={{ fontWeight: "bold" }}>
-            Tech Stack Value Statement
+            Technology Stack
           </Typography>
 
-          
+          <Typography
+            variant="body1"
+            sx={{ width: "80%", textAlign: "justify" }}
+          >
+            We specialise in providing complete full-stack app development
+            solutions that are tailored to the specific demands of businesses
+            from various industries. We strive to design and develop exceptional
+            tech stack applications that help businesses expand, improve user
+            experiences, and provide tangible value to clients.
+          </Typography>
+
+          <Grid
+            container
+            columnGap={2}
+            rowGap={2}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {TechnologyStack.map((item) => (
+              <Grid
+                item
+                xs={12}
+                md={3}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "flex-start",
+                  flexDirection: "column",
+                }}
+              >
+                <Stack
+                  direction="row"
+                  alignItems="center"
+                  justifyContent="center"
+                  sx={{ width: "100px", height: "100px" }}
+                >
+                  {item.icon}
+                </Stack>
+                <Typography variant="h6">{item.techname}</Typography>
+              </Grid>
+            ))}
+          </Grid>
         </Stack>
       </SectionContainer>
     </Fragment>
