@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
-import Page from "../../../components/common/Page";
-import BannerComponent from "../../../components/common/BannerComponent";
+import Page from "../../../../components/common/Page";
+import BannerComponent from "../../../../components/common/BannerComponent";
 import {
   Button,
   Card,
@@ -17,7 +17,7 @@ import {
   Capabilities,
   CapabilitiesElobaration,
   TechnologyStack,
-} from "../../../mock/whatwedo/others/StaffingMock";
+} from "../../../../mock/whatwedo/others/StaffingMock";
 
 const SectionContainer = styled("section")(({ theme }) => ({
   width: "100%",

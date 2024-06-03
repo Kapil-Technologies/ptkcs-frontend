@@ -12,10 +12,17 @@ import Events from "../pages/website/Joinus/Events";
 import Leadership from "../pages/website/About/Leadership";
 import Jobdescription from "../sections/Joinus/searchjobs/Jobdescription";
 import ApplicantStatus from "../sections/Joinus/searchjobs/ApplicantStatus";
-import DigitalTransformation from "../pages/website/Services/DigitalTransformation";
+import DigitalTransformation from "../pages/website/Services/Otherservices/DigitalTransformation";
 import Mpdv from "../pages/website/Solutions/Mpdv";
 import EventDescription from "../sections/Joinus/Events/EventDescription";
-import Staffing from "../pages/website/Services/Staffing";
+import Staffing from "../pages/website/Services/Otherservices/Staffing";
+import Testing from "../pages/website/Services/Otherservices/Testing";
+import Training from "../pages/website/Services/Otherservices/Training";
+import Odoo from "../pages/website/Solutions/Odoo";
+import Finsta from '../pages/website/Solutions/Finsta'
+import Hexabuild from '../pages/website/Solutions/Hexabuild'
+import Ifca from '../pages/website/Solutions/Ifca'
+
 
 // ------------------------------------------------------
 
@@ -166,6 +173,22 @@ function GlobalRoutes() {
                   path: "products",
                   element: <Navigate to="products/mpdv" exact replace />,
                 },
+                {
+                  path: "odoo",
+                  element: <Odoo />,
+                },
+                {
+                  path: "ifca",
+                  element: <Ifca />,
+                },
+                {
+                  path: "hexabuild",
+                  element: <Hexabuild />,
+                },
+                {
+                  path: "finsta",
+                  element: <Finsta />,
+                },
               ],
             },
 
@@ -192,6 +215,14 @@ function GlobalRoutes() {
                   path: "it-staffing",
                   element: <Staffing />,
                   index: true,
+                },
+                {
+                  path: "taas",
+                  element: <Testing />,
+                },
+                {
+                  path: "technology-training-services",
+                  element: <Training />,
                 },
               ],
             },

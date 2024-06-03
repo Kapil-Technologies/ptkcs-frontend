@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
-import Page from "../../../components/common/Page";
-import { Layer, MainContainer } from "../../../sections/Banners/Home";
+import Page from "../../../../components/common/Page";
+import { Layer, MainContainer } from "../../../../sections/Banners/Home";
 import {
   Grid,
   Stack,
@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { motion } from "framer-motion";
 import { styled } from "@mui/material/styles";
-import { dtzigzag } from "../../../mock/Zigzag";
+import { dtzigzag } from "../../../../mock/Zigzag";
 
 // ----------------------------------------------- Styled Components
 
