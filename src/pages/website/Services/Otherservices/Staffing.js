@@ -17,7 +17,9 @@ import {
   Capabilities,
   CapabilitiesElobaration,
   TechnologyStack,
+  whyus,
 } from "../../../../mock/whatwedo/others/StaffingMock";
+import { IconDot } from "../../../../themes/Icons";
 
 const SectionContainer = styled("section")(({ theme }) => ({
   width: "100%",
@@ -55,8 +57,8 @@ const ImageGridItem = styled(Grid)(({ theme }) => ({
 
 const TextGridItem = styled(Grid)(({ theme }) => ({
   display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
+  alignItems: "flex-start",
+  justifyContent: "space-evenly",
   flexDirection: "column",
   height: "calc(100vh - 60px)",
   padding: "20px",
@@ -126,6 +128,7 @@ function Staffing() {
             justifyContent: "space-evenly",
             width: "100%",
             height: Mobile || Tab ? "auto" : "280px",
+            mb: "10px",
           }}
         >
           {Capabilities.map((item) => (
@@ -133,14 +136,14 @@ function Staffing() {
               key={item.id}
               item
               xs={11}
-              md={3.5}
+              md={3}
               sx={{
                 p: 2,
                 display: "flex",
-                alignItems: "left",
+                alignItems: "center",
                 justifyContent: "space-evenly",
                 flexDirection: "column",
-                height: "250px",
+                height: "200px",
                 border: "1px solid lightgray",
               }}
               component={Card}
@@ -156,23 +159,23 @@ function Staffing() {
               <Typography variant="h5" sx={{ fontWeight: "bold" }}>
                 {item.title}
               </Typography>
-              <Typography variant="body1">text</Typography>
             </Grid>
           ))}
         </Grid>
-        <Stack
+        {/* <Stack
           direction="row"
           alignItems="center"
           justifyContent="space-evenly"
           sx={{ width: "100%", height: "100px", bgcolor: "lightgray" }}
         >
           <Typography variant="h4" sx={{ fontWeight: "bold" }}>
-            CTA Statement
+            Our 360-degree strategy ensures seamless integration, fostering
+            excellence, and unmatched client value
           </Typography>
           <Button variant="contained" onClick={handleNavigate}>
             Contact us
           </Button>
-        </Stack>
+        </Stack> */}
         <Stack
           direction="row"
           alignItems="center"
@@ -194,16 +197,70 @@ function Staffing() {
                   sx={{ fontWeight: "bold" }}
                 >
                   {item.title}
+                </Typography>{" "}
+                <Typography variant="body1" sx={{ textAlign: "justify" }}>
+                  {item.text1}
                 </Typography>
-
                 <Typography variant="body1" sx={{ textAlign: "justify" }}>
                   {item.text}
                 </Typography>
+                {item.list.map((item) => (
+                  <Stack direction="row" alignItems="flex-start" spacing={1}>
+                    <IconDot style={{ marginTop: "3px", fontSize: "20px" }} />
+
+                    <Typography variant="body1">{item.text}</Typography>
+                  </Stack>
+                ))}
               </TextGridItem>
             )
           )}
         </Stack>
+        <Stack
+          direction="column"
+          alignItems="center"
+          justifyContent="flex-start"
+          spacing={2}
+          sx={{ width: "100%", mb: "-5px", py: "10px" }}
+        >
+          <Typography variant="h4" sx={{ fontWeight: "bold", px: 1 }}>
+            Why Choose Kapil Tech as your IT Staffing Services Company
+          </Typography>
 
+          <Typography variant="body1" sx={{ px: 1, textAlign: "justify" }}>
+            We harness the power of people to create a workforce that perfectly
+            aligns with your organisation’s needs!
+          </Typography>
+
+          <Stack
+            direction={Mobile || Tab ? "column" : "row"}
+            alignItems="center"
+            justifyContent={Mobile || Tab ? "center" : "space-evenly"}
+            sx={{ width: "80%", p: 2 }}
+            spacing={2}
+          >
+            {whyus.map((item) => (
+              <Card
+                sx={{
+                  width: Mobile || Tab ? "100%" : "300px",
+                  p: 2,
+                  display: "flex",
+                  alignItems: "left",
+                  justifyContent: "space-around",
+                  height: Mobile || Tab ? "auto" : "180px",
+                  flexDirection: "column",
+                  border: "1px solid lightgray",
+                }}
+              >
+                <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+                  {item.title}
+                </Typography>
+                <Typography variant="body1" sx={{ textAlign: "justify" }}>
+                  {item.text}
+                </Typography>
+              </Card>
+            ))}
+          </Stack>
+        </Stack>
         <Stack
           direction="column"
           alignItems="center"
@@ -261,6 +318,41 @@ function Staffing() {
             ))}
           </Grid>
         </Stack>
+        {/* <Stack
+          direction="column"
+          alignItems="center"
+          justifyContent="flex-start"
+          spacing={2}
+          sx={{ width: "100%", py: "10px" }}
+        >
+          <Typography variant="h4" sx={{ fontWeight: "bold" }}>
+            Kapil Tech Staffing Approach
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{
+              width: Mobile || Tab ? "100%" : "70%",
+              p: 1,
+              textAlign: "justify",
+            }}
+          >
+            Through the implementation of a 360-degree strategy, we guarantee
+            that all the facets are harmonised in an effort to attain
+            excellence, foster innovation, and provide clients with unmatched
+            value. By implementing this all-encompassing approach, not only are
+            operational efficiencies improved, but a resilient and progressive
+            organisation is also shaped.
+          </Typography>
+          <Typography
+            variant="h6"
+            sx={{ textAlign: "left", width: Mobile || Tab ? "100%" : "70%" }}
+          >
+            The 360-degree scorecard approach:
+          </Typography>
+          <Card di>
+
+          </Card>
+        </Stack> */}
       </SectionContainer>
     </Fragment>
   );
