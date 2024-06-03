@@ -11,6 +11,7 @@ function CTA() {
   const { pathname } = useLocation();
   const Navigate = useNavigate();
   const dispatch = useDispatch();
+  console.log(pathname)
   const Mobile = useMediaQuery((theme) =>
     theme.breakpoints.between("xs", "sm")
   );
@@ -107,17 +108,18 @@ function CTA() {
 
   return (
     <Stack
-      direction="column"
+      direction={Mobile || Tab ? "column" : "row"}
       alignItems="center"
       justifyContent="center"
       sx={{
         width: "100%",
-        height: Mobile || Tab ? "auto" : "90vh",
+        height: Mobile || Tab ? "auto" : "auto",
         backgroundColor: "lightgray",
         py: "15px",
       }}
+      spacing={2}
     >
-      <Typography variant="h4" sx={{ pb: "20px", fontWeight: "bold" ,textAlign:'center' }}>
+      {/* <Typography variant="h4" sx={{ pb: "20px", fontWeight: "bold" ,textAlign:'center' }}>
         Value Statement - Contact us
       </Typography>
       <Grid
@@ -238,7 +240,11 @@ function CTA() {
         >
           <ContactForm />
         </Grid>
-      </Grid>
+      </Grid> */}
+      <Typography variant="h5" sx={{ fontWeight: 'bold', width:Mobile || Tab ? "100%" :"60%",textAlign:'center' }} >{ctatext}</Typography>
+      <Button variant="contained">
+        Connect With us!
+      </Button>
     </Stack>
   );
 }
