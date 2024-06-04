@@ -243,9 +243,34 @@ function Infor() {
         }
       />
 
-     
+      <Stack
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+        sx={{ width: "100%" }}
+      >
+        <Stack
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
+          sx={{ width: "80%", px: "20px", pt: "10px", pb: "5px" }}
+          spacing={2}
+        >
 
-     
+          <Typography variant="h4" sx={{fontWeight:'bold'}}>
+            Why Choose Kapil Tech as your Infor Service Provider
+          </Typography>
+          <Typography variant="body1" sx={{textAlign:'justify',width:'9 0%'}}>
+            We are Infor Alliance Partner. We assist organisations maximise
+            the benefits of the Infor M3 platform by bridging the gap between
+            technology and business. Our clientele spans across various
+            industries. We have amassed a team of industry-savvy professionals
+            over the course of years. Our AMS services guarantee the evolution
+            and consistent performance of your platform, backed by
+            round-the-clock support.
+          </Typography>
+        </Stack>
+      </Stack>
     </Fragment>
   );
 }

@@ -47,17 +47,12 @@ function CTA() {
 
     // Services
     case pathname === Paths.consulting.inforconsulting:
-      ctatext = "Discover the Power of Infor Solutions Today! ";
+      ctatext = "Investigate the potential of Infor M3 Cloudsuite and Infor SyteLine ERP for your organisation.  ";
       pagename = "Infor";
       navigate = "Yes";
       break;
     case pathname === Paths.consulting.sapconsulting:
       ctatext = "Explore the potential benefits of SAP for your organization.";
-      pagename = "SAP";
-      navigate = "Yes";
-      break;
-    case pathname === Paths.consulting.sapconsulting:
-      ctatext = "Transform your business with SAP's innovative solutions.";
       pagename = "SAP";
       navigate = "Yes";
       break;

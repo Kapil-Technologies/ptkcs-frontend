@@ -3,6 +3,7 @@ import Page from "../../../components/common/Page";
 import { Layer, MainContainer } from "../../../sections/Banners/Home";
 import {
   Box,
+  Card,
   Grid,
   Stack,
   Typography,
@@ -16,6 +17,8 @@ import FedraBenefits from "../../../sections/solutions/FedraBenefits";
 import HydraBenefits from "../../../sections/solutions/Hydra";
 import FedraCategories from "../../../sections/solutions/FedraCategories";
 import Hydracategories from "../../../sections/solutions/Hydracategories";
+import BannerComponent from "../../../components/common/BannerComponent";
+import { tasks } from "../../../mock/whatwedo/solutions/MPDVMock";
 
 const mpdvoffering = [
   {
@@ -75,18 +78,15 @@ function Mpdv() {
   return (
     <Fragment>
       <Page
-        name="Infor"
+        name="MPDV"
         description="Kapil Technologies, an esteemed Infor Alliance Partner, offers a wide array of services including Infor and SAP consulting, as well as custom application development, among others."
-        pagename="Infor Page"
+        pagename="Mpdv Page"
       />
 
-      <MainContainer mainheight="500px">
-        <Layer
-          direction="column"
-          alignItems="center"
-          justifyContent="center"
-          layercolor={theme.palette.terinary.main}
-        >
+      <BannerComponent
+        mainheight="500px"
+        layercolor={theme.palette.terinary.main}
+        textdispaly={
           <Stack
             direction="column"
             alignItems="center"
@@ -97,148 +97,100 @@ function Mpdv() {
             animate={{ y: 0 }}
             exit={{ y: "30px" }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            sx={{ textAlign: "center" }}
+            sx={{ textAlign: "center", height: "inherit" }}
           >
-            Image
+            MPDV
           </Stack>
-        </Layer>
-      </MainContainer>
+        }
+      />
 
       <SectionContainer>
         <Stack
-          direction="row"
-          alignItems="flex-start"
-          justifyContent="space-evenly"
-          sx={{ width: Mobile || Tab ? "100%" : "90%", p: "5px" }}
-          columnGap={1}
-          rowGap={1}
-          container
-          component={Grid}
-        >
-          {mpdvoffering.map((item) => (
-            <Stack
-              item
-              xs={12}
-              md={5.5}
-              component={Grid}
-              direction="column"
-              alignItems="flex-start"
-              justifyContent="space-between"
-              spacing={2}
-              sx={{
-                // border: "1px solid blue",
-                p: "5px",
-
-                height: "250px",
-
-                position: "relative",
-              }}
-            >
-              <Stack
-                direction="column"
-                alignItems="left"
-                justifyContent="left"
-                spacing={1}
-              >
-                <Typography variant="h4" sx={{ fontWeight: "bold" }}>
-                  {item.title}
-                </Typography>
-
-                <Box
-                  sx={{
-                    width: "100px",
-                    height: "5px",
-                    bgcolor: "black",
-                    borderRadius: "5px",
-                  }}
-                />
-              </Stack>
-
-              <Typography variant="body1" sx={{ textAlign: "justify" }}>
-                {item.text}
-              </Typography>
-
-              <Typography
-                variant="h6"
-                sx={{
-                  fontWeight: "bold",
-                  textDecoration: "none",
-                  color: "black",
-
-                  "&:hover": {
-                    textdecoration: "underline",
-                  },
-                }}
-                component={Link}
-                onClick={() => {
-                  scrollToElement(item.idname);
-                }}
-              >
-                Know More
-              </Typography>
-            </Stack>
-          ))}
-        </Stack>
-
-        <Stack
           direction="column"
           alignItems="center"
-          justifyContent="start"
+          justifyContent="center"
+          sx={{
+            width: Mobile || Tab ? "90%" : "80%",
+            px: "20px",
+            pt: "10px",
+            pb: "10px",
+          }}
           spacing={2}
-          sx={{ width: "90%", padding: "20px" }}
         >
-          <Typography variant="h6" sx={{ textAlign: "justify" }}>
-            <b>MPDV Mikrolab GmbH</b> is a leading supplier of Manufacturing
-            Execution Systems (MES), offering FEDRA and HYDRA X. FEDRA is an
-            Advanced Planning and Scheduling System (APS) that allows for quick
-            and flexible planning of both simple and complex production orders.
-            It leverages cutting-edge technologies such as artificial
-            intelligence (AI) to enhance production planning.
+          <Typography variant="h4" sx={{ fontWeight: "bold" }}>
+            An Overview of MPDV
           </Typography>
-          <Typography variant="h6" sx={{ textAlign: "justify" }}>
-            <b>FEDRA</b> utilizes Reinforcement Learning, an AI method, to
-            efficiently allocate work processes in complex scenarios. On the
-            other hand, <b>HYDRA X</b> enables continuous monitoring, control,
-            and optimization of production processes, ensuring maximum
-            efficiency. It goes beyond traditional MES capabilities by also
-            supporting intralogistics and providing operator guidance in complex
-            assembly processes.
-          </Typography>
-          <Typography variant="h6" sx={{ textAlign: "justify" }}>
-            With a highly qualified workforce, we operate in numerous locations
-            and subsidiaries across Germany and globally in China, Malaysia,
-            Singapore, Switzerland, and the USA. Additionally, we have a strong
-            presence in other countries through our network of partners.
-          </Typography>
-        </Stack>
-      </SectionContainer>
 
-      <SectionContainer id="fedra">
-        <Typography variant="h4" sx={{ fontWeight: "bold" }}>
-          FEDRA
-        </Typography>
-        <Stack
-          direction= {Mobile || Tab ? "column" : "row"}
-          alignItems="center"
-          justifyContent="space-between"
-          sx={{ width: "90%", py: "10px", px: "10px" }}
-        >
-          <FedraCategories />
-          <FedraBenefits />
-        </Stack>
-      </SectionContainer>
-      <SectionContainer id="hydra" >
-        <Typography variant="h4" sx={{ fontWeight: "bold" }}>
-          HYDRA X
-        </Typography>
-        <Stack
-          direction= {Mobile || Tab ? "column" : "row"}
-          alignItems="center"
-          justifyContent="space-between"
-          sx={{ width: "90%", py: "10px", px: "10px" }}
-        >
-          <HydraBenefits />
-          <Hydracategories />
+          <Typography variant="body1" sx={{ textAlign: "justify" }}>
+            A sophisticated manufacturing facility necessitates appropriate
+            information technology (IT) that flexibly incorporates complex
+            systems and functions. Full interoperability is critical for
+            ensuring that everything operates seamlessly. The foundations for
+            digitally networked production of the future are laid by MPDV's
+            products and solutions.
+          </Typography>
+          <Typography variant="body1" sx={{ textAlign: "justify" }}>
+            Production is continuously monitored, controlled, and optimised with
+            the substantial assistance of the Manufacturing Execution System
+            (MES) HYDRA X. The implementation of HYDRA X enables the monitoring
+            of all resources and facilitates the optimisation of manufacturing
+            processes.
+          </Typography>
+          <Typography variant="body1" sx={{ textAlign: "justify" }}>
+            A dynamic, realistic, and adaptable method for organising basic work
+            processes and complex order scenarios while considering workforce
+            requirements is provided by the Advanced Planning and Scheduling
+            System (APS) FEDRA. Deep scheduling can be facilitated by AI when
+            necessary.
+          </Typography>
+
+          <Typography variant="body1" sx={{ textAlign: "justify" }}>
+            MPDV permits the integration of manufacturing applications from
+            various providers in order to meet specific needs, owing to the open
+            platform principle of the Manufacturing Integration Platform (MIP).
+          </Typography>
+
+          <Typography
+            variant="body1"
+            sx={{ fontWeight: "bold", fontSize: "18px" }}
+          >
+            The products of MPDV are well-known internationally and are utilised
+            effectively in routine tasks such as
+          </Typography>
+
+          <Grid
+            container
+            columnGap={2}
+            rowGap={2}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "100%",
+            }}
+          >
+            {tasks.map((item) => (
+              <Card
+                key={item.id}
+                component={Grid}
+                item
+                xs={12}
+                md={3.8}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-evenly",
+                  height: Mobile || Tab ? "auto" : "200px",
+                  border: "1px solid lightgray",
+                  flexDirection: "column",
+                  textAlign: "center",
+                }}
+              >
+                <Typography>{item.icon}</Typography>
+                <Typography variant="h6"  sx={{fontWeight:'bold'}}>{item.title}</Typography>
+              </Card>
+            ))}
+          </Grid>
         </Stack>
       </SectionContainer>
     </Fragment>
