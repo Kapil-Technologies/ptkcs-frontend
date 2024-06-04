@@ -17,8 +17,8 @@ export const Paths = {
     leadership: "/about-us/our-team",
   },
   consulting: {
-    inforconsulting: "/consulting/infor-consulting",
-    sapconsulting: "/consulting/sap-consulting",
+    inforconsulting: "/consulting/infor",
+    sapconsulting: "/consulting/sap",
     oracleconsulting: "/consulting/oracle-netsuite",
     odoo: "/consulting/odoo",
     microsoftBC: "/consulting/microsoft-dynamics-business-central",

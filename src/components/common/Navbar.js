@@ -61,7 +61,7 @@ const LogoContainer = styled(Link)(({ theme }) => ({
   color: "white",
   textTransform: "uppercase",
   gap: 2,
-  fontWeight: "bold",
+  fontWeight: "bolder",
 
   [theme.breakpoints.between("xs", "sm")]: {
     //  mobile
@@ -528,11 +528,11 @@ function Navbar({ Admin, ToggleTheme }) {
         {toggle ? <IconClose /> : <IconMenu />}
       </ResponsiveContainer>
       <LogoContainer to="/home">
-        <Typography variant="body1" sx={{ background: "transperant", px: 0.5 }}>
+        <Typography variant="h6" sx={{ background: "transperant", px: 0.5 }}>
           PT KCS 
         </Typography>
 
-        <Typography variant="body1">Technologies Indonesia</Typography>
+        <Typography variant="h6">Technologies</Typography>
       </LogoContainer>
       {isMobile || isTab ? (
         <MainNavList Toggle={toggle} className="MainNavbar">

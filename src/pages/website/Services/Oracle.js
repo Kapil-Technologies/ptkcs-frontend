@@ -254,13 +254,16 @@ function Oracle() {
           direction="column"
           alignItems="center"
           justifyContent="center"
-          sx={{ width:Mobile || Tab ?"100%" : "80%", pX: "20px" }}
+          sx={{ width: Mobile || Tab ? "100%" : "80%", px: "20px", pt: "10px" }}
           spacing={2}
         >
-          <Typography variant="h4" sx={{ fontWeight: "bold" }}>
-            WHY US ?
+          <Typography variant="h4" sx={{ fontWeight: "bold", px: 1 }}>
+            Why Choose Kapil Tech for your Oracle NetSuite Services
           </Typography>
-          <Typography variant="h6" sx={{textAlign: Mobile || Tab ? "center" :"justify"}}>
+          <Typography
+            variant="h6"
+            sx={{ textAlign: Mobile || Tab ? "center" : "justify" }}
+          >
             Our organisation has established a strong reputation for providing
             cutting-edge Oracle Netsuite software solutions that streamline
             various business operations. Significant improvements have been
@@ -268,7 +271,10 @@ function Oracle() {
             partnerships with us.
           </Typography>
 
-          <Typography variant={ Mobile || Tab ? "h5" :"h4"} sx={{ fontWeight: "bold" }}>
+          <Typography
+            variant={Mobile || Tab ? "h5" : "h4"}
+            sx={{ fontWeight: "bold" }}
+          >
             WHAT DO WE OFFER ?
           </Typography>
           <Grid
@@ -287,11 +293,15 @@ function Oracle() {
                 </ImageGridItem>
               ) : (
                 <TextGridItem item xs={12} md={6} key={item.id}>
-                  <Typography variant="h5" sx={{ fontWeight: "bold" ,fontSize:'28px'}}>
+                  <Typography
+                    variant="h5"
+                    sx={{ fontWeight: "bold", fontSize: "28px" }}
+                  >
                     {item.text.mtitle}
                   </Typography>
-                  <Typography variant="body1" sx={{textAlign:'justify'}}>{item.text.subtitle}</Typography>
-                 
+                  <Typography variant="body1" sx={{ textAlign: "justify" }}>
+                    {item.text.subtitle}
+                  </Typography>
                 </TextGridItem>
               )
             )}

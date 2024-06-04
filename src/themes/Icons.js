@@ -28,6 +28,7 @@ import {
   FiArrowRight,
   FiArrowLeft,
   FiArrowUp,
+  FiStar,
 } from "react-icons/fi";
 import { styled } from "@mui/material/styles";
 import { VscCircleFilled } from "react-icons/vsc";
@@ -142,6 +143,8 @@ export const IconEdit = styled(FiEdit)(({ theme, color }) => ({}));
 // VscCircleFilled
 
 export const IconDot = styled(VscCircleFilled)(({ theme, color }) => ({}));
+export const IconStar = styled(FiStar)(({ theme, color }) => ({}));
+
 
 // -----------------------------------------------------------------------------  Social Media
 

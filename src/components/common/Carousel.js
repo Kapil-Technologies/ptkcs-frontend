@@ -57,7 +57,7 @@ function Carousel({ carouselname, carouselImages, speed }) {
 
     const interval = setInterval(() => {
       handleNext();
-    }, 800); // Auto play every 3 seconds
+    }, speed); // Auto play every 3 seconds
 
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -114,10 +114,10 @@ function Carousel({ carouselname, carouselImages, speed }) {
               : Large
               ? 5
               : carouselImages.length,
-          }).map((_, i,index) => {
+          }).map((_, i, index) => {
             const itemIndex = (index + i) % carouselImages.length;
             const item = carouselImages[itemIndex];
-console.log(item)
+            
             return (
               <Card
                 key={index}
@@ -144,8 +144,7 @@ console.log(item)
                     maxHeight: "100%",
                   }}
                 /> */}
-                name
-                {/* {item.logoname} */}
+               {item.name}
               </Card>
             );
           })}

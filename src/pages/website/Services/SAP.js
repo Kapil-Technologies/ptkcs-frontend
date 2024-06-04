@@ -9,10 +9,13 @@ import {
   Card,
   Grid,
   Box,
+  useMediaQuery,
 } from "@mui/material";
 import { motion } from "framer-motion";
 import { styled } from "@mui/material/styles";
 import Carousel from "../../../components/common/Carousel";
+import BannerComponent from "../../../components/common/BannerComponent";
+import { WhychooseSAP } from "../../../mock/whatwedo/consulting/SAPMock";
 
 const SAPCustomers = [
   {
@@ -62,6 +65,10 @@ export const SectionContainer = styled("section")(({ theme, layercolor }) => ({
 
 function SAP() {
   const theme = useTheme();
+  const Mobile = useMediaQuery((theme) =>
+    theme.breakpoints.between("xs", "sm")
+  );
+  const Tab = useMediaQuery((theme) => theme.breakpoints.between("sm", "md"));
   return (
     <Fragment>
       <Page
@@ -70,13 +77,10 @@ function SAP() {
         pagename="SAP Page"
       />
 
-      <MainContainer mainheight="500px">
-        <Layer
-          direction="column"
-          alignItems="center"
-          justifyContent="center"
-          layercolor={theme.palette.terinary.main}
-        >
+      <BannerComponent
+        mainheight="500px"
+        layercolor={theme.palette.terinary.main}
+        textdispaly={
           <Stack
             direction="column"
             alignItems="center"
@@ -87,76 +91,111 @@ function SAP() {
             animate={{ y: 0 }}
             exit={{ y: "30px" }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            sx={{ textAlign: "center" }}
+            sx={{ textAlign: "center", height: "inherit" }}
           >
-            Image
+            SAP
           </Stack>
-        </Layer>
-      </MainContainer>
+        }
+      />
 
       <SectionContainer>
-        <Typography variant="h4" sx={{ fontWeight: "bold", pb: "40px" }}>
-          Kapil Tech's SAP Application Maintenance Services
-        </Typography>
-
-        <Grid
-          container
-          columnGap={2}
-          rowGap={2}
+        <Stack
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
           sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "80%",
-            position: "relative",
+            width: Mobile || Tab ? "90%" : "80%",
+            px: "20px",
+            pt: "20px",
+            pb: "5px",
           }}
+          spacing={2}
         >
-          <Card
+          <Typography variant="body1" sx={{ textAlign: "justify" }}>
+            In the digital age, it is critical that organisations implement
+            consistent and dependable solutions. An SAP consulting firm can
+            assist you in meeting the challenge and modernising your
+            organisation with the most recent tools in such a circumstance. We
+            utilise software to address the evolving needs of your organisation
+            and enable you to provide the current necessity of providing
+            enduring customer experiences. We are well-versed in SAP consulting
+            services and can provide assistance in implementing, optimising, and
+            transforming your enterprise-enhancing applications.
+          </Typography>
+
+          <Typography
+            variant="h4"
+            sx={{ fontWeight: "bold", px: 1, textAlign: "center" }}
+          >
+            Why Choose Kapil Tech as your SAP Service Provider
+          </Typography>
+
+          <Grid
+            container
+            columnGap={2}
+            rowGap={2}
             sx={{
               display: "flex",
               alignItems: "center",
-              justifyContent: "flex-start",
-              flexDirection: "column",
-              p: 2,
-              width: "250px",
-              height: "300px",
-              border: "1px solid gray",
-              borderTopLeftRadius: "20%",
-              borderBottomRightRadius: "20%",
+              justifyContent: "center",
+              width: "100%",
             }}
           >
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                border: "1px solid lightgray",
-                width: "60px",
-                height: "60px",
-                borderRadius: "20px",
-                position: "absolute",
-                top: "-30px",
-                background: "gray",
-                transform: "rotate(45deg)",
-
-                zIndex: 1,
-              }}
-            >
-              <Typography
-                variant="h6"
-                sx={{ fontWeight: "bold", transform: "rotate(-45deg)" }}
+            {WhychooseSAP.map((item) => (
+              <Card
+                component={Grid}
+                item
+                xs={12}
+                md={12}
+                sx={{
+                  display: "flex",
+                  alignItems: "left",
+                  justifyContent: "space-evenly",
+                  flexDirection: "column",
+                  border: "1px solid lightgray",
+                  height: "200px",
+                  p: "10px",
+                  textAlign: "left",
+                  position: "relative",
+                }}
               >
-                1
-              </Typography>
-            </Box>
-          </Card>
-        </Grid>
+                <Stack
+                  direction="row"
+                  alignItems="center"
+                  justifyContent="left"
+                  sx={{ width: "100%" }}
+                >
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      width: "50px",
+                      height: "50px",
+                      bgcolor: "primary.BlueSonki",
+                      color: "primary.color3",
+                      borderRadius: "3px",
+                      fontSize: "20px",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {item.id}
+                  </Box>
+                </Stack>
+                <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+                  {item.title}
+                </Typography>
+                <Typography variant="body1">{item.description}</Typography>
+              </Card>
+            ))}
+          </Grid>
+        </Stack>
       </SectionContainer>
 
-      <Carousel
+      {/* <Carousel
         carouselname="Meet some of our SAP customers."
         carouselImages={SAPCustomers}
-      />
+      /> */}
     </Fragment>
   );
 }

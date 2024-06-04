@@ -52,7 +52,7 @@ function CTA() {
       navigate = "Yes";
       break;
     case pathname === Paths.consulting.sapconsulting:
-      ctatext = "Transform your business with SAP's innovative solutions.";
+      ctatext = "Explore the potential benefits of SAP for your organization.";
       pagename = "SAP";
       navigate = "Yes";
       break;
