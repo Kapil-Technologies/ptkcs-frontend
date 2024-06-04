@@ -27,7 +27,6 @@ export const Paths = {
     staffing: "/other-services/it-staffing",
     taas: "/other-services/taas",
     applicationdevelopment: "/other-services/application-development",
-    ams: "/other-services/application-managed-services",
     tts: "/other-services/technology-training-services",
   },
   solutions: {

@@ -15,7 +15,10 @@ import { motion } from "framer-motion";
 import { styled } from "@mui/material/styles";
 import Carousel from "../../../components/common/Carousel";
 import BannerComponent from "../../../components/common/BannerComponent";
-import { WhychooseSAP } from "../../../mock/whatwedo/consulting/SAPMock";
+import {
+  SAPofferings,
+  WhychooseSAP,
+} from "../../../mock/whatwedo/consulting/SAPMock";
 
 const SAPCustomers = [
   {
@@ -147,16 +150,18 @@ function SAP() {
                 item
                 xs={12}
                 md={12}
+                xl={10}
                 sx={{
                   display: "flex",
                   alignItems: "left",
                   justifyContent: "space-evenly",
                   flexDirection: "column",
                   border: "1px solid lightgray",
-                  height: "200px",
-                  p: "10px",
+                  height: Mobile || Tab ? "auto" : "200px",
+                  px: "10px",
                   textAlign: "left",
                   position: "relative",
+                  gap: Mobile || Tab ? "10px" : null,
                 }}
               >
                 <Stack
@@ -185,7 +190,67 @@ function SAP() {
                 <Typography variant="h6" sx={{ fontWeight: "bold" }}>
                   {item.title}
                 </Typography>
-                <Typography variant="body1">{item.description}</Typography>
+                <Typography variant="body1" sx={{ textAlign: "justify" }}>
+                  {item.description}
+                </Typography>
+              </Card>
+            ))}
+          </Grid>
+
+          <Typography
+            variant="h4"
+            sx={{ fontWeight: "bold", px: 1, textAlign: "center" }}
+          >
+            Kapil Tech SAP Offerings
+          </Typography>
+
+          <Typography variant="body1" sx={{ textAlign: "justify" }}>
+            We constantly employ best practices to manage critical technologies
+            that improve business performance through the efficient application
+            of big data services. This strategy has been repeatedly demonstrated
+            to increase the client's return on investment. Our experts possess
+            an ideal blend of technical expertise, business acumen, management,
+            and project knowledge, which empowers them to effectively guide the
+            client throughout the entirety of the workflow development
+            lifecycle. We have experience managing entire projects and
+            integrating organisations for customers of all sizes.
+          </Typography>
+
+          <Grid
+            container
+            columnGap={2}
+            rowGap={2}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-start",
+              width: "100%",
+            }}
+          >
+            {SAPofferings.map((item) => (
+              <Card
+                component={Grid}
+                item
+                xs={12}
+                md={3.8}
+                sx={{
+                  height: Mobile || Tab ? "auto" : "250px",
+                  display: "flex",
+                  alignItems: "left",
+                  justifyContent: "space-between",
+                  flexDirection: "column",
+                  p: "10px",
+                  border: "1px solid #d3e1ea",
+                }}
+              >
+                {item.icon}
+                <Typography variant="h5" sx={{fontWeight:'bold',color:"primary.BlueSonki"}}> 
+                  {item.title}
+                </Typography>
+
+                <Typography variant="body1">
+                  {item.description}
+                </Typography>
               </Card>
             ))}
           </Grid>

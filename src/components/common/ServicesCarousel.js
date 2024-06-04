@@ -120,37 +120,69 @@ function ServicesCarousel({ carouselname, carouselImages, speed }) {
                 sx={{
                   display: "flex",
                   alignItems: "left",
-                  justifyContent: "space-evenly",
+                  justifyContent: "center",
                   flexDirection: "column",
-                  width: Mobile || Tab  ? "100%" : XstraLarge ? "250px" : "230px",
+                  width:
+                    Mobile || Tab ? "100%" : XstraLarge ? "250px" : "230px",
                   height: "300px",
                   textAlign: "left",
                   px: 1,
                   py: 3,
                   border: "1px solid lightgray",
+                  position: "relative",
+                  gap:"20px"
                 }}
               >
-                <Typography
-                  variant="h6"
-                  sx={{ fontWeight: "bold", fontSize: "25px" }}
-                >
-                  {item.count}
-                </Typography>
-                <Typography variant="h5">{item.title}</Typography>
-                <Box
+                <Stack
+                  direction="row"
+                  alignItems="center"
+                  justifyContent="center"
                   sx={{
-                    width: "100px",
-                    height: "5px",
-                    background: "gray",
-                    borderRadius: 2,
+                    width: "50%",
+                    p: 1,
+                    bgcolor: "secondary.OrneryTangerine",
+                    position: "absolute",
+                    right: 0,
+                    top: "10px",
+                    borderTopLeftRadius: "20px",
+                    borderBottomLeftRadius:"20px"
+                    
                   }}
-                />
+                >
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      fontWeight: "bold",
+                      fontSize: "16px",
+                      color: "primary.color3",
+                    }}
+                  >
+                    {item.count}
+                  </Typography>
+                </Stack>
+                <Stack
+                  direction="column"
+                  alignItems="left"
+                  justifyContent="left"
+                  spacing={1}
+                >
+                  <Typography variant="h5">{item.title}</Typography>
+                  <Box
+                    sx={{
+                      width: "100px",
+                      height: "5px",
+                      background: "gray",
+                      borderRadius: 2,
+                    }}
+                  />
+                </Stack>
                 <Typography variant="body1">{item.textline}</Typography>
 
                 <Typography
                   variant="h6"
                   sx={{ fontWeight: "bold", textDecoration: "none" }}
                   component={Link}
+                  to={item.linkname}
                 >
                   Dive Deep
                 </Typography>

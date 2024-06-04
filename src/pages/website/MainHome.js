@@ -153,10 +153,10 @@ function MainHome() {
       <Home />
       <Whychoseus />
       <Ktechapproch />
-      <Carousel
+      {/* <Carousel
         carouselname="Kapil Tech endorsed by "
         carouselImages={partnerslist}
-      />
+      /> */}
       <Servicesweprovide />
       <Industries />
       <Stack

@@ -131,25 +131,25 @@ export const ApprochData = [
 export const ServicesProviding = [
   {
     id: 1,
-    count: 1,
+    count: "Consulting",
     title: "Infor Consulting",
     textline:
       "Experience comprehensive Infor services tailored to your needs with Kapil Tech.",
-    linkname: "/services/infor-consulting",
+    linkname: "/consulting/infor",
   },
   {
     id: 2,
-    count: 2,
+    count: "Consulting",
     title: "SAP Consulting",
     textline: "Kapil Tech's SAP services streamline your business for success.",
-    linkname: "/services/infor-consulting",
+    linkname: "/consulting/sap",
   },
   {
     id: 3,
-    count: 3,
-    title: "Digital Transformation",
+    count: "Consulting",
+    title: "Oracle NetSuite",
     textline:
       "Kapil Tech drives digital transformation with innovative solutions and expert guidance.",
-    linkname: "/services/infor-consulting",
+    linkname: "/consulting/oracle-netsuite",
   },
 ];
