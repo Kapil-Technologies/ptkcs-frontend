@@ -52,3 +52,12 @@ export const getEvents = async () => {
 
   return response;
 };
+
+export const getLogos = async () => {
+  const response = await axios.get(apiurls.logos, {
+    headers: HeaderData,
+  });
+
+  return response;
+};
+

@@ -149,7 +149,7 @@ function ContactForm() {
       message: data.message,
       tc: data.tc,
       domain: domain,
-      page: pagevisited,
+      page: page,
     };
 
     // raiseEnquiry(reqdata)

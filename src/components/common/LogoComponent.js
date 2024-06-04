@@ -18,7 +18,7 @@ function LogoComponent({textcolor}) {
           px: 0.5,
         }}
       >
-        KAPIL
+        PT KCS
       </Typography>
       <Typography variant="h6" sx={{ fontWeight: "bold",color:textcolor }}>
         Technologies

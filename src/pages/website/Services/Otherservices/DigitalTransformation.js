@@ -14,7 +14,7 @@ import { dtzigzag } from "../../../../mock/Zigzag";
 
 // ----------------------------------------------- Styled Components
 
-const ImageGridItem = styled(Grid)(({ theme }) => ({
+export const ImageGridItem = styled(Grid)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "space-evenly",
@@ -33,7 +33,7 @@ const ImageGridItem = styled(Grid)(({ theme }) => ({
   [theme.breakpoints.up("xl")]: {},
 }));
 
-const TextGridItem = styled(Grid)(({ theme }) => ({
+export const TextGridItem = styled(Grid)(({ theme }) => ({
   display: "flex",
   alignItems: "left",
   justifyContent: "center",
@@ -44,7 +44,9 @@ const TextGridItem = styled(Grid)(({ theme }) => ({
   gap: "20px",
   // border: "1px solid blue",
 
-  [theme.breakpoints.between("xs", "md")]: {},
+  [theme.breakpoints.between("xs", "md")]: {
+    height:'auto'
+  },
 
   [theme.breakpoints.between("md", "lg")]: {
     // Desktop

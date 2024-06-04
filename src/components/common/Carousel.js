@@ -10,7 +10,7 @@ import {
 import { motion } from "framer-motion";
 import { IconLeftArrow, IconRightArrow } from "../../themes/Icons";
 
-function Carousel({ carouselname, carouselImages,speed }) {
+function Carousel({ carouselname, carouselImages, speed }) {
   // --------------------------------------------------   Responsive
 
   const Mobile = useMediaQuery((theme) =>
@@ -114,13 +114,13 @@ function Carousel({ carouselname, carouselImages,speed }) {
               : Large
               ? 5
               : carouselImages.length,
-          }).map((_, i) => {
+          }).map((_, i,index) => {
             const itemIndex = (index + i) % carouselImages.length;
             const item = carouselImages[itemIndex];
-
+console.log(item)
             return (
               <Card
-                key={item.id}
+                key={index}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1 }}
@@ -136,7 +136,16 @@ function Carousel({ carouselname, carouselImages,speed }) {
                 component={motion.div}
                 item
               >
-                {item.name}
+                {/* <img
+                  src={`data:image/png;base64,${}`}
+                  style={{
+                    objectPosition: "center center",
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                  }}
+                /> */}
+                name
+                {/* {item.logoname} */}
               </Card>
             );
           })}

@@ -208,7 +208,7 @@ export const MiniCircles = styled(Stack)(
   })
 );
 
-function Infor() {
+function OdooConsulting() {
   const theme = useTheme();
   const Mobile = useMediaQuery((theme) =>
     theme.breakpoints.between("xs", "sm")
@@ -216,11 +216,7 @@ function Infor() {
   const Tab = useMediaQuery((theme) => theme.breakpoints.between("sm", "md"));
   return (
     <Fragment>
-      <Page
-        name="Infor"
-        description="Kapil Technologies, an esteemed Infor Alliance Partner, offers a wide array of services including Infor and SAP consulting, as well as custom application development, among others."
-        pagename="Infor Page"
-      />
+      <Page name="Odoo Consulting" description=" " pagename="Odoo Consulting Page" />
 
       <BannerComponent
         mainheight="500px"
@@ -238,16 +234,12 @@ function Infor() {
             transition={{ duration: 0.5, delay: 0.1 }}
             sx={{ textAlign: "center", height: "inherit" }}
           >
-            Infor
+            OdooConsulting
           </Stack>
         }
       />
-
-     
-
-     
     </Fragment>
   );
 }
 
-export default Infor;
+export default OdooConsulting;

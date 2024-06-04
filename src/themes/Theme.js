@@ -14,11 +14,20 @@ export const CustomTheme = createTheme({
   },
   palette: {
     primary: {
-      main: "#4357AD",
+      main: "#cd2028",
+      BlueSonki: "#4e8ecb", // additional primary color
+      color3: "#fff", // additional primary color
     },
     secondary: {
-      main: "#e4dfda",
+      main: "#02A294",
+      BlueSonki: "#4E8ECB", // additional secondary color
+      MidnightViolet: "#6A75AC", // additional secondary color
+      TreasuredLove: "#B51F6F", // additional secondary color
+      Flamingo: "#E06550",
+      OrneryTangerine: "#F48028",
+      VibrantYellow: "#FFD526",
     },
+
     terinary: {
       main: "#d4b483",
     },
@@ -69,6 +78,22 @@ const commonSettings = {
       md: 900,
       lg: 1200,
       xl: 1500,
+    },
+  },
+  palette: {
+    primary: {
+      fireball: "#e86824",
+      BlueSonki: "#4e8ecb", // additional primary color
+      whitecolor: "#fff", // additional primary color
+    },
+    secondary: {
+      Turquish: "#02A294",
+      BlueSonki: "#4E8ECB", // additional secondary color
+      MidnightViolet: "#6A75AC", // additional secondary color
+      TreasuredLove: "#B51F6F", // additional secondary color
+      Flamingo: "#E06550",
+      OrneryTangerine: "#F48028",
+      VibrantYellow: "#FFD526",
     },
   },
 };

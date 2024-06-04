@@ -19,8 +19,9 @@ export const Paths = {
   consulting: {
     inforconsulting: "/consulting/infor-consulting",
     sapconsulting: "/consulting/sap-consulting",
-    oracleconsulting: "/consulting/oracle-consulting",
-    digitaltransformation: "/consulting/digital-transformation",
+    oracleconsulting: "/consulting/oracle-netsuite",
+    odoo: "/consulting/odoo",
+    microsoftBC: "/consulting/microsoft-dynamics-business-central",
   },
   other: {
     staffing: "/other-services/it-staffing",

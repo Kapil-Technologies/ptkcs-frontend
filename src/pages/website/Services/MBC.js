@@ -208,7 +208,7 @@ export const MiniCircles = styled(Stack)(
   })
 );
 
-function Infor() {
+function MBC() {
   const theme = useTheme();
   const Mobile = useMediaQuery((theme) =>
     theme.breakpoints.between("xs", "sm")
@@ -217,9 +217,9 @@ function Infor() {
   return (
     <Fragment>
       <Page
-        name="Infor"
-        description="Kapil Technologies, an esteemed Infor Alliance Partner, offers a wide array of services including Infor and SAP consulting, as well as custom application development, among others."
-        pagename="Infor Page"
+        name="Microsoft Dynamics Business Central"
+        description=" "
+        pagename="Microsoft Dynamics Business Central"
       />
 
       <BannerComponent
@@ -238,16 +238,12 @@ function Infor() {
             transition={{ duration: 0.5, delay: 0.1 }}
             sx={{ textAlign: "center", height: "inherit" }}
           >
-            Infor
+            MBC
           </Stack>
         }
       />
-
-     
-
-     
     </Fragment>
   );
 }
 
-export default Infor;
+export default MBC;

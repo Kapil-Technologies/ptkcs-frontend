@@ -22,6 +22,11 @@ import Integrationcapabilities from "../../../sections/services/Infor/Integratio
 import LNInfor from "../../../sections/services/Infor/LNInfor";
 import Inforsyteline from "../../../sections/services/Infor/Inforsyteline";
 import BannerComponent from "../../../components/common/BannerComponent";
+import { offerings } from "../../../mock/whatwedo/consulting/OracleMock";
+import {
+  ImageGridItem,
+  TextGridItem,
+} from "./Otherservices/DigitalTransformation";
 
 const InforCustomers = [
   {
@@ -208,7 +213,7 @@ export const MiniCircles = styled(Stack)(
   })
 );
 
-function Infor() {
+function Oracle() {
   const theme = useTheme();
   const Mobile = useMediaQuery((theme) =>
     theme.breakpoints.between("xs", "sm")
@@ -216,11 +221,7 @@ function Infor() {
   const Tab = useMediaQuery((theme) => theme.breakpoints.between("sm", "md"));
   return (
     <Fragment>
-      <Page
-        name="Infor"
-        description="Kapil Technologies, an esteemed Infor Alliance Partner, offers a wide array of services including Infor and SAP consulting, as well as custom application development, among others."
-        pagename="Infor Page"
-      />
+      <Page name="Oracle" description=" " pagename="Oracle Page" />
 
       <BannerComponent
         mainheight="500px"
@@ -238,16 +239,67 @@ function Infor() {
             transition={{ duration: 0.5, delay: 0.1 }}
             sx={{ textAlign: "center", height: "inherit" }}
           >
-            Infor
+            Oracle
           </Stack>
         }
       />
 
-     
+      <Stack
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+        sx={{ width: "100%" }}
+      >
+        <Stack
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
+          sx={{ width:Mobile || Tab ?"100%" : "80%", pX: "20px" }}
+          spacing={2}
+        >
+          <Typography variant="h4" sx={{ fontWeight: "bold" }}>
+            WHY US ?
+          </Typography>
+          <Typography variant="h6" sx={{textAlign: Mobile || Tab ? "center" :"justify"}}>
+            Our organisation has established a strong reputation for providing
+            cutting-edge Oracle Netsuite software solutions that streamline
+            various business operations. Significant improvements have been
+            observed in key performance indicators for businesses that form
+            partnerships with us.
+          </Typography>
 
-     
+          <Typography variant={ Mobile || Tab ? "h5" :"h4"} sx={{ fontWeight: "bold" }}>
+            WHAT DO WE OFFER ?
+          </Typography>
+          <Grid
+            container
+            sx={{
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {offerings.map((item) =>
+              item.type === "image" ? (
+                <ImageGridItem item xs={12} md={6}>
+                  Image
+                </ImageGridItem>
+              ) : (
+                <TextGridItem item xs={12} md={6} key={item.id}>
+                  <Typography variant="h5" sx={{ fontWeight: "bold" ,fontSize:'28px'}}>
+                    {item.text.mtitle}
+                  </Typography>
+                  <Typography variant="body1" sx={{textAlign:'justify'}}>{item.text.subtitle}</Typography>
+                 
+                </TextGridItem>
+              )
+            )}
+          </Grid>
+        </Stack>
+      </Stack>
     </Fragment>
   );
 }
 
-export default Infor;
+export default Oracle;

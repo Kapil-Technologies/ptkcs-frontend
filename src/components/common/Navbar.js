@@ -9,6 +9,7 @@ import {
   Switch,
   Typography,
   useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import {
   IconClose,
@@ -223,7 +224,7 @@ const SubNavList = styled("ul")(({ theme, menuid }) => ({
   top: "75px",
   right: menuid ? 0 : null,
   width: menuid ? "100%" : "auto",
-  background: theme.palette.secondary.main,
+  background: theme.palette.primary.BlueSonki,
   height: menuid ? "350px" : "auto",
   padding: menuid ? "10px" : null,
 
@@ -264,7 +265,7 @@ const SubNavItem = styled("li")(({ theme, menuid }) => ({
 
 const SubNavLink = styled(NavLink)(({ theme, menuid }) => ({
   textDecoration: "none",
-  color: "black",
+  color: theme.palette.primary.color3,
 
   [theme.breakpoints.between("xs", "md")]: {
     display: "flex",
@@ -282,6 +283,7 @@ const SubNavLink = styled(NavLink)(({ theme, menuid }) => ({
 }));
 
 const SubNavText = styled(Box)(({ theme, menuid }) => ({
+  color:theme.palette.primary.color3,
   [theme.breakpoints.between("xs", "md")]: {
     display: "flex",
     alignItems: "center",
@@ -335,7 +337,7 @@ const SubNavItem1 = styled("li")(({ theme, menuid }) => ({
 
 const SubNavLink1 = styled(NavLink)(({ theme, menuid }) => ({
   textDecoration: "none",
-  color: "black",
+  color: theme.palette.primary.color3,
   padding: "10px",
 
   "&:hover": {
@@ -346,7 +348,7 @@ const SubNavLink1 = styled(NavLink)(({ theme, menuid }) => ({
     display: "flex",
     alignItems: "flex-start",
     gap: "5px",
-    color: "white",
+    color: theme.palette.primary.color3,
     width: "90%",
     marginLeft: "5px",
   },
@@ -360,7 +362,7 @@ const SubNavLink1 = styled(NavLink)(({ theme, menuid }) => ({
 
 const SubNavText1 = styled(Box)(({ theme, menuid }) => ({
   padding: "5px",
-
+  color: theme.palette.primary.color3,
   [theme.breakpoints.between("xs", "md")]: {
     display: "flex",
     alignItems: "flex-start",
@@ -368,7 +370,6 @@ const SubNavText1 = styled(Box)(({ theme, menuid }) => ({
     color: "white",
     width: "90%",
     marginLeft: "6px",
-    
   },
 
   [theme.breakpoints.between("md", "lg")]: {
@@ -449,6 +450,8 @@ function Navbar({ Admin, ToggleTheme }) {
 
   // ------------------------------------------------------------- States
 
+  const theme = useTheme()
+
   // Toggle
 
   const [toggle, setToggle] = useState(false);
@@ -525,11 +528,11 @@ function Navbar({ Admin, ToggleTheme }) {
         {toggle ? <IconClose /> : <IconMenu />}
       </ResponsiveContainer>
       <LogoContainer to="/home">
-        <Typography variant="body1" sx={{ background: "#E10009", px: 0.5 }}>
-          kapil
+        <Typography variant="body1" sx={{ background: "transperant", px: 0.5 }}>
+          PT KCS 
         </Typography>
 
-        <Typography variant="body1">Technologies</Typography>
+        <Typography variant="body1">Technologies Indonesia</Typography>
       </LogoContainer>
       {isMobile || isTab ? (
         <MainNavList Toggle={toggle} className="MainNavbar">
@@ -613,7 +616,7 @@ function Navbar({ Admin, ToggleTheme }) {
                                   </SubNavLink1>
                                 ) : (
                                   <SubNavText1>
-                                    <IconDot sx={{ mt: "3px" }} />
+                                    <IconDot sx={{ mt: "3px"  }} />
                                     <Typography
                                       variant="body1"
                                       sx={{ width: "80%" }}
@@ -671,7 +674,7 @@ function Navbar({ Admin, ToggleTheme }) {
                         sx={{
                           fontWeight: "bold",
                           pl: "20px",
-                          color: "primary.main",
+                          color: "primary.color3",
                           width: "30%",
                         }}
                       >
@@ -683,7 +686,7 @@ function Navbar({ Admin, ToggleTheme }) {
                           <SubNavItem1 key={item.id}>
                             <Typography
                               variant="h6"
-                              sx={{ fontWeight: "bold" }}
+                              sx={{ fontWeight: "bold",color:"primary.color3" }}
                               gutterBottom
                             >
                               {item.title}
@@ -696,7 +699,7 @@ function Navbar({ Admin, ToggleTheme }) {
                                 spacing={1}
                                 sx={{ marginBottom: "10px" }}
                               >
-                                <IconDot />
+                                <IconDot sx={{color:"primary.color3"}} />
                                 {item.path ? (
                                   <SubNavLink1
                                     to={item.path}

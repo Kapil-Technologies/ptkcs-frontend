@@ -17,33 +17,33 @@ import Carousel from "../../../components/common/Carousel";
 const SAPCustomers = [
   {
     id: 1,
-    name: "SAP Customer Name 1",
-    src: "SAP Customer Image 1",
+    logoname: "SAP Customer 1",
+    logo: "SAP Customer Image 1",
   },
   {
     id: 2,
-    name: "SAP Customer Name 2",
-    src: "SAP Customer Image 2",
+    logoname: "SAP Customer 2",
+    logo: "SAP Customer Image 2",
   },
   {
     id: 3,
-    name: "SAP Customer Name 3",
-    src: "SAP Customer Image 3",
+    logoname: "SAP Customer 3",
+    logo: "SAP Customer Image 3",
   },
   {
     id: 4,
-    name: "SAP Customer Name 4",
-    src: "SAP Customer Image 4",
+    logoname: "SAP Customer 4",
+    logo: "SAP Customer Image 4",
   },
   {
     id: 5,
-    name: "SAP Customer Name 5",
-    src: "SAP Customer Image 5",
+    logoname: "SAP Customer 5",
+    logo: "SAP Customer Image 5",
   },
   {
     id: 6,
-    name: "SAP Customer Name 6",
-    src: "SAP Customer Image 6",
+    logoname: "SAP Customer 6",
+    logo: "SAP Customer Image 6",
   },
 ];
 

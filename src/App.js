@@ -87,7 +87,7 @@ function App() {
 
   return (
     <ReduxProvider store={store}>
-      <ThemeProvider theme={toggleSwitch ? darkTheme : lightTheme}>
+      <ThemeProvider theme={CustomTheme}>
         <SnackbarProvider maxSnack={3} autoHideDuration={3000}>
           <AnimatePresence>
             <div className="App">

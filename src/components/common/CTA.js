@@ -56,8 +56,14 @@ function CTA() {
       pagename = "SAP";
       navigate = "Yes";
       break;
-    case pathname === Paths.consulting.digitaltransformation:
-      ctatext = "Embrace Digital Transformation for innovation";
+    case pathname === Paths.consulting.sapconsulting:
+      ctatext = "Transform your business with SAP's innovative solutions.";
+      pagename = "SAP";
+      navigate = "Yes";
+      break;
+    case pathname === Paths.consulting.oracleconsulting:
+      ctatext =
+        "Investigate the potential of Oracle Netsuite for your organisation. ";
       pagename = "Digital Transformation";
       navigate = "Yes";
       break;
@@ -241,8 +247,17 @@ function CTA() {
           <ContactForm />
         </Grid>
       </Grid> */}
-      <Typography variant="h5" sx={{ fontWeight: 'bold', width:Mobile || Tab ? "100%" :"60%",textAlign:'center' }} >{ctatext}</Typography>
-      <Button variant="contained">
+      <Typography
+        variant="h5"
+        sx={{
+          fontWeight: "bold",
+          width: Mobile || Tab ? "100%" : "60%",
+          textAlign: "center",
+        }}
+      >
+        {ctatext}
+      </Typography>
+      <Button variant="contained" onClick={handleNavigate}>
         Connect With us!
       </Button>
     </Stack>

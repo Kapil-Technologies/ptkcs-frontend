@@ -114,7 +114,7 @@ function Footer() {
           alignItems="center"
           justifyContent="space-between"
           spacing={1}
-          sx={{ width: "100%", px: 1, py: 3,backgroundColor:'lightblue' }}
+          sx={{ width: "100%", px: 1, py: 3,backgroundColor:'primary.BlueSonki' }}
         >
           <Typography
             variant="h5"
@@ -156,6 +156,9 @@ function Footer() {
           </Stack>
         </Stack>
       </Stack>
+      {/* <Stack direction="">
+        dd
+      </Stack> */}
     </MainDiv>
   );
 }

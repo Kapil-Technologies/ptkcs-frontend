@@ -11,6 +11,8 @@ import Servicesweprovide from "../../sections/Homepage/Servicesweprovide";
 import Ktechapproch from "../../sections/Homepage/Ktechapproch";
 import { styled } from "@mui/material/styles";
 import { motion } from "framer-motion";
+import { getLogos } from "../../api/GetRequests";
+import { useSelector } from "react-redux";
 
 const CardItem = styled(Stack)(({ theme, menuid }) => ({
   display: "flex",
@@ -21,7 +23,7 @@ const CardItem = styled(Stack)(({ theme, menuid }) => ({
   height: "220px",
   padding: "10px",
   color: "white",
-  textAlign:'center',
+  textAlign: "center",
 
   [theme.breakpoints.between("xs", "md")]: {},
 
@@ -89,6 +91,7 @@ const ComplemetryPatners = [
 ];
 
 function MainHome() {
+  const domain = useSelector((state) => state.domain.domain);
   const Mobile = useMediaQuery((theme) =>
     theme.breakpoints.between("xs", "sm")
   );
@@ -109,6 +112,37 @@ function MainHome() {
 
     return `${currentCount} +`;
   };
+
+  const [partnerslist, setPartnersList] = useState([]);
+
+  useEffect(() => {
+    getLogos()
+      .then((res) => {
+        console.log(res);
+        const status = res.data.success;
+
+        if (status === true) {
+          const data = res.data.response;
+          // console.log(data)
+
+          const domainArray = data.map((item)=>item.domain); // Replace with your domain array
+          const filteredData = data.filter((item) => {
+            return (
+              item.domain.includes(domain) && item.logotype === "Partner"
+            );
+          });
+                  
+          console.log(filteredData);
+          setPartnersList(filteredData)
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  console.log(partnerslist)
+
   return (
     <Fragment>
       <Page
@@ -121,8 +155,7 @@ function MainHome() {
       <Ktechapproch />
       <Carousel
         carouselname="Kapil Tech endorsed by "
-        carouselImages={Partners}
-       
+        carouselImages={partnerslist}
       />
       <Servicesweprovide />
       <Industries />
@@ -133,7 +166,7 @@ function MainHome() {
         sx={{
           width: "100%",
           backgroundColor: "primary.main",
-          height:Mobile || Tab ?"auto":"350px"
+          height: Mobile || Tab ? "auto" : "350px",
         }}
       >
         <Stack
@@ -164,7 +197,6 @@ function MainHome() {
               <Typography variant="h6" sx={{ fontWeight: "normal" }}>
                 {item.title}
               </Typography>
-             
             </CardItem>
           ))}
         </Stack>
@@ -177,7 +209,10 @@ function MainHome() {
         sx={{ height: "auto", width: "100%", py: 2, textAlign: "center" }}
         spacing={1}
       >
-        <Typography variant={Mobile || Tab ?"h5" : "h4"} sx={{ fontWeight: "bold" }}>
+        <Typography
+          variant={Mobile || Tab ? "h5" : "h4"}
+          sx={{ fontWeight: "bold" }}
+        >
           Revitalize Legacy Applications with Kapil Tech
         </Typography>
         <Typography variant="h6">
@@ -198,8 +233,6 @@ function MainHome() {
             textAlign: "left",
           }}
         >
-
-        
           {Homepagelist.map((item) => (
             <Grid
               key={item.id}

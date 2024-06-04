@@ -22,6 +22,9 @@ import Odoo from "../pages/website/Solutions/Odoo";
 import Finsta from '../pages/website/Solutions/Finsta'
 import Hexabuild from '../pages/website/Solutions/Hexabuild'
 import Ifca from '../pages/website/Solutions/Ifca'
+import Oracle from "../pages/website/Services/Oracle";
+import OdooConsulting from "../pages/website/Services/OdooConsulting";
+import MBC from "../pages/website/Services/MBC";
 
 
 // ------------------------------------------------------
@@ -157,6 +160,18 @@ function GlobalRoutes() {
                 {
                   path: "infor",
                   element: <Infor />,
+                },
+                {
+                  path: "oracle-netsuite",
+                  element: <Oracle />,
+                },
+                {
+                  path: "odoo",
+                  element: <OdooConsulting />,
+                },
+                {
+                  path: "microsoft-dynamics-business-central",
+                  element: <MBC />,
                 },
               ],
             },
