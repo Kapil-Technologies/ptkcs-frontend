@@ -1,11 +1,28 @@
 import { Card, Grid, Stack, Typography, useTheme } from "@mui/material";
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Page from "../../../components/common/Page";
 import { Layer, MainContainer } from "../../../sections/Banners/Home";
 import { motion } from "framer-motion";
+import { getLeadership } from "../../../api/GetRequests";
 
 function Leadership() {
   const theme = useTheme();
+
+  const [team, setTeam] = useState([]);
+
+  useEffect(() => {
+    getLeadership()
+      .then((res) => {
+        console.log(res);
+        const status = res.data.success;
+        if (status === true) {
+          setTeam(res.data.response);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
     <Fragment>
       <Page name="Leadership" pagename="Leadership Page" description="" />
@@ -52,39 +69,49 @@ function Leadership() {
           columnGap={2}
           rowGap={2}
         >
-          <Card
-            sx={{
-              display: "flex",
-              alignItems: "left",
-              justifyContent: "left",
-              flexDirection: "column",
-              width: "250px",
-              height: "350px",
-              gap: 2,
-              border: "1px solid gray",
-              boxShadow: 3,
-              p: 2,
-            }}
-          >
-            <Stack
-              direction="row"
-              alignItems="center"
-              justifyContent="center"
-              style={{
-                height: "inherit",
-                width: "inherit",
-                border: "1px solid blue",
+          {team.map((item) => (
+            <Card
+              sx={{
+                display: "flex",
+                alignItems: "left",
+                justifyContent: "left",
+                flexDirection: "column",
+                width: "250px",
+                height: "350px",
+
+                border: "1px solid gray",
+                boxShadow: 3,
+                p: 2,
               }}
+              spacing={1}
             >
-              Image
-            </Stack>
-            <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-              Employees Name
-            </Typography>
-            <Typography variant="body1" sx={{ textAlign: "left" }}>
-              Employees Designation
-            </Typography>
-          </Card>
+              <Stack
+                direction="row"
+                alignItems="center"
+                justifyContent="center"
+                style={{
+                  height: "inherit",
+                  width: "inherit",
+                  // border: "1px solid blue",
+                }}
+              >
+                <img
+                  src={`data:image/${item.filetype};base64,${item.pic}`}
+                  style={{
+                    objectPosition: "center center",
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                  }}
+                />
+              </Stack>
+              <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+                {item.name}
+              </Typography>
+              <Typography variant="body1" sx={{ textAlign: "left" }}>
+                {item.designation}
+              </Typography>
+            </Card>
+          ))}
         </Grid>
       </Stack>
     </Fragment>

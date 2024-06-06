@@ -18,7 +18,7 @@ import HydraBenefits from "../../../sections/solutions/Hydra";
 import FedraCategories from "../../../sections/solutions/FedraCategories";
 import Hydracategories from "../../../sections/solutions/Hydracategories";
 import BannerComponent from "../../../components/common/BannerComponent";
-import { tasks } from "../../../mock/whatwedo/solutions/MPDVMock";
+import { Approach, tasks } from "../../../mock/whatwedo/solutions/MPDVMock";
 
 const mpdvoffering = [
   {
@@ -187,9 +187,124 @@ function Mpdv() {
                 }}
               >
                 <Typography>{item.icon}</Typography>
-                <Typography variant="h6"  sx={{fontWeight:'bold'}}>{item.title}</Typography>
+                <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+                  {item.title}
+                </Typography>
               </Card>
             ))}
+          </Grid>
+          <br />
+          <Stack
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
+            spacing={2}
+            sx={{ width: "100%" }}
+          >
+            <Typography variant="h4" sx={{ fontWeight: "bold" }}>
+              Our Approach
+            </Typography>
+
+            <Grid
+              container
+              columnGap={2}
+              rowGap={2}
+              sx={{
+                width: "100%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              {Approach.map((item) => (
+                <Card
+                  key={item.id}
+                  component={Grid}
+                  xs={12}
+                  md={10}
+                  sx={{
+                    border: "1px solid lightgray",
+                    display: "flex",
+                    alignItems: "left",
+                    justifyContent: "space-between",
+                    flexDirection: "column",
+                    p: 2,
+                    height: "auto",
+                    gap: "10px",
+                  }}
+                >
+                  <Stack
+                    direction="row"
+                    alignItems="center"
+                    justifyContent="center"
+                    sx={{
+                      p: 1,
+                      bgcolor: "primary.BlueSonki",
+                      width: Mobile || Tab ? "30%" : "10%",
+                      borderRadius: "10px",
+                    }}
+                  >
+                    <Typography
+                      variant="h5"
+                      sx={{ color: "white", fontWeight: "bold" }}
+                    >
+                      {item.step}
+                    </Typography>
+                  </Stack>
+                  <Typography variant="body1" sx={{ textAlign: "justify" }}>
+                    {item.text}
+                  </Typography>
+                </Card>
+              ))}
+            </Grid>
+          </Stack>
+          <br />
+
+          <Typography variant="h4" sx={{ fontWeight: "bold" }}>
+            Industry Focus
+          </Typography>
+
+          <Grid
+            direction="row"
+            alignItems="center"
+            justifyContent="center"
+            container
+            columnGap={1}
+            rowGap={1}
+          >
+            <Grid
+              item
+              xs={12}
+              md={5.5}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "350px",
+                border: "1px solid gray",
+              }}
+            >
+              Image
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              md={5.5}
+              sx={{
+                display: "flex",
+                alignItems: "left",
+                justifyContent: "left",
+                height:Mobile || Tab ? "auto" :"350px",
+                border: "1px solid gray",
+                flexDirection: "column",
+                gap: "10px",
+                p: 2,
+              }}
+            >
+              <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+                Manufacturing Industry
+              </Typography>
+            </Grid>
           </Grid>
         </Stack>
       </SectionContainer>

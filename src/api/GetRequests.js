@@ -61,3 +61,11 @@ export const getLogos = async () => {
   return response;
 };
 
+export const getLeadership = async () => {
+  const response = await axios.get(apiurls.leadership, {
+    headers: HeaderData,
+  });
+
+  return response;
+};
+
