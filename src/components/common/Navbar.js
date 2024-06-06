@@ -23,34 +23,37 @@ import { NavData, Services, ServicesNew } from "../../mock/Navigations";
 
 // -----------------------------------------------------------------------------------
 
-const MainContainer = styled("header")(({ theme, hover, toggle }) => ({
-  height: "75px",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  width: "100%",
-  // backgroundColor: theme.palette.primary.main,
-  backgroundColor: hover ? theme.palette.primary.main : "transparent",
-  position: "fixed",
-  top: 0,
-  zIndex: 99999,
+const MainContainer = styled("header")(
+  ({ theme, hover, toggle, visibility }) => ({
+    height: "75px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: "100%",
+    backgroundColor: hover ? theme.palette.primary.main : "transparent",
+    position: "fixed",
+    top: 0,
+    zIndex: 99999,
+    transition: "transform 1s ease",
+    transform: visibility ? "translateY(-100%)" : "translateY(0)",
 
-  [theme.breakpoints.between("xs", "sm")]: {
-    //  mobile
-    backgroundColor: toggle ? theme.palette.primary.main : "transparent",
-  },
+    [theme.breakpoints.between("xs", "sm")]: {
+      // Mobile
+      backgroundColor: toggle ? theme.palette.primary.main : "transparent",
+    },
 
-  [theme.breakpoints.between("sm", "md")]: {
-    // tab
-    backgroundColor: toggle ? theme.palette.primary.main : "transparent",
-  },
+    [theme.breakpoints.between("sm", "md")]: {
+      // Tablet
+      backgroundColor: toggle ? theme.palette.primary.main : "transparent",
+    },
 
-  [theme.breakpoints.between("md", "lg")]: {
-    // Desktop
-  },
+    [theme.breakpoints.between("md", "lg")]: {
+      // Desktop
+    },
 
-  [theme.breakpoints.up("xl")]: {},
-}));
+    [theme.breakpoints.up("xl")]: {},
+  })
+);
 
 const LogoContainer = styled(Link)(({ theme }) => ({
   display: "flex",
@@ -132,7 +135,7 @@ const MainNavList = styled("ul")(({ theme, Toggle }) => ({
   [theme.breakpoints.between("xs", "md")]: {
     top: "75px",
     background: theme.palette.primary.main,
-    height: "calc(100% - 75px)",
+    height: "calc(100vh - 75px)",
     width: "100%",
     margin: "auto",
     position: "fixed",
@@ -283,7 +286,7 @@ const SubNavLink = styled(NavLink)(({ theme, menuid }) => ({
 }));
 
 const SubNavText = styled(Box)(({ theme, menuid }) => ({
-  color:theme.palette.primary.color3,
+  color: theme.palette.primary.color3,
   [theme.breakpoints.between("xs", "md")]: {
     display: "flex",
     alignItems: "center",
@@ -450,7 +453,7 @@ function Navbar({ Admin, ToggleTheme }) {
 
   // ------------------------------------------------------------- States
 
-  const theme = useTheme()
+  const theme = useTheme();
 
   // Toggle
 
@@ -493,6 +496,8 @@ function Navbar({ Admin, ToggleTheme }) {
   // -------------------------------------------------------------------------  Color Change When Scrollerd
 
   const [scrolling, setScrolling] = useState(false);
+  const [scrolling1, setScrolling1] = useState(false);
+  const [lastScrollTop, setLastScrollTop] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -509,6 +514,25 @@ function Navbar({ Admin, ToggleTheme }) {
     };
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollTop = window.scrollY;
+      if (currentScrollTop > lastScrollTop) {
+        // Scrolling down
+        setScrolling1(true);
+      } else {
+        // Scrolling up
+        setScrolling1(false);
+      }
+      setLastScrollTop(currentScrollTop);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollTop]);
+
   const [checked, setChecked] = React.useState(false);
 
   const handleChange = (e) => {
@@ -522,6 +546,7 @@ function Navbar({ Admin, ToggleTheme }) {
       onMouseLeave={handleMouseLeaves}
       hover={(hover && condition) || scrolling}
       toggle={toggle || scrolling}
+      visibility={scrolling1}
       className="MainNavbar"
     >
       <ResponsiveContainer onClick={handleToggle}>
@@ -529,7 +554,7 @@ function Navbar({ Admin, ToggleTheme }) {
       </ResponsiveContainer>
       <LogoContainer to="/home">
         <Typography variant="h6" sx={{ background: "transperant", px: 0.5 }}>
-          PT KCS 
+          PT KCS
         </Typography>
 
         <Typography variant="h6">Technologies</Typography>
@@ -616,7 +641,7 @@ function Navbar({ Admin, ToggleTheme }) {
                                   </SubNavLink1>
                                 ) : (
                                   <SubNavText1>
-                                    <IconDot sx={{ mt: "3px"  }} />
+                                    <IconDot sx={{ mt: "3px" }} />
                                     <Typography
                                       variant="body1"
                                       sx={{ width: "80%" }}
@@ -686,7 +711,10 @@ function Navbar({ Admin, ToggleTheme }) {
                           <SubNavItem1 key={item.id}>
                             <Typography
                               variant="h6"
-                              sx={{ fontWeight: "bold",color:"primary.color3" }}
+                              sx={{
+                                fontWeight: "bold",
+                                color: "primary.color3",
+                              }}
                               gutterBottom
                             >
                               {item.title}
@@ -699,7 +727,7 @@ function Navbar({ Admin, ToggleTheme }) {
                                 spacing={1}
                                 sx={{ marginBottom: "10px" }}
                               >
-                                <IconDot sx={{color:"primary.color3"}} />
+                                <IconDot sx={{ color: "primary.color3" }} />
                                 {item.path ? (
                                   <SubNavLink1
                                     to={item.path}

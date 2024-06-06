@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useRef } from "react";
 import Page from "../../../components/common/Page";
 import { Layer, MainContainer } from "../../../sections/Banners/Home";
 import {
@@ -18,7 +18,9 @@ import BannerComponent from "../../../components/common/BannerComponent";
 import {
   SAPofferings,
   WhychooseSAP,
+  explaination,
 } from "../../../mock/whatwedo/consulting/SAPMock";
+import { useNavigate } from "react-router-dom";
 
 const SAPCustomers = [
   {
@@ -68,10 +70,27 @@ export const SectionContainer = styled("section")(({ theme, layercolor }) => ({
 
 function SAP() {
   const theme = useTheme();
+  const Navigate = useNavigate();
   const Mobile = useMediaQuery((theme) =>
     theme.breakpoints.between("xs", "sm")
   );
   const Tab = useMediaQuery((theme) => theme.breakpoints.between("sm", "md"));
+
+  const Ams = useRef(null);
+  const Fiori = useRef(null);
+  const Hana = useRef(null);
+
+  const scrolltoSection = (item) => {
+    console.log(item);
+    if (item === "sapams") {
+      Ams.current.scrollIntoView({ behavior: "smooth" });
+    } else if (item === "saphana") {
+      Hana.current.scrollIntoView({ behavior: "smooth" });
+    } else if (item === "sapfiori") {
+      Fiori.current.scrollIntoView({ behavior: "smooth" });
+    } else return;
+  };
+
   return (
     <Fragment>
       <Page
@@ -218,8 +237,8 @@ function SAP() {
 
           <Grid
             container
-            columnGap={2}
-            rowGap={2}
+            columnGap={1}
+            rowGap={1}
             sx={{
               display: "flex",
               alignItems: "center",
@@ -232,28 +251,89 @@ function SAP() {
                 component={Grid}
                 item
                 xs={12}
-                md={3.8}
+                md={3.9}
                 sx={{
-                  height: Mobile || Tab ? "auto" : "250px",
+                  height: Mobile || Tab ? "auto" : "230px",
                   display: "flex",
                   alignItems: "left",
-                  justifyContent: "space-between",
+                  justifyContent: "space-evenly",
                   flexDirection: "column",
                   p: "10px",
                   border: "1px solid #d3e1ea",
                 }}
               >
-                {item.icon}
-                <Typography variant="h5" sx={{fontWeight:'bold',color:"primary.BlueSonki"}}> 
+                <Typography
+                  variant="h5"
+                  sx={{ fontWeight: "bold", color: "primary.BlueSonki" }}
+                >
                   {item.title}
                 </Typography>
 
-                <Typography variant="body1">
+                <Typography variant="body1" sx={{ textAlign: "justify" }}>
                   {item.description}
                 </Typography>
+
+                {item.knowmore ? (
+                  <Typography
+                    variant="h6"
+                    sx={{ fontWeight: "bold", cursor: "pointer" }}
+                    onClick={() => {
+                      scrolltoSection(item.knowmore);
+                    }}
+                  >
+                    Know More
+                  </Typography>
+                ) : null}
               </Card>
             ))}
           </Grid>
+
+          <Stack
+            // key={item.id}
+            direction="column"
+            alignItems="center"
+            justifyContent="flex-start"
+            sx={{
+              width: "100%",
+              height: "99vh",
+              border: "1px solid blue",
+            }}
+            ref={Ams}
+          >
+            <Typography variant="h4" sx={{ fontWeight: "bold", mt: "10px" }}>
+              SAP AMS
+            </Typography>
+          </Stack>
+          <Stack
+            // key={item.id}
+            direction="column"
+            alignItems="center"
+            justifyContent="flex-start"
+            sx={{
+              width: "100%",
+              height:  "99vh",
+            }}
+            ref={Hana}
+          >
+            <Typography variant="h4" sx={{ fontWeight: "bold", mt: "10px" }}>
+              SAP S/4 HANA
+            </Typography>
+          </Stack>
+          <Stack
+            // key={item.id}
+            direction="column"
+            alignItems="center"
+            justifyContent="flex-start"
+            sx={{
+              width: "100%",
+              height: Mobile || Tab ? "auto" : "99vh",
+            }}
+            ref={Fiori}
+          >
+            <Typography variant="h4" sx={{ fontWeight: "bold", mt: "10px" }}>
+              SAP Fiori
+            </Typography>
+          </Stack>
         </Stack>
       </SectionContainer>
 

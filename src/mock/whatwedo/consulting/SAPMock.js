@@ -27,37 +27,91 @@ export const WhychooseSAP = [
 export const SAPofferings = [
   {
     id: 1,
-    title: "Technical Services",
-    icon:"icon",
+    title: "Rollout",
+    icon: "icon",
     description:
-      "Our organisation is supported by an exceptionally proficient technical service team that operates with efficiency to address any technical requirements that may impede the progress of your organisation.",
+      "We offer businesses a unified platform for all of their business operations through the implementation of SAP roll-out. We guarantee that business processes are standardised and data redundancy is reduced.",
   },
   {
     id: 2,
-    title: "The SAP Fiori and UI5",
-    icon:"icon",
+    title: "Upgrade",
+    icon: "icon",
     description:
-      "Simply improve the efficacy and user experience of the application with Fiori. Easily expand your application and add more content layers with the assistance of this marvellous technology.",
+      "With our SAP upgradation and migration services, we comprehend the criticality of situations and business issues in order to offer suitable solutions.",
   },
   {
     id: 3,
-    title: "BPC/BW",
-    icon:"icon",
+    title: "Support",
+    icon: "icon",
     description:
-      "In order to strengthen organisations, a comprehensive BPC/BW solution will be of great assistance. We reduce the friction in operations by providing instruments for data warehousing, reporting & management.",
+      "We provide comprehensive maintenance solutions and functional support services to facilitate digital innovation and excellence throughout the entirety of your SAP digital journey. ",
   },
   {
     id: 4,
-    title: "Functional Services ",
-    icon:"icon",
+    title: "Technical Services",
+    icon: "icon",
     description:
-      "In order for your organisation's system to operate optimally, we provide effective functional services, which include monitoring and maintaining system updates.",
+      "We develop new capabilities, extend the features of your system, or customise your solution with enhancements and integrate your SAP system with third-party solutions. Become future-ready with us.",
   },
   {
     id: 5,
-    title: "HCM",
-    icon:"icon",
+    title: "Functional Service",
+    icon: "icon",
     description:
-      "HCM will facilitate the streamlining of payroll and other human-resource-related challenges for an organisation. Our SAP HCM expertise enables us to effectively optimise your organisation.",
+      "We setup roles, new processes, and configure SAP modules and manage routine tasks like management dashboards and financial reporting, along with training new users on your business processes.",
+  },
+  {
+    id: 6,
+    title: "SAP BPC/BW",
+    icon: "icon",
+    description:
+      "In order to strengthen organisations, a comprehensive BPC/BW solution will be of great assistance. We reduce the friction in operations by providing instruments for data warehousing, reporting & management.",
+  },
+
+  {
+    id: 7,
+    title: "SAP HCM",
+    icon: "icon",
+    description:
+      "HCM will facilitate the streamlining of payroll and other human resource-related challenges for an organisation. Our SAP HCM expertise enables us to effectively optimise your organisation.",
+  },
+  {
+    id: 8,
+    title: "SAP AMS",
+    icon: "icon",
+    description: "",
+    knowmore: "sapams",
+  },
+  {
+    id: 9,
+    title: "SAP S/4 HANA",
+    icon: "icon",
+    description: "",
+    knowmore: "saphana",
+  },
+  {
+    id: 10,
+    title: "SAP Fiori Services",
+    icon: "icon",
+    description: "",
+    knowmore: "sapfiori",
+  },
+];
+
+export const explaination = [
+  {
+    id: 1,
+    title: "SAP AMS",
+    idname:"sapams"
+  },
+  {
+    id: 2,
+    title: "SAP S/4 HANA",
+    idname:"saphana"
+  },
+  {
+    id: 3,
+    title: "SAP Fiori Services",
+    idname:"sapfiori"
   },
 ];

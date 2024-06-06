@@ -12,6 +12,10 @@ export const MainDiv = styled("footer")(({ theme, color }) => ({
   color: "black",
   marginTop: "auto",
   flexShrink: 0,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  flexDirection: "column",
 
   [theme.breakpoints.between("xs", "md")]: {
     // tab
@@ -26,15 +30,15 @@ export const SocialMedia = styled(Link)(({ theme, color }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  padding: "15px",
+  padding: "10px",
   borderRadius: "50%",
   textDecoration: "none",
   fontSize: "26px",
-  color: "black",
+  color: "white",
   // backgroundColor: "lightgray",
   "&:hover": {
-    backgroundColor: "gray",
-    color: "white",
+    backgroundColor: "white",
+    color: theme.palette.primary.BlueSonki,
   },
 
   [theme.breakpoints.between("xs", "md")]: {
@@ -61,7 +65,7 @@ export const Line = styled("hr")(({ theme, color }) => ({
 export const MailLink = styled(Link)(({ theme, color }) => ({
   textDecoration: "none",
   padding: "5px",
-  color: "black",
+  color: "white",
   fontSize: "20px",
 
   [theme.breakpoints.between("xs", "md")]: {
@@ -75,7 +79,8 @@ export const MailLink = styled(Link)(({ theme, color }) => ({
 
 export const TextLink = styled(Link)(({ theme, color }) => ({
   textDecoration: "none",
-  color: "black",
+  color: "white",
+  padding: "10px",
 
   [theme.breakpoints.between("xs", "md")]: {
     // tab
@@ -110,19 +115,24 @@ function Footer() {
         }}
       >
         <Stack
-          direction="column"
+          direction={Mobile || Tab ? "column" : "row"}
           alignItems="center"
           justifyContent="space-between"
           spacing={1}
-          sx={{ width: "100%", px: 1, py: 3,backgroundColor:'primary.BlueSonki' }}
+          sx={{
+            width: "100%",
+            px: 1,
+            py: 1,
+            backgroundColor: "primary.BlueSonki",
+            color: "primary.color3",
+          }}
         >
           <Typography
             variant="h5"
             sx={{ fontWeight: "bold", textAlign: "center" }}
           >
-           PT. KCS Technologies Indonesia
+            PT. KCS Technologies Indonesia
           </Typography>
-
           <MailLink to="mailto:info@ptkcs.com">info@ptkcs.com</MailLink>
 
           <Stack
@@ -137,28 +147,35 @@ function Footer() {
               </SocialMedia>
             ))}
           </Stack>
-
-          <Line />
+        </Stack>
+      </Stack>
+      <Stack
+        direction="row"
+        alignItems="center"
+        justifyContent="space-between"
+        sx={{ width: "100%", bgcolor: "black", color: "white", height:Mobile || Tab ?"auto": "60px" }}
+      >
+        <Stack
+          direction={Mobile || Tab ? "column" : "row"}
+          alignItems="center"
+          justifyContent={Mobile || Tab ? "center" : "space-between"}
+          spacing={1}
+          sx={{ p: 1, width: "100%" }}
+        >
+          <TextLink to="/privacy-policy">Privacy Policy</TextLink>
           <Stack
-            direction={Mobile || Tab ? "column" : "row"}
+            direction="row"
             alignItems="center"
-            justifyContent={Mobile || Tab ? "center" : "space-between"}
-            spacing={2}
-            sx={{ p: 1, width: "85%" }}
+            spacing={1}
+            sx={{ p: "10px" }}
           >
-            <TextLink to="/privacy-policy">Privacy Policy</TextLink>
-            <Stack direction="row" alignItems="center" spacing={1}>
-              <IconCopyright />
-              <Typography variant="body1">
-                Copyright 2024 | All Rights Reseved
-              </Typography>
-            </Stack>
+            <IconCopyright />
+            <Typography variant="body1">
+              Copyright 2024 | All Rights Reseved
+            </Typography>
           </Stack>
         </Stack>
       </Stack>
-      {/* <Stack direction="">
-        dd
-      </Stack> */}
     </MainDiv>
   );
 }
