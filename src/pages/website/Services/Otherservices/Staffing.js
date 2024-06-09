@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import Page from "../../../../components/common/Page";
 import BannerComponent from "../../../../components/common/BannerComponent";
 import {
@@ -20,6 +20,7 @@ import {
   whyus,
 } from "../../../../mock/whatwedo/others/StaffingMock";
 import { IconDot } from "../../../../themes/Icons";
+import { Icons } from "../../../../App";
 
 const SectionContainer = styled("section")(({ theme }) => ({
   width: "90%",
@@ -77,6 +78,7 @@ const TextGridItem = styled(Grid)(({ theme }) => ({
 }));
 
 function Staffing() {
+   const Icondata = useContext(Icons);
   const theme = useTheme();
   const Navigate = useNavigate();
   const Mobile = useMediaQuery((theme) =>
@@ -153,9 +155,23 @@ function Staffing() {
                   direction="row"
                   alignItems="center"
                   justifyContent="left"
-                  sx={{ p: 1, fontWeight: "bold" }}
+                  sx={{
+                    p: 1,
+                    fontWeight: "bold",
+                    width: "100px",
+                    height: "100px",
+                  }}
                 >
-                  Icons
+                  {Icondata.filter((i) => i.iconname.includes(item.title)).map(
+                    (i) => (
+                      <img
+                        key={i.iconname}
+                        style={{ maxHeight: "100%", maxWidth: "100%" }}
+                        alt={i.iconname}
+                        src={`data:image/png;base64,${i.icon}`}
+                      />
+                    )
+                  )}
                 </Stack>
                 <Typography variant="h5" sx={{ fontWeight: "bold" }}>
                   {item.title}
@@ -275,7 +291,7 @@ function Staffing() {
 
             <Typography
               variant="body1"
-              sx={{ width: "80%", textAlign: "justify" }}
+              sx={{ width: "80%", textAlign: "justify",p:1 }}
             >
               We specialise in providing complete full-stack app development
               solutions that are tailored to the specific demands of businesses
@@ -304,15 +320,25 @@ function Staffing() {
                     alignItems: "center",
                     justifyContent: "flex-start",
                     flexDirection: "column",
+                    gap:"10px"
                   }}
                 >
                   <Stack
                     direction="row"
                     alignItems="center"
                     justifyContent="center"
-                    sx={{ width: "100px", height: "100px" }}
+                    sx={{ width: "80px", height: "80px" }}
                   >
-                    {item.icon}
+                    {Icondata.filter((i) =>
+                      i.iconname.includes(item.techname)
+                    ).map((i) => (
+                      <img
+                        key={i.iconname}
+                        style={{ maxHeight: "100%", maxWidth: "100%" }}
+                        alt={i.iconname}
+                        src={`data:image/png;base64,${i.icon}`}
+                      />
+                    ))}
                   </Stack>
                   <Typography variant="h6">{item.techname}</Typography>
                 </Grid>

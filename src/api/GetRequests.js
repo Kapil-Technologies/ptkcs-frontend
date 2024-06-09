@@ -69,3 +69,11 @@ export const getLeadership = async () => {
   return response;
 };
 
+export const getIcons = async () => {
+  const response = await axios.get(apiurls.icons, {
+    headers: HeaderData,
+  });
+
+  return response;
+};
+

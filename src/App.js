@@ -22,7 +22,7 @@ import CTA from "./components/common/CTA";
 import ScrollToTop from "./components/common/ScrolltoTop";
 import GlobalScrolltotop from "./components/common/GlobalScrolltotop";
 import { getCountries } from "./api/Main";
-import { getBanners } from "./api/GetRequests";
+import { getBanners, getIcons } from "./api/GetRequests";
 
 // GlobalContext
 
@@ -31,6 +31,8 @@ export const CountriesList = createContext(null);
 export const Domain = createContext(null);
 
 export const Banners = createContext(null);
+
+export const Icons = createContext(null);
 
 // --------------------------------------------------------   App
 
@@ -77,6 +79,26 @@ function App() {
       });
   }, []);
 
+  // ------------------------------------------------------------- Icons
+
+  const [Iconsdata, setIcons] = useState([]);
+
+  useEffect(() => {
+    getIcons()
+      .then((res) => {
+        console.log(res);
+        const respdata = res.data.response;
+        const filtereddata = respdata.filter((item) =>
+          item.pagepath.includes(pathname)
+        );
+        console.log(filtereddata, "filterdata");
+        setIcons(res.data.response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   // ------------------------------------------------------------- Switch
 
   const [toggleSwitch, setToggleSwitch] = useState(false);
@@ -96,7 +118,9 @@ function App() {
               <CountriesList.Provider value={countries}>
                 <Domain.Provider value={hostname}>
                   <Banners.Provider value={banners}>
-                    <GlobalRoutes />
+                    <Icons.Provider value={Iconsdata}>
+                      <GlobalRoutes />
+                    </Icons.Provider>
                   </Banners.Provider>
                   {/* <GlobalRoutes /> */}
                 </Domain.Provider>

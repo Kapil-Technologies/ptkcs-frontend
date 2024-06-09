@@ -14,4 +14,5 @@ export const apiurls = {
   globalfootprints: `${APIURL}get/globalbranches`,
   events: `${APIURL}get/events`,
   eventsregistrations: `${APIURL}events/register`,
+  icons: `${APIURL}get/icons`,
 };
