@@ -15,6 +15,7 @@ export const MainContainer = styled(Box)(({ theme, mheight }) => ({
 
   [theme.breakpoints.between("xs", "sm")]: {
     //  mobile
+    width: "100%",
   },
 
   [theme.breakpoints.between("sm", "md")]: {
@@ -27,6 +28,7 @@ export const MainContainer = styled(Box)(({ theme, mheight }) => ({
 
   [theme.breakpoints.up("xl")]: {
     // Desktop
+    width: "100%",
   },
 }));
 
