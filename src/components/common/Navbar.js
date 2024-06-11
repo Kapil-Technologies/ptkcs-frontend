@@ -37,14 +37,10 @@ const MainContainer = styled("header")(
     transition: "transform 1s ease",
     transform: visibility ? "translateY(-100%)" : "translateY(0)",
 
-    [theme.breakpoints.between("xs", "sm")]: {
+    [theme.breakpoints.between("xs", "md")]: {
       // Mobile
-      backgroundColor: toggle ? theme.palette.primary.main : "transparent",
-    },
-
-    [theme.breakpoints.between("sm", "md")]: {
-      // Tablet
-      backgroundColor: toggle ? theme.palette.primary.main : "transparent",
+      position: "relative",
+      backgroundColor: theme.palette.primary.main,
     },
 
     [theme.breakpoints.between("md", "lg")]: {
@@ -136,7 +132,7 @@ const MainNavList = styled("ul")(({ theme, Toggle }) => ({
     top: "75px",
     background: theme.palette.primary.main,
     height: "calc(100vh - 75px)",
-    width: "100%",
+    width: "95%",
     margin: "auto",
     position: "fixed",
     overflowY: "scroll",
@@ -553,11 +549,21 @@ function Navbar({ Admin, ToggleTheme }) {
         {toggle ? <IconClose /> : <IconMenu />}
       </ResponsiveContainer>
       <LogoContainer to="/home">
-        <Typography variant="h6" sx={{ background: "transperant", px: 0.5 }}>
-          PT KCS
-        </Typography>
-
-        <Typography variant="h6">Technologies</Typography>
+        {isMobile || isTab ? (
+          <Typography
+            variant="h6"
+            sx={{
+              background: "transperant",
+              px: 0.5,
+              textAlign: isMobile || isTab ? "right" : "left",
+            }}
+          >
+            PT KCS <br />
+            Technologies Indonesia
+          </Typography>
+        ) : (
+          <Typography variant="h6">PT KCS Technologies Indonesia</Typography>
+        )}
       </LogoContainer>
       {isMobile || isTab ? (
         <MainNavList Toggle={toggle} className="MainNavbar">

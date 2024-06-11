@@ -23,6 +23,15 @@ function Leadership() {
   );
   const Tab = useMediaQuery((theme) => theme.breakpoints.between("sm", "md"));
 
+  const [name1, setname1] = useState([]);
+  const [name2, setname2] = useState("");
+
+  const handleName = (name) => {
+    const splitedName = name.split("-");
+    console.log(splitedName);
+    setname1(splitedName);
+  };
+
   const [team, setTeam] = useState([]);
 
   useEffect(() => {
@@ -84,81 +93,95 @@ function Leadership() {
           columnGap={2}
           rowGap={2}
         >
-          {team.map((item) => (
-            <Card
-              key={item.id}
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexDirection: "column",
-                width: Mobile ? "100%" : "250px",
-                height: Mobile ? "auto" : "380px",
-                gap: "5px",
-                border: "1px solid gray",
-                boxShadow: 3,
-                p: 1,
-              }}
-              spacing={1}
-            >
-              <Stack
-                direction="row"
-                alignItems="center"
-                justifyContent="center"
-                style={{
-                  height: "inherit",
-                  width: "inherit",
-                  textAlign: "center",
-                  // border: "1px solid blue",
+          {team.map((item) => {
+            return (
+              <Card
+                key={item.id}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexDirection: "column",
+                  width: Mobile ? "100%" : "250px",
+                  height: Mobile ? "auto" : "390px",
+                  gap: "5px",
+                  border: "1px solid gray",
+                  boxShadow: 3,
+                  p: 1,
                 }}
+                spacing={1}
               >
-                <img
-                  src={`data:image/${item.filetype};base64,${item.pic}`}
+                <Stack
+                  direction="row"
+                  alignItems="center"
+                  justifyContent="center"
                   style={{
-                    objectPosition: "center center",
-                    maxWidth: "100%",
-                    maxHeight: "100%",
+                    height: "inherit",
+                    width: "inherit",
+                    textAlign: "center",
+                    // border: "1px solid blue",
                   }}
-                />
-              </Stack>
-              <Typography
-                variant="h6"
-                sx={{
-                  fontWeight: "bold",
-                  textAlign: "center",
-                }}
-              >
-                {item.name}
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  textAlign: "left",
-                  textAlign: "center",
-                }}
-              >
-                {item.designation}
-              </Typography>
-              <Stack
-                direction="row"
-                alignItems="center"
-                justifyContent="center"
-                sx={{ width: "30px", height: "30px" }}
-                component={Link}
-                to={item.linkedinurl}
-                target="_blank"
-              >
-                {Icondata.filter((i) => i.iconname === "Linkedin").map((i) => (
+                >
                   <img
-                    key={i.iconname}
-                    style={{ maxHeight: "100%", maxWidth: "100%" }}
-                    alt={i.iconname}
-                    src={`data:image/png;base64,${i.icon}`}
+                    src={`data:image/${item.filetype};base64,${item.pic}`}
+                    style={{
+                      objectPosition: "center center",
+                      maxWidth: "100%",
+                      maxHeight: "100%",
+                    }}
                   />
-                ))}
-              </Stack>
-            </Card>
-          ))}
+                </Stack>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontWeight: "bold",
+                    textAlign: "center",
+                  }}
+                >
+                  {item.name}
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontWeight: "normal",
+                    textAlign: "center",
+                  }}
+                >
+                  {item.designation}
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontWeight: "normal",
+                    textAlign: "center",
+                  }}
+                >
+                  {item.subtitle}
+                </Typography>
+
+                <Stack
+                  direction="row"
+                  alignItems="center"
+                  justifyContent="center"
+                  sx={{ width: "30px", height: "30px" }}
+                  component={Link}
+                  to={item.linkedinurl}
+                  target="_blank"
+                >
+                  {Icondata.filter((i) => i.iconname === "Linkedin").map(
+                    (i) => (
+                      <img
+                        key={i.iconname}
+                        style={{ maxHeight: "100%", maxWidth: "100%" }}
+                        alt={i.iconname}
+                        src={`data:image/png;base64,${i.icon}`}
+                      />
+                    )
+                  )}
+                </Stack>
+              </Card>
+            );
+          })}
         </Grid>
       </Stack>
     </Fragment>

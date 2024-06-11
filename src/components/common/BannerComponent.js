@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
 import { Box, Stack } from "@mui/material";
 import { getBanners } from "../../api/GetRequests";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Banners } from "../../App";
 
 export const MainContainer = styled(Box)(({ theme, mheight }) => ({
   height: mheight,
@@ -15,6 +16,7 @@ export const MainContainer = styled(Box)(({ theme, mheight }) => ({
 
   [theme.breakpoints.between("xs", "sm")]: {
     //  mobile
+    height: "auto",
     width: "100%",
   },
 
@@ -64,20 +66,23 @@ function BannerComponent({ mainheight, layercolor, textdispaly }) {
 
   let imagename;
 
-  useEffect(() => {
-    getBanners(pathname, domain)
-      .then((res) => {
-        console.log(res);
-        setBanners(res.data.response);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  const BannerData = useContext(Banners);
+
+  console.log(BannerData);
 
   return (
     <MainContainer mheight={mainheight}>
-      <Image src={imagedata} alt={imagename} />
+      {BannerData.map((item) => (
+        <img
+          src={`data:image/png;base64,${item.banner}`}
+          alt={item.pagename}
+          style={{
+            width: "100%",
+            height:mainheight,
+            // objectFit: "contain",
+          }}
+        />
+      ))}
       <Layer
         direction="column"
         alignItems="center"

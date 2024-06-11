@@ -293,7 +293,7 @@ function Infor() {
                 component={Grid}
                 item
                 xs={12}
-                md={3.2}
+                md={3.8}
                 sx={{
                   display: "flex",
                   alignItems: "center",
@@ -332,7 +332,7 @@ function Infor() {
                 >
                   {item.title}
                 </Typography>
-                <Typography variant="body1" sx={{ textAlign: "left" }}>
+                <Typography variant="body1" sx={{ textAlign: "justify", }}>
                   {item.text}
                 </Typography>
               </Card>
@@ -379,7 +379,7 @@ function Infor() {
                 component={Grid}
                 item
                 xs={12}
-                md={3.2}
+                md={3.6}
                 sx={{
                   display: "flex",
                   alignItems: "center",

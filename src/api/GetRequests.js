@@ -17,10 +17,9 @@ export const getPositions = async (id) => {
   return response;
 };
 
-export const getBanners = async (pathname, domainname) => {
-  const response = await axios.post(
+export const getBanners = async () => {
+  const response = await axios.get(
     apiurls.banners,
-    JSON.stringify({ path: pathname, domain: domainname }),
     {
       headers: HeaderData,
     }

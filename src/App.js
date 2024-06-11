@@ -72,7 +72,12 @@ function App() {
     getBanners()
       .then((res) => {
         console.log(res);
-        setBanners(res.data.response);
+        const respdata = res.data.response;
+        const filtereddata = respdata.filter(
+          (item) => item.pagepath === pathname
+        );
+        console.log(filtereddata, "filterdata");
+        setBanners(filtereddata);
       })
       .catch((err) => {
         console.log(err);

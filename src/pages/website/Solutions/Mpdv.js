@@ -85,12 +85,12 @@ function Mpdv() {
 
       <BannerComponent
         mainheight="500px"
-        layercolor={theme.palette.terinary.main}
+        layercolor="rgba(0,0,0,0.4)"
         textdispaly={
           <Stack
             direction="column"
-            alignItems="center"
-            justifyContent="center"
+            alignItems="left"
+            justifyContent="left"
             spacing={2}
             component={motion.div}
             initial={{ y: "30px" }}
@@ -99,7 +99,7 @@ function Mpdv() {
             transition={{ duration: 0.5, delay: 0.1 }}
             sx={{ textAlign: "center", height: "inherit" }}
           >
-            MPDV
+           
           </Stack>
         }
       />
