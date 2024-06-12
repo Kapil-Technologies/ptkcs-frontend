@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import {
   Capabilities,
   CapabilitiesElobaration,
+  StaffingApporach,
   TechnologyStack,
   whyus,
 } from "../../../../mock/whatwedo/others/StaffingMock";
@@ -124,7 +125,12 @@ function Staffing() {
           </Stack>
         }
       />
-      <Stack direction="column" alignItems="center" justifyContent="flex-start">
+      <Stack
+        direction="column"
+        alignItems="center"
+        justifyContent="flex-start"
+        spacing={3}
+      >
         <SectionContainer sx={{ py: "5px" }}>
           <Typography
             variant="h4"
@@ -353,7 +359,7 @@ function Staffing() {
             spacing={2}
             sx={{ width: "100%", mb: "-5px", py: "10px" }}
           >
-            <Typography variant="h4" sx={{ fontWeight: "bold", px: 1 }}>
+            <Typography variant="h4" sx={{ fontWeight: "bold", px: 1,textAlign:'center' }}>
               Why Choose Kapil Tech as your IT Staffing Services Company
             </Typography>
 
@@ -373,11 +379,11 @@ function Staffing() {
                 <Card
                   sx={{
                     width: Mobile || Tab ? "100%" : "300px",
-                    p: 2,
+                    p: "10px",
                     display: "flex",
                     alignItems: "left",
-                    justifyContent: "space-around",
-                    height: Mobile || Tab ? "auto" : "200px",
+                    justifyContent: "space-between",
+                    height: Mobile || Tab ? "auto" : "230px",
                     flexDirection: "column",
                     border: "1px solid lightgray",
                   }}
@@ -388,21 +394,21 @@ function Staffing() {
                     justifyContent="center"
                     sx={{ width: "50px", height: "50px" }}
                   >
-                    {Icondata.filter((i) =>
-                      i.iconname === item.title
-                    ).map((i) => (
-                      <img
-                        key={i.iconname}
-                        style={{ maxHeight: "100%", maxWidth: "100%" }}
-                        alt={i.iconname}
-                        src={`data:image/png;base64,${i.icon}`}
-                      />
-                    ))}
+                    {Icondata.filter((i) => i.iconname === item.title).map(
+                      (i) => (
+                        <img
+                          key={i.iconname}
+                          style={{ maxHeight: "100%", maxWidth: "100%" }}
+                          alt={i.iconname}
+                          src={`data:image/png;base64,${i.icon}`}
+                        />
+                      )
+                    )}
                   </Stack>
                   <Typography variant="h5" sx={{ fontWeight: "bold" }}>
                     {item.title}
                   </Typography>
-                  <Typography variant="body1" sx={{ textAlign: "justify" }}>
+                  <Typography variant="body1" sx={{ textAlign: "left" }}>
                     {item.text}
                   </Typography>
                 </Card>
@@ -413,7 +419,7 @@ function Staffing() {
             direction="column"
             alignItems="center"
             justifyContent="flex-start"
-            spacing={2}
+            spacing={1}
             sx={{ width: "100%", mb: "-5px", py: "10px" }}
           >
             <Typography variant="h4" sx={{ fontWeight: "bold" }}>
@@ -475,42 +481,96 @@ function Staffing() {
                 </Grid>
               ))}
             </Grid>
+            <br />
           </Stack>
-          {/* <Stack
-          direction="column"
-          alignItems="center"
-          justifyContent="flex-start"
-          spacing={2}
-          sx={{ width: "100%", py: "10px" }}
-        >
-          <Typography variant="h4" sx={{ fontWeight: "bold" }}>
-            Kapil Tech Staffing Approach
-          </Typography>
-          <Typography
-            variant="body1"
-            sx={{
-              width: Mobile || Tab ? "100%" : "70%",
-              p: 1,
-              textAlign: "justify",
-            }}
+          <Stack
+            direction="column"
+            alignItems="center"
+            justifyContent="flex-start"
+            spacing={2}
+            sx={{ width: "100%", py: "10px" }}
           >
-            Through the implementation of a 360-degree strategy, we guarantee
-            that all the facets are harmonised in an effort to attain
-            excellence, foster innovation, and provide clients with unmatched
-            value. By implementing this all-encompassing approach, not only are
-            operational efficiencies improved, but a resilient and progressive
-            organisation is also shaped.
-          </Typography>
-          <Typography
-            variant="h6"
-            sx={{ textAlign: "left", width: Mobile || Tab ? "100%" : "70%" }}
-          >
-            The 360-degree scorecard approach:
-          </Typography>
-          <Card di>
+            <Typography variant="h4" sx={{ fontWeight: "bold" }}>
+              Kapil Tech Staffing Approach
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                width: Mobile || Tab ? "80%" : "70%",
+                p: 1,
+                textAlign: "justify",
+              }}
+            >
+              Through the implementation of a 360-degree strategy, we guarantee
+              that all the facets are harmonised in an effort to attain
+              excellence, foster innovation, and provide clients with unmatched
+              value. By implementing this all-encompassing approach, not only
+              are operational efficiencies improved, but a resilient and
+              progressive organisation is also shaped.
+            </Typography>
+            <Typography
+              variant="h6"
+              sx={{
+                textAlign: Mobile || Tab ? "center" : "left",
+                width: Mobile || Tab ? "100%" : "70%",
+              }}
+            >
+              The 360-degree scorecard approach:
+            </Typography>
 
-          </Card>
-        </Stack> */}
+            <Grid
+              container
+              columnGap={2}
+              rowGap={2}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              {StaffingApporach.map((item) => (
+                <Grid
+                  item
+                  xs={10}
+                  md={8}
+                  sx={{
+                    display: "flex",
+                    alignItems: "left",
+                    justifyContent: "left",
+                    flexDirection: "column",
+                    gap: "10px",
+                    border: "1px solid lightgray",
+                    p: "10px",
+                  }}
+                  component={Card}
+                >
+                  <Stack
+                    direction="row"
+                    alignItems="center"
+                    justifyContent="center"
+                    sx={{ width: "50px", height: "50px" }}
+                  >
+                    {Icondata.filter((i) => i.iconname === item.title).map(
+                      (i) => (
+                        <img
+                          key={i.iconname}
+                          style={{ maxHeight: "100%", maxWidth: "100%" }}
+                          alt={i.iconname}
+                          src={`data:image/png;base64,${i.icon}`}
+                        />
+                      )
+                    )}
+                  </Stack>
+
+                  <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+                    {item.title}
+                  </Typography>
+
+                  <Typography variant="body1">{item.text}</Typography>
+                </Grid>
+              ))}
+            </Grid>
+          </Stack>
         </SectionContainer>
       </Stack>
     </Fragment>

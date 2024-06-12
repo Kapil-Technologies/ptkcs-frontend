@@ -181,3 +181,23 @@ export const whyus = [
     icon: "",
   },
 ];
+
+export const StaffingApporach = [
+  {
+    id: 1,
+    title: "Client",
+    text: "Client scorecard to ensure that our respective delivery teams are aligned in the most efficient and productive manner across all accounts & services.",
+  },
+
+  {
+    id: 2,
+    title: "Vendor",
+    text: "Vendor scorecard implementation on the internal vendor management system to facilitate vendor programs and processes with a streamlined approach.",
+  },
+
+  {
+    id: 3,
+    title: "Employee",
+    text: "Employee scorecard that serves as a progress and performance evaluation funnel for the entire hierarchy of the organisation.",
+  },
+];
