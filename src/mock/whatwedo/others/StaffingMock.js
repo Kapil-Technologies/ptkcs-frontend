@@ -2,20 +2,20 @@ export const Capabilities = [
   {
     id: 1,
     title: "Workforce Consulting",
-    
     icons: "icon",
+    knowmore: "workforce",
   },
   {
     id: 2,
     title: "Direct-hire Recruiting",
-   
     icons: "icon",
+    knowmore: "directhire",
   },
   {
     id: 3,
     title: "Contract Staffing",
-    
     icons: "icon",
+    knowmore: "contract",
   },
 ];
 
@@ -30,40 +30,34 @@ export const CapabilitiesElobaration = [
     list: [
       {
         id: 1,
-        text: "Talent Acquisition: Using advanced tactics and tools to locate and recruit top applicants",
+        title: "Talent Acquisition ",
+        text: "Using advanced tactics and tools to locate and recruit top applicants",
       },
       {
         id: 2,
-        text: "Workforce Management: Creating tailored propositions to nurture and retain the best candidature. ",
+        title: "Workforce Management",
+        text: "Creating tailored propositions to nurture and retain the best candidature. ",
       },
       {
         id: 3,
-        text: "Employee Engagement: Developing measures to increase employee satisfaction and productivity.",
+        title: "Employee Engagement",
+        text: " Developing measures to increase employee satisfaction and productivity.",
       },
       {
         id: 4,
-        text: "Leadership Development: Providing targeted training and mentoring to encourage future leaders.",
+        title: "Leadership Development",
+        text: " Providing targeted training and mentoring to encourage future leaders.",
       },
       {
         id: 5,
-        text: "Workforce Analytics: Using data insights to improve workforce planning and decision-making.",
+        title: "Workforce Analytics:",
+        text: " Using data insights to improve workforce planning and decision-making.",
       },
     ],
   },
+
   {
     id: 2,
-    title: "Workforce Consulting",
-    type: "image",
-    imgdetails: "",
-  },
-  {
-    id: 3,
-    title: "Direct-hire Recruiting",
-    type: "image",
-    imgdetails: "",
-  },
-  {
-    id: 4,
     title: "Direct-hire Recruiting",
     type: "text",
     text1:
@@ -72,28 +66,33 @@ export const CapabilitiesElobaration = [
     list: [
       {
         id: 1,
-        text: "Direct Hire Placements: Securing top-tier candidates for permanent roles in a variety of industries.",
+        title: "Direct Hire Placements",
+        text: " Securing top-tier candidates for permanent roles in a variety of industries.",
       },
       {
         id: 2,
-        text: "Executive Search: Identifying leaders who can drive strategic initiatives and propel organisations",
+        title: "Executive Search",
+        text: " Identifying leaders who can drive strategic initiatives and propel organisations",
       },
       {
         id: 3,
-        text: "Candidate Screening: Strict evaluation to verify that candidates meet the job requirements.",
+        title: "Candidate Screening",
+        text: " Strict evaluation to verify that candidates meet the job requirements.",
       },
       {
         id: 4,
-        text: "Market Insights: Valuable market trends and salary standards to make informed recruiting decisions.",
+        title: "Market Insights",
+        text: " Valuable market trends and salary standards to make informed recruiting decisions.",
       },
       {
         id: 5,
-        text: "Onboarding Support: Assisting new hires with a smooth transition to get started right away.",
+        title: "Onboarding Support",
+        text: " Assisting new hires with a smooth transition to get started right away.",
       },
     ],
   },
   {
-    id: 5,
+    id: 3,
     title: "Contract Staffing",
     type: "text",
     text1:
@@ -102,69 +101,65 @@ export const CapabilitiesElobaration = [
     list: [
       {
         id: 1,
-        text: "Supply Chain: Providing trained individuals for short and long-term & project-based assignments.",
+        title: "Supply Chain",
+        text: " Providing trained individuals for short and long-term & project-based assignments.",
       },
       {
         id: 2,
-        text: "Temp-to-Perm Solutions: Flexible staffing choices with the possibility of permanent placement. ",
+        title: "Temp-to-Perm Solutions",
+        text: "Flexible staffing choices with the possibility of permanent placement. ",
       },
       {
         id: 3,
-        text: "Specialised Recruiting: Targeted recruitment for specialty professions and skill sets.",
+        title: "Specialised Recruiting",
+        text: "Targeted recruitment for specialty professions and skill sets.",
       },
       {
         id: 4,
-        text: "Workforce Management: Dealing with contract personnel (payroll, compliance & benefits).",
+        title: "Workforce Management",
+        text: " Dealing with contract personnel (payroll, compliance & benefits).",
       },
       {
         id: 5,
-        text: "Talent Pool Development: Creating and maintaining a large database of competent candidates.",
+        title: "Talent Pool Development",
+        text: "Creating and maintaining a large database of competent candidates.",
       },
     ],
   },
-  {
-    id: 6,
-    title: "Direct Consulting",
-    type: "image",
-    imgdetails: "",
-  },
 ];
-
 
 export const TechnologyStack = [
   {
     id: 1,
-    icon:"icon",
+    icon: "icon",
     techname: "Web/Mobile Apps",
   },
   {
     id: 2,
-    icon:"icon",
+    icon: "icon",
     techname: "UI/UX",
   },
   {
     id: 3,
-    icon:"icon",
+    icon: "icon",
     techname: "Database/Data Warehouse",
   },
   {
     id: 4,
-    icon:"icon",
+    icon: "icon",
     techname: "Cloud/Infrastructure/DevOps",
   },
   {
     id: 5,
-    icon:"icon",
+    icon: "icon",
     techname: "Data Science/AI/ML",
   },
   {
     id: 6,
-    icon:"icon",
+    icon: "icon",
     techname: "Big Data/Analytics",
   },
-
 ];
-
 
 export const whyus = [
   {
@@ -181,7 +176,7 @@ export const whyus = [
   },
   {
     id: 3,
-    title: "Proactive searching",
+    title: "Proactive Searching",
     text: " We anticipate needs, cultivate relationships, and leverage them to have skillset-focused, pre-qualified CVs awaiting you in our database.",
     icon: "",
   },

@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from "react";
+import React, { Fragment, useContext, useRef } from "react";
 import Page from "../../../../components/common/Page";
 import BannerComponent from "../../../../components/common/BannerComponent";
 import {
@@ -31,7 +31,7 @@ const SectionContainer = styled("section")(({ theme }) => ({
   flexDirection: "column",
 
   [theme.breakpoints.between("xs", "md")]: {
-    width:'100%'
+    width: "100%",
   },
 
   [theme.breakpoints.up("xl")]: {},
@@ -78,7 +78,7 @@ const TextGridItem = styled(Grid)(({ theme }) => ({
 }));
 
 function Staffing() {
-   const Icondata = useContext(Icons);
+  const Icondata = useContext(Icons);
   const theme = useTheme();
   const Navigate = useNavigate();
   const Mobile = useMediaQuery((theme) =>
@@ -86,9 +86,21 @@ function Staffing() {
   );
   const Tab = useMediaQuery((theme) => theme.breakpoints.between("sm", "md"));
 
-  const handleNavigate = () => {
-    Navigate("/contact-us");
+  const Workforce = useRef(null);
+  const Directhire = useRef(null);
+  const Contract = useRef(null);
+
+  const scrolltoSection = (item) => {
+    console.log(item);
+    if (item === "workforce") {
+      Workforce.current.scrollIntoView({ behavior: "smooth" });
+    } else if (item === "directhire") {
+      Directhire.current.scrollIntoView({ behavior: "smooth" });
+    } else if (item === "contract") {
+      Contract.current.scrollIntoView({ behavior: "smooth" });
+    } else return;
   };
+
   return (
     <Fragment>
       <Page name="IT Staffing" pagename="Staffing Page" description="" />
@@ -139,14 +151,14 @@ function Staffing() {
                 key={item.id}
                 item
                 xs={11}
-                md={3}
+                md={3.3}
                 sx={{
                   p: 2,
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "space-evenly",
                   flexDirection: "column",
-                  height: "200px",
+                  height: "230px",
                   border: "1px solid lightgray",
                 }}
                 component={Card}
@@ -173,26 +185,128 @@ function Staffing() {
                     )
                   )}
                 </Stack>
-                <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+                <Typography
+                  variant="h5"
+                  gutterBottom
+                  sx={{
+                    fontWeight: "bold",
+                    textAlign: "center",
+                    width: "100%",
+                  }}
+                >
                   {item.title}
+                </Typography>
+                <Typography
+                  variant="h6"
+                  gutterBottom
+                  sx={{ fontWeight: "bold", cursor: "pointer" }}
+                  onClick={() => {
+                    scrolltoSection(item.knowmore);
+                  }}
+                >
+                  Know More
                 </Typography>
               </Grid>
             ))}
           </Grid>
-          {/* <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="space-evenly"
-          sx={{ width: "100%", height: "100px", bgcolor: "lightgray" }}
-        >
-          <Typography variant="h4" sx={{ fontWeight: "bold" }}>
-            Our 360-degree strategy ensures seamless integration, fostering
-            excellence, and unmatched client value
-          </Typography>
-          <Button variant="contained" onClick={handleNavigate}>
-            Contact us
-          </Button>
-        </Stack> */}
+
+          <Stack
+            direction="column"
+            alignContent="center"
+            justifyContent="center"
+            spacing={2}
+            sx={{ width: Mobile || Tab ? "90%" : "80%" }}
+          >
+            {CapabilitiesElobaration.map((item) => (
+              <Stack
+                key={item.id}
+                direction="column"
+                alignItems="center"
+                justifyContent="center"
+                spacing={2}
+                sx={{
+                  width: "100%",
+                  height: Mobile || Tab ? "auto" : "99vh",
+                  // border: "1px solid blue",
+                  py: 1,
+                }}
+                ref={
+                  item.title === "Workforce Consulting"
+                    ? Workforce
+                    : item.title === "Direct-hire Recruiting"
+                    ? Directhire
+                    : item.title === "Contract Staffing"
+                    ? Contract
+                    : null
+                }
+              >
+                <Typography
+                  variant="h4"
+                  sx={{ fontWeight: "bold", textAlign: "center" }}
+                >
+                  {item.title}
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    textAlign: "center",
+                    width: Mobile || Tab ? "100%" : "90%",
+                    textAlign: Mobile || Tab ? "justify" : "center",
+                  }}
+                >
+                  {item.text1}
+                </Typography>
+                <Typography
+                  variant="body1"
+                  gutterBottom
+                  sx={{
+                    textAlign: "center",
+                    width: Mobile || Tab ? "100%" : "80%",
+                  }}
+                >
+                  {item.text}
+                </Typography>
+
+                <Grid
+                  container
+                  columnGap={2}
+                  rowGap={2}
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "100%",
+                    marginTop: "20px",
+                  }}
+                >
+                  {item.list.map((item) => (
+                    <Card
+                      key={item.id}
+                      component={Grid}
+                      item
+                      xs={12}
+                      md={3.5}
+                      sx={{
+                        display: "flex",
+                        alignItems: "left",
+                        justifyContent: "space-evenly",
+                        flexDirection: "column",
+                        border: "1px solid lightgray",
+                        height: "150px",
+                        p: "10px",
+                      }}
+                    >
+                      <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+                        {item.title}
+                      </Typography>
+                      <Typography>{item.text}</Typography>
+                    </Card>
+                  ))}
+                </Grid>
+              </Stack>
+            ))}
+          </Stack>
+          {/*         
           <Stack
             direction="row"
             alignItems="center"
@@ -231,7 +345,7 @@ function Staffing() {
                 </TextGridItem>
               )
             )}
-          </Stack>
+          </Stack> */}
           <Stack
             direction="column"
             alignItems="center"
@@ -263,11 +377,28 @@ function Staffing() {
                     display: "flex",
                     alignItems: "left",
                     justifyContent: "space-around",
-                    height: Mobile || Tab ? "auto" : "180px",
+                    height: Mobile || Tab ? "auto" : "200px",
                     flexDirection: "column",
                     border: "1px solid lightgray",
                   }}
                 >
+                  <Stack
+                    direction="row"
+                    alignItems="center"
+                    justifyContent="center"
+                    sx={{ width: "50px", height: "50px" }}
+                  >
+                    {Icondata.filter((i) =>
+                      i.iconname === item.title
+                    ).map((i) => (
+                      <img
+                        key={i.iconname}
+                        style={{ maxHeight: "100%", maxWidth: "100%" }}
+                        alt={i.iconname}
+                        src={`data:image/png;base64,${i.icon}`}
+                      />
+                    ))}
+                  </Stack>
                   <Typography variant="h5" sx={{ fontWeight: "bold" }}>
                     {item.title}
                   </Typography>
@@ -291,7 +422,7 @@ function Staffing() {
 
             <Typography
               variant="body1"
-              sx={{ width: "80%", textAlign: "justify",p:1 }}
+              sx={{ width: "80%", textAlign: "justify", p: 1 }}
             >
               We specialise in providing complete full-stack app development
               solutions that are tailored to the specific demands of businesses
@@ -320,7 +451,7 @@ function Staffing() {
                     alignItems: "center",
                     justifyContent: "flex-start",
                     flexDirection: "column",
-                    gap:"10px"
+                    gap: "10px",
                   }}
                 >
                   <Stack
