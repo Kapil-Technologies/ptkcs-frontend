@@ -57,3 +57,41 @@ export const InforApproach = [
     text: "Recruiting and retaining a team of skilled professionals with expertise in Infor products, industry knowledge, and implementation best practices.",
   },
 ];
+
+export const InforImplementation = [
+  {
+    id: 1,
+    title: "Business Requirement Analysis ",
+    icon: "Requirement Analysis",
+  },
+  {
+    id: 2,
+    title: "Configuration & Extensibility ",
+    icon: "Configuration & Extensibility",
+  },
+  {
+    id: 3,
+    title: "Development of Custom Reports ",
+    icon: "Custom Reports",
+  },
+  {
+    id: 4,
+    title: "Key User Training ",
+    icon: "User Training",
+  },
+  {
+    id: 5,
+    title: "Live Data Migration ",
+    icon: "Data Migration",
+  },
+  {
+    id: 6,
+    title: "End-to-end Implementation Service ",
+    icon: "End-to-end Implementation",
+  },
+  {
+    id: 7,
+    title: "Post Live Support ",
+    icon: "Live Support",
+  },
+];

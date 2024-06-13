@@ -11,7 +11,7 @@ function CTA() {
   const { pathname } = useLocation();
   const Navigate = useNavigate();
   const dispatch = useDispatch();
-  console.log(pathname)
+  // console.log(pathname)
   const Mobile = useMediaQuery((theme) =>
     theme.breakpoints.between("xs", "sm")
   );

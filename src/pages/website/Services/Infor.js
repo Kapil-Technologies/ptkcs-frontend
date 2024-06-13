@@ -22,7 +22,11 @@ import Integrationcapabilities from "../../../sections/services/Infor/Integratio
 import LNInfor from "../../../sections/services/Infor/LNInfor";
 import Inforsyteline from "../../../sections/services/Infor/Inforsyteline";
 import BannerComponent from "../../../components/common/BannerComponent";
-import { InforApproach, InforServices } from "../../../mock/whatwedo/consulting/InforMock";
+import {
+  InforApproach,
+  InforImplementation,
+  InforServices,
+} from "../../../mock/whatwedo/consulting/InforMock";
 import { Icons } from "../../../App";
 
 const InforCustomers = [
@@ -256,10 +260,23 @@ function Infor() {
           direction="column"
           alignItems="center"
           justifyContent="center"
-          sx={{ width: "80%", px: "20px", pt: "10px", pb: "5px" }}
+          sx={{
+            width: Mobile ? "95%" : Tab ? "85%" : "80%",
+            px: Mobile ? "10xp" : Tab ? "15px" : "20px",
+            pt: "10px",
+            pb: "5px",
+          }}
           spacing={2}
         >
-          <Typography variant="h4" sx={{ fontWeight: "bold" }}>
+          <Typography
+            variant="h4"
+            sx={{
+              fontWeight: "bold",
+              textAlign: "center",
+              p: "3px",
+              width: "100%",
+            }}
+          >
             Why Choose Kapil Tech as your Infor Service Provider
           </Typography>
           <Typography
@@ -286,10 +303,12 @@ function Infor() {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              width: "100%",
             }}
           >
             {InforServices.map((item) => (
               <Card
+                key={item.id}
                 component={Grid}
                 item
                 xs={12}
@@ -332,7 +351,7 @@ function Infor() {
                 >
                   {item.title}
                 </Typography>
-                <Typography variant="body1" sx={{ textAlign: "justify", }}>
+                <Typography variant="body1" sx={{ textAlign: "justify" }}>
                   {item.text}
                 </Typography>
               </Card>
@@ -342,9 +361,9 @@ function Infor() {
           <Typography
             variant="h5"
             sx={{
-              fontWeight: "bold",
+              // fontWeight: "bold",
               textAlign: "center",
-              width: "70%",
+              width: Mobile || Tab ? "90%" : "70%",
               py: 2,
             }}
           >
@@ -359,10 +378,8 @@ function Infor() {
           </Typography>
 
           <Typography variant="h6" sx={{ width: "80%" }}>
-            BaaN ERP, Infor ERP LN & Cloud Suite, Infor ERP M3 and Infor ERP
-            CSI/Syteline capabilities for Infor ERP and Infor OS, Infor Supplier
-            Exchange, Infor Factory Track and Infor WMS capabilities for other
-            Infor services.
+            Our best approach involves several strategic steps to ensure
+            successful delivery, client satisfaction, and sustainable growth:
           </Typography>
           <Grid
             container
@@ -376,10 +393,11 @@ function Infor() {
           >
             {InforApproach.map((item) => (
               <Card
+                key={item.id}
                 component={Grid}
                 item
                 xs={12}
-                md={3.6}
+                md={3.8}
                 sx={{
                   display: "flex",
                   alignItems: "center",
@@ -420,6 +438,72 @@ function Infor() {
                 </Typography>
                 <Typography variant="body1" sx={{ textAlign: "left" }}>
                   {item.text}
+                </Typography>
+              </Card>
+            ))}
+          </Grid>
+
+          <Typography variant="h6" sx={{ width: "100%", textAlign: "center" }}>
+            Along with adopting a structured implementation methodology, staying
+            updated with Infor developments, measuring & showcasing ROI,
+            promoting innovation & digital transformation, and leveraging
+            analytics for continuous improvement.
+          </Typography>
+          <Typography
+            variant="h6"
+            sx={{ fontWeight: "bold", textAlign: "left", width: "80%" }}
+          >
+            Implementation Infor Methods :
+          </Typography>
+
+          <Grid
+            container
+            columnGap={2}
+            rowGap={2}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {InforImplementation.map((item) => (
+              <Card
+                key={item.id}
+                component={Grid}
+                item
+                xs={12}
+                sm={5}
+                md={3}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-evenly",
+                  flexDirection: "column",
+                  height: Mobile || Tab ? "180px" : "150px",
+                  border: "1px solid lightgray",
+                  p: "10px",
+                }}
+              >
+                <Stack
+                  direction="row"
+                  alignItems="center"
+                  justifyContent="center"
+                  sx={{ width: "40px", height: "40px" }}
+                >
+                  {Icondata.filter((i) => i.iconname === item.icon).map((i) => (
+                    <img
+                      key={i.iconname}
+                      style={{ maxHeight: "100%", maxWidth: "100%" }}
+                      alt={i.iconname}
+                      src={`data:image/png;base64,${i.icon}`}
+                    />
+                  ))}
+                </Stack>
+                <Typography
+                  variant="h6"
+                  sx={{ fontWeight: "bold", textAlign: "center" }}
+                >
+                  {item.title}
                 </Typography>
               </Card>
             ))}

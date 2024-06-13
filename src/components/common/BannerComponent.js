@@ -68,7 +68,7 @@ function BannerComponent({ mainheight, layercolor, textdispaly }) {
 
   const BannerData = useContext(Banners);
 
-  console.log(BannerData);
+  // console.log(BannerData);
 
   return (
     <MainContainer mheight={mainheight}>

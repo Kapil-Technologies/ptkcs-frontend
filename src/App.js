@@ -71,12 +71,12 @@ function App() {
   useEffect(() => {
     getBanners()
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         const respdata = res.data.response;
-        const filtereddata = respdata.filter(
+        const filtereddata = respdata ? respdata.filter(
           (item) => item.pagepath === pathname
-        );
-        console.log(filtereddata, "filterdata");
+        ) : [];
+        // console.log(filtereddata, "filterdata");
         setBanners(filtereddata);
       })
       .catch((err) => {
@@ -91,12 +91,12 @@ function App() {
   useEffect(() => {
     getIcons()
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         const respdata = res.data.response;
         const filtereddata = respdata.filter((item) =>
           item.pagepath.includes(pathname)
         );
-        console.log(filtereddata, "filterdata");
+        // console.log(filtereddata, "filterdata");
         setIcons(res.data.response);
       })
       .catch((err) => {
