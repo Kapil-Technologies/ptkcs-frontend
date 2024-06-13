@@ -298,10 +298,27 @@ function Staffing() {
                         justifyContent: "space-evenly",
                         flexDirection: "column",
                         border: "1px solid lightgray",
-                        height: "150px",
+                        height: "180px",
                         p: "10px",
                       }}
                     >
+                      <Stack
+                        direction="row"
+                        alignItems="center"
+                        justifyContent="center"
+                        sx={{ width: "40px", height: "40px" }}
+                      >
+                        {Icondata.filter((i) => i.iconname === item.title).map(
+                          (i) => (
+                            <img
+                              key={i.iconname}
+                              style={{ maxHeight: "100%", maxWidth: "100%" }}
+                              alt={i.iconname}
+                              src={`data:image/png;base64,${i.icon}`}
+                            />
+                          )
+                        )}
+                      </Stack>
                       <Typography variant="h6" sx={{ fontWeight: "bold" }}>
                         {item.title}
                       </Typography>
@@ -359,7 +376,10 @@ function Staffing() {
             spacing={2}
             sx={{ width: "100%", mb: "-5px", py: "10px" }}
           >
-            <Typography variant="h4" sx={{ fontWeight: "bold", px: 1,textAlign:'center' }}>
+            <Typography
+              variant="h4"
+              sx={{ fontWeight: "bold", px: 1, textAlign: "center" }}
+            >
               Why Choose Kapil Tech as your IT Staffing Services Company
             </Typography>
 

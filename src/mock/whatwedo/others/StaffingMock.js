@@ -30,7 +30,7 @@ export const CapabilitiesElobaration = [
     list: [
       {
         id: 1,
-        title: "Talent Acquisition ",
+        title: "Talent Acquisition",
         text: "Using advanced tactics and tools to locate and recruit top applicants",
       },
       {
@@ -50,7 +50,7 @@ export const CapabilitiesElobaration = [
       },
       {
         id: 5,
-        title: "Workforce Analytics:",
+        title: "Workforce Analytics",
         text: " Using data insights to improve workforce planning and decision-making.",
       },
     ],
