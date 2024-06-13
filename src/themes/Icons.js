@@ -142,7 +142,9 @@ export const IconDelete = styled(FiTrash)(({ theme, color }) => ({}));
 export const IconEdit = styled(FiEdit)(({ theme, color }) => ({}));
 // VscCircleFilled
 
-export const IconDot = styled(VscCircleFilled)(({ theme, color }) => ({}));
+export const IconDot = styled(VscCircleFilled)(({ theme, color,mt }) => ({
+  marginTop:mt
+}));
 export const IconStar = styled(FiStar)(({ theme, color }) => ({}));
 
 

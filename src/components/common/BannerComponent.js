@@ -68,21 +68,23 @@ function BannerComponent({ mainheight, layercolor, textdispaly }) {
 
   const BannerData = useContext(Banners);
 
-  // console.log(BannerData);
+  console.log(BannerData);
 
   return (
     <MainContainer mheight={mainheight}>
-      {BannerData.map((item) => (
-        <img
-          src={`data:image/png;base64,${item.banner}`}
-          alt={item.pagename}
-          style={{
-            width: "100%",
-            height:mainheight,
-            // objectFit: "contain",
-          }}
-        />
-      ))}
+      {BannerData.map((item) =>
+        item.pagepath === pathname || item.pagepath.includes(pathname) ? (
+          <img
+            key={item.pagename} // Assuming pagename is unique for each item
+            src={`data:image/png;base64,${item.banner}`}
+            alt={item.pagename}
+            style={{
+              width: "100%",
+              height: mainheight,
+            }}
+          />
+        ) : null
+      )}
       <Layer
         direction="column"
         alignItems="center"

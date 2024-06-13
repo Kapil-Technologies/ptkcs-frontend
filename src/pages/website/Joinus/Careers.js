@@ -26,6 +26,7 @@ import { useNavigate } from "react-router-dom";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import TablePaginationActions from "@mui/material/TablePagination/TablePaginationActions";
 import { CareersTable } from "../../../mock/TablesHead";
+import BannerComponent from "../../../components/common/BannerComponent";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   fontWeight: "bold",
@@ -77,6 +78,25 @@ function Careers() {
     setFilterData(data);
   };
 
+  const BannerText = () => {
+    return (
+      <Stack
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+        spacing={2}
+        component={motion.div}
+        initial={{ y: "30px" }}
+        animate={{ y: 0 }}
+        exit={{ y: "30px" }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        sx={{ textAlign: "center" }}
+      >
+        Text
+      </Stack>
+    );
+  };
+
   useEffect(() => {
     getPositions()
       .then((res) => {
@@ -95,34 +115,20 @@ function Careers() {
   }, []);
 
   const handleNavigate = (item) => {
-    Navigate(`/join-us/job-openings/${item.jobid}`);
+    Navigate(`/join-us/job-description/${item.jobid}`);
   };
   return (
     <Fragment>
       <Page name="Careers" pagename="Careers Page" description="" />
-      <MainContainer mainheight="500px">
-        <Layer
-          direction="column"
-          alignItems="center"
-          justifyContent="center"
-          layercolor={theme.palette.terinary.main}
-        >
-          <Stack
-            direction="column"
-            alignItems="center"
-            justifyContent="center"
-            spacing={2}
-            component={motion.div}
-            initial={{ y: "30px" }}
-            animate={{ y: 0 }}
-            exit={{ y: "30px" }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            sx={{ textAlign: "center" }}
-          >
-            Join Us
-          </Stack>
-        </Layer>
-      </MainContainer>
+      <BannerComponent
+        mainheight="500px"
+        layercolor={theme.palette.terinary.main}
+        // imagename={ }
+        // imagedata={}
+
+        textdispaly={<BannerText />}
+      />
+
       <Stack
         direction="column"
         alignItems="center"

@@ -11,7 +11,7 @@ function Hexabuild() {
       <Page name="Hexabuild" pagename="Hexabuild Page" description="" />
       <BannerComponent
         mainheight="500px"
-        layercolor={theme.palette.terinary.main}
+        layercolor="rgba(0,0,0,0.3)"
         textdispaly={
           <Stack
             direction="column"

@@ -44,12 +44,12 @@ function Contactus() {
       >
         <Typography
           variant={Mobile || Tab ? "h5" : "h4"}
-          sx={{ fontWeight: "bold", pt: "120px" }}
+          sx={{ fontWeight: "bold", pt: "120px",color:'white' }}
         >
           Get in Touch with us !
         </Typography>
 
-        <Typography variant="body1">
+        <Typography variant="body1" sx={{color:"white"}}>
           Stay Connected, Reach Out Today!
         </Typography>
       </Stack>
@@ -69,7 +69,7 @@ function Contactus() {
 
       <BannerComponent
         mainheight="500px"
-        layercolor={theme.palette.terinary.main}
+        layercolor="rgba(0,0,0,0.3)"
         // imagename={ }
         // imagedata={}
 

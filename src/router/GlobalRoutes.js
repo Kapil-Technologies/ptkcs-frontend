@@ -105,7 +105,7 @@ function GlobalRoutes() {
                   element: <Navigate to="join-us/search-jobs" exact replace />,
                 },
                 {
-                  path: "job-openings/:jobid",
+                  path: "job-description/:jobid",
                   element: <Jobdescription />,
                 },
                 {

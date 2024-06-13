@@ -30,7 +30,7 @@ const MainContainer = styled("header")(
     alignItems: "center",
     justifyContent: "space-between",
     width: "100%",
-    backgroundColor: hover ? theme.palette.primary.main : "transparent",
+    backgroundColor: hover ? theme.palette.primary.BlueSonki  : "transparent",
     position: "fixed",
     top: 0,
     zIndex: 99999,
@@ -40,7 +40,7 @@ const MainContainer = styled("header")(
     [theme.breakpoints.between("xs", "md")]: {
       // Mobile
       position: "relative",
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: theme.palette.primary.BlueSonki ,
     },
 
     [theme.breakpoints.between("md", "lg")]: {
@@ -224,7 +224,7 @@ const SubNavList = styled("ul")(({ theme, menuid }) => ({
   right: menuid ? 0 : null,
   width: menuid ? "100%" : "auto",
   background: theme.palette.primary.BlueSonki,
-  height: menuid ? "350px" : "auto",
+  height: menuid ? "300px" : "auto",
   padding: menuid ? "10px" : null,
 
   [theme.breakpoints.between("xs", "md")]: {

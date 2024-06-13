@@ -1,4 +1,4 @@
-import React, { Fragment, useRef } from "react";
+import React, { Fragment, useContext, useRef } from "react";
 import Page from "../../../components/common/Page";
 import { Layer, MainContainer } from "../../../sections/Banners/Home";
 import {
@@ -16,11 +16,19 @@ import { styled } from "@mui/material/styles";
 import Carousel from "../../../components/common/Carousel";
 import BannerComponent from "../../../components/common/BannerComponent";
 import {
+  SAPAMS,
   SAPofferings,
+  WAOptimization,
   WhychooseSAP,
   explaination,
 } from "../../../mock/whatwedo/consulting/SAPMock";
 import { useNavigate } from "react-router-dom";
+import { Icons } from "../../../App";
+import {
+  ImageGridItem,
+  TextGridItem,
+} from "./Otherservices/DigitalTransformation";
+import { IconDot } from "../../../themes/Icons";
 
 const SAPCustomers = [
   {
@@ -70,6 +78,8 @@ export const SectionContainer = styled("section")(({ theme, layercolor }) => ({
 
 function SAP() {
   const theme = useTheme();
+  const Icondata = useContext(Icons);
+
   const Navigate = useNavigate();
   const Mobile = useMediaQuery((theme) =>
     theme.breakpoints.between("xs", "sm")
@@ -126,7 +136,7 @@ function SAP() {
           alignItems="center"
           justifyContent="center"
           sx={{
-            width: Mobile || Tab ? "90%" : "80%",
+            width: Mobile || Tab ? "90%" : "85%",
             px: "20px",
             pt: "20px",
             pb: "5px",
@@ -292,32 +302,126 @@ function SAP() {
             // key={item.id}
             direction="column"
             alignItems="center"
-            justifyContent="flex-start"
+            justifyContent="center"
+            spacing={2}
             sx={{
               width: "100%",
               height: "99vh",
-              border: "1px solid blue",
+              // border: "1px solid blue",
             }}
             ref={Ams}
           >
             <Typography variant="h4" sx={{ fontWeight: "bold", mt: "10px" }}>
               SAP AMS
             </Typography>
+
+            <Typography variant="body1" sx={{ width: "95%" }}>
+              Aware of the importance of cost consciousness and value, we are
+              capable of delivering services that optimise efficacy without
+              requiring you to enter into problematic contracts. Our devoted
+              team implements long-term solutions designed to advance your
+              company.
+            </Typography>
+            <Typography variant="body1" sx={{ width: "95%" }}>
+              Technologies are only as good as the people who use them. By
+              choosing to work with an Application Management Services partner
+              like us, you will ensure peak performance of your SAP systems by
+              extending the capabilities of your team.
+            </Typography>
+            <Typography
+              variant="h6"
+              sx={{ textAlign: "center", width: "95%", fontWeight: "bold" }}
+            >
+              SAP AMS helps your business to:
+            </Typography>
+
+            <Grid
+              container
+              columnGap={1}
+              rowGap={1}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "100%",
+                marginTop: "20px",
+              }}
+            >
+              {SAPAMS.map((item) => (
+                <Card
+                  key={item.id}
+                  component={Grid}
+                  item
+                  xs={12}
+                  md={2.9}
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-evenly",
+                    flexDirection: "column",
+                    border: "1px solid lightgray",
+                    height: "180px",
+                    p: "10px",
+                  }}
+                >
+                  <Stack
+                    direction="row"
+                    alignItems="center"
+                    justifyContent="center"
+                    sx={{ width: "60px", height: "60px" }}
+                  >
+                    {Icondata.filter((i) => i.iconname === item.icon).map(
+                      (i) => (
+                        <img
+                          key={i.iconname}
+                          style={{ maxHeight: "100%", maxWidth: "100%" }}
+                          alt={i.iconname}
+                          src={`data:image/png;base64,${i.icon}`}
+                        />
+                      )
+                    )}
+                  </Stack>
+                  <Typography
+                    variant="h6"
+                    sx={{ fontWeight: "bold", textAlign: "center" }}
+                  >
+                    {item.title}
+                  </Typography>
+                </Card>
+              ))}
+            </Grid>
           </Stack>
           <Stack
             // key={item.id}
             direction="column"
             alignItems="center"
             justifyContent="flex-start"
+            spacing={2}
             sx={{
               width: "100%",
-              height:  "99vh",
+              height: "99vh",
             }}
             ref={Hana}
           >
             <Typography variant="h4" sx={{ fontWeight: "bold", mt: "10px" }}>
               SAP S/4 HANA
             </Typography>
+
+            <Typography variant="body1" sx={{ width: "80%" }}>
+              As the leading provider of SAP Consulting Services, we specialize
+              in delivering efficient implementation, rollout, upgrade, and
+              support. Our SAP S/4 HANA services are meticulously designed to
+              transform your system into a powerhouse of exceptional ERP
+              services. The best part? We do this without disrupting your
+              standard business operations, ensuring a seamless transition to
+              the future of digital ERP solutions.
+            </Typography>
+
+            <Typography variant="body1" sx={{ width: "80%" }}>
+              We provide SAP S4 HANA Consulting Services that are seamless and
+              optimised for SAP Business Suite processes:
+            </Typography>
+            
           </Stack>
           <Stack
             // key={item.id}
