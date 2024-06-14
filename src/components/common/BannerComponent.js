@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
-import { Box, Stack } from "@mui/material";
+import { Box, Stack, useMediaQuery } from "@mui/material";
 import { getBanners } from "../../api/GetRequests";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -61,6 +61,11 @@ function BannerComponent({ mainheight, layercolor, textdispaly }) {
 
   const domain = useSelector((state) => state.domain.domain);
 
+  const Mobile = useMediaQuery((theme) =>
+    theme.breakpoints.between("xs", "sm")
+  );
+  const Tab = useMediaQuery((theme) => theme.breakpoints.between("sm", "md"));
+
   // const [banners, setBanners] = useState([]);
 
   let imagedata;
@@ -95,7 +100,7 @@ function BannerComponent({ mainheight, layercolor, textdispaly }) {
             alt={item.pagename}
             style={{
               width: "100%",
-              maxHeight: mainheight,
+              maxHeight: Mobile || Tab ? "auto" : mainheight,
             }}
           />
         ) : null

@@ -24,23 +24,18 @@ function Leadership() {
   );
   const Tab = useMediaQuery((theme) => theme.breakpoints.between("sm", "md"));
 
-  const [name1, setname1] = useState([]);
-  const [name2, setname2] = useState("");
-
-  const handleName = (name) => {
-    const splitedName = name.split("-");
-    console.log(splitedName);
-    setname1(splitedName);
-  };
+  const [Loading, setLoading] = useState(false);
 
   const [team, setTeam] = useState([]);
 
   useEffect(() => {
-    getLeadership()
+    getLeadership();
+    setLoading(true)
       .then((res) => {
         console.log(res);
         const status = res.data.success;
         if (status === true) {
+          setLoading(false);
           setTeam(res.data.response);
         }
       })
@@ -59,9 +54,9 @@ function Leadership() {
         sx={{ width: "100%", marginTop: "80px", py: "10px" }}
         spacing={2}
       >
-       <MainHeading Heading="Our Leaders" />
+        <MainHeading Heading="Our Leaders" />
 
-        <Typography variant="h6" sx={{width:"85%"}}>
+        <Typography variant="h6" sx={{ width: "85%" }}>
           Each leader brings their own energy and expertise to Kapil
           Technologies that helps us achieve higher levels of success.
         </Typography>
