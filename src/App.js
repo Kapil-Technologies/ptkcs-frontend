@@ -22,7 +22,7 @@ import CTA from "./components/common/CTA";
 import ScrollToTop from "./components/common/ScrolltoTop";
 import GlobalScrolltotop from "./components/common/GlobalScrolltotop";
 import { getCountries } from "./api/Main";
-import { getBanners, getIcons } from "./api/GetRequests";
+import { getBanners, getIcons, getLogos } from "./api/GetRequests";
 
 // GlobalContext
 
@@ -33,6 +33,8 @@ export const Domain = createContext(null);
 export const Banners = createContext(null);
 
 export const Icons = createContext(null);
+
+export const KtechLogos = createContext(null);
 
 // --------------------------------------------------------   App
 
@@ -73,9 +75,9 @@ function App() {
       .then((res) => {
         // console.log(res);
         const respdata = res.data.response;
-        const filtereddata = respdata ? respdata.filter(
-          (item) => item.pagepath === pathname
-        ) : [];
+        const filtereddata = respdata
+          ? respdata.filter((item) => item.pagepath === pathname)
+          : [];
         // console.log(filtereddata, "filterdata");
         setBanners(filtereddata);
       })
@@ -104,6 +106,22 @@ function App() {
       });
   }, []);
 
+  // ------------------------------------------------------------- Icons
+
+  const [logos, setLogos] = useState([]);
+
+  useEffect(() => {
+    getLogos()
+      .then((res) => {
+        console.log(res);
+        const respdata = res.data.response;
+        setLogos(respdata);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   // ------------------------------------------------------------- Switch
 
   const [toggleSwitch, setToggleSwitch] = useState(false);
@@ -124,10 +142,11 @@ function App() {
                 <Domain.Provider value={hostname}>
                   <Banners.Provider value={banners}>
                     <Icons.Provider value={Iconsdata}>
-                      <GlobalRoutes />
+                      <KtechLogos.Provider value={logos}>
+                        <GlobalRoutes />
+                      </KtechLogos.Provider>
                     </Icons.Provider>
                   </Banners.Provider>
-                  {/* <GlobalRoutes /> */}
                 </Domain.Provider>
               </CountriesList.Provider>
               {condition ? null : <Footer />}

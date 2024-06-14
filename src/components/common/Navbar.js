@@ -24,13 +24,13 @@ import { NavData, Services, ServicesNew } from "../../mock/Navigations";
 // -----------------------------------------------------------------------------------
 
 const MainContainer = styled("header")(
-  ({ theme, hover, toggle, visibility }) => ({
+  ({ theme, hover, toggle, visibility,nobanner }) => ({
     height: "75px",
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
     width: "100%",
-    backgroundColor: hover ? theme.palette.primary.BlueSonki  : "transparent",
+    backgroundColor: hover || nobanner ? theme.palette.primary.BlueSonki : "transparent",
     position: "fixed",
     top: 0,
     zIndex: 99999,
@@ -40,7 +40,7 @@ const MainContainer = styled("header")(
     [theme.breakpoints.between("xs", "md")]: {
       // Mobile
       position: "relative",
-      backgroundColor: theme.palette.primary.BlueSonki ,
+      backgroundColor: theme.palette.primary.BlueSonki,
     },
 
     [theme.breakpoints.between("md", "lg")]: {
@@ -130,7 +130,7 @@ const MainNavList = styled("ul")(({ theme, Toggle }) => ({
 
   [theme.breakpoints.between("xs", "md")]: {
     top: "75px",
-    background: theme.palette.primary.main,
+    background: theme.palette.primary.BlueSonki,
     height: "calc(100vh - 75px)",
     width: "95%",
     margin: "auto",
@@ -428,6 +428,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 // -----------------------------------------------------------------------------------
 
 function Navbar({ Admin, ToggleTheme }) {
+  const {pathname} = useLocation()
   const [Menuid, setMenuid] = useState(0);
   // ------------------------------------------------------------- Media Quires
 
@@ -537,13 +538,16 @@ function Navbar({ Admin, ToggleTheme }) {
     setChecked(e.target.checked);
   };
 
+  const leadership = pathname === "/about-us/our-team";
+
   return (
     <MainContainer
       onMouseLeave={handleMouseLeaves}
       hover={(hover && condition) || scrolling}
       toggle={toggle || scrolling}
-      visibility={scrolling1}
+      visibility={isMobile || isTab ? null : scrolling1}
       className="MainNavbar"
+      nobanner={leadership}
     >
       <ResponsiveContainer onClick={handleToggle}>
         {toggle ? <IconClose /> : <IconMenu />}

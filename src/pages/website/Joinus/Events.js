@@ -45,8 +45,8 @@ function Events() {
     <Fragment>
       <Page name="Events" pagename="Events Page" description="" />
       <BannerComponent
-        mainheight="500px"
-        layercolor={theme.palette.terinary.main}
+        mainheight="560px"
+        layercolor="rgba(0,0,0,0.2)"
         textdispaly={
           <Stack
             direction="column"

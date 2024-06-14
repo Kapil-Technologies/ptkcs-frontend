@@ -13,6 +13,7 @@ export const MainContainer = styled(Box)(({ theme, mheight }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  marginBottom:"10px",
 
   [theme.breakpoints.between("xs", "sm")]: {
     //  mobile
@@ -80,7 +81,7 @@ function BannerComponent({ mainheight, layercolor, textdispaly }) {
             alt={item.pagename}
             style={{
               width: "100%",
-              height: mainheight,
+              maxHeight: mainheight,
             }}
           />
         ) : null

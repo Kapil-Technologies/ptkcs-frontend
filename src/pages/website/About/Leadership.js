@@ -50,40 +50,35 @@ function Leadership() {
   return (
     <Fragment>
       <Page name="Leadership" pagename="Leadership Page" description="" />
-      <MainContainer mainheight="300px">
-        <Layer
-          direction="column"
-          alignItems="center"
-          justifyContent="center"
-          layercolor={theme.palette.terinary.main}
-        >
-          <Stack
-            direction="column"
-            alignItems="center"
-            justifyContent="center"
-            spacing={2}
-            component={motion.div}
-            initial={{ y: "30px" }}
-            animate={{ y: 0 }}
-            exit={{ y: "30px" }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            sx={{ textAlign: "center" }}
-          >
-            LeaderShip
-          </Stack>
-        </Layer>
-      </MainContainer>
+
       <Stack
         direction="column"
         alignItems="center"
         justifyContent="start"
-        sx={{ width: "100%" }}
+        sx={{ width: "100%", marginTop: "80px", py: "10px" }}
+        spacing={2}
       >
+        <Typography
+          variant="h4"
+          sx={{
+            fontWeight: "bold",
+            color: "primary.main",
+            p: "5px",
+            width: "85%",
+          }}
+        >
+          Our Leaders
+        </Typography>
+
+        <Typography variant="h6" sx={{width:"85%"}}>
+          Each leader brings their own energy and expertise to Kapil
+          Technologies that helps us achieve higher levels of success.
+        </Typography>
         <Grid
           sx={{
-            width: "95%",
+            width: "90%",
             px: "15px",
-            py: "30px",
+            py: "10px",
             // border: "1px solid blue",
             direction: "row",
             alignItems: "center",
@@ -105,7 +100,7 @@ function Leadership() {
                   width: Mobile ? "100%" : "250px",
                   height: Mobile ? "auto" : "390px",
                   gap: "5px",
-                  border: "1px solid gray",
+                  border: "1px solid lightgray",
                   boxShadow: 3,
                   p: 1,
                 }}
