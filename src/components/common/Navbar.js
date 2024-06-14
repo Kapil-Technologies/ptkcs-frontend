@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link, NavLink, useLocation, useParams } from "react-router-dom";
 import {
@@ -20,17 +20,19 @@ import {
   IconUpArrow,
 } from "../../themes/Icons";
 import { NavData, Services, ServicesNew } from "../../mock/Navigations";
+import { KtechLogos } from "../../App";
 
 // -----------------------------------------------------------------------------------
 
 const MainContainer = styled("header")(
-  ({ theme, hover, toggle, visibility,nobanner }) => ({
+  ({ theme, hover, toggle, visibility, nobanner }) => ({
     height: "75px",
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
     width: "100%",
-    backgroundColor: hover || nobanner ? theme.palette.primary.BlueSonki : "transparent",
+    backgroundColor:
+      hover || nobanner ? theme.palette.primary.BlueSonki : "transparent",
     position: "fixed",
     top: 0,
     zIndex: 99999,
@@ -427,9 +429,10 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 }));
 // -----------------------------------------------------------------------------------
 
-function Navbar({ Admin, ToggleTheme }) {
-  const {pathname} = useLocation()
+function Navbar({ Admin, ToggleTheme, Logos }) {
+  const { pathname } = useLocation();
   const [Menuid, setMenuid] = useState(0);
+
   // ------------------------------------------------------------- Media Quires
 
   const isMobile = useMediaQuery((theme) =>
@@ -793,7 +796,21 @@ function Navbar({ Admin, ToggleTheme }) {
         justifyContent="center"
         sx={{ p: 2 }}
       >
-        <MaterialUISwitch checked={checked} onChange={handleChange} />
+        <Stack
+          direction="row"
+          alignItems="center"
+          justifyContent="center"
+          sx={{ width: "40px", height: "40px" }}
+        >
+          {Logos.filter((i) => i.pagepath === pathname).map((i) => (
+            <img
+              key={i.logoname}
+              style={{ maxHeight: "100%", maxWidth: "100%" }}
+              alt={i.logoname}
+              src={`data:image/png;base64,${i.logo}`}
+            />
+          ))}
+        </Stack>
       </Stack> */}
     </MainContainer>
   );

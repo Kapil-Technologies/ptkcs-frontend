@@ -13,6 +13,7 @@ import { motion } from "framer-motion";
 import { getLeadership } from "../../../api/GetRequests";
 import { Icons } from "../../../App";
 import { Link } from "react-router-dom";
+import MainHeading from "../../../components/common/MainHeading";
 
 function Leadership() {
   const Icondata = useContext(Icons);
@@ -58,17 +59,7 @@ function Leadership() {
         sx={{ width: "100%", marginTop: "80px", py: "10px" }}
         spacing={2}
       >
-        <Typography
-          variant="h4"
-          sx={{
-            fontWeight: "bold",
-            color: "primary.main",
-            p: "5px",
-            width: "85%",
-          }}
-        >
-          Our Leaders
-        </Typography>
+       <MainHeading Heading="Our Leaders" />
 
         <Typography variant="h6" sx={{width:"85%"}}>
           Each leader brings their own energy and expertise to Kapil

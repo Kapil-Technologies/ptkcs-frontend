@@ -13,7 +13,7 @@ export const MainContainer = styled(Box)(({ theme, mheight }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  marginBottom:"10px",
+  marginBottom: "10px",
 
   [theme.breakpoints.between("xs", "sm")]: {
     //  mobile
@@ -61,19 +61,33 @@ function BannerComponent({ mainheight, layercolor, textdispaly }) {
 
   const domain = useSelector((state) => state.domain.domain);
 
-  const [banners, setBanners] = useState([]);
+  // const [banners, setBanners] = useState([]);
 
   let imagedata;
 
   let imagename;
 
-  const BannerData = useContext(Banners);
+  const [banners, setBanners] = useState([]);
 
-  console.log(BannerData);
+  useEffect(() => {
+    getBanners()
+      .then((res) => {
+        // console.log(res);
+        const respdata = res.data.response;
+        const filtereddata = respdata
+          ? respdata.filter((item) => item.pagepath === pathname)
+          : [];
+        // console.log(filtereddata, "filterdata");
+        setBanners(filtereddata);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <MainContainer mheight={mainheight}>
-      {BannerData.map((item) =>
+      {banners.map((item) =>
         item.pagepath === pathname || item.pagepath.includes(pathname) ? (
           <img
             key={item.pagename} // Assuming pagename is unique for each item

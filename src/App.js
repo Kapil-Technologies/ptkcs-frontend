@@ -68,24 +68,6 @@ function App() {
 
   // ------------------------------------------------------------- Banners
 
-  const [banners, setBanners] = useState([]);
-
-  useEffect(() => {
-    getBanners()
-      .then((res) => {
-        // console.log(res);
-        const respdata = res.data.response;
-        const filtereddata = respdata
-          ? respdata.filter((item) => item.pagepath === pathname)
-          : [];
-        // console.log(filtereddata, "filterdata");
-        setBanners(filtereddata);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
   // ------------------------------------------------------------- Icons
 
   const [Iconsdata, setIcons] = useState([]);
@@ -137,16 +119,16 @@ function App() {
           <AnimatePresence>
             <div className="App">
               <ScrollToTop />
-              {condition ? null : <Navbar ToggleTheme={handleToggleSwitch} />}
+              {condition ? null : (
+                <Navbar ToggleTheme={handleToggleSwitch} Logos={logos} />
+              )}
               <CountriesList.Provider value={countries}>
                 <Domain.Provider value={hostname}>
-                  <Banners.Provider value={banners}>
-                    <Icons.Provider value={Iconsdata}>
-                      <KtechLogos.Provider value={logos}>
-                        <GlobalRoutes />
-                      </KtechLogos.Provider>
-                    </Icons.Provider>
-                  </Banners.Provider>
+                  <Icons.Provider value={Iconsdata}>
+                    <KtechLogos.Provider value={logos}>
+                      <GlobalRoutes />
+                    </KtechLogos.Provider>
+                  </Icons.Provider>
                 </Domain.Provider>
               </CountriesList.Provider>
               {condition ? null : <Footer />}
