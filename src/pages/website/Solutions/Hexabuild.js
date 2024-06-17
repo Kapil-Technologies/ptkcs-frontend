@@ -1,13 +1,27 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import Page from "../../../components/common/Page";
 import BannerComponent from "../../../components/common/BannerComponent";
-import { Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
+import {
+  Card,
+  Grid,
+  Stack,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { motion } from "framer-motion";
 import MainHeading from "../../../components/common/MainHeading";
 import Industries from "../../../sections/Homepage/Industries";
+import {
+  HexabuildApproach,
+  Hexabuildtask,
+  StartArray,
+} from "../../../mock/whatwedo/solutions/HexabuildMock";
+import { Icons } from "../../../App";
 
 function Hexabuild() {
   const theme = useTheme();
+  const Icondata = useContext(Icons);
   const Mobile = useMediaQuery((theme) =>
     theme.breakpoints.between("xs", "sm")
   );
@@ -32,7 +46,7 @@ function Hexabuild() {
             transition={{ duration: 0.5, delay: 0.1 }}
             sx={{ textAlign: "center", height: "inherit" }}
           >
-            Hexabuild
+          
           </Stack>
         }
       />
@@ -49,7 +63,7 @@ function Hexabuild() {
           alignItems="center"
           justifyContent="center"
           spacing={2}
-          sx={{ width: Mobile || Tab ? "90%" : "80%", p: "10px" }}
+          sx={{ width: Mobile || Tab ? "90%" : "80%", p: "5px" }}
         >
           <MainHeading Heading="Capabilities and Tech Stack" />
           <Typography variant="body1" sx={{ textAlign: "justify" }}>
@@ -72,7 +86,83 @@ function Hexabuild() {
             development- dotNet, and the database is Postgres.
           </Typography>
 
-          <p>List</p>
+          <Grid
+            container
+            columnGap={1}
+            rowGap={1}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "100%",
+              height: Mobile || Tab ? "auto" : "400px",
+              mb: "10px",
+            }}
+          >
+            {StartArray.map((item) => (
+              <Grid
+                key={item.id}
+                item
+                xs={11}
+                md={3.8}
+                sx={{
+                  p: 2,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-evenly",
+                  flexDirection: "column",
+                  height: "350px",
+                  border: "1px solid lightgray",
+                }}
+                component={Card}
+              >
+                <Stack
+                  direction="row"
+                  alignItems="center"
+                  justifyContent="left"
+                  sx={{
+                    p: 1,
+                    fontWeight: "bold",
+                    width: "40px",
+                    height: "40px",
+                  }}
+                >
+                  {Icondata.filter((i) => i.iconname === item.title).map(
+                    (i) => (
+                      <img
+                        key={i.iconname}
+                        style={{ maxHeight: "100%", maxWidth: "100%" }}
+                        alt={i.iconname}
+                        src={`data:image/png;base64,${i.icon}`}
+                      />
+                    )
+                  )}
+                </Stack>
+                <Typography
+                  variant="h5"
+                  gutterBottom
+                  sx={{
+                    fontWeight: "bold",
+                    textAlign: "center",
+                    width: "100%",
+                  }}
+                >
+                  {item.title}
+                </Typography>
+
+                <Typography
+                  variant="body1"
+                  gutterBottom
+                  sx={{
+                    textAlign: "justify",
+                    width: "100%",
+                  }}
+                >
+                  {item.text}
+                </Typography>
+              </Grid>
+            ))}
+          </Grid>
 
           <Typography
             variant="body1"
@@ -85,11 +175,125 @@ function Hexabuild() {
             utilised effectively in routine tasks such as
           </Typography>
 
-          <p>List</p>
+          <Grid
+            container
+            columnGap={1}
+            rowGap={1}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "100%",
+              height: Mobile || Tab ? "auto" : "auto",
+              mb: "10px",
+            }}
+          >
+            {Hexabuildtask.map((item) => (
+              <Grid
+                key={item.id}
+                item
+                xs={11}
+                md={3.8}
+                sx={{
+                  p: 2,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-evenly",
+                  flexDirection: "column",
+                  height: "200px",
+                  border: "1px solid lightgray",
+                }}
+                component={Card}
+              >
+                <Stack
+                  direction="row"
+                  alignItems="center"
+                  justifyContent="left"
+                  sx={{
+                    p: 1,
+                    fontWeight: "bold",
+                    width: "60px",
+                    height: "60px",
+                  }}
+                >
+                  {Icondata.filter((i) => i.iconname === item.icon).map((i) => (
+                    <img
+                      key={i.iconname}
+                      style={{ maxHeight: "100%", maxWidth: "100%" }}
+                      alt={i.iconname}
+                      src={`data:image/png;base64,${i.icon}`}
+                    />
+                  ))}
+                </Stack>
+                <Typography
+                  variant="h5"
+                  gutterBottom
+                  sx={{
+                    fontWeight: "bold",
+                    textAlign: "center",
+                    width: "100%",
+                  }}
+                >
+                  {item.title}
+                </Typography>
+              </Grid>
+            ))}
+          </Grid>
 
           <MainHeading Heading="Our Approach" />
 
-          <p>List</p>
+          <Grid
+            container
+            columnGap={2}
+            rowGap={2}
+            sx={{
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {HexabuildApproach.map((item) => (
+              <Card
+                key={item.id}
+                component={Grid}
+                xs={12}
+                md={10}
+                sx={{
+                  border: "1px solid lightgray",
+                  display: "flex",
+                  alignItems: "left",
+                  justifyContent: "space-between",
+                  flexDirection: "column",
+                  p: 2,
+                  height: "auto",
+                  gap: "10px",
+                }}
+              >
+                <Stack
+                  direction="row"
+                  alignItems="center"
+                  justifyContent="center"
+                  sx={{
+                    p: 1,
+                    bgcolor: "primary.BlueSonki",
+                    width: Mobile || Tab ? "30%" : "10%",
+                    borderRadius: "10px",
+                  }}
+                >
+                  <Typography
+                    variant="h5"
+                    sx={{ color: "white", fontWeight: "bold" }}
+                  >
+                    {item.step}
+                  </Typography>
+                </Stack>
+                <Typography variant="body1" sx={{ textAlign: "justify" }}>
+                  {item.text}
+                </Typography>
+              </Card>
+            ))}
+          </Grid>
 
           <MainHeading Heading="Industry Focus" />
 

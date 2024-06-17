@@ -29,28 +29,28 @@ export const Hexabuildtask = [
   },
   {
     id: 2,
-    icon: "Document Management ",
-    title: "Document Management ",
+    icon: "Document Management",
+    title: "Document Management",
   },
   {
     id: 3,
-    icon: "Reporting ",
-    title: "Reporting ",
+    icon: "Reporting",
+    title: "Reporting",
   },
   {
     id: 4,
-    icon: "System Integration ",
-    title: "System Integration ",
+    icon: "System Integration",
+    title: "System Integration",
   },
   {
     id: 5,
-    icon: "Mobile Compatibility ",
-    title: "Mobile Compatibility ",
+    icon: "Mobile Compatibility",
+    title: "Mobile Compatibility",
   },
   {
     id: 5,
-    icon: "Resource Management ",
-    title: "Resource Management ",
+    icon: "Resource Management",
+    title: "Resource Management",
   },
   {
     id: 6,
@@ -59,23 +59,41 @@ export const Hexabuildtask = [
   },
   {
     id: 7,
-    icon: "Project Tracking ",
-    title: "Project Tracking ",
+    icon: "Project Tracking",
+    title: "Project Tracking",
   },
   {
     id: 8,
-    icon: "Work order and Bill of Quality Management ",
-    title: "Work order and Bill of Quality Management ",
+    icon: "Work order and Bill of Quality Management",
+    title: "Work order and Bill of Quality Management",
   },
   {
     id: 9,
-    icon: "Revenue booking and Monitoring ",
-    title: "Revenue booking and Monitoring ",
+    icon: "Revenue booking and Monitoring",
+    title: "Revenue booking and Monitoring",
   },
   {
     id: 10,
-    icon: "Customer Relationship Management ",
-    title: "Customer Relationship Management ",
+    icon: "Customer Relationship Management",
+    title: "Customer Relationship Management",
   },
  
+];
+
+export const HexabuildApproach = [
+  {
+    id: 1,
+    step: "Step 1",
+    text: "Our approach to project implementation is a hybrid one, which incorporates appropriate elements of both the Scrum/Agile method and traditional waterfall when necessary.",
+  },
+  {
+    id: 2,
+    step: "Step 2",
+    text: "In order to fully comprehend the distinct needs of every customer, we adopt a holistic methodology. Our procedure commences with comprehensive consultations to acquire profound insights regarding their particular requirements, obstacles, and objectives.",
+  },
+  {
+    id: 3,
+    step: "Step 3",
+    text: "We ensure that we have a comprehensive understanding of our clients' expectations and business goals by actively interacting with them. We provide the client with a tangible demonstration of our solution's capabilities and enable them to observe its potential benefits firsthand through the execution of POC.",
+  },
 ];
