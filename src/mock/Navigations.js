@@ -152,13 +152,13 @@ export const NavData = [
             title:
               "Testing Services  (IVV – Independent Verification & Validation)",
             icon: <FiArrowDownRight />,
-              path: "/other-services/taas",
+            path: "/other-services/taas",
           },
           {
             id: 4,
             title: "Technology Training Services",
             icon: <FiArrowDownRight />,
-              path: "/other-services/technology-training-services",
+            path: "/other-services/technology-training-services",
           },
         ],
       },
@@ -202,9 +202,6 @@ export const ServicesNew = [
     id: 1,
     title: "Consulting",
     submenul3: 1,
-    openicon: <IconUpArrow />,
-    closeicon: <IconDownArrow />,
-    icon: <IconArrowRight />,
     submenu: [
       {
         id: 1,
@@ -232,8 +229,8 @@ export const ServicesNew = [
       },
       {
         id: 5,
-        title: "Microsoft Dynamics Consulting",
-        path: "/consulting/microsoft-dynamics",
+        title: "Microsoft Business Central",
+        path: "/consulting/microsoft-dynamics-business-central",
         icon: <FiArrowDownRight />,
       },
     ],
@@ -243,9 +240,6 @@ export const ServicesNew = [
     id: 2,
     title: "Products",
     submenul3: 2,
-    openicon: <IconUpArrow />,
-    closeicon: <IconDownArrow />,
-    icon: <IconArrowRight />,
     submenu: [
       {
         id: 1,
@@ -257,25 +251,25 @@ export const ServicesNew = [
         id: 2,
         title: "Finsta",
         icon: <FiArrowDownRight />,
-        path: "/solutions/finstaa",
+        path: "/products/finstaa",
       },
       {
         id: 3,
         title: "Odoo",
         icon: <FiArrowDownRight />,
-        path: "/solutions/odoo",
+        path: "/products/odoo",
       },
       {
         id: 4,
         title: "Hexabuild",
         icon: <FiArrowDownRight />,
-        path: "/solutions/hexabuild",
+        path: "/products/hexabuild",
       },
       {
         id: 5,
         title: "IFCA",
         icon: <FiArrowDownRight />,
-        path: "/solutions/ifca",
+        path: "/products/ifca",
       },
     ],
   },
@@ -284,9 +278,6 @@ export const ServicesNew = [
     id: 3,
     title: "Other Services",
     submenul3: 3,
-    openicon: <IconUpArrow />,
-    closeicon: <IconDownArrow />,
-    icon: <IconArrowRight />,
     submenu: [
       {
         id: 1,
@@ -300,6 +291,7 @@ export const ServicesNew = [
         icon: <FiArrowDownRight />,
         path: "/other-services/it-staffing",
       },
+
       {
         id: 3,
         title:

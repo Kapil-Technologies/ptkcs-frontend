@@ -7,6 +7,14 @@ function MainHeading({ Heading }) {
   );
   const Tab = useMediaQuery((theme) => theme.breakpoints.between("sm", "md"));
 
+  const large = useMediaQuery((theme) => theme.breakpoints.between("md", "lg"));
+
+  const xtralarge = useMediaQuery((theme) =>
+    theme.breakpoints.between("lg", "xl")
+  );
+
+  const xxtralarge = useMediaQuery((theme) => theme.breakpoints.up("xl"));
+
   return (
     <Stack
       direction="column"
@@ -15,8 +23,20 @@ function MainHeading({ Heading }) {
       justifyContent="center"
     >
       <Typography
-        variant={Mobile || Tab ? "h5" : "h4"}
-        sx={{ fontWeight: "bold", color: "primary.main" }}
+        variant={
+          Mobile
+            ? "h6"
+              ? Tab
+                ? "h5"
+                : large
+                ? "h4"
+                : xtralarge
+                ? "h3"
+                : xxtralarge
+              : "h2"
+            : "h4"
+        }
+        sx={{ fontWeight: "bold", color: "primary.main", width: "100%" }}
       >
         {Heading}
       </Typography>
