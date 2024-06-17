@@ -32,6 +32,7 @@ export const MainContainer = styled(Box)(({ theme, mheight }) => ({
   [theme.breakpoints.up("xl")]: {
     // Desktop
     width: "100%",
+    height: "600px",
   },
 }));
 
@@ -65,6 +66,8 @@ function BannerComponent({ mainheight, layercolor, textdispaly }) {
     theme.breakpoints.between("xs", "sm")
   );
   const Tab = useMediaQuery((theme) => theme.breakpoints.between("sm", "md"));
+
+  const xxstralarge = useMediaQuery((theme) => theme.breakpoints.up("xl"));
 
   // const [banners, setBanners] = useState([]);
 
@@ -100,7 +103,8 @@ function BannerComponent({ mainheight, layercolor, textdispaly }) {
             alt={item.pagename}
             style={{
               width: "100%",
-              height: Mobile || Tab ? "250px" : mainheight,
+              height:
+                Mobile || Tab ? "250px" : xxstralarge ? "600px" : mainheight,
             }}
           />
         ) : null
