@@ -25,6 +25,7 @@ import { Icons } from "../../../../App";
 import { enquiryfrom, isNavigated } from "../../../../redux/slices/Enquiry";
 import { Paths } from "../../../../config";
 import { useDispatch } from "react-redux";
+import MainHeading from "../../../../components/common/MainHeading";
 
 const SectionContainer = styled("section")(({ theme }) => ({
   width: "90%",
@@ -84,12 +85,14 @@ const TextGridItem = styled(Grid)(({ theme }) => ({
 function Staffing() {
   const Icondata = useContext(Icons);
   const theme = useTheme();
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const Navigate = useNavigate();
   const Mobile = useMediaQuery((theme) =>
     theme.breakpoints.between("xs", "sm")
   );
   const Tab = useMediaQuery((theme) => theme.breakpoints.between("sm", "md"));
+
+  const xl = useMediaQuery((theme) => theme.breakpoints.up("xl"));
 
   const Workforce = useRef(null);
   const Directhire = useRef(null);
@@ -235,7 +238,10 @@ function Staffing() {
                 <Typography
                   variant="h6"
                   gutterBottom
-                  sx={{ fontWeight: "bold", cursor: "pointer" }}
+                  sx={{
+                    fontWeight: "bold", cursor: "pointer", "&:hover": {
+                    textDecoration:'underline'
+                  } }}
                   onClick={() => {
                     scrolltoSection(item.knowmore);
                   }}
@@ -262,7 +268,7 @@ function Staffing() {
                 spacing={2}
                 sx={{
                   width: "100%",
-                  height: Mobile || Tab ? "auto" : "99vh",
+                  height: Mobile || Tab ? "auto" : xl ? "75vh" : "99vh",
                   // border: "1px solid blue",
                   py: 1,
                 }}
@@ -276,12 +282,8 @@ function Staffing() {
                     : null
                 }
               >
-                <Typography
-                  variant="h4"
-                  sx={{ fontWeight: "bold", textAlign: "center" }}
-                >
-                  {item.title}
-                </Typography>
+                <MainHeading Heading={item.title} />
+
                 <Typography
                   variant="body1"
                   sx={{
@@ -406,12 +408,7 @@ function Staffing() {
             spacing={2}
             sx={{ width: "100%", mb: "-5px", py: "10px" }}
           >
-            <Typography
-              variant="h4"
-              sx={{ fontWeight: "bold", px: 1, textAlign: "center" }}
-            >
-              Why Choose Kapil Tech as your IT Staffing Services Company
-            </Typography>
+            <MainHeading Heading="Why Us ?" />
 
             <Typography variant="body1" sx={{ px: 1, textAlign: "justify" }}>
               We harness the power of people to create a workforce that
@@ -472,9 +469,7 @@ function Staffing() {
             spacing={1}
             sx={{ width: "100%", mb: "-5px", py: "10px" }}
           >
-            <Typography variant="h4" sx={{ fontWeight: "bold" }}>
-              Technology Stack
-            </Typography>
+            <MainHeading Heading="Technology Stack" />
 
             <Typography
               variant="body1"
@@ -540,9 +535,7 @@ function Staffing() {
             spacing={2}
             sx={{ width: "100%", py: "10px" }}
           >
-            <Typography variant="h4" sx={{ fontWeight: "bold" }}>
-              Kapil Tech Staffing Approach
-            </Typography>
+            <MainHeading Heading="Our Approach" />
             <Typography
               variant="body1"
               sx={{
