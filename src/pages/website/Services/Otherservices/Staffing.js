@@ -22,6 +22,8 @@ import {
 } from "../../../../mock/whatwedo/others/StaffingMock";
 import { IconDot } from "../../../../themes/Icons";
 import { Icons } from "../../../../App";
+import { enquiryfrom, isNavigated } from "../../../../redux/slices/Enquiry";
+import { Paths } from "../../../../config";
 
 const SectionContainer = styled("section")(({ theme }) => ({
   width: "90%",
@@ -91,6 +93,13 @@ function Staffing() {
   const Directhire = useRef(null);
   const Contract = useRef(null);
 
+  const handleNavigate = () => {
+    // console.log(pagename, navigate);
+    dispatch(enquiryfrom("Staffing"));
+    dispatch(isNavigated("Yes"));
+    Navigate(Paths.contactus);
+  };
+
   const scrolltoSection = (item) => {
     console.log(item);
     if (item === "workforce") {
@@ -107,21 +116,40 @@ function Staffing() {
       <Page name="IT Staffing" pagename="Staffing Page" description="" />
       <BannerComponent
         mainheight="500px"
-        layercolor={theme.palette.terinary.main}
+        layercolor="rgba(0,0,0,0.2)"
         textdispaly={
           <Stack
             direction="column"
-            alignItems="center"
+            alignItems="flex-start"
             justifyContent="center"
-            spacing={2}
+            spacing={1}
             component={motion.div}
             initial={{ y: "30px" }}
             animate={{ y: 0 }}
             exit={{ y: "30px" }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            sx={{ textAlign: "center", height: "inherit" }}
+            sx={{ textAlign: "left", height: "inherit", padding: "20px" }}
           >
-            Staffing
+            <Typography
+              variant={Mobile || Tab ? "body2" : "h4"}
+              sx={{
+                fontWeight: "bold",
+                width: Mobile || Tab ? "60%" : "50%",
+
+                color: "primary.main",
+              }}
+            >
+              Redefine workforce consulting with Talent acquisition and
+              Management strategies that boost efficiency.
+            </Typography>
+
+            <Button
+              variant="contained"
+              sx={{ bgcolor: "primary.BlueSonki" }}
+              onClick={handleNavigate}
+            >
+              Contact us
+            </Button>
           </Stack>
         }
       />

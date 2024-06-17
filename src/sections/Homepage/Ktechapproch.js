@@ -23,7 +23,7 @@ function Ktechapproch() {
         sx={{ fontWeight: "bold", textAlign: "center" }}
         gutterBottom
       >
-        Kapil Tech Approch
+        Kapil Tech Approach
       </Typography>
       <Stack
         direction="row"

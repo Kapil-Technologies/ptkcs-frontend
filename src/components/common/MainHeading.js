@@ -1,7 +1,12 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography, useMediaQuery } from "@mui/material";
 import React from "react";
 
 function MainHeading({ Heading }) {
+  const Mobile = useMediaQuery((theme) =>
+    theme.breakpoints.between("xs", "sm")
+  );
+  const Tab = useMediaQuery((theme) => theme.breakpoints.between("sm", "md"));
+
   return (
     <Stack
       direction="column"
@@ -10,7 +15,7 @@ function MainHeading({ Heading }) {
       justifyContent="center"
     >
       <Typography
-        variant="h4"
+        variant={Mobile || Tab ? "h5" : "h4"}
         sx={{ fontWeight: "bold", color: "primary.main" }}
       >
         {Heading}

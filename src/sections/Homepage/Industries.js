@@ -89,9 +89,10 @@ export const MainAccordianContainer = styled(Card)(({ theme, expand }) => ({
 export const TextContainer = styled(Stack)(({ theme, expand }) => ({
   // p: 1,
   position: expand ? "absolute" : "absolute",
-  bottom: expand ? "30px" : 0,
+  bottom: expand ? "30px" : "40px",
   left: expand ? "30px" : 0,
   right: 0,
+  top: expand ? null : "50px",
   transform: !expand ? "rotate(270deg)" : null,
   // border: "1px solid blue",
   width: expand ? null : "100%",
@@ -178,7 +179,7 @@ function Industries() {
         height: Mobile || Tab ? "auto" : "300px",
         // border: "1px solid lightgray",
         position: "relative",
-        py:1
+        py: 1,
       }}
     >
       {IndustryData.map((item, index) => (
@@ -190,18 +191,18 @@ function Industries() {
           <TextContainer
             direction={expanded !== item.id ? "row" : "column"}
             alignItems={expanded !== item.id ? "center" : "left"}
-            justifyContent={expanded !== item.id ? "space-between" : "left"}
+            justifyContent={expanded !== item.id ? "flex-end" : "left"}
             spacing={expanded !== item.id ? 5 : 2}
             expand={expanded === item.id}
           >
             <Stack
               direction="column"
               alignItems="left"
-              justifyContent="space-evenly"
+              justifyContent="center"
               sx={
                 {
                   // p: 1,
-                  // border:'1px solid blue'
+                  // border:'1px solid blue',
                 }
               }
             >
@@ -211,9 +212,21 @@ function Industries() {
                 <IconArrowTop font="25px" />
               )}
             </Stack>
-            <Typography variant="h6" sx={{ fontWeight: "bold", width: "100%" }}>
-              Industry Name
-            </Typography>
+            {expanded === item.id ? (
+              <Typography
+                variant="h6"
+                sx={{ fontWeight: "bold", width: "100%" }}
+              >
+                Industry Name
+              </Typography>
+            ) : (
+              <Typography
+                variant="h6"
+                sx={{ fontWeight: "bold", width: "100%" }}
+              >
+                Aerospace
+              </Typography>
+            )}
           </TextContainer>
         </MainAccordianContainer>
       ))}

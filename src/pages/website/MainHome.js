@@ -90,6 +90,50 @@ const ComplemetryPatners = [
   },
 ];
 
+const Industriesdetails = [
+  {
+    id: 1,
+    industryname: "",
+    industrytagline: "",
+    induscolor: "",
+    servicesprovidedfor: "",
+    industryimage: "",
+    displayimage: "Yes",
+  },
+  {
+    id: 2,
+    industryname: "",
+    industrytagline: "",
+    induscolor: "",
+    servicesprovidedfor: "",
+    industryimage: "",
+  },
+  {
+    id: 3,
+    industryname: "",
+    industrytagline: "",
+    induscolor: "",
+    servicesprovidedfor: "",
+    industryimage: "",
+  },
+  {
+    id: 4,
+    industryname: "",
+    industrytagline: "",
+    induscolor: "",
+    servicesprovidedfor: "",
+    industryimage: "",
+  },
+  {
+    id: 5,
+    industryname: "",
+    industrytagline: "",
+    induscolor: "",
+    servicesprovidedfor: "",
+    industryimage: "",
+  },
+];
+
 function MainHome() {
   const domain = useSelector((state) => state.domain.domain);
   const Mobile = useMediaQuery((theme) =>
@@ -125,15 +169,13 @@ function MainHome() {
           const data = res.data.response;
           // console.log(data)
 
-          const domainArray = data.map((item)=>item.domain); // Replace with your domain array
+          const domainArray = data.map((item) => item.domain); // Replace with your domain array
           const filteredData = data.filter((item) => {
-            return (
-              item.domain.includes(domain) && item.logotype === "Partner"
-            );
+            return item.domain.includes(domain) && item.logotype === "Partner";
           });
-                  
+
           console.log(filteredData);
-          setPartnersList(filteredData)
+          setPartnersList(filteredData);
         }
       })
       .catch((err) => {
@@ -141,7 +183,7 @@ function MainHome() {
       });
   }, []);
 
-  console.log(partnerslist)
+  console.log(partnerslist);
 
   return (
     <Fragment>
@@ -158,7 +200,7 @@ function MainHome() {
         carouselImages={partnerslist}
       /> */}
       <Servicesweprovide />
-      <Industries />
+      <Industries IndustryData={Industriesdetails} />
       <Stack
         direction="row"
         alignItems="center"

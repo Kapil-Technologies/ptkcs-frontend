@@ -52,7 +52,7 @@ export const Layer = styled(Stack)(({ theme, lcolor }) => ({
   backgroundColor: lcolor,
 
   [theme.breakpoints.between("xs", "md")]: {
-    //  mobile
+    height: "100%",
   },
 }));
 
