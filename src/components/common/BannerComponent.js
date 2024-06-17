@@ -17,7 +17,7 @@ export const MainContainer = styled(Box)(({ theme, mheight }) => ({
 
   [theme.breakpoints.between("xs", "sm")]: {
     //  mobile
-    height: "auto",
+    height: "250px",
     width: "100%",
   },
 
@@ -100,7 +100,7 @@ function BannerComponent({ mainheight, layercolor, textdispaly }) {
             alt={item.pagename}
             style={{
               width: "100%",
-              maxHeight: Mobile || Tab ? "auto" : mainheight,
+              height: Mobile || Tab ? "250px" : mainheight,
             }}
           />
         ) : null

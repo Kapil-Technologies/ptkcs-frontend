@@ -232,7 +232,7 @@ const SubNavList = styled("ul")(({ theme, menuid }) => ({
   [theme.breakpoints.between("xs", "md")]: {
     position: "relative",
     top: "5px",
-    background: theme.palette.primary.main,
+    background: theme.palette.primary.BlueSonki,
     width: "100%",
     left: "-10px",
   },

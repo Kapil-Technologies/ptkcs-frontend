@@ -24,6 +24,7 @@ import { IconDot } from "../../../../themes/Icons";
 import { Icons } from "../../../../App";
 import { enquiryfrom, isNavigated } from "../../../../redux/slices/Enquiry";
 import { Paths } from "../../../../config";
+import { useDispatch } from "react-redux";
 
 const SectionContainer = styled("section")(({ theme }) => ({
   width: "90%",
@@ -83,6 +84,7 @@ const TextGridItem = styled(Grid)(({ theme }) => ({
 function Staffing() {
   const Icondata = useContext(Icons);
   const theme = useTheme();
+    const dispatch = useDispatch();
   const Navigate = useNavigate();
   const Mobile = useMediaQuery((theme) =>
     theme.breakpoints.between("xs", "sm")
