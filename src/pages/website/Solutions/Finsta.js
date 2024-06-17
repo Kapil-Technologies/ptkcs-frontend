@@ -11,7 +11,7 @@ function Finsta() {
       <Page name="Finsta" pagename="Finsta Page" description="" />
       <BannerComponent
         mainheight="500px"
-        layercolor={theme.palette.terinary.main}
+        layercolor="rgba()"
         textdispaly={
           <Stack
             direction="column"
@@ -24,9 +24,7 @@ function Finsta() {
             exit={{ y: "30px" }}
             transition={{ duration: 0.5, delay: 0.1 }}
             sx={{ textAlign: "center", height: "inherit" }}
-          >
-            Finsta
-          </Stack>
+          ></Stack>
         }
       />
     </Fragment>

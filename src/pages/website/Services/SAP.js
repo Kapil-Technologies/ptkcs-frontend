@@ -29,6 +29,7 @@ import {
   TextGridItem,
 } from "./Otherservices/DigitalTransformation";
 import { IconDot } from "../../../themes/Icons";
+import IconComponent from "../../../components/common/IconComponent";
 
 const SAPCustomers = [
   {
@@ -364,23 +365,7 @@ function SAP() {
                     p: "10px",
                   }}
                 >
-                  <Stack
-                    direction="row"
-                    alignItems="center"
-                    justifyContent="center"
-                    sx={{ width: "60px", height: "60px" }}
-                  >
-                    {Icondata.filter((i) => i.iconname === item.icon).map(
-                      (i) => (
-                        <img
-                          key={i.iconname}
-                          style={{ maxHeight: "100%", maxWidth: "100%" }}
-                          alt={i.iconname}
-                          src={`data:image/png;base64,${i.icon}`}
-                        />
-                      )
-                    )}
-                  </Stack>
+                  <IconComponent title={item.icon} size="50px" />
                   <Typography
                     variant="h6"
                     sx={{ fontWeight: "bold", textAlign: "center" }}
@@ -421,7 +406,6 @@ function SAP() {
               We provide SAP S4 HANA Consulting Services that are seamless and
               optimised for SAP Business Suite processes:
             </Typography>
-            
           </Stack>
           <Stack
             // key={item.id}

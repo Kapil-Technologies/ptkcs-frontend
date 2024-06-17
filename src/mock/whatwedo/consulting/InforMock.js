@@ -41,7 +41,7 @@ export const InforApproach = [
   {
     id: 1,
     title: "Understanding Client Needs",
-    icon: "Client Need",
+    icon: "Client Needs",
     text: "A thorough needs assessment to identify the best Infor solutions that align with the client's requirements.",
   },
   {

@@ -113,7 +113,7 @@ function BannerComponent({ mainheight, layercolor, textdispaly }) {
         direction="column"
         alignItems="center"
         justifyContent="start"
-        lcolor={layercolor}
+        lcolor="rgba(0,0,0,0.25)"
       >
         {textdispaly}
       </Layer>

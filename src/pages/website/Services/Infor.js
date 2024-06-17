@@ -28,6 +28,7 @@ import {
   InforServices,
 } from "../../../mock/whatwedo/consulting/InforMock";
 import { Icons } from "../../../App";
+import IconComponent from "../../../components/common/IconComponent";
 
 const InforCustomers = [
   {
@@ -323,28 +324,7 @@ function Infor() {
                   p: "10px",
                 }}
               >
-                <Stack
-                  direction="row"
-                  alignItems="center"
-                  justifyContent="left"
-                  sx={{
-                    p: 1,
-                    fontWeight: "bold",
-                    width: "100px",
-                    height: "100px",
-                  }}
-                >
-                  {Icondata.filter((i) => i.iconname.includes(item.icon)).map(
-                    (i) => (
-                      <img
-                        key={i.iconname}
-                        style={{ maxHeight: "100%", maxWidth: "100%" }}
-                        alt={i.iconname}
-                        src={`data:image/png;base64,${i.icon}`}
-                      />
-                    )
-                  )}
-                </Stack>
+                <IconComponent title={item.icon} size="80px" />
                 <Typography
                   variant="h6"
                   sx={{ fontWeight: "bold", textAlign: "center" }}
@@ -408,28 +388,7 @@ function Infor() {
                   p: "10px",
                 }}
               >
-                <Stack
-                  direction="row"
-                  alignItems="center"
-                  justifyContent="left"
-                  sx={{
-                    p: 1,
-                    fontWeight: "bold",
-                    width: "100px",
-                    height: "100px",
-                  }}
-                >
-                  {Icondata.filter((i) => i.iconname.includes(item.icon)).map(
-                    (i) => (
-                      <img
-                        key={i.iconname}
-                        style={{ maxHeight: "100%", maxWidth: "100%" }}
-                        alt={i.iconname}
-                        src={`data:image/png;base64,${i.icon}`}
-                      />
-                    )
-                  )}
-                </Stack>
+                <IconComponent title={item.icon} size="50px" />
                 <Typography
                   variant="h6"
                   sx={{ fontWeight: "bold", textAlign: "left" }}
@@ -484,21 +443,7 @@ function Infor() {
                   p: "10px",
                 }}
               >
-                <Stack
-                  direction="row"
-                  alignItems="center"
-                  justifyContent="center"
-                  sx={{ width: "40px", height: "40px" }}
-                >
-                  {Icondata.filter((i) => i.iconname === item.icon).map((i) => (
-                    <img
-                      key={i.iconname}
-                      style={{ maxHeight: "100%", maxWidth: "100%" }}
-                      alt={i.iconname}
-                      src={`data:image/png;base64,${i.icon}`}
-                    />
-                  ))}
-                </Stack>
+                <IconComponent title={item.icon} size="50px" />
                 <Typography
                   variant="h6"
                   sx={{ fontWeight: "bold", textAlign: "center" }}

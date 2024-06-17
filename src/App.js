@@ -70,40 +70,6 @@ function App() {
 
   // ------------------------------------------------------------- Icons
 
-  const [Iconsdata, setIcons] = useState([]);
-
-  useEffect(() => {
-    getIcons()
-      .then((res) => {
-        // console.log(res);
-        const respdata = res.data.response;
-        const filtereddata = respdata.filter((item) =>
-          item.pagepath.includes(pathname)
-        );
-        // console.log(filtereddata, "filterdata");
-        setIcons(res.data.response);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
-  // ------------------------------------------------------------- Icons
-
-  const [logos, setLogos] = useState([]);
-
-  useEffect(() => {
-    getLogos()
-      .then((res) => {
-        console.log(res);
-        const respdata = res.data.response;
-        setLogos(respdata);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
   // ------------------------------------------------------------- Switch
 
   const [toggleSwitch, setToggleSwitch] = useState(false);
@@ -119,16 +85,10 @@ function App() {
           <AnimatePresence>
             <div className="App">
               <ScrollToTop />
-              {condition ? null : (
-                <Navbar ToggleTheme={handleToggleSwitch} Logos={logos} />
-              )}
+              {condition ? null : <Navbar ToggleTheme={handleToggleSwitch} />}
               <CountriesList.Provider value={countries}>
                 <Domain.Provider value={hostname}>
-                  <Icons.Provider value={Iconsdata}>
-                    <KtechLogos.Provider value={logos}>
-                      <GlobalRoutes />
-                    </KtechLogos.Provider>
-                  </Icons.Provider>
+                  <GlobalRoutes />
                 </Domain.Provider>
               </CountriesList.Provider>
               {condition ? null : <Footer />}

@@ -1,3 +1,4 @@
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import {
   Card,
   Grid,
@@ -6,7 +7,6 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import React, { Fragment, useContext, useEffect, useState } from "react";
 import Page from "../../../components/common/Page";
 import { Layer, MainContainer } from "../../../sections/Banners/Home";
 import { motion } from "framer-motion";
@@ -19,30 +19,27 @@ function Leadership() {
   const Icondata = useContext(Icons);
   const theme = useTheme();
 
-  const Mobile = useMediaQuery((theme) =>
+  const isMobile = useMediaQuery((theme) =>
     theme.breakpoints.between("xs", "sm")
   );
-  const Tab = useMediaQuery((theme) => theme.breakpoints.between("sm", "md"));
+  const isTablet = useMediaQuery((theme) =>
+    theme.breakpoints.between("sm", "md")
+  );
 
-  const [Loading, setLoading] = useState(false);
-
+  const [loading, setLoading] = useState(false);
   const [team, setTeam] = useState([]);
 
   useEffect(() => {
-    getLeadership();
-    setLoading(true)
+    getLeadership()
       .then((res) => {
         console.log(res);
-        const status = res.data.success;
-        if (status === true) {
-          setLoading(false);
+        if (res.data.success) {
           setTeam(res.data.response);
         }
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => console.log(err));
   }, []);
+
   return (
     <Fragment>
       <Page name="Leadership" pagename="Leadership Page" description="" />
@@ -51,118 +48,112 @@ function Leadership() {
         direction="column"
         alignItems="center"
         justifyContent="start"
-        sx={{ width: "100%", marginTop: "80px", py: "10px" }}
+        sx={{
+          width: "100%",
+          marginTop: isMobile || isTablet ? null : "75px",
+          py: "10px",
+        }}
         spacing={2}
       >
         <MainHeading Heading="Our Leaders" />
 
-        <Typography variant="h6" sx={{ width: "85%" }}>
+        <Typography
+          variant="h6"
+          sx={{
+            width: "85%",
+            textAlign: isMobile || isTablet ? " justify" : "center",
+          }}
+        >
           Each leader brings their own energy and expertise to Kapil
           Technologies that helps us achieve higher levels of success.
         </Typography>
         <Grid
+          container
           sx={{
             width: "90%",
             px: "15px",
             py: "10px",
-            // border: "1px solid blue",
             direction: "row",
             alignItems: "center",
             justifyContent: "center",
           }}
-          container
           columnGap={2}
           rowGap={2}
         >
-          {team.map((item) => {
-            return (
-              <Card
-                key={item.id}
+          {team.map((item) => (
+            <Card
+              key={item.id}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexDirection: "column",
+                width: isMobile ? "100%" : "250px",
+                height: isMobile ? "auto" : "390px",
+                gap: "5px",
+                border: "1px solid lightgray",
+                boxShadow: 3,
+                p: 1,
+              }}
+            >
+              <Stack
+                direction="row"
+                alignItems="center"
+                justifyContent="center"
                 sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexDirection: "column",
-                  width: Mobile ? "100%" : "250px",
-                  height: Mobile ? "auto" : "390px",
-                  gap: "5px",
-                  border: "1px solid lightgray",
-                  boxShadow: 3,
-                  p: 1,
+                  height: "inherit",
+                  width: "inherit",
+                  textAlign: "center",
                 }}
-                spacing={1}
               >
-                <Stack
-                  direction="row"
-                  alignItems="center"
-                  justifyContent="center"
+                <img
+                  src={`data:image/${item.filetype};base64,${item.pic}`}
                   style={{
-                    height: "inherit",
-                    width: "inherit",
-                    textAlign: "center",
-                    // border: "1px solid blue",
+                    objectPosition: "center center",
+                    maxWidth: "100%",
+                    maxHeight: "100%",
                   }}
-                >
-                  <img
-                    src={`data:image/${item.filetype};base64,${item.pic}`}
-                    style={{
-                      objectPosition: "center center",
-                      maxWidth: "100%",
-                      maxHeight: "100%",
-                    }}
-                  />
-                </Stack>
-                <Typography
-                  variant="h6"
-                  sx={{
-                    fontWeight: "bold",
-                    textAlign: "center",
-                  }}
-                >
-                  {item.name}
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontWeight: "normal",
-                    textAlign: "center",
-                  }}
-                >
-                  {item.designation}
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontWeight: "normal",
-                    textAlign: "center",
-                  }}
-                >
-                  {item.subtitle}
-                </Typography>
+                />
+              </Stack>
+              <Typography
+                variant="h6"
+                sx={{ fontWeight: "bold", textAlign: "center" }}
+              >
+                {item.name}
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{ fontWeight: "normal", textAlign: "center" }}
+              >
+                {item.designation}
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{ fontWeight: "normal", textAlign: "center" }}
+              >
+                {item.subtitle}
+              </Typography>
 
-                <Stack
-                  direction="row"
-                  alignItems="center"
-                  justifyContent="center"
-                  sx={{ width: "30px", height: "30px" }}
-                  component={Link}
-                  to={item.linkedinurl}
-                  target="_blank"
-                >
-                  {Icondata.filter((i) => i.iconname === "Linkedin").map(
-                    (i) => (
-                      <img
-                        key={i.iconname}
-                        style={{ maxHeight: "100%", maxWidth: "100%" }}
-                        alt={i.iconname}
-                        src={`data:image/png;base64,${i.icon}`}
-                      />
-                    )
-                  )}
-                </Stack>
-              </Card>
-            );
-          })}
+              <Stack
+                direction="row"
+                alignItems="center"
+                justifyContent="center"
+                sx={{ width: "30px", height: "30px" }}
+                component={Link}
+                to={item.linkedinurl}
+                target="_blank"
+              >
+                {Icondata.filter((i) => i.iconname === "Linkedin").map((i) => (
+                  <img
+                    key={i.iconname}
+                    style={{ maxHeight: "100%", maxWidth: "100%" }}
+                    alt={i.iconname}
+                    src={`data:image/png;base64,${i.icon}`}
+                  />
+                ))}
+              </Stack>
+            </Card>
+          ))}
         </Grid>
       </Stack>
     </Fragment>

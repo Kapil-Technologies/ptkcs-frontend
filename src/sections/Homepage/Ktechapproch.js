@@ -2,6 +2,7 @@ import { Stack, Typography, Grid, Box, useMediaQuery } from "@mui/material";
 import React, { useContext } from "react";
 import { ApprochData } from "../../mock/Homepage";
 import { Icons } from "../../App";
+import IconComponent from "../../components/common/IconComponent";
 
 function Ktechapproch() {
   const Icondata = useContext(Icons);
@@ -77,23 +78,7 @@ function Ktechapproch() {
                 textAlign: "center",
               }}
             >
-              <Stack
-                direction="row"
-                alignItems="center"
-                justifyContent="center"
-                sx={{ width: "100px", height: "100px" }}
-              >
-                {Icondata.filter((i) => i.iconname.includes(item.title)).map(
-                  (i) => (
-                    <img
-                      key={i.iconname}
-                      style={{ maxHeight: "100%", maxWidth: "100%" }}
-                      alt={i.iconname}
-                      src={`data:image/png;base64,${i.icon}`}
-                    />
-                  )
-                )}
-              </Stack>
+              <IconComponent title={item.title} size="100px" />
               <Typography variant="h6">{item.text}</Typography>
             </Box>
             <Stack

@@ -106,7 +106,7 @@ export const NavData = [
             id: 2,
             title: "Finsta",
             icon: <FiArrowDownRight />,
-            path: "/products/finstaa",
+            path: "/products/finsta",
           },
           {
             id: 3,
@@ -251,7 +251,7 @@ export const ServicesNew = [
         id: 2,
         title: "Finsta",
         icon: <FiArrowDownRight />,
-        path: "/products/finstaa",
+        path: "/products/finsta",
       },
       {
         id: 3,

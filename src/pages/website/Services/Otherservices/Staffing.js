@@ -26,6 +26,7 @@ import { enquiryfrom, isNavigated } from "../../../../redux/slices/Enquiry";
 import { Paths } from "../../../../config";
 import { useDispatch } from "react-redux";
 import MainHeading from "../../../../components/common/MainHeading";
+import IconComponent from "../../../../components/common/IconComponent";
 
 const SectionContainer = styled("section")(({ theme }) => ({
   width: "90%",
@@ -202,28 +203,7 @@ function Staffing() {
                 }}
                 component={Card}
               >
-                <Stack
-                  direction="row"
-                  alignItems="center"
-                  justifyContent="left"
-                  sx={{
-                    p: 1,
-                    fontWeight: "bold",
-                    width: "100px",
-                    height: "100px",
-                  }}
-                >
-                  {Icondata.filter((i) => i.iconname.includes(item.title)).map(
-                    (i) => (
-                      <img
-                        key={i.iconname}
-                        style={{ maxHeight: "100%", maxWidth: "100%" }}
-                        alt={i.iconname}
-                        src={`data:image/png;base64,${i.icon}`}
-                      />
-                    )
-                  )}
-                </Stack>
+                <IconComponent title={item.title} size="50px" />
                 <Typography
                   variant="h5"
                   gutterBottom
@@ -239,9 +219,12 @@ function Staffing() {
                   variant="h6"
                   gutterBottom
                   sx={{
-                    fontWeight: "bold", cursor: "pointer", "&:hover": {
-                    textDecoration:'underline'
-                  } }}
+                    fontWeight: "bold",
+                    cursor: "pointer",
+                    "&:hover": {
+                      textDecoration: "underline",
+                    },
+                  }}
                   onClick={() => {
                     scrolltoSection(item.knowmore);
                   }}
@@ -334,23 +317,7 @@ function Staffing() {
                         p: "10px",
                       }}
                     >
-                      <Stack
-                        direction="row"
-                        alignItems="center"
-                        justifyContent="center"
-                        sx={{ width: "40px", height: "40px" }}
-                      >
-                        {Icondata.filter((i) => i.iconname === item.title).map(
-                          (i) => (
-                            <img
-                              key={i.iconname}
-                              style={{ maxHeight: "100%", maxWidth: "100%" }}
-                              alt={i.iconname}
-                              src={`data:image/png;base64,${i.icon}`}
-                            />
-                          )
-                        )}
-                      </Stack>
+                      <IconComponent title={item.title} size="50px" />
                       <Typography variant="h6" sx={{ fontWeight: "bold" }}>
                         {item.title}
                       </Typography>
@@ -435,23 +402,7 @@ function Staffing() {
                     border: "1px solid lightgray",
                   }}
                 >
-                  <Stack
-                    direction="row"
-                    alignItems="center"
-                    justifyContent="center"
-                    sx={{ width: "50px", height: "50px" }}
-                  >
-                    {Icondata.filter((i) => i.iconname === item.title).map(
-                      (i) => (
-                        <img
-                          key={i.iconname}
-                          style={{ maxHeight: "100%", maxWidth: "100%" }}
-                          alt={i.iconname}
-                          src={`data:image/png;base64,${i.icon}`}
-                        />
-                      )
-                    )}
-                  </Stack>
+                  <IconComponent title={item.title} size="50px" />
                   <Typography variant="h5" sx={{ fontWeight: "bold" }}>
                     {item.title}
                   </Typography>
@@ -505,23 +456,7 @@ function Staffing() {
                     gap: "10px",
                   }}
                 >
-                  <Stack
-                    direction="row"
-                    alignItems="center"
-                    justifyContent="center"
-                    sx={{ width: "80px", height: "80px" }}
-                  >
-                    {Icondata.filter((i) =>
-                      i.iconname.includes(item.techname)
-                    ).map((i) => (
-                      <img
-                        key={i.iconname}
-                        style={{ maxHeight: "100%", maxWidth: "100%" }}
-                        alt={i.iconname}
-                        src={`data:image/png;base64,${i.icon}`}
-                      />
-                    ))}
-                  </Stack>
+                  <IconComponent title={item.techname} size="50px" />
                   <Typography variant="h6">{item.techname}</Typography>
                 </Grid>
               ))}
@@ -587,24 +522,7 @@ function Staffing() {
                   }}
                   component={Card}
                 >
-                  <Stack
-                    direction="row"
-                    alignItems="center"
-                    justifyContent="center"
-                    sx={{ width: "50px", height: "50px" }}
-                  >
-                    {Icondata.filter((i) => i.iconname === item.title).map(
-                      (i) => (
-                        <img
-                          key={i.iconname}
-                          style={{ maxHeight: "100%", maxWidth: "100%" }}
-                          alt={i.iconname}
-                          src={`data:image/png;base64,${i.icon}`}
-                        />
-                      )
-                    )}
-                  </Stack>
-
+                  <IconComponent title={item.title} size="50px" />
                   <Typography variant="h6" sx={{ fontWeight: "bold" }}>
                     {item.title}
                   </Typography>

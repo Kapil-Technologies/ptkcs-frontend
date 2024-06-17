@@ -18,14 +18,12 @@ import {
 } from "../../../../mock/whatwedo/others/TrainingMock";
 import { Icons, KtechLogos } from "../../../../App";
 import { styled } from "@mui/material/styles";
+import IconComponent from "../../../../components/common/IconComponent";
+import LogosComponent from "../../../../components/common/LogosComponent";
 
 function Training() {
   const theme = useTheme();
-  const Icondata = useContext(Icons);
-  const Logodata = useContext(KtechLogos);
-
-  console.log(Logodata);
-
+  
   const Mobile = useMediaQuery((theme) =>
     theme.breakpoints.between("xs", "sm")
   );
@@ -49,7 +47,7 @@ function Training() {
             transition={{ duration: 0.5, delay: 0.1 }}
             sx={{ textAlign: "center", height: "inherit" }}
           >
-            Training
+           
           </Stack>
         }
       />
@@ -97,21 +95,7 @@ function Training() {
                   p: "10px",
                 }}
               >
-                <Stack
-                  direction="row"
-                  alignItems="center"
-                  justifyContent="center"
-                  sx={{ width: "50px", height: "50px" }}
-                >
-                  {Icondata.filter((i) => i.iconname === item.icon).map((i) => (
-                    <img
-                      key={i.iconname}
-                      style={{ maxHeight: "100%", maxWidth: "100%" }}
-                      alt={i.iconname}
-                      src={`data:image/png;base64,${i.icon}`}
-                    />
-                  ))}
-                </Stack>
+                <IconComponent title={item.icon} size="50px" />
                 <Typography variant="h6" sx={{ fontWeight: "bold" }}>
                   {item.title}
                 </Typography>
@@ -150,21 +134,7 @@ function Training() {
                   p: "10px",
                 }}
               >
-                <Stack
-                  direction="row"
-                  alignItems="center"
-                  justifyContent="center"
-                  sx={{ width: "80px", height: "80px" }}
-                >
-                  {Icondata.filter((i) => i.iconname === item.icon).map((i) => (
-                    <img
-                      key={i.iconname}
-                      style={{ maxHeight: "100%", maxWidth: "100%" }}
-                      alt={i.iconname}
-                      src={`data:image/png;base64,${i.icon}`}
-                    />
-                  ))}
-                </Stack>
+                <IconComponent title={item.icon} size="50px" />
                 <Typography variant="h6" sx={{ fontWeight: "bold" }}>
                   {item.title}
                 </Typography>
@@ -203,7 +173,7 @@ function Training() {
                   p: "10px",
                 }}
               >
-                <Stack
+                {/* <Stack
                   direction="row"
                   alignItems="center"
                   justifyContent="center"
@@ -217,7 +187,8 @@ function Training() {
                       src={`data:image/png;base64,${i.logo}`}
                     />
                   ))}
-                </Stack>
+                </Stack> */}
+                <LogosComponent title={item.logo} size='50px' />
                 <Typography variant="h6" sx={{ fontWeight: "bold" }}>
                   {item.title}
                 </Typography>

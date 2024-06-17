@@ -21,6 +21,9 @@ import {
 } from "../../themes/Icons";
 import { NavData, Services, ServicesNew } from "../../mock/Navigations";
 import { KtechLogos } from "../../App";
+import { Paths } from "../../config";
+import IconComponent from "./IconComponent";
+import LogosComponent from "./LogosComponent";
 
 // -----------------------------------------------------------------------------------
 
@@ -796,21 +799,7 @@ function Navbar({ Admin, ToggleTheme, Logos }) {
         justifyContent="center"
         sx={{ p: 2 }}
       >
-        <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="center"
-          sx={{ width: "40px", height: "40px" }}
-        >
-          {Logos.filter((i) => i.pagepath === pathname).map((i) => (
-            <img
-              key={i.logoname}
-              style={{ maxHeight: "100%", maxWidth: "100%" }}
-              alt={i.logoname}
-              src={`data:image/png;base64,${i.logo}`}
-            />
-          ))}
-        </Stack>
+        <LogosComponent title="MPDV" size="150px" />
       </Stack> */}
     </MainContainer>
   );

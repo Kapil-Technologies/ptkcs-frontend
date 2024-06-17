@@ -11,6 +11,7 @@ import {
 import { motion } from "framer-motion";
 import { styled } from "@mui/material/styles";
 import { dtzigzag } from "../../../../mock/Zigzag";
+import BannerComponent from "../../../../components/common/BannerComponent";
 
 // ----------------------------------------------- Styled Components
 
@@ -45,7 +46,7 @@ export const TextGridItem = styled(Grid)(({ theme }) => ({
   // border: "1px solid blue",
 
   [theme.breakpoints.between("xs", "md")]: {
-    height:'auto'
+    height: "auto",
   },
 
   [theme.breakpoints.between("md", "lg")]: {
@@ -70,13 +71,10 @@ function DigitalTransformation() {
         description="Kapil Technologies, an esteemed Infor Alliance Partner, offers a wide array of services including Infor and SAP consulting, as well as custom application development, among others."
         pagename="Application Development Page"
       />
-      <MainContainer mainheight="500px">
-        <Layer
-          direction="column"
-          alignItems="center"
-          justifyContent="center"
-          layercolor={theme.palette.terinary.main}
-        >
+      <BannerComponent
+        mainheight="500px"
+        layercolor="rgba()"
+        textdispaly={
           <Stack
             direction="column"
             alignItems="center"
@@ -87,20 +85,10 @@ function DigitalTransformation() {
             animate={{ y: 0 }}
             exit={{ y: "30px" }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            sx={{ textAlign: "center" }}
-          >
-            <Typography variant="h3" sx={{ fontWeight: "bold" }}>
-              Application Transformation Services in the Lead
-            </Typography>
-            <Typography variant="h6">
-              Achieve a competitive edge by utilizing state-of-the-art
-              technologies and digitally transformed applications tailored to
-              your business needs.
-            </Typography>
-          </Stack>
-        </Layer>
-      </MainContainer>
-
+            sx={{ textAlign: "center", height: "inherit" }}
+          ></Stack>
+        }
+      />
       <Stack
         direction="column"
         alignItems="center"
@@ -111,59 +99,9 @@ function DigitalTransformation() {
           direction="column"
           alignItems="center"
           justifyContent="center"
-          sx={{ width: Mobile || Tab ? "100%" : "90%" }}
+          sx={{ width: Mobile || Tab ? "100%" : "80%" }}
           spacing={2}
-        >
-          <Typography
-            variant="h4"
-            sx={{ fontWeight: "bold", p: 1, textAlign: "center" }}
-          >
-            Drive Your Business Forward with Our Comprehensive IT Services
-          </Typography>
-          <Grid
-            container
-            sx={{
-              width: "100%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            {dtzigzag.map((item) =>
-              item.type === "image" ? (
-                <ImageGridItem item xs={12} md={6}>
-                  Image
-                </ImageGridItem>
-              ) : (
-                <TextGridItem item xs={12} md={6} key={item.id}>
-                  <Typography variant="h4" sx={{ fontWeight: "bold" }}>
-                    {item.text.mtitle}
-                  </Typography>
-                  <Typography variant="h6">{item.text.subtitle}</Typography>
-                  {/* <Stack
-                    direction="column"
-                    alignItems="left"
-                    justifyContent="left"
-                    >
-                      Types
-                  </Stack> */}
-                </TextGridItem>
-              )
-            )}
-          </Grid>
-        </Stack>
-        <Stack
-          direction="column"
-          alignItems="center"
-          justifyContent="center"
-          sx={{ width: "80%", px: 2, py: 4 }}
-          spacing={2}
-        >
-          <Typography variant="h4" sx={{ fontWeight: "bold" }}>
-            Whatever the Technology, Our Experts are Ready
-          </Typography>
-          <Stack>Technologies List</Stack>
-        </Stack>
+        ></Stack>
       </Stack>
     </Fragment>
   );

@@ -18,6 +18,7 @@ import {
   StartArray,
 } from "../../../mock/whatwedo/solutions/HexabuildMock";
 import { Icons } from "../../../App";
+import IconComponent from "../../../components/common/IconComponent";
 
 function Hexabuild() {
   const theme = useTheme();
@@ -45,9 +46,7 @@ function Hexabuild() {
             exit={{ y: "30px" }}
             transition={{ duration: 0.5, delay: 0.1 }}
             sx={{ textAlign: "center", height: "inherit" }}
-          >
-          
-          </Stack>
+          ></Stack>
         }
       />
 
@@ -116,28 +115,7 @@ function Hexabuild() {
                 }}
                 component={Card}
               >
-                <Stack
-                  direction="row"
-                  alignItems="center"
-                  justifyContent="left"
-                  sx={{
-                    p: 1,
-                    fontWeight: "bold",
-                    width: "40px",
-                    height: "40px",
-                  }}
-                >
-                  {Icondata.filter((i) => i.iconname === item.title).map(
-                    (i) => (
-                      <img
-                        key={i.iconname}
-                        style={{ maxHeight: "100%", maxWidth: "100%" }}
-                        alt={i.iconname}
-                        src={`data:image/png;base64,${i.icon}`}
-                      />
-                    )
-                  )}
-                </Stack>
+                <IconComponent title={item.title} size="50px" />
                 <Typography
                   variant="h5"
                   gutterBottom
@@ -205,26 +183,7 @@ function Hexabuild() {
                 }}
                 component={Card}
               >
-                <Stack
-                  direction="row"
-                  alignItems="center"
-                  justifyContent="left"
-                  sx={{
-                    p: 1,
-                    fontWeight: "bold",
-                    width: "60px",
-                    height: "60px",
-                  }}
-                >
-                  {Icondata.filter((i) => i.iconname === item.icon).map((i) => (
-                    <img
-                      key={i.iconname}
-                      style={{ maxHeight: "100%", maxWidth: "100%" }}
-                      alt={i.iconname}
-                      src={`data:image/png;base64,${i.icon}`}
-                    />
-                  ))}
-                </Stack>
+                <IconComponent title={item.icon} size="60px" />
                 <Typography
                   variant="h5"
                   gutterBottom
