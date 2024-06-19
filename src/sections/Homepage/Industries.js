@@ -25,7 +25,7 @@ export const MainAccordianContainer = styled(Card)(
     alignItems: "center",
     justifyContent: "space-evenly",
     height: "300px",
-    width: expand || isFirstItem ? "100%" : "80px",
+    width: expand ? "100%" : "80px",
     color: "black",
     padding: "1.5px",
     cursor: "pointer",
@@ -35,8 +35,8 @@ export const MainAccordianContainer = styled(Card)(
 
     [theme.breakpoints.between("xs", "md")]: {
       height: expand ? "200px" : "60px",
-      width: "99%",
-      transition: "height 0.8s",
+      width: expand || isFirstItem ? "100%" : "80px",
+      transition: "height 0.8s, width 0.8s",
     },
 
     [theme.breakpoints.between("md", "lg")]: {
@@ -85,12 +85,10 @@ function Industries() {
   useEffect(() => {
     getIndustries()
       .then((res) => {
-        console.log(res);
         const resdata = res.data.response;
         const filtereddata = resdata.filter((item) =>
           item.pagepath.includes(pathname)
         );
-        console.log(filtereddata);
         setIndustrydata(filtereddata);
       })
       .catch((err) => {
@@ -117,25 +115,29 @@ function Industries() {
               key={item.id}
               expand={expanded === item.id}
               onClick={handleChange(item.id)}
-              isFirstItem={index === 0 && expanded === item.id}
+              isFirstItem={
+                index === 0 && expanded !== item.id && industrydata.length > 1
+              }
             >
-              {expanded === item.id || index === 0 ? (
+              {(expanded === item.id || index === 0) && (
                 <img
                   src={`data:image/png;base64,${item.indusimage}`}
                   alt={item.industryname}
                   style={{ width: "100%", height: "100%" }}
                 />
-              ) : null}
+              )}
               <Stack
                 direction="row"
                 alignItems="center"
                 justifyContent="center"
                 sx={{
                   width: "100%",
-                  height: "100%",
+                  height: "inherit",
                   bgcolor:
                     expanded === item.id ||
-                    (index === 0 && expanded === item.id)
+                    (index === 0 &&
+                      expanded !== item.id &&
+                      industrydata.length > 1)
                       ? "rgba(0,0,0,0.3)"
                       : item.colorname,
                   padding: "5px",
