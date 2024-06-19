@@ -25,7 +25,7 @@ function Ifca() {
             transition={{ duration: 0.5, delay: 0.1 }}
             sx={{ textAlign: "center", height: "inherit" }}
           >
-            Ifca
+            
           </Stack>
         }
       />
