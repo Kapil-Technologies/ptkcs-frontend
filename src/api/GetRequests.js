@@ -76,3 +76,13 @@ export const getIcons = async () => {
   return response;
 };
 
+
+export const getIndustries = async () => {
+  const response = await axios.get(apiurls.industries, {
+    headers: HeaderData,
+  });
+
+  return response;
+};
+
+

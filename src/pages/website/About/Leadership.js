@@ -14,6 +14,7 @@ import { getLeadership } from "../../../api/GetRequests";
 import { Icons } from "../../../App";
 import { Link } from "react-router-dom";
 import MainHeading from "../../../components/common/MainHeading";
+import IconComponent from "../../../components/common/IconComponent";
 
 function Leadership() {
   const Icondata = useContext(Icons);
@@ -32,7 +33,7 @@ function Leadership() {
   useEffect(() => {
     getLeadership()
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.data.success) {
           setTeam(res.data.response);
         }
@@ -134,24 +135,9 @@ function Leadership() {
                 {item.subtitle}
               </Typography>
 
-              <Stack
-                direction="row"
-                alignItems="center"
-                justifyContent="center"
-                sx={{ width: "30px", height: "30px" }}
-                component={Link}
-                to={item.linkedinurl}
-                target="_blank"
-              >
-                {Icondata.filter((i) => i.iconname === "Linkedin").map((i) => (
-                  <img
-                    key={i.iconname}
-                    style={{ maxHeight: "100%", maxWidth: "100%" }}
-                    alt={i.iconname}
-                    src={`data:image/png;base64,${i.icon}`}
-                  />
-                ))}
-              </Stack>
+              <Link to={item.linkedinurl}>
+                <IconComponent title="Linkedin" size="30px" />
+              </Link>
             </Card>
           ))}
         </Grid>

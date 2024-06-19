@@ -8,7 +8,7 @@ import {
   Card,
   useMediaQuery,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   IconArrowLeft,
   IconArrowRight,
@@ -16,6 +16,7 @@ import {
   IconLeftArrow,
 } from "../../themes/Icons";
 import { styled } from "@mui/material/styles";
+import { getIndustries } from "../../api/GetRequests";
 
 const IndustryData = [
   {
@@ -167,6 +168,9 @@ function Industries() {
   const handleChange = (id) => () => {
     setExpanded(id);
   };
+
+
+ 
 
   return (
     <Stack

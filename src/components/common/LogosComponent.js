@@ -12,10 +12,7 @@ function LogosComponent({ title, size }) {
       .then((res) => {
         // console.log(res);
         const respdata = res.data.response;
-        const filtereddata = respdata.find((item) =>
-          item.pagepath.includes(pathname)
-        );
-        console.log(filtereddata, "filterdata");
+        
         setLogos(respdata);
       })
       .catch((err) => {
@@ -29,18 +26,20 @@ function LogosComponent({ title, size }) {
       justifyContent="center"
       sx={{ width: size, height: size }}
     >
-      {logos
-        .filter((i) => i.logoname === title)
-        .map((i) =>
-          i.pagepath.includes(pathname) ? (
-            <img
-              key={i.logoname}
-              style={{ maxHeight: "100%", maxWidth: "100%" }}
-              alt={i.logoname}
-              src={`data:image/png;base64,${i.logo}`}
-            />
-          ) : null
-        )}
+      {/* {logos.length === 0
+        ? null
+        : logos
+            .filter((i) => i.logoname === title)
+            .map((i) =>
+              i.pagepath.includes(pathname) ? (
+                <img
+                  key={i.logoname}
+                  style={{ maxHeight: "100%", maxWidth: "100%" }}
+                  alt={i.logoname}
+                  src={`data:image/png;base64,${i.logo}`}
+                />
+              ) : null
+            )} */}
     </Stack>
   );
 }
