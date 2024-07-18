@@ -1,12 +1,6 @@
-import React, {
-  Fragment,
-  Suspense,
-  createContext,
-  useEffect,
-  useState,
-} from "react";
+import React, { createContext, Fragment, Suspense, useEffect, useState } from "react";
 import "./App.css";
-import { CustomTheme, lightTheme, darkTheme } from "./themes/Theme";
+import { CustomTheme } from "./themes/Theme";
 import { ThemeProvider, styled } from "@mui/material/styles";
 import Footer from "./components/common/Footer";
 
@@ -22,36 +16,21 @@ import CTA from "./components/common/CTA";
 import ScrollToTop from "./components/common/ScrolltoTop";
 import GlobalScrolltotop from "./components/common/GlobalScrolltotop";
 import { getCountries } from "./api/Main";
-import { getBanners, getIcons, getLogos } from "./api/GetRequests";
-
-// GlobalContext
+import { LoadingProvider } from "./components/common/LoadingComponent";
+import GlobalLoading from "./components/common/GlobalLoading";
 
 export const CountriesList = createContext(null);
 
-export const Domain = createContext(null);
-
-export const Banners = createContext(null);
-
-export const Icons = createContext(null);
-
-export const KtechLogos = createContext(null);
-
-// --------------------------------------------------------   App
-
 function App() {
   const { pathname } = useLocation();
-
   const theme = useTheme();
 
   // console.log(Condition);
 
   const condition = pathname === "/404";
 
-  const hostname = window.location.hostname;
-
   const Mobile = theme.breakpoints.between("xs", "md");
 
-  // ------------------------------------------------------ APIs
 
   const [countries, setCountries] = useState([]);
 
@@ -66,34 +45,23 @@ function App() {
       });
   }, []);
 
-  // ------------------------------------------------------------- Banners
-
-  // ------------------------------------------------------------- Icons
-
-  // ------------------------------------------------------------- Switch
-
-  const [toggleSwitch, setToggleSwitch] = useState(false);
-
-  const handleToggleSwitch = () => {
-    setToggleSwitch(!toggleSwitch);
-  };
-
   return (
     <ReduxProvider store={store}>
       <ThemeProvider theme={CustomTheme}>
         <SnackbarProvider maxSnack={3} autoHideDuration={3000}>
           <AnimatePresence>
-            <div className="App">
-              <ScrollToTop />
-              {condition ? null : <Navbar ToggleTheme={handleToggleSwitch} />}
-              <CountriesList.Provider value={countries}>
-                <Domain.Provider value={hostname}>
+            <LoadingProvider>
+              <div className="App">
+                <ScrollToTop />
+                {condition ? null : <Navbar />}
+                <CountriesList.Provider value={countries}>
                   <GlobalRoutes />
-                </Domain.Provider>
-              </CountriesList.Provider>
-              {condition ? null : <Footer />}
-              {/* {Mobile ? null : condition ? null : <GlobalScrolltotop />} */}
-            </div>
+                  <GlobalLoading />
+                </CountriesList.Provider>
+                {condition ? null : <Footer />}
+                {/* {Mobile ? null : condition ? null : <GlobalScrolltotop />} */}
+              </div>
+            </LoadingProvider>
           </AnimatePresence>
         </SnackbarProvider>
       </ThemeProvider>

@@ -22,20 +22,20 @@ import {
 import { NavData, Services, ServicesNew } from "../../mock/Navigations";
 import { KtechLogos } from "../../App";
 import { Paths } from "../../config";
-import IconComponent from "./IconComponent";
-import LogosComponent from "./LogosComponent";
+import LogoComponent from "./LogoComponent";
 
 // -----------------------------------------------------------------------------------
 
 const MainContainer = styled("header")(
   ({ theme, hover, toggle, visibility, nobanner }) => ({
-    height: "75px",
+    height: "90px",
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
     width: "100%",
+    // backgroundColor:theme.palette.primary.main,
     backgroundColor:
-      hover || nobanner ? theme.palette.primary.BlueSonki : "transparent",
+      hover || nobanner ? theme.palette.primary.main : "transparent",
     position: "fixed",
     top: 0,
     zIndex: 99999,
@@ -45,7 +45,7 @@ const MainContainer = styled("header")(
     [theme.breakpoints.between("xs", "md")]: {
       // Mobile
       position: "relative",
-      backgroundColor: theme.palette.primary.BlueSonki,
+      backgroundColor: theme.palette.primary.main,
     },
 
     [theme.breakpoints.between("md", "lg")]: {
@@ -60,15 +60,16 @@ const LogoContainer = styled(Link)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  padding: "10px",
+  // padding: "10px",
   textDecoration: "none",
   color: "white",
   textTransform: "uppercase",
   gap: 2,
   fontWeight: "bolder",
 
-  [theme.breakpoints.between("xs", "sm")]: {
+  [theme.breakpoints.between("xs", "md")]: {
     //  mobile
+    marginRight: "5px",
   },
 
   [theme.breakpoints.between("sm", "md")]: {
@@ -134,8 +135,8 @@ const MainNavList = styled("ul")(({ theme, Toggle }) => ({
   padding: "10px",
 
   [theme.breakpoints.between("xs", "md")]: {
-    top: "75px",
-    background: theme.palette.primary.BlueSonki,
+    top: "90px",
+    background: theme.palette.primary.main,
     height: "calc(100vh - 75px)",
     width: "95%",
     margin: "auto",
@@ -221,21 +222,21 @@ const MainNavText = styled(Box)(({ theme }) => ({
 const SubNavList = styled("ul")(({ theme, menuid }) => ({
   display: "flex",
   alignItems: "start",
-  justifyContent: "space-between",
+  justifyContent: "center",
   flexDirection: menuid ? "row" : "column",
   gap: 2,
   position: "absolute",
-  top: "75px",
+  top: "90px",
   right: menuid ? 0 : null,
   width: menuid ? "100%" : "auto",
-  background: theme.palette.primary.BlueSonki,
+  background: theme.palette.primary.main,
   height: menuid ? "300px" : "auto",
   padding: menuid ? "10px" : null,
 
   [theme.breakpoints.between("xs", "md")]: {
     position: "relative",
     top: "5px",
-    background: theme.palette.primary.BlueSonki,
+    background: theme.palette.primary.main,
     width: "100%",
     left: "-10px",
   },
@@ -269,7 +270,7 @@ const SubNavItem = styled("li")(({ theme, menuid }) => ({
 
 const SubNavLink = styled(NavLink)(({ theme, menuid }) => ({
   textDecoration: "none",
-  color: theme.palette.primary.color3,
+  color: "white",
 
   [theme.breakpoints.between("xs", "md")]: {
     display: "flex",
@@ -287,7 +288,7 @@ const SubNavLink = styled(NavLink)(({ theme, menuid }) => ({
 }));
 
 const SubNavText = styled(Box)(({ theme, menuid }) => ({
-  color: theme.palette.primary.color3,
+  color: "white",
   [theme.breakpoints.between("xs", "md")]: {
     display: "flex",
     alignItems: "center",
@@ -341,7 +342,7 @@ const SubNavItem1 = styled("li")(({ theme, menuid }) => ({
 
 const SubNavLink1 = styled(NavLink)(({ theme, menuid }) => ({
   textDecoration: "none",
-  color: theme.palette.primary.color3,
+  color: "white",
   padding: "10px",
 
   "&:hover": {
@@ -352,9 +353,10 @@ const SubNavLink1 = styled(NavLink)(({ theme, menuid }) => ({
     display: "flex",
     alignItems: "flex-start",
     gap: "5px",
-    color: theme.palette.primary.color3,
+    color: "white",
     width: "90%",
     marginLeft: "5px",
+    padding: "0px",
   },
 
   [theme.breakpoints.between("md", "lg")]: {
@@ -366,7 +368,7 @@ const SubNavLink1 = styled(NavLink)(({ theme, menuid }) => ({
 
 const SubNavText1 = styled(Box)(({ theme, menuid }) => ({
   padding: "5px",
-  color: theme.palette.primary.color3,
+  color: "white",
   [theme.breakpoints.between("xs", "md")]: {
     display: "flex",
     alignItems: "flex-start",
@@ -496,6 +498,8 @@ function Navbar({ Admin, ToggleTheme, Logos }) {
 
   const condition = Menuid === 2 || Menuid === 3 || Menuid === 4;
 
+  const condition1 = pathname === "/services/infor-consulting"
+
   // -------------------------------------------------------------------------  Color Change When Scrollerd
 
   const [scrolling, setScrolling] = useState(false);
@@ -559,7 +563,7 @@ function Navbar({ Admin, ToggleTheme, Logos }) {
         {toggle ? <IconClose /> : <IconMenu />}
       </ResponsiveContainer>
       <LogoContainer to="/home">
-        {isMobile || isTab ? (
+        {/* {isMobile || isTab ? (
           <Typography
             variant="h6"
             sx={{
@@ -573,7 +577,9 @@ function Navbar({ Admin, ToggleTheme, Logos }) {
           </Typography>
         ) : (
           <Typography variant="h6">PT KCS Technologies Indonesia</Typography>
-        )}
+        )} */}
+
+        <LogoComponent />
       </LogoContainer>
       {isMobile || isTab ? (
         <MainNavList Toggle={toggle} className="MainNavbar">
@@ -715,7 +721,7 @@ function Navbar({ Admin, ToggleTheme, Logos }) {
                         sx={{
                           fontWeight: "bold",
                           pl: "20px",
-                          color: "primary.color3",
+                          color: "white",
                           width: "30%",
                         }}
                       >
@@ -729,7 +735,7 @@ function Navbar({ Admin, ToggleTheme, Logos }) {
                               variant="h6"
                               sx={{
                                 fontWeight: "bold",
-                                color: "primary.color3",
+                                color: "white",
                               }}
                               gutterBottom
                             >
@@ -743,10 +749,11 @@ function Navbar({ Admin, ToggleTheme, Logos }) {
                                 spacing={1}
                                 sx={{ marginBottom: "10px" }}
                               >
-                                <IconDot sx={{ color: "primary.color3" }} />
+                                <IconDot sx={{ color: "white" }} />
                                 {item.path ? (
                                   <SubNavLink1
                                     to={item.path}
+                                    target={item.target ? "_blank" : null}
                                     onClick={handleMouseLeaves}
                                   >
                                     {item.title}

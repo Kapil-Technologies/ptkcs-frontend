@@ -21,7 +21,7 @@ import {
   Typography,
 } from "@mui/material";
 import { CountriesList } from "../../App";
-import { applyPosition } from "../../api/PostRequests";
+import { applyPosition } from "../../api/Careers";
 
 const NpArray = [
   {
@@ -70,16 +70,24 @@ const schema = yup.object({
     .required("Mobile is Required !")
     .matches(/^[0-9]/, "Must be only digits"),
   appliedto: yup.string().required("Applied to is Required !"),
-  experience: yup.string().required("Experience is Required !"),
-  relavent: yup.string().required("Relavent is Required !"),
+  experience: yup
+    .string()
+    .required("Experience is Required!")
+    .matches(/^\d+(\.\d+)?$/, "Experience must be a valid number"),
+
+  relavent: yup
+    .string()
+    .required("Relavent is Required!")
+    .matches(/^\d+(\.\d+)?$/, "Relavent must be a valid number"),
+
   ctc: yup
     .string()
     .required("CTC is Required !")
-    .matches(/^[0-9]/, "Must be only digits"),
+    .matches(/^\d+(\.\d+)?$/, "CTC must be a valid number"),
   ectc: yup
     .string()
     .required("Expected CTC is Required !")
-    .matches(/^[0-9]/, "Must be only digits"),
+    .matches(/^\d+(\.\d+)?$/, "Expected CTC a valid number"),
   noticeperiod: yup.string().required("Notice Period is Required !"),
   location: yup.string().required("Location is Required !"),
   relocation: yup.string().required("Relocate is Required !"),
@@ -108,7 +116,7 @@ const defaultValues = {
   noticeperiod: "",
   location: "",
   relocation: "",
-  referance: "",
+  referance: "No",
   empid: "",
   empname: "",
   resume: null,
@@ -143,11 +151,15 @@ function JobApplicationForm({ jobdata }) {
 
   const referedValue = values.referance;
 
+  const handleNavigate = () => {
+    Navigate("/join-us/job-openings");
+  }
+
   const onSubmit = (data) => {
     // console.log(data);
 
     const file = data.resume;
-    const AMobile = `${data.country}-${data.mobile}`;
+    const AMobile = `${data.ccode} - ${data.mobile}`;
     const AFilename = `${data.firstname}-${data.lastname}.pdf`;
 
     const reqdata = {
@@ -164,13 +176,13 @@ function JobApplicationForm({ jobdata }) {
       location: data.location,
       relocation: data.relocation,
       referance: data.referance,
-      empid: referedValue === "Yes" ? data.empid : null,
-      empname: referedValue === "Yes" ? data.empname : null,
+      empid: referedValue === "Yes" ? data.empid : "",
+      empname: referedValue === "Yes" ? data.empname : "",
       resume: file,
       filename: AFilename,
     };
 
-    console.log(reqdata)
+    // console.log(reqdata);
 
     applyPosition(reqdata)
       .then((res) => {
@@ -178,6 +190,7 @@ function JobApplicationForm({ jobdata }) {
         const status = res.data.success;
         if (status) {
           enqueueSnackbar(res.data.message, { variant: "success" });
+          handleNavigate()
         } else {
           enqueueSnackbar(res.data.message, { variant: "error" });
         }
@@ -199,7 +212,7 @@ function JobApplicationForm({ jobdata }) {
         justifyContent: "start",
         flexDirection: "column",
         textAlign: "left",
-        gap: 1,
+        gap: "10px",
       }}
       component="form"
       onSubmit={handleSubmit(onSubmit)}
@@ -218,7 +231,7 @@ function JobApplicationForm({ jobdata }) {
         <TextField
           label="First Name"
           fullWidth
-          autoComplete="off"
+          autocomplete="off"
           error={errors.firstname}
           helperText={errors.firstname?.message}
           {...register("firstname")}
@@ -226,7 +239,7 @@ function JobApplicationForm({ jobdata }) {
         <TextField
           label="Last Name"
           fullWidth
-          autoComplete="off"
+          autocomplete="off"
           error={errors.lastname}
           helperText={errors.lastname?.message}
           {...register("lastname")}
@@ -243,7 +256,7 @@ function JobApplicationForm({ jobdata }) {
         <TextField
           label="Email"
           fullWidth
-          autoComplete="off"
+          autocomplete="off"
           error={errors.email}
           helperText={errors.email?.message}
           {...register("email")}
@@ -267,14 +280,14 @@ function JobApplicationForm({ jobdata }) {
                 sx={{ width: "100%" }}
                 value={
                   value
-                    ? countrydata.find((option) => {
-                        return value == option.countrydailcode;
-                      }) ?? null
+                    ? countrydata.find(
+                        (option) => option.countrydailcode === value
+                      ) ?? null
                     : null
                 }
-                getOptionLabel={(option) => {
-                  return `${option.countrydailcode} - ${option.countrycode} `;
-                }}
+                getOptionLabel={(option) =>
+                  `${option.countrydailcode} - ${option.countrycode}`
+                }
                 options={countrydata}
                 onChange={(e, newValue) => {
                   onChange(newValue ? newValue.countrydailcode : null);
@@ -282,8 +295,9 @@ function JobApplicationForm({ jobdata }) {
                 renderInput={(params) => (
                   <TextField
                     {...params}
+                    autocomplete="off"
                     label="Country Code"
-                    error={errors.ccode}
+                    error={!!errors.ccode}
                     helperText={errors.ccode?.message}
                   />
                 )}
@@ -291,10 +305,11 @@ function JobApplicationForm({ jobdata }) {
             );
           }}
         />
+
         <TextField
           label="Mobile"
           fullWidth
-          autoComplete="off"
+          autocomplete="off"
           error={errors.mobile}
           helperText={errors.mobile?.message}
           {...register("mobile")}
@@ -356,7 +371,7 @@ function JobApplicationForm({ jobdata }) {
         <TextField
           label="Experience"
           fullWidth
-          autoComplete="off"
+          autocomplete="off"
           error={errors.experience}
           helperText={errors.experience?.message}
           {...register("experience")}
@@ -364,7 +379,7 @@ function JobApplicationForm({ jobdata }) {
         <TextField
           label="Relavent"
           fullWidth
-          autoComplete="off"
+          autocomplete="off"
           error={errors.relavent}
           helperText={errors.relavent?.message}
           {...register("relavent")}
@@ -381,7 +396,7 @@ function JobApplicationForm({ jobdata }) {
         <TextField
           label="Current CTC"
           fullWidth
-          autoComplete="off"
+          autocomplete="off"
           error={errors.ctc}
           helperText={errors.ctc?.message}
           {...register("ctc")}
@@ -389,7 +404,7 @@ function JobApplicationForm({ jobdata }) {
         <TextField
           label="Expected CTC"
           fullWidth
-          autoComplete="off"
+          autocomplete="off"
           error={errors.ectc}
           helperText={errors.ectc?.message}
           {...register("ectc")}
@@ -440,7 +455,7 @@ function JobApplicationForm({ jobdata }) {
         <TextField
           label="Location"
           fullWidth
-          autoComplete="off"
+          autocomplete="off"
           error={errors.location}
           helperText={errors.location?.message}
           {...register("location")}
@@ -508,7 +523,7 @@ function JobApplicationForm({ jobdata }) {
           <TextField
             label="Employee ID"
             fullWidth
-            autoComplete="off"
+            autocomplete="off"
             error={errors.empid}
             helperText={errors.empid?.message}
             {...register("empid")}
@@ -516,7 +531,7 @@ function JobApplicationForm({ jobdata }) {
           <TextField
             label="Employee Name"
             fullWidth
-            autoComplete="off"
+            autocomplete="off"
             error={errors.empname}
             helperText={errors.empname?.message}
             {...register("empname")}

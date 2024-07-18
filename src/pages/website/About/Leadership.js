@@ -1,145 +1,90 @@
-import React, { Fragment, useContext, useEffect, useState } from "react";
-import {
-  Card,
-  Grid,
-  Stack,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { Card, Grid, Stack, Typography, useTheme } from "@mui/material";
+import React, { Fragment } from "react";
 import Page from "../../../components/common/Page";
 import { Layer, MainContainer } from "../../../sections/Banners/Home";
 import { motion } from "framer-motion";
-import { getLeadership } from "../../../api/GetRequests";
-import { Icons } from "../../../App";
-import { Link } from "react-router-dom";
-import MainHeading from "../../../components/common/MainHeading";
-import IconComponent from "../../../components/common/IconComponent";
 
 function Leadership() {
-  const Icondata = useContext(Icons);
   const theme = useTheme();
-
-  const isMobile = useMediaQuery((theme) =>
-    theme.breakpoints.between("xs", "sm")
-  );
-  const isTablet = useMediaQuery((theme) =>
-    theme.breakpoints.between("sm", "md")
-  );
-
-  const [loading, setLoading] = useState(false);
-  const [team, setTeam] = useState([]);
-
-  useEffect(() => {
-    getLeadership()
-      .then((res) => {
-        // console.log(res);
-        if (res.data.success) {
-          setTeam(res.data.response);
-        }
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
   return (
     <Fragment>
       <Page name="Leadership" pagename="Leadership Page" description="" />
-
+      <MainContainer mainheight="500px">
+        <Layer
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
+          layercolor={theme.palette.terinary.main}
+        >
+          <Stack
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
+            spacing={2}
+            component={motion.div}
+            initial={{ y: "30px" }}
+            animate={{ y: 0 }}
+            exit={{ y: "30px" }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            sx={{ textAlign: "center" }}
+          >
+            LeaderShip
+          </Stack>
+        </Layer>
+      </MainContainer>
       <Stack
         direction="column"
         alignItems="center"
         justifyContent="start"
-        sx={{
-          width: "100%",
-          marginTop: isMobile || isTablet ? null : "75px",
-          py: "10px",
-        }}
-        spacing={2}
+        sx={{ width: "100%" }}
       >
-        <MainHeading Heading="Our Leaders" />
-
-        <Typography
-          variant="h6"
-          sx={{
-            width: "85%",
-            textAlign: isMobile || isTablet ? " justify" : "center",
-          }}
-        >
-          Each leader brings their own energy and expertise to Kapil
-          Technologies that helps us achieve higher levels of success.
-        </Typography>
         <Grid
-          container
           sx={{
-            width: "90%",
+            width: "95%",
             px: "15px",
-            py: "10px",
+            py: "30px",
+            // border: "1px solid blue",
             direction: "row",
             alignItems: "center",
-            justifyContent: "center",
+            justifyContent: "space-evenly",
           }}
+          container
           columnGap={2}
           rowGap={2}
         >
-          {team.map((item) => (
-            <Card
-              key={item.id}
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexDirection: "column",
-                width: isMobile ? "100%" : "250px",
-                height: isMobile ? "auto" : "390px",
-                gap: "5px",
-                border: "1px solid lightgray",
-                boxShadow: 3,
-                p: 1,
+          <Card
+            sx={{
+              display: "flex",
+              alignItems: "left",
+              justifyContent: "left",
+              flexDirection: "column",
+              width: "250px",
+              height: "350px",
+              gap: 2,
+              border: "1px solid gray",
+              boxShadow: 3,
+              p: 2,
+            }}
+          >
+            <Stack
+              direction="row"
+              alignItems="center"
+              justifyContent="center"
+              style={{
+                height: "inherit",
+                width: "inherit",
+                border: "1px solid blue",
               }}
             >
-              <Stack
-                direction="row"
-                alignItems="center"
-                justifyContent="center"
-                sx={{
-                  height: "inherit",
-                  width: "inherit",
-                  textAlign: "center",
-                }}
-              >
-                <img
-                  src={`data:image/${item.filetype};base64,${item.pic}`}
-                  style={{
-                    objectPosition: "center center",
-                    maxWidth: "100%",
-                    maxHeight: "100%",
-                  }}
-                />
-              </Stack>
-              <Typography
-                variant="h6"
-                sx={{ fontWeight: "bold", textAlign: "center" }}
-              >
-                {item.name}
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{ fontWeight: "normal", textAlign: "center" }}
-              >
-                {item.designation}
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{ fontWeight: "normal", textAlign: "center" }}
-              >
-                {item.subtitle}
-              </Typography>
-
-              <Link to={item.linkedinurl}>
-                <IconComponent title="Linkedin" size="30px" />
-              </Link>
-            </Card>
-          ))}
+              Image
+            </Stack>
+            <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+              Employees Name
+            </Typography>
+            <Typography variant="body1" sx={{ textAlign: "left" }}>
+              Employees Designation
+            </Typography>
+          </Card>
         </Grid>
       </Stack>
     </Fragment>

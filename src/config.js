@@ -4,11 +4,9 @@ const Test_Server = process.env.REACT_APP_TEST_SERVER_URL;
 
 const Local_Server = process.env.REACT_APP_LOCAL_HOST_URL;
 
-// export const APIURL = URL1
-
-export const APIURL = Test_Server;
-
 // export const APIURL = Local_Server;
+
+export const APIURL = Test_Server
 
 export const Paths = {
   home: "/home",
@@ -17,24 +15,20 @@ export const Paths = {
     leadership: "/about-us/our-team",
   },
   consulting: {
-    inforconsulting: "/consulting/infor",
-    sapconsulting: "/consulting/sap",
-    oracleconsulting: "/consulting/oracle-netsuite",
-    odoo: "/consulting/odoo",
-    microsoftBC: "/consulting/microsoft-dynamics-business-central",
+    inforconsulting: "/services/infor-consulting",
+    sapconsulting: "/services/sap-consulting",
+    oracleconsulting: "/services/oracle-consulting",
+    // digitaltransformation: "/services/digital-transformation",
   },
   other: {
-    staffing: "/other-services/it-staffing",
-    taas: "/other-services/taas",
-    applicationdevelopment: "/other-services/application-development",
-    tts: "/other-services/technology-training-services",
+    staffing: "/services/staffing",
   },
   solutions: {
-    finsta: "/products/finsta",
-    mpdv: "/products/mpdv",
+    finsta: "/solutions/finsta",
   },
   joinus: {
     searchjobs: "/join-us/job-openings",
+    jobdescription:"/join-us/job-openings/",
     events: "/join-us/event",
     webinar: "/join-us/event/webinar",
     lifeatktech: "/join-us/life-@-ktech",

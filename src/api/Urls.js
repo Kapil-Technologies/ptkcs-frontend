@@ -15,5 +15,5 @@ export const apiurls = {
   events: `${APIURL}get/events`,
   eventsregistrations: `${APIURL}events/register`,
   icons: `${APIURL}get/icons`,
-  industries:`${APIURL}get/industries`
+  industries: `${APIURL}get/industries`,
 };

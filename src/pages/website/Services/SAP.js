@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useRef } from "react";
+import React, { Fragment } from "react";
 import Page from "../../../components/common/Page";
 import { Layer, MainContainer } from "../../../sections/Banners/Home";
 import {
@@ -15,52 +15,41 @@ import { motion } from "framer-motion";
 import { styled } from "@mui/material/styles";
 import Carousel from "../../../components/common/Carousel";
 import BannerComponent from "../../../components/common/BannerComponent";
-import {
-  SAPAMS,
-  SAPofferings,
-  WAOptimization,
-  WhychooseSAP,
-  explaination,
-} from "../../../mock/whatwedo/consulting/SAPMock";
-import { useNavigate } from "react-router-dom";
-import { Icons } from "../../../App";
-import {
-  ImageGridItem,
-  TextGridItem,
-} from "./Otherservices/DigitalTransformation";
-import { IconDot } from "../../../themes/Icons";
+import MainTitle from "../../../components/common/MainTitle";
+import WebPictureComponent from "../../../components/common/WebPictureComponent";
+import { SAPofferings, TailoredList } from "../../../mock/SAPMock";
 import IconComponent from "../../../components/common/IconComponent";
 
 const SAPCustomers = [
   {
     id: 1,
-    logoname: "SAP Customer 1",
-    logo: "SAP Customer Image 1",
+    name: "SAP Customer Name 1",
+    src: "SAP Customer Image 1",
   },
   {
     id: 2,
-    logoname: "SAP Customer 2",
-    logo: "SAP Customer Image 2",
+    name: "SAP Customer Name 2",
+    src: "SAP Customer Image 2",
   },
   {
     id: 3,
-    logoname: "SAP Customer 3",
-    logo: "SAP Customer Image 3",
+    name: "SAP Customer Name 3",
+    src: "SAP Customer Image 3",
   },
   {
     id: 4,
-    logoname: "SAP Customer 4",
-    logo: "SAP Customer Image 4",
+    name: "SAP Customer Name 4",
+    src: "SAP Customer Image 4",
   },
   {
     id: 5,
-    logoname: "SAP Customer 5",
-    logo: "SAP Customer Image 5",
+    name: "SAP Customer Name 5",
+    src: "SAP Customer Image 5",
   },
   {
     id: 6,
-    logoname: "SAP Customer 6",
-    logo: "SAP Customer Image 6",
+    name: "SAP Customer Name 6",
+    src: "SAP Customer Image 6",
   },
 ];
 
@@ -69,8 +58,11 @@ export const SectionContainer = styled("section")(({ theme, layercolor }) => ({
   height: "auto",
   display: "flex",
   alignItems: "center",
-  justifyContent: "start",
+  justifyContent: "center",
   flexDirection: "column",
+  marginTop: "10px",
+  marginBottom: "10px",
+  gap: "10px",
 
   [theme.breakpoints.between("xs", "md")]: {
     //  mobile
@@ -79,29 +71,11 @@ export const SectionContainer = styled("section")(({ theme, layercolor }) => ({
 
 function SAP() {
   const theme = useTheme();
-  const Icondata = useContext(Icons);
 
-  const Navigate = useNavigate();
   const Mobile = useMediaQuery((theme) =>
     theme.breakpoints.between("xs", "sm")
   );
   const Tab = useMediaQuery((theme) => theme.breakpoints.between("sm", "md"));
-
-  const Ams = useRef(null);
-  const Fiori = useRef(null);
-  const Hana = useRef(null);
-
-  const scrolltoSection = (item) => {
-    console.log(item);
-    if (item === "sapams") {
-      Ams.current.scrollIntoView({ behavior: "smooth" });
-    } else if (item === "saphana") {
-      Hana.current.scrollIntoView({ behavior: "smooth" });
-    } else if (item === "sapfiori") {
-      Fiori.current.scrollIntoView({ behavior: "smooth" });
-    } else return;
-  };
-
   return (
     <Fragment>
       <Page
@@ -110,10 +84,13 @@ function SAP() {
         pagename="SAP Page"
       />
 
-      <BannerComponent
-        mainheight="500px"
-        layercolor={theme.palette.terinary.main}
-        textdispaly={
+      {/* <MainContainer mainheight="500px">
+        <Layer
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
+          layercolor={theme.palette.terinary.main}
+        >
           <Stack
             direction="column"
             alignItems="center"
@@ -124,27 +101,25 @@ function SAP() {
             animate={{ y: 0 }}
             exit={{ y: "30px" }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            sx={{ textAlign: "center", height: "inherit" }}
+            sx={{ textAlign: "center" }}
           >
-            SAP
+            Image
           </Stack>
-        }
-      />
+        </Layer>
+
+      </MainContainer> */}
+
+      <BannerComponent mainheight="550px" />
 
       <SectionContainer>
         <Stack
           direction="column"
           alignItems="center"
-          justifyContent="center"
-          sx={{
-            width: Mobile || Tab ? "90%" : "85%",
-            px: "20px",
-            pt: "20px",
-            pb: "5px",
-          }}
           spacing={2}
+          justifyContent="center"
+          sx={{ width: "90%", p: "5px" }}
         >
-          <Typography variant="body1" sx={{ textAlign: "justify" }}>
+          <Typography variant="body1" textAlign="justify">
             In the digital age, it is critical that organisations implement
             consistent and dependable solutions. An SAP consulting firm can
             assist you in meeting the challenge and modernising your
@@ -156,272 +131,162 @@ function SAP() {
             transforming your enterprise-enhancing applications.
           </Typography>
 
-          <Typography
-            variant="h4"
-            sx={{ fontWeight: "bold", px: 1, textAlign: "center" }}
-          >
-            Why Choose Kapil Tech as your SAP Service Provider
-          </Typography>
-
           <Grid
             container
             columnGap={2}
             rowGap={2}
             sx={{
+              width: "100%",
               display: "flex",
               alignItems: "center",
-              justifyContent: "center",
-              width: "100%",
+              justifyContent: "space-evenly",
             }}
           >
-            {WhychooseSAP.map((item) => (
-              <Card
-                component={Grid}
-                item
-                xs={12}
-                md={12}
-                xl={10}
-                sx={{
-                  display: "flex",
-                  alignItems: "left",
-                  justifyContent: "space-evenly",
-                  flexDirection: "column",
-                  border: "1px solid lightgray",
-                  height: Mobile || Tab ? "auto" : "200px",
-                  px: "10px",
-                  textAlign: "left",
-                  position: "relative",
-                  gap: Mobile || Tab ? "10px" : null,
-                }}
+            <WebPictureComponent title="SAP" reqheight="500px" />
+            <Grid
+              item
+              xs={12}
+              md={5}
+              sx={{
+                display: "flex",
+                alignItems: "center ",
+                justifyContent: "space-evenly",
+                flexDirection: "column",
+                // border: "1px solid blue",
+                height: Mobile || Tab ? "auto" : "500px",
+              }}
+            >
+              <Stack
+                direction="column"
+                alignItems="left"
+                spacing={1.5}
+                justifyContent="left"
+                sx={{ p: "10px", width: "100%" }}
               >
-                <Stack
-                  direction="row"
-                  alignItems="center"
-                  justifyContent="left"
-                  sx={{ width: "100%" }}
+                <Typography
+                  variant={Mobile || Tab ? "h6" : "h4"}
+                  sx={{
+                    fontWeight: "bold",
+                    color: "#CB333B",
+                    textAlign: "left",
+                  }}
                 >
-                  <Box
+                  Tailored SAP Consulting Services for Improved Efficiency
+                </Typography>
+
+                <Box
+                  sx={{
+                    width: "100px",
+                    height: "5px",
+                    borderRadius: 2,
+                    bgcolor: "primary.main",
+                  }}
+                />
+              </Stack>
+
+              <Typography variant="body1" sx={{ textAlign: "justify" }}>
+                At Kapil Tech, we offer tailored SAP consulting services to
+                improve efficiency and streamline operations in your
+                manufacturing business. Our experts will work closely with you
+                to optimize your SAP system, ensuring maximum efficiency and
+                meeting your specific needs.
+              </Typography>
+
+              <Stack
+                direction="column"
+                alignItems="center"
+                justifyContent="space-between"
+                sx={{ width: "100%", height: "200px" }}
+              >
+                {TailoredList.map((item) => (
+                  <Stack
+                    direction="column"
+                    alignItems="left"
+                    justifyContent="space-evenly"
+                    key={item.id}
                     sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      width: "50px",
-                      height: "50px",
-                      bgcolor: "primary.BlueSonki",
-                      color: "primary.color3",
-                      borderRadius: "3px",
-                      fontSize: "20px",
-                      fontWeight: "bold",
+                      width: "100%",
+                      position: "relative",
+                      top: "5px",
+                      height: "inherit",
                     }}
                   >
-                    {item.id}
-                  </Box>
-                </Stack>
-                <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-                  {item.title}
-                </Typography>
-                <Typography variant="body1" sx={{ textAlign: "justify" }}>
-                  {item.description}
-                </Typography>
-              </Card>
-            ))}
+                    <Typography
+                      variant="h6"
+                      sx={{ fontWeight: "bold", color: "#CB333B" }}
+                    >
+                      {item.title}
+                    </Typography>
+                    <Typography variant="body1">{item.text}</Typography>
+                  </Stack>
+                ))}
+              </Stack>
+            </Grid>
           </Grid>
 
-          <Typography
-            variant="h4"
-            sx={{ fontWeight: "bold", px: 1, textAlign: "center" }}
-          >
-            Kapil Tech SAP Offerings
-          </Typography>
-
-          <Typography variant="body1" sx={{ textAlign: "justify" }}>
-            We constantly employ best practices to manage critical technologies
-            that improve business performance through the efficient application
-            of big data services. This strategy has been repeatedly demonstrated
-            to increase the client's return on investment. Our experts possess
-            an ideal blend of technical expertise, business acumen, management,
-            and project knowledge, which empowers them to effectively guide the
-            client throughout the entirety of the workflow development
-            lifecycle. We have experience managing entire projects and
-            integrating organisations for customers of all sizes.
-          </Typography>
-
+          <MainTitle title="Kapil Tech SAP Offerings" />
           <Grid
             container
-            columnGap={1}
-            rowGap={1}
+            columnGap={3}
+            rowGap={3}
             sx={{
               display: "flex",
-              alignItems: "center",
-              justifyContent: "flex-start",
+              alignItems: "left",
+              justifyContent: "center",
               width: "100%",
+              // p: "5px",
             }}
           >
             {SAPofferings.map((item) => (
-              <Card
-                component={Grid}
-                item
-                xs={12}
-                md={3.9}
+              <Stack
+                direction="column"
+                alignItems="left"
+                justifyContent="space-evenly"
+                component={motion.div}
+                initial={{ y: 0 }}
+                whileHover={{ y: "-10px" }}
+                transition={{ duration: 0.5 }}
+                // sx={{ textAlign: "center" }}
                 sx={{
-                  height: Mobile || Tab ? "auto" : "230px",
-                  display: "flex",
-                  alignItems: "left",
-                  justifyContent: "space-evenly",
-                  flexDirection: "column",
+                  width: "260px",
+                  height: "350px",
                   p: "10px",
+                  textAlign: "justify",
                   border: "1px solid #d3e1ea",
+                  "&:hover": {
+                    boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+                  },
+                  position: "relative",
+                  wordSpacing:"3px"
                 }}
               >
-                <Typography
-                  variant="h5"
-                  sx={{ fontWeight: "bold", color: "primary.BlueSonki" }}
+                <IconComponent title={item.title} size="100px" />
+
+                <Stack
+                  direction="column"
+                  alignItems="left"
+                  spacing={1}
+                  justifyContent="center"
+                  sx={{ p: "6px", width: "100%" }}
                 >
-                  {item.title}
-                </Typography>
-
-                <Typography variant="body1" sx={{ textAlign: "justify" }}>
-                  {item.description}
-                </Typography>
-
-                {item.knowmore ? (
                   <Typography
-                    variant="h6"
-                    sx={{ fontWeight: "bold", cursor: "pointer" }}
-                    onClick={() => {
-                      scrolltoSection(item.knowmore);
+                    variant={Mobile || Tab ? "h5" : "h5"}
+                    sx={{
+                      fontWeight: "bold",
+                      color: "black",
+                      textAlign: "left",
                     }}
-                  >
-                    Know More
-                  </Typography>
-                ) : null}
-              </Card>
-            ))}
-          </Grid>
-
-          <Stack
-            // key={item.id}
-            direction="column"
-            alignItems="center"
-            justifyContent="center"
-            spacing={2}
-            sx={{
-              width: "100%",
-              height: "99vh",
-              // border: "1px solid blue",
-            }}
-            ref={Ams}
-          >
-            <Typography variant="h4" sx={{ fontWeight: "bold", mt: "10px" }}>
-              SAP AMS
-            </Typography>
-
-            <Typography variant="body1" sx={{ width: "95%" }}>
-              Aware of the importance of cost consciousness and value, we are
-              capable of delivering services that optimise efficacy without
-              requiring you to enter into problematic contracts. Our devoted
-              team implements long-term solutions designed to advance your
-              company.
-            </Typography>
-            <Typography variant="body1" sx={{ width: "95%" }}>
-              Technologies are only as good as the people who use them. By
-              choosing to work with an Application Management Services partner
-              like us, you will ensure peak performance of your SAP systems by
-              extending the capabilities of your team.
-            </Typography>
-            <Typography
-              variant="h6"
-              sx={{ textAlign: "center", width: "95%", fontWeight: "bold" }}
-            >
-              SAP AMS helps your business to:
-            </Typography>
-
-            <Grid
-              container
-              columnGap={1}
-              rowGap={1}
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                width: "100%",
-                marginTop: "20px",
-              }}
-            >
-              {SAPAMS.map((item) => (
-                <Card
-                  key={item.id}
-                  component={Grid}
-                  item
-                  xs={12}
-                  md={2.9}
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-evenly",
-                    flexDirection: "column",
-                    border: "1px solid lightgray",
-                    height: "180px",
-                    p: "10px",
-                  }}
-                >
-                  <IconComponent title={item.icon} size="50px" />
-                  <Typography
-                    variant="h6"
-                    sx={{ fontWeight: "bold", textAlign: "center" }}
                   >
                     {item.title}
                   </Typography>
-                </Card>
-              ))}
-            </Grid>
-          </Stack>
-          <Stack
-            // key={item.id}
-            direction="column"
-            alignItems="center"
-            justifyContent="flex-start"
-            spacing={2}
-            sx={{
-              width: "100%",
-              height: "99vh",
-            }}
-            ref={Hana}
-          >
-            <Typography variant="h4" sx={{ fontWeight: "bold", mt: "10px" }}>
-              SAP S/4 HANA
-            </Typography>
 
-            <Typography variant="body1" sx={{ width: "80%" }}>
-              As the leading provider of SAP Consulting Services, we specialize
-              in delivering efficient implementation, rollout, upgrade, and
-              support. Our SAP S/4 HANA services are meticulously designed to
-              transform your system into a powerhouse of exceptional ERP
-              services. The best part? We do this without disrupting your
-              standard business operations, ensuring a seamless transition to
-              the future of digital ERP solutions.
-            </Typography>
+                 
+                </Stack>
 
-            <Typography variant="body1" sx={{ width: "80%" }}>
-              We provide SAP S4 HANA Consulting Services that are seamless and
-              optimised for SAP Business Suite processes:
-            </Typography>
-          </Stack>
-          <Stack
-            // key={item.id}
-            direction="column"
-            alignItems="center"
-            justifyContent="flex-start"
-            sx={{
-              width: "100%",
-              height: Mobile || Tab ? "auto" : "99vh",
-            }}
-            ref={Fiori}
-          >
-            <Typography variant="h4" sx={{ fontWeight: "bold", mt: "10px" }}>
-              SAP Fiori
-            </Typography>
-          </Stack>
+                <Typography variant="body1">{item.description}</Typography>
+              </Stack>
+            ))}
+          </Grid>
         </Stack>
       </SectionContainer>
 

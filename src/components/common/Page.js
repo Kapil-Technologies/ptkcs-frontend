@@ -6,12 +6,13 @@ import { useLocation, useParams } from "react-router-dom";
 import { Paths } from "../../config";
 import { useDispatch } from "react-redux";
 import { domainname } from "../../redux/slices/Domain";
+import { ViewCount } from "../../api/Main";
 
 function Page({ name, description, keywords, pagename }) {
   const { pathname } = useLocation();
   const hostname = window.location.hostname;
   const dispatch = useDispatch();
-  const { eventid } = useParams();
+  const { jobid, aid, wid } = useParams();
 
   // console.log(hostname); // This will log the hostname to the console
 
@@ -44,6 +45,12 @@ function Page({ name, description, keywords, pagename }) {
 
   // ----------------------------------------------------------------- Pag
   let pagevisited;
+
+  // const { jobid } = useParams()
+  const jobdescription = `${Paths.joinus.jobdescription}${jobid}`;
+  const eventregisration = ""
+
+  console.log(jobdescription);
 
   switch (true) {
     case pathname === Paths.home:
@@ -78,11 +85,14 @@ function Page({ name, description, keywords, pagename }) {
     case pathname === Paths.joinus.searchjobs:
       pagevisited = "Job Openings";
       break;
+    case pathname === jobdescription:
+      pagevisited = `Job Description - ${jobid}`;
+      break;
     case pathname === Paths.joinus.events:
       pagevisited = "Events";
       break;
     case pathname === Paths.joinus.webinar:
-      pagevisited = `Webinar - ${eventid}`;
+      pagevisited = "Webinars";
       break;
     case pathname === Paths.joinus.lifeatktech:
       pagevisited = "Life @ Ktech";
@@ -131,26 +141,23 @@ function Page({ name, description, keywords, pagename }) {
     };
     // console.log(SiteData)
 
-    // ViewCount(SiteData)
-    //   .then((res) => {
-    //     // console.log(res);
-    //   })
-    //   .catch((err) => {
-    //     // console.log(err);
-    //   });
+    ViewCount(SiteData)
+      .then((res) => {
+        // console.log(res);
+      })
+      .catch((err) => {
+        // console.log(err);
+      });
   }, []);
 
   return (
     <Helmet>
-      <title>{`${name} | PT. KCS Technologies Indonesia `}</title>
+      <title>{`${name} | PT.KCS Technologies Indonesia  `}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
       <meta charset="utf-8" />
       <meta name="robots" content="noindex" />
       <meta name="template" content={pagename} />
-      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1, safari=1" />
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="canonical" href={pathname} />
     </Helmet>
   );

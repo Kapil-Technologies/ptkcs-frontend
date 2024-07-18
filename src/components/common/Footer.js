@@ -2,9 +2,10 @@ import React from "react";
 import { styled } from "@mui/material/styles";
 import { Icon, Stack, Typography, useMediaQuery } from "@mui/material";
 import CTA from "./CTA";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useParams } from "react-router-dom";
 import { IconCopyright, IconEdit } from "../../themes/Icons";
 import { SocialMediaLinks } from "../../mock/Navigations";
+import SocialMediaComponent from "./SocialMediaComponent";
 
 export const MainDiv = styled("footer")(({ theme, color }) => ({
   height: "auto",
@@ -12,10 +13,7 @@ export const MainDiv = styled("footer")(({ theme, color }) => ({
   color: "black",
   marginTop: "auto",
   flexShrink: 0,
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  flexDirection: "column",
+  backgroundColor: "black",
 
   [theme.breakpoints.between("xs", "md")]: {
     // tab
@@ -30,16 +28,16 @@ export const SocialMedia = styled(Link)(({ theme, color }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  padding: "10px",
+  padding: "5px",
   borderRadius: "50%",
   textDecoration: "none",
   fontSize: "26px",
-  color: "white",
+  color: "black",
   // backgroundColor: "lightgray",
-  "&:hover": {
-    backgroundColor: "white",
-    color: theme.palette.primary.BlueSonki,
-  },
+  // "&:hover": {
+  //   backgroundColor: "gray",
+  //   color: "white",
+  // },
 
   [theme.breakpoints.between("xs", "md")]: {
     // tab
@@ -80,10 +78,11 @@ export const MailLink = styled(Link)(({ theme, color }) => ({
 export const TextLink = styled(Link)(({ theme, color }) => ({
   textDecoration: "none",
   color: "white",
-  padding: "10px",
 
   [theme.breakpoints.between("xs", "md")]: {
     // tab
+    width: "90%",
+    textAlign: "center",
   },
 
   [theme.breakpoints.between("md", "lg")]: {
@@ -93,6 +92,9 @@ export const TextLink = styled(Link)(({ theme, color }) => ({
 
 function Footer() {
   const { pathname } = useLocation();
+  const { jobid } = useParams();
+
+  // console.log(jobid)
 
   const Mobile = useMediaQuery((theme) =>
     theme.breakpoints.between("xs", "sm")
@@ -101,7 +103,9 @@ function Footer() {
   const Tab = useMediaQuery((theme) => theme.breakpoints.between("sm", "md"));
 
   const condition =
-    pathname === "/contact-us" || pathname === "/join-us/search-jobs";
+    pathname === "/contact-us" ||
+    pathname === "/join-us/job-openings" ||
+    pathname.includes("/join-us/job-openings/");
   return (
     <MainDiv>
       {!condition ? <CTA /> : null}
@@ -115,64 +119,70 @@ function Footer() {
         }}
       >
         <Stack
-          direction={Mobile || Tab ? "column" : "row"}
+          direction="column"
           alignItems="center"
           justifyContent="space-between"
           spacing={1}
           sx={{
             width: "100%",
             px: 1,
-            py: 1,
-            backgroundColor: "primary.BlueSonki",
-            color: "primary.color3",
+            py: 3,
+            backgroundColor: "inherit ",
+            color: "white",
           }}
         >
-          <Typography
-            variant="h5"
+          {/* <Typography
+            variant="h4"
             sx={{ fontWeight: "bold", textAlign: "center" }}
           >
-            PT. KCS Technologies Indonesia
+            Kapil Technologies India
+          </Typography> */}
+          <Typography
+            variant={Mobile || Tab ? "h6" : "h5"}
+            sx={{ fontWeight: "bold", textAlign: "center" }}
+          >
+            PT KCS Technologies Indonesia
           </Typography>
-          <MailLink to="mailto:info@ptkcs.com">info@ptkcs.com</MailLink>
+
+          <MailLink to="mailto:info@ptkcs-tech.com">info@ptkcs.com</MailLink>
 
           <Stack
             direction="row"
             alignItems="center"
             justifyContent="center"
-            spacing={2}
+            spacing={1}
           >
             {SocialMediaLinks.map((item) => (
               <SocialMedia to={item.link} target="blank" key={item.id}>
-                {item.icon}
+                <SocialMediaComponent title={item.name} size="40px" />
               </SocialMedia>
             ))}
           </Stack>
-        </Stack>
-      </Stack>
-      <Stack
-        direction="row"
-        alignItems="center"
-        justifyContent="space-between"
-        sx={{ width: "100%", bgcolor: "black", color: "white", height:Mobile || Tab ?"auto": "60px" }}
-      >
-        <Stack
-          direction={Mobile || Tab ? "column" : "row"}
-          alignItems="center"
-          justifyContent={Mobile || Tab ? "center" : "space-between"}
-          spacing={1}
-          sx={{ p: 1, width: "100%" }}
-        >
-          <TextLink to="/privacy-policy">Privacy Policy</TextLink>
+
+          <Line />
           <Stack
-            direction="row"
+            direction={Mobile || Tab ? "column" : "row"}
             alignItems="center"
-            spacing={1}
-            sx={{ p: "10px" }}
+            justifyContent={Mobile || Tab ? "center" : "space-between"}
+            spacing={2}
+            sx={{ p: 1, width: Mobile || Tab ? "95%" : "85%" }}
           >
-            <IconCopyright />
-            <Typography variant="body1">
-              Copyright 2024 | All Rights Reseved
-            </Typography>
+            <TextLink to="/privacy-policy">Privacy Policy</TextLink>
+            <Stack
+              direction="row"
+              alignItems="center"
+              justifyContent="center"
+              spacing={1}
+              sx={{ width: Mobile || Tab ? "100%" : null }}
+            >
+              <IconCopyright />
+              <Typography
+                variant={Mobile || Tab ? "body2" : "body1"}
+                sx={{ color: "white" }}
+              >
+                Copyright 2024 | All Rights Reseved
+              </Typography>
+            </Stack>
           </Stack>
         </Stack>
       </Stack>

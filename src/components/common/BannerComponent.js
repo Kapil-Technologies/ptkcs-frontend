@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
 import { Box, Stack, useMediaQuery } from "@mui/material";
-import { getBanners } from "../../api/GetRequests";
+import { getBanners } from "../../api/Main";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Banners } from "../../App";
+import { useLoading } from "./LoadingComponent";
 
 export const MainContainer = styled(Box)(({ theme, mheight }) => ({
   height: mheight,
@@ -15,7 +15,7 @@ export const MainContainer = styled(Box)(({ theme, mheight }) => ({
   justifyContent: "center",
   marginBottom: "10px",
 
-  [theme.breakpoints.between("xs", "sm")]: {
+  [theme.breakpoints.between("xs", "md")]: {
     //  mobile
     height: "250px",
     width: "100%",
@@ -75,17 +75,23 @@ function BannerComponent({ mainheight, layercolor, textdispaly }) {
 
   let imagename;
 
+  const condition = pathname === "/services/infor-consulting" || pathname === "/join-us/job-openings" || pathname === "/services/sap-consulting"
+
   const [banners, setBanners] = useState([]);
 
+    const { startLoading, stopLoading } = useLoading();
+
   useEffect(() => {
+    startLoading();
     getBanners()
       .then((res) => {
         // console.log(res);
         const respdata = res.data.response;
         const filtereddata = respdata
-          ? respdata.filter((item) => item.pagepath === pathname)
+          ? respdata.filter((item) => item.pagepath === pathname) 
           : [];
         // console.log(filtereddata, "filterdata");
+        stopLoading()
         setBanners(filtereddata);
       })
       .catch((err) => {
@@ -113,7 +119,7 @@ function BannerComponent({ mainheight, layercolor, textdispaly }) {
         direction="column"
         alignItems="center"
         justifyContent="start"
-        lcolor="rgba(0,0,0,0.25)"
+        lcolor={condition ? "rgba(0, 0, 0, 0.2)" : "rgba(0,0,0,0.4)"}
       >
         {textdispaly}
       </Layer>

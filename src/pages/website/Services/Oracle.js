@@ -12,21 +12,12 @@ import {
   Box,
 } from "@mui/material";
 import { motion } from "framer-motion";
-import Carousel from "../../../components/common/Carousel";
-import WhyKapilTech from "../../../components/common/WhyKapilTech";
-import { Homepagelist } from "../../../mock/Homepage";
-import { SectionContainer } from "./SAP";
+
 import { styled } from "@mui/material/styles";
-import { InforData, InforSyteline } from "../../../mock/Services";
-import Integrationcapabilities from "../../../sections/services/Infor/Integrationcapabilities";
-import LNInfor from "../../../sections/services/Infor/LNInfor";
-import Inforsyteline from "../../../sections/services/Infor/Inforsyteline";
 import BannerComponent from "../../../components/common/BannerComponent";
-import { offerings } from "../../../mock/whatwedo/consulting/OracleMock";
-import {
-  ImageGridItem,
-  TextGridItem,
-} from "./Otherservices/DigitalTransformation";
+import { offerings } from "../../../mock/OracleMock";
+import WebPictureComponent from "../../../components/common/WebPictureComponent";
+import MainTitle from "../../../components/common/MainTitle";
 
 const InforCustomers = [
   {
@@ -61,157 +52,33 @@ const InforCustomers = [
   },
 ];
 
-export const MainCircle = styled(Stack)(({ theme, layercolor }) => ({
-  width: "250px",
-  height: "250px",
-  border: "3px dashed gray",
-  borderRadius: "50%",
-  position: "relative",
-  // borderRight: " 2px dashed blue",
-
-  [theme.breakpoints.between("xs", "md")]: {
-    //  mobile
-  },
-}));
-
-// export const InnerCircle = styled(Stack)(({ theme, layercolor }) => ({
-//   position: "absolute",
-//   width: "230px",
-//   height: "230px",
-//   border: "2px dashed gray",
-//   borderRadius: "50%",
-//   margin:"auto",
-
-//   [theme.breakpoints.between("xs", "md")]: {
-//     //  mobile
-//   },
-// }));
-
-export const InnerCircle = styled(Stack)(({ theme, layercolor }) => ({
-  position: "absolute",
-  width: "150px",
-  height: "150px",
-  border: "2px dotted gray",
-  borderRadius: "50%",
-  top: 0,
-  bottom: 0,
-  left: 0,
-  right: 0,
-  margin: "auto",
-
-  [theme.breakpoints.between("xs", "md")]: {
-    //  mobile
-  },
-}));
-
-export const Line1 = styled(Stack)(({ theme, countid }) => ({
-  position: "absolute",
-  width: "60px",
-  height: "2px",
-  background: "gray",
-  borderRadius: "5px",
-  top: "24.5px",
-  right: countid === 4 ? "50px" : "-60px",
-
-  [theme.breakpoints.between("xs", "md")]: {
-    //  mobile
-  },
-}));
-
-export const Line2 = styled(Stack)(({ theme, countid }) => ({
-  position: "absolute",
-  width: "2px",
-  height: "60px",
-  background: "gray",
-  borderRadius: "5px",
-  top: countid === 3 ? "50px" : "-60px",
-
-  [theme.breakpoints.between("xs", "md")]: {
-    //  mobile
-  },
-}));
-
-export const TextContainer1 = styled(Card)(({ theme, countid }) => ({
-  width: "400px",
-  height: "auto",
+const TextGridItem = styled(Grid)(({ theme, backcolor, justify, tcolor }) => ({
   display: "flex",
-  alignItems: "left",
-  justifyContent: "left",
+  alignItems: justify,
+  justifyContent: "space-evenly",
   flexDirection: "column",
-  position: "absolute",
-  left: "-200px",
-  top: countid === 1 ? "-100px" : "60px",
-  border: "1px solid #d3e1ea",
-  borderTopRightRadius: 0,
-  borderBottomLeftRadius: 0,
-  borderTopLeftRadius: "30px",
-  borderBottomRightRadius: "30px",
+  height: "350px",
   padding: "10px",
-}));
+  width: "100%",
+  backgroundColor: backcolor,
+  gap: "10px",
+  color: tcolor,
+  // border: "1px solid blue",
 
-export const TextContainer2 = styled(Card)(({ theme, countid }) => ({
-  width: "400px",
-  height: "auto",
-  display: "flex",
-  alignItems: "left",
-  justifyContent: "left",
-  flexDirection: "column",
-  position: "absolute",
-  border: "1px solid #d3e1ea",
-  top: "-60px",
-  left: countid === 2 ? "50px" : countid === 4 ? "-420px" : 0,
-  padding: "10px",
-  borderTopRightRadius: 0,
-  borderBottomLeftRadius: 0,
-  borderTopLeftRadius: "30px",
-  borderBottomRightRadius: "30px",
-  [theme.breakpoints.between("xs", "md")]: {
-    //  mobile
+  [theme.breakpoints.between("xs", "sm")]: {
+    height: "auto",
+    width: "100%",
   },
+  [theme.breakpoints.between("sm", "md")]: {
+    // height: "350px",
+    width: "100%",
+  },
+  [theme.breakpoints.between("md", "lg")]: {
+    // Desktop
+  },
+
+  [theme.breakpoints.up("xl")]: {},
 }));
-
-export const MiniCircles = styled(Stack)(
-  ({
-    theme,
-    layercolor,
-    positionTop,
-    positionBottom,
-    positionRight,
-    positionLeft,
-    textcolor,
-    countid,
-    r1,
-    r2,
-  }) => ({
-    position: "absolute",
-    width: "50px",
-    height: "50px",
-    border: "5px  solid white",
-    borderRadius: "50%",
-    backgroundColor: layercolor,
-    color: textcolor,
-    border: "1px solid gray",
-
-    zIndex: 1,
-    "&:nth-child(1)": {
-      top: "-25px",
-    },
-
-    "&:nth-child(3)": {
-      right: "-25px",
-    },
-    "&:nth-child(5)": {
-      left: "-25px",
-    },
-    "&:nth-child(7)": {
-      bottom: "-25px",
-    },
-
-    [theme.breakpoints.between("xs", "md")]: {
-      //  mobile
-    },
-  })
-);
 
 function Oracle() {
   const theme = useTheme();
@@ -254,16 +121,16 @@ function Oracle() {
           direction="column"
           alignItems="center"
           justifyContent="center"
-          sx={{ width: Mobile || Tab ? "100%" : "80%", px: "20px", pt: "10px" }}
+          sx={{ width: Mobile || Tab ? "90%" : "80%", px: "20px", pt: "10px" }}
           spacing={2}
         >
-          <Typography variant="h4" sx={{ fontWeight: "bold", px: 1 }}>
-            Why Choose Kapil Tech for your Oracle NetSuite Services
-          </Typography>
           <Typography
-            variant="h6"
-            sx={{ textAlign: Mobile || Tab ? "center" : "justify" }}
+            variant="h4"
+            sx={{ fontWeight: "bold", px: 1, textAlign: "justify" }}
           >
+            Why Us ?
+          </Typography>
+          <Typography variant="h6" sx={{ textAlign: "justify" }}>
             Our organisation has established a strong reputation for providing
             cutting-edge Oracle Netsuite software solutions that streamline
             various business operations. Significant improvements have been
@@ -288,17 +155,23 @@ function Oracle() {
           >
             {offerings.map((item) =>
               item.type === "image" ? (
-                <ImageGridItem item xs={12} md={6}>
-                  Image
-                </ImageGridItem>
+                <WebPictureComponent
+                  key={item.id}
+                  reqheight="350px"
+                  title={item.mtitle}
+                />
               ) : (
-                <TextGridItem item xs={12} md={6} key={item.id}>
-                  <Typography
-                    variant="h5"
-                    sx={{ fontWeight: "bold", fontSize: "28px" }}
-                  >
-                    {item.text.mtitle}
-                  </Typography>
+                <TextGridItem
+                  item
+                  xs={12}
+                  md={6}
+                  key={item.id}
+                  backcolor={item.bgcolor}
+                  justify={item.justify}
+                  tcolor={item.color}
+                >
+                  <MainTitle title={item.text.mtitle} />
+
                   <Typography variant="body1" sx={{ textAlign: "justify" }}>
                     {item.text.subtitle}
                   </Typography>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getIcons } from "../../api/GetRequests";
+import { getIcons } from "../../api/Main";
 import { Stack } from "@mui/material";
 import { useLocation } from "react-router-dom";
 

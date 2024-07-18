@@ -9,6 +9,7 @@ export const MainContainer = styled(Box)(({ theme, mainheight }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  background: theme.palette.primary.main,
 
   [theme.breakpoints.between("xs", "sm")]: {
     //  mobile
@@ -41,7 +42,8 @@ export const Layer = styled(Stack)(({ theme, layercolor }) => ({
   height: "inherit",
   position: "absolute",
   top: 0,
-  backgroundColor: layercolor,
+  backgroundColor: null,
+  color:"white",
 
   [theme.breakpoints.between("xs", "md")]: {
     //  mobile

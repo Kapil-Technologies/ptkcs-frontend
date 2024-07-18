@@ -162,3 +162,114 @@ export const dtzigzag = [
     },
   },
 ];
+
+export const HomeZigZag = [
+  {
+    id: 1,
+    type: "image",
+    name: "ERP Image",
+    text: {},
+  },
+  {
+    id: 2,
+    bgcolor: "#F9B463",
+    color: "#0E366A",
+    justify: "flex-end",
+    textalign: "right",
+
+    type: "text",
+    text: {
+      t1: "A clear path to",
+      t2: "good business",
+      t3: "ERP Practices",
+      t4: "Efficiently manage day to day business activities, ensure effective control in real time.",
+      t5: "Infor | SAP | Oracle | Microsoft",
+    },
+  },
+  {
+    id: 3,
+    bgcolor: "#FFFFFF",
+    color: "#0E366A",
+    justify: "flex-start",
+    textalign: "left",
+
+    type: "text",
+    text: {
+      t1: "Reimagine. Build. Grow.",
+      t2: "Business Intelligence",
+      t3: "",
+      t4: "Powers better business-critical decision-making with the help of meaningful insights and data visualizations.",
+      t5: "Power BI | Qlik | Tableau",
+    },
+  },
+  {
+    id: 4,
+    name: "BI Image",
+    type: "image",
+    text: {},
+  },
+  {
+    id: 5,
+    name: "Dev Image",
+    type: "image",
+    text: {},
+  },
+  {
+    id: 6,
+    bgcolor: "#C7D9CD",
+    color: "#0E366A",
+    justify: "flex-end",
+    textalign: "right",
+    type: "text",
+    text: {
+      t1: "Develop. Test. Deploy.",
+      t2: "Resolve",
+      t3: "Application Development",
+      t4: "When you need the most - Ensuring Business continuity all times.",
+      t5: "",
+    },
+  },
+  {
+    id: 7,
+    bgcolor: "#D7D7D7",
+    color: "#0E366A",
+    justify: "flex-start",
+    textalign: "left",
+
+    type: "text",
+    text: {
+      t1: "New. Now. Always",
+      t2: "Disruptive Technologies",
+      t3: "",
+      t4: "Advances that will transform life, business, and the global economy.",
+      t5: "",
+    },
+  },
+  {
+    id: 8,
+    type: "image",
+    name: "DT Image",
+    text: {},
+  },
+  {
+    id: 9,
+    type: "image",
+    name: "PS Image",
+    text: {},
+  },
+  {
+    id: 10,
+    bgcolor: "#C7D9CD",
+    color: "#0E366A",
+    justify: "flex-end",
+    textalign: "right",
+    type: "text",
+    text: {
+      t1: "Meet. Greet. Motivate.",
+      t2: "Collaborate",
+      t3: "Professional Services",
+      t4: "For everlasting Customer relationships.",
+      t5: "",
+    },
+  },
+];

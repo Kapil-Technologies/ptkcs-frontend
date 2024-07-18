@@ -28,11 +28,12 @@ import {
   FiArrowRight,
   FiArrowLeft,
   FiArrowUp,
-  FiStar,
+  
 } from "react-icons/fi";
 import { styled } from "@mui/material/styles";
 import { VscCircleFilled } from "react-icons/vsc";
 import { AiOutlineCopyrightCircle } from "react-icons/ai";
+import { FaWhatsapp } from "react-icons/fa";
 
 // ------------------------------------------------------------  Navbar
 
@@ -68,6 +69,8 @@ export const IconID = styled(FiBriefcase)(({ theme, color }) => ({
 }));
 
 export const IconEmail = styled(FiMail)(({ theme, color }) => ({}));
+export const IconWhatsapp = styled(FaWhatsapp)(({ theme, color }) => ({}));
+
 
 export const IconMobile = styled(FiSmartphone)(({ theme, color }) => ({}));
 
@@ -142,11 +145,7 @@ export const IconDelete = styled(FiTrash)(({ theme, color }) => ({}));
 export const IconEdit = styled(FiEdit)(({ theme, color }) => ({}));
 // VscCircleFilled
 
-export const IconDot = styled(VscCircleFilled)(({ theme, color,mt }) => ({
-  marginTop:mt
-}));
-export const IconStar = styled(FiStar)(({ theme, color }) => ({}));
-
+export const IconDot = styled(VscCircleFilled)(({ theme, color }) => ({}));
 
 // -----------------------------------------------------------------------------  Social Media
 

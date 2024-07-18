@@ -1,35 +1,28 @@
 import React, { useState, useEffect } from "react";
-import {
-  Box,
-  Card,
-  Grid,
-  Stack,
-  Typography,
-  useMediaQuery,
-} from "@mui/material";
+import { Box, Card, Stack, Typography, useMediaQuery } from "@mui/material";
 import { motion } from "framer-motion";
 import { IconLeftArrow, IconRightArrow } from "../../themes/Icons";
 
-function Carousel({ carouselname, carouselImages, speed }) {
-  // --------------------------------------------------   Responsive
-
-  const Mobile = useMediaQuery((theme) =>
+function Carousel({ carouselname, carouselImages, speed = 800 }) {
+  // Responsive breakpoints
+  const isMobile = useMediaQuery((theme) =>
     theme.breakpoints.between("xs", "sm")
   );
-  const Tab = useMediaQuery((theme) => theme.breakpoints.between("sm", "md"));
-
-  const Desktop = useMediaQuery((theme) =>
+  const isTablet = useMediaQuery((theme) =>
+    theme.breakpoints.between("sm", "md")
+  );
+  const isDesktop = useMediaQuery((theme) =>
     theme.breakpoints.between("md", "lg")
   );
+  const isLarge = useMediaQuery((theme) =>
+    theme.breakpoints.between("lg", "xl")
+  );
+  const isExtraLarge = useMediaQuery((theme) => theme.breakpoints.up("xl"));
 
-  const Large = useMediaQuery((theme) => theme.breakpoints.between("lg", "xl"));
-
-  const XstraLarge = useMediaQuery((theme) => theme.breakpoints.up("xl"));
-
-  // --------------------------------------------------   Responsive
-
+  // State for current carousel index
   const [index, setIndex] = useState(0);
 
+  // Handlers for navigation
   const handlePrev = () => {
     setIndex((prevIndex) =>
       prevIndex === 0 ? carouselImages.length - 1 : prevIndex - 1
@@ -42,29 +35,37 @@ function Carousel({ carouselname, carouselImages, speed }) {
     );
   };
 
+  // Auto play and scroll behavior
   useEffect(() => {
     const handleScroll = () => {
-      const { scrollTop, clientHeight } = document.documentElement;
-      const scrollHeight = document.documentElement.scrollHeight;
-
+      const { scrollTop, clientHeight, scrollHeight } =
+        document.documentElement;
       const scrollPosition = scrollTop + clientHeight;
       const isAtBottom = scrollHeight - scrollPosition < 50;
-
       if (isAtBottom) {
         handleNext();
       }
     };
 
-    const interval = setInterval(() => {
-      handleNext();
-    }, speed); // Auto play every 3 seconds
+    const interval = setInterval(handleNext, speed);
 
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
       clearInterval(interval);
     };
-  }, []);
+  }, [speed]);
+
+  // Number of items to display based on screen size
+  const itemsToDisplay = isMobile
+    ? 1
+    : isTablet
+    ? 3
+    : isDesktop
+    ? 4
+    : isLarge
+    ? 5
+    : carouselImages.length;
 
   return (
     <Stack
@@ -104,23 +105,13 @@ function Carousel({ carouselname, carouselImages, speed }) {
           sx={{ width: "85%", overflow: "hidden" }}
           spacing={2}
         >
-          {Array.from({
-            length: Mobile
-              ? 1
-              : Tab
-              ? 3
-              : Desktop
-              ? 4
-              : Large
-              ? 5
-              : carouselImages.length,
-          }).map((_, i, index) => {
+          {Array.from({ length: itemsToDisplay }).map((_, i) => {
             const itemIndex = (index + i) % carouselImages.length;
             const item = carouselImages[itemIndex];
-            
+
             return (
               <Card
-                key={index}
+                key={item.id}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1 }}
@@ -134,17 +125,10 @@ function Carousel({ carouselname, carouselImages, speed }) {
                   textAlign: "center",
                 }}
                 component={motion.div}
-                item
               >
-                {/* <img
-                  src={`data:image/png;base64,${}`}
-                  style={{
-                    objectPosition: "center center",
-                    maxWidth: "100%",
-                    maxHeight: "100%",
-                  }}
-                /> */}
-               {item.name}
+                {item.id}
+                {console.log(item.logoname)}
+                {item.src}
               </Card>
             );
           })}

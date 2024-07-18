@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { useSnackbar } from "notistack";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Autocomplete,
   Button,
@@ -19,19 +19,19 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import { countrys } from "../../mock/FormFields";
+// import { countrys } from "../../mock/FormFields";
 import { useSelector } from "react-redux";
-import { CountriesList, Domain } from "../../App";
-import { raiseEnquiry } from "../../api/PostRequests";
-import { Paths } from "../../config";
+import { raiseEnquiry } from "../../api/Enquiries";
+import { getCountries } from "../../api/Main";
+import { CountriesList } from "../../App";
 
 // -----------------------------------------------  Form Components
 
 const schema = yup.object({
-  fullname: yup.string().required(" Full Name  is Required !"),
-  company: yup.string().required(" Company is Required !"),
-  email: yup.string().required(" Email is Required !"),
-  country: yup.string().required(" Country  is Required !"),
+  fullname: yup.string().required("Full Name  is Required !"),
+  company: yup.string().required("Company is Required !"),
+  email: yup.string().required("Email is Required !"),
+  country: yup.string().required("Country  is Required !"),
   ccode: yup.string(),
   mobile: yup.string(),
   industry: yup.string().required("Industry is Required !"),
@@ -48,7 +48,7 @@ const defaultValues = {
   mobile: "",
   industry: "",
   message: "",
-  tc: "No",
+  tc: "",
 };
 
 // -----------------------------------------------  Form Components
@@ -56,13 +56,10 @@ const defaultValues = {
 function ContactForm() {
   const { enqueueSnackbar } = useSnackbar();
   const Navigate = useNavigate();
-  const {eventid} = useParams()
-
-  const { pathname } = useLocation();
-  console.log(pathname);
   const domain = useSelector((state) => state.domain.domain);
-  const page = useSelector((state) => state.enquiry.enquiryfrompage);
-  //   console.log(domain);
+
+  const Page = useSelector((state) => state.enquiry.enquiryfrompage);
+    // console.log(Page);
   const Mobile = useMediaQuery((theme) =>
     theme.breakpoints.between("xs", "sm")
   );
@@ -70,9 +67,14 @@ function ContactForm() {
 
   // -----------------------------------------------  Form Components
 
+  const countries = useContext(CountriesList)
+
+  
+
   const {
     register,
     handleSubmit,
+    reset,
     watch,
     control,
     formState: { errors, isDirty, isValid },
@@ -81,64 +83,8 @@ function ContactForm() {
     defaultValues,
   });
 
-  const countrydata = useContext(CountriesList);
-
-  const condition = pathname === "/contact-us";
-
-  // console.log(countrydata);
-
-  let pagevisited;
-
-  switch (true) {
-    case pathname === Paths.home:
-      pagevisited = "Home";
-      break;
-    // About us
-    case pathname === Paths.aboutus.company:
-      pagevisited = "company";
-      break;
-
-    case pathname === Paths.aboutus.leadership:
-      pagevisited = "leadership";
-      break;
-
-    // Services
-    case pathname === Paths.consulting.inforconsulting:
-      pagevisited = "Infor";
-      break;
-    case pathname === Paths.consulting.sapconsulting:
-      pagevisited = "SAP";
-      break;
-    case pathname === Paths.consulting.digitaltransformation:
-      pagevisited = "Digital Transformation";
-      break;
-    case pathname === Paths.other.staffing:
-      pagevisited = "Staffing";
-      break;
-    case pathname === Paths.solutions.finsta:
-      pagevisited = "Finsta";
-      break;
-    // Joinus
-    case pathname === Paths.joinus.searchjobs:
-      pagevisited = "Job Openings";
-      break;
-    case pathname === Paths.joinus.events:
-      pagevisited = "Events";
-      break;
-    case pathname === Paths.joinus.webinar:
-      pagevisited = `Webinar - ${eventid}`;
-      break;
-    case pathname === Paths.joinus.lifeatktech:
-      pagevisited = "Life @ Ktech";
-      break;
-    // Contact us
-    case pathname === Paths.contactus:
-      pagevisited = "Contact us";
-      break;
-  }
-
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
 
     const reqdata = {
       fullname: data.fullname,
@@ -148,24 +94,25 @@ function ContactForm() {
       mobile: `${data.ccode} - ${data.mobile}`,
       message: data.message,
       tc: data.tc,
-      domain: domain,
-      page: page,
+      page: Page,
+      industry:data.industry
     };
 
-    // raiseEnquiry(reqdata)
-    //   .then((res) => {
-    //     // console.log(res);
-    //     const status = res.data.success;
-    //     if (status) {
-    //       enqueueSnackbar(res.data.message, { variant: "success" });
-    //     } else {
-    //       enqueueSnackbar(res.data.message, { variant: "error" });
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //     enqueueSnackbar(err.message, { variant: "error" });
-    //   });
+    raiseEnquiry(reqdata)
+      .then((res) => {
+        // console.log(res);
+        const status = res.data.success;
+        if (status) {
+          enqueueSnackbar(res.data.message, { variant: "success" });
+          reset()
+        } else {
+          enqueueSnackbar(res.data.message, { variant: "error" });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        enqueueSnackbar(err.message, { variant: "error" });
+      });
   };
 
   return (
@@ -173,10 +120,10 @@ function ContactForm() {
       direction="column"
       alignItems="center"
       justifyContent="space-evenly"
-      sx={{ width: "100%", height: "inherit" }}
+      sx={{ width: "100%", height: "inherit", py: "10px" }}
       component="form"
       onSubmit={handleSubmit(onSubmit)}
-      spacing={condition ? 1 : 2}
+      spacing={1}
     >
       <Stack
         direction={Mobile || Tab ? "column" : "row"}
@@ -186,7 +133,7 @@ function ContactForm() {
         spacing={2}
       >
         <TextField
-          variant={condition ? "standard" : "outlined"}
+          variant="standard"
           label="Full Name"
           fullWidth
           autoComplete="off"
@@ -195,7 +142,7 @@ function ContactForm() {
           {...register("fullname")}
         />
         <TextField
-          variant={condition ? "standard" : "outlined"}
+          variant="standard"
           label="Company"
           fullWidth
           autoComplete="off"
@@ -213,7 +160,7 @@ function ContactForm() {
         spacing={2}
       >
         <TextField
-          variant={condition ? "standard" : "outlined"}
+          variant="standard"
           label="Work Email"
           fullWidth
           autoComplete="off"
@@ -231,24 +178,27 @@ function ContactForm() {
                 sx={{ width: "100%" }}
                 value={
                   value
-                    ? countrydata.find((option) => {
-                        return value == option.countryname;
-                      }) ?? null
+                    ? countries.find(
+                        (option) =>
+                          value ===
+                          `${option.countryname}`
+                      ) ?? null
                     : null
                 }
-                getOptionLabel={(option) => {
-                  return `${option.countryname}`;
-                }}
-                options={countrydata}
+                getOptionLabel={(option) =>
+                  `${option.countryname} (${option.countrycode})`
+                }
+                options={countries}
                 onChange={(e, newValue) => {
                   onChange(newValue ? newValue.countryname : null);
                 }}
                 renderInput={(params) => (
                   <TextField
+                  
                     {...params}
                     label="Country"
-                    variant={condition ? "standard" : "outlined"}
-                    error={errors.country}
+                    variant="standard"
+                    error={!!errors.country}
                     helperText={errors.country?.message}
                   />
                 )}
@@ -282,24 +232,24 @@ function ContactForm() {
                   sx={{ width: "100%" }}
                   value={
                     value
-                      ? countrydata.find((option) => {
-                          return value == option.countrydailcode;
-                        }) ?? null
+                      ? countries.find(
+                          (option) => option.countrydailcode === value
+                        ) ?? null
                       : null
                   }
-                  getOptionLabel={(option) => {
-                    return `${option.countrydailcode} (${option.countrycode})`;
-                  }}
-                  options={countrydata}
+                  getOptionLabel={(option) =>
+                    `${option.countrydailcode} - ${option.countrycode}`
+                  }
+                  options={countries}
                   onChange={(e, newValue) => {
                     onChange(newValue ? newValue.countrydailcode : null);
                   }}
                   renderInput={(params) => (
                     <TextField
+                      variant="standard"
                       {...params}
-                      label="Code "
-                      variant={condition ? "standard" : "outlined"}
-                      error={errors.ccode}
+                      label="Country Code"
+                      error={!!errors.ccode}
                       helperText={errors.ccode?.message}
                     />
                   )}
@@ -307,8 +257,9 @@ function ContactForm() {
               );
             }}
           />
+
           <TextField
-            variant={condition ? "standard" : "outlined"}
+            variant="standard"
             label="Mobile"
             fullWidth
             autoComplete="off"
@@ -318,7 +269,7 @@ function ContactForm() {
           />
         </Stack>
         <TextField
-          variant={condition ? "standard" : "outlined"}
+          variant="standard"
           label="Niche Industry"
           fullWidth
           autoComplete="off"
@@ -335,10 +286,10 @@ function ContactForm() {
         spacing={2}
       >
         <TextField
-          variant={condition ? "standard" : "outlined"}
-          label="Message"
+          variant="standard"
+          label="Could you explain in more detailed."
           multiline
-          rows={2}
+          rows={4}
           fullWidth
           autoComplete="off"
           error={errors.message}
@@ -347,7 +298,7 @@ function ContactForm() {
         />
       </Stack>
 
-      <Stack
+      {/* <Stack
         direction="column"
         alignItems="left"
         justifyContent="left"
@@ -379,12 +330,12 @@ function ContactForm() {
             )}
           />
         </FormControl>
-      </Stack>
+      </Stack> */}
 
       <Stack
         direction="row"
         alignItems="center"
-        justifyContent="left"
+        justifyContent="right"
         sx={{ width: "100%", pb: 2 }}
         spacing={2}
       >

@@ -1,17 +1,15 @@
-import { Button, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
+import { Button, Stack, Typography, useMediaQuery } from "@mui/material";
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Paths } from "../../config";
 import { useDispatch } from "react-redux";
 import { isNavigated, enquiryfrom } from "../../redux/slices/Enquiry";
-import ContactForm from "../Forms/ContactForm";
 // import useMediaQuery from "../../Hooks/MediaQueries";
 
 function CTA() {
   const { pathname } = useLocation();
   const Navigate = useNavigate();
   const dispatch = useDispatch();
-  // console.log(pathname)
   const Mobile = useMediaQuery((theme) =>
     theme.breakpoints.between("xs", "sm")
   );
@@ -47,29 +45,28 @@ function CTA() {
 
     // Services
     case pathname === Paths.consulting.inforconsulting:
-      ctatext = "Investigate the potential of Infor M3 Cloudsuite and Infor SyteLine ERP for your organisation.  ";
-      pagename = "Infor";
+      ctatext = "Discover the Power of Infor Solutions Today! ";
+      pagename = "Infor Service";
       navigate = "Yes";
       break;
     case pathname === Paths.consulting.sapconsulting:
-      ctatext = "Explore the potential benefits of SAP for your organization.";
-      pagename = "SAP";
+      ctatext = "Transform your business with SAP's innovative solutions.";
+      pagename = "SAP Services";
       navigate = "Yes";
       break;
-    case pathname === Paths.consulting.oracleconsulting:
-      ctatext =
-        "Investigate the potential of Oracle Netsuite for your organisation. ";
-      pagename = "Digital Transformation";
+    case pathname === Paths.consulting.digitaltransformation:
+      ctatext = "Embrace Digital Transformation for innovation";
+      pagename = "Application Development Services";
       navigate = "Yes";
       break;
     case pathname === Paths.other.staffing:
       ctatext = "Embrace Digital Transformation for innovation";
-      pagename = "Staffing";
+      pagename = "Staffing Services";
       navigate = "Yes";
       break;
     case pathname === Paths.solutions.finsta:
       ctatext = "Embrace Digital Transformation for innovation";
-      pagename = "Finsta";
+      pagename = "Finsta Solution";
       navigate = "Yes";
       break;
     // Joinus
@@ -85,18 +82,11 @@ function CTA() {
     case pathname === Paths.joinus.lifeatktech:
       pagename = "Life @ Ktech";
       break;
-    // Products
-    case pathname === Paths.solutions.mpdv:
-      ctatext =
-        "Transform production with FEDRA & HYDRA. Optimize planning, resources, efficiency.";
-      pagename = "MPDV";
-      break;
-
     // Contact us
     case pathname === Paths.contactus:
       ctatext = "Contact";
       pagename = "Contact us";
-      navigate = "Yes";
+      navigate = "No";
       break;
   }
 
@@ -109,152 +99,46 @@ function CTA() {
 
   return (
     <Stack
-      direction={Mobile || Tab ? "column" : "row"}
+      direction="row"
       alignItems="center"
       justifyContent="center"
       sx={{
         width: "100%",
-        height: Mobile || Tab ? "auto" : "auto",
+        height: "auto",
         backgroundColor: "lightgray",
-        py: "15px",
       }}
-      spacing={2}
     >
-      {/* <Typography variant="h4" sx={{ pb: "20px", fontWeight: "bold" ,textAlign:'center' }}>
-        Value Statement - Contact us
-      </Typography>
-      <Grid
-        columnGap={2}
-        rowGap={2}
-        container
-        sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+      <Stack
+        direction={Mobile || Tab  ? "column" : "row"}
+        alignItems="center"
+        justifyContent={Mobile || Tab ? "center" : "space-between"}
+        sx={{ width: Mobile || Tab ? "100%" : "80%", p: "10px",height:Mobile || Tab ? "auto" :"80px" }}
+        spacing={2}
       >
-        <Grid
-          item
-          container
-          columnGap={2}
-          rowGap={2}
-          xs={12}
-          md={5.5}
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            // border: "1px solid blue",
-            height: Mobile || Tab ? "auto" : "calc(100vh - 180px)",
-            padding: "10px",
-          }}
+        <Stack
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
+          spacing={2}
+          sx={{width:"inherit"}}
         >
-          <Grid
-            item
-            md="160px"
-            sx={{
-              width: "150px",
-              bgcolor: "gray",
-              border: "1px solid lightgray",
-              height: "150px",
-              borderRadius: "50%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
+          <Typography
+            variant="h5"
+            sx={{ fontWeight: "bold", textAlign: "center" }}
           >
-            data
-          </Grid>
-          <Grid
-            item
-            md="160px"
-            sx={{
-              width: "150px",
-              bgcolor: "gray",
-              border: "1px solid lightgray",
-              height: "150px",
-              borderRadius: "50%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            data
-          </Grid>
-          <Grid
-            item
-            md="160px"
-            sx={{
-              width: "150px",
-              bgcolor: "gray",
-              border: "1px solid lightgray",
-              height: "150px",
-              borderRadius: "50%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            data
-          </Grid>
-          <Grid
-            item
-            md="160px"
-            sx={{
-              width: "150px",
-              bgcolor: "gray",
-              border: "1px solid lightgray",
-              height: "150px",
-              borderRadius: "50%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            data
-          </Grid>
-          <Grid
-            item
-            md="160px"
-            sx={{
-              width: "150px",
-              bgcolor: "gray",
-              border: "1px solid lightgray",
-              height: "150px",
-              borderRadius: "50%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            data
-          </Grid>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          md={5.5}
-          sx={{
-            display: "flex",
-            alignItems: "start",
-            justifyContent: "center",
-            // border: "1px solid blue",
-            height: "auto",
-            padding: "10px",
-          }}
-        >
-          <ContactForm />
-        </Grid>
-      </Grid> */}
-      <Typography
-        variant="h5"
-        sx={{
-          fontWeight: "bold",
-          width: Mobile || Tab ? "100%" : "60%",
-          textAlign: "center",
-        }}
-      >
-        {ctatext}
-      </Typography>
-      <Button variant="contained" onClick={handleNavigate}>
-        Connect With us!
-      </Button>
+            {ctatext}
+          </Typography>
+
+          {subtitle ? (
+            <Typography variant="body1" sx={{ textAlign: "center" }}>
+              {subtitle}
+            </Typography>
+          ) : null}
+        </Stack>
+        <Button variant="contained" onClick={handleNavigate}>
+          Contact Us
+        </Button>
+      </Stack>
     </Stack>
   );
 }

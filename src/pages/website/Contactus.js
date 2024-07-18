@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useEffect } from "react";
+import React, { Fragment } from "react";
 import Page from "../../components/common/Page";
 import { Layer, MainContainer } from "../../sections/Banners/Home";
 import {
@@ -11,50 +11,19 @@ import {
 } from "@mui/material";
 import ContactForm from "../../components/Forms/ContactForm";
 import { IconBase } from "react-icons";
-import { IconEmail, IconMobile } from "../../themes/Icons";
-import { Link, useLocation } from "react-router-dom";
+import { IconEmail, IconMobile, IconWhatsapp } from "../../themes/Icons";
+import { Link } from "react-router-dom";
 import GlobalFootPrints from "../../sections/GlobalFootPrints";
 import { motion } from "framer-motion";
-import { Banners } from "../../App";
 import BannerComponent from "../../components/common/BannerComponent";
 
 function Contactus() {
   const theme = useTheme();
 
-  const { pathname } = useLocation();
-
   const Mobile = useMediaQuery((theme) =>
     theme.breakpoints.between("xs", "sm")
   );
   const Tab = useMediaQuery((theme) => theme.breakpoints.between("sm", "md"));
-
-  const BannerText = () => {
-    return (
-      <Stack
-        direction="column"
-        alignItems="center"
-        justifyContent="start"
-        spacing={2}
-        component={motion.div}
-        initial={{ y: "30px" }}
-        animate={{ y: 0 }}
-        exit={{ y: "30px" }}
-        transition={{ duration: 0.5, delay: 0.1 }}
-        sx={{ textAlign: "center" }}
-      >
-        <Typography
-          variant={Mobile || Tab ? "h5" : "h4"}
-          sx={{ fontWeight: "bold", pt: "120px",color:'white' }}
-        >
-          Get in Touch with us !
-        </Typography>
-
-        <Typography variant="body1" sx={{color:"white"}}>
-          Stay Connected, Reach Out Today!
-        </Typography>
-      </Stack>
-    );
-  };
 
   // -----------------------------------------------  Form Components
 
@@ -63,18 +32,64 @@ function Contactus() {
       direction="column"
       alignItems="center"
       justifyContent="center"
-      sx={{ width: "100%", position: "relative", backgroundColor: "#E0F8F7" }}
+      sx={{ width: "100%", position: "relative" }}
     >
       <Page name="Contact Us" description="" pagename="Contact us Page" />
-
       <BannerComponent
-        mainheight="500px"
-        layercolor="rgba(0,0,0,0.3)"
-        // imagename={ }
-        // imagedata={}
-
-        textdispaly={<BannerText />}
+        mainheight="550px"
+        textdispaly={
+          <Stack
+            direction="column"
+            alignItems="center"
+            justifyContent="start"
+            spacing={2}
+            component={motion.div}
+            initial={{ y: "30px" }}
+            animate={{ y: 0 }}
+            exit={{ y: "30px" }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            sx={{ textAlign: "center" }}
+          >
+            <Typography
+              variant={Mobile || Tab ? "h5" : "h3"}
+              sx={{
+                fontWeight: "bold",
+                pt: Mobile || Tab ? "80px" : "150px",
+                color: "white",
+              }}
+            >
+              Get in Touch with us !
+            </Typography>
+          </Stack>
+        }
       />
+      {/* <MainContainer mainheight="500px">
+        <Layer
+          direction="column"
+          alignItems="center"
+          justifyContent="start"
+          layercolor={theme.palette.terinary.main}
+        >
+          <Stack
+            direction="column"
+            alignItems="center"
+            justifyContent="start"
+            spacing={2}
+            component={motion.div}
+            initial={{ y: "30px" }}
+            animate={{ y: 0 }}
+            exit={{ y: "30px" }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            sx={{ textAlign: "center" }}
+          >
+            <Typography variant="h4" sx={{ fontWeight: "bold", pt: "120px" }}>
+              Get in Touch with us !
+            </Typography>
+
+            <Typography variant="body1">Get in Touch with us !</Typography>
+          </Stack>
+        </Layer>
+      </MainContainer> */}
 
       <Stack
         direction="row"
@@ -97,7 +112,7 @@ function Contactus() {
             justifyContent: "left",
             height: Mobile || Tab ? "auto" : "500px",
             position: "relative",
-            marginTop: "-250px",
+            marginTop: Mobile || Tab ? "-100px" : "-300px",
             borderRadius: "20px",
             border: "1px solid #d3e1ea",
           }}
@@ -110,7 +125,7 @@ function Contactus() {
               justifyContent: "start",
               flexDirection: "column",
               // border: "1px solid blue",
-              height: Mobile || Tab ? "500px" : "inherit",
+              height: Mobile || Tab ? "400px" : "inherit",
               position: "relative",
               backgroundColor: theme.palette.primary.main,
               color: "white",
@@ -120,6 +135,9 @@ function Contactus() {
             xs={12}
             md={4}
           >
+            {/* <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
+            Contact Information
+          </Typography> */}
             <Stack
               direction="column"
               alignItems="left"
@@ -147,6 +165,9 @@ function Contactus() {
                   textDecoration: "none",
                   ml: "10px",
                   fontSize: "20px",
+                  "&:hover": {
+                    textDecoration: "underline",
+                  },
                 }}
               >
                 <IconEmail />
@@ -158,26 +179,69 @@ function Contactus() {
                 alignItems="center"
                 spacing={2}
                 component={Link}
-                // to="tel:"
+                to="tel: +1 6099345788"
                 sx={{
                   color: "white",
                   textDecoration: "none",
                   ml: "10px",
                   fontSize: "20px",
+                  "&:hover": {
+                    textDecoration: "underline",
+                  },
                 }}
-                to="tel:+62 852 1808 4208"
               >
                 <IconMobile />
-                <Typography variant="body1">+62 852 1808 4208 </Typography>
+                <Typography variant="body1">+1 6099345788 </Typography>
               </Stack>
+
+              <Stack
+                direction="row"
+                alignItems="center"
+                spacing={2}
+                component={Link}
+                to="tel: +91 88899 92186"
+                sx={{
+                  color: "white",
+                  textDecoration: "none",
+                  ml: "10px",
+                  fontSize: "20px",
+                  "&:hover": {
+                    textDecoration: "underline",
+                  },
+                }}
+              >
+                <IconMobile />
+                <Typography variant="body1">+91 88899 92186 </Typography>
+              </Stack>
+
+              {/* <Stack
+                direction="row"
+                alignItems="center"
+                spacing={2}
+                component={Link}
+                target="blank"
+                to="https://wa.me/+918889992186"
+                sx={{
+                  color: "white",
+                  textDecoration: "none",
+                  ml: "10px",
+                  fontSize: "20px",
+                  "&:hover": {
+                    textDecoration: "underline",
+                  },
+                }}
+              >
+                <IconWhatsapp />
+                <Typography variant="body1">+91 88899 92186</Typography>
+              </Stack> */}
             </Stack>
             <Stack
               direction="row"
               alignItems="center"
               justifyContent="center"
               sx={{
-                width: "250px",
-                height: "250px",
+                width: "150px",
+                height: "150px",
                 position: "absolute",
                 bottom: 0,
                 right: 0,
@@ -218,6 +282,7 @@ function Contactus() {
         container
         columnGap={2}
         rowGap={2}
+        sx={{ mt: "10px" }}
       >
         <GlobalFootPrints />
       </Stack>

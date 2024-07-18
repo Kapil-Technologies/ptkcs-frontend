@@ -5,14 +5,15 @@ import Whatwedo from "../../sections/Homepage/Whatwedo";
 import Industries from "../../sections/Homepage/Industries";
 import Page from "../../components/common/Page";
 import Carousel from "../../components/common/Carousel";
-import { Homepagelist, countmock } from "../../mock/Homepage";
-import Whychoseus from "../../sections/Homepage/Whychoseus";
+// import { Homepagelist, countmock } from "../../mock/Homepage";
+// import Whychoseus from "../../sections/Homepage/Whychoseus";
 import Servicesweprovide from "../../sections/Homepage/Servicesweprovide";
 import Ktechapproch from "../../sections/Homepage/Ktechapproch";
 import { styled } from "@mui/material/styles";
 import { motion } from "framer-motion";
-import { getLogos } from "../../api/GetRequests";
-import { useSelector } from "react-redux";
+import BannerComponent from "../../components/common/BannerComponent";
+import { HomeZigZag } from "../../mock/Zigzag";
+import WebPictureComponent from "../../components/common/WebPictureComponent";
 
 const CardItem = styled(Stack)(({ theme, menuid }) => ({
   display: "flex",
@@ -37,27 +38,27 @@ const CardItem = styled(Stack)(({ theme, menuid }) => ({
 const Partners = [
   {
     id: 1,
-    name: "Global Partners Name 1",
+    logoname: "Global Partners Name 1",
     src: "Global Partners Image 1",
   },
   {
     id: 2,
-    name: "Global Partners Name 2",
+    logoname: "Global Partners Name 2",
     src: "Global Partners Image 2",
   },
   {
     id: 3,
-    name: "Global Partners Name 3",
+    logoname: "Global Partners Name 3",
     src: "Global Partners Image 3",
   },
   {
     id: 4,
-    name: "Global Partners Name 4",
+    logoname: "Global Partners Name 4",
     src: "Global Partners Image 4",
   },
   {
     id: 5,
-    name: "Global Partners Name 5",
+    logoname: "Global Partners Name 5",
     src: "Global Partners Image 5",
   },
 ];
@@ -65,77 +66,79 @@ const Partners = [
 const ComplemetryPatners = [
   {
     id: 1,
-    name: "complementry Partners Name 1",
+    logoname: "complementry Partners Name 1",
     src: "complementry Partners Image 1",
   },
   {
     id: 2,
-    name: "complementry Partners Name 2",
+    logoname: "complementry Partners Name 2",
     src: "complementry Partners Image 2",
   },
   {
     id: 3,
-    name: "complementry Partners Name 3",
+    logoname: "complementry Partners Name 3",
     src: "complementry Partners Image 3",
   },
   {
     id: 4,
-    name: "complementry Partners Name 4",
+    logoname: "complementry Partners Name 4",
     src: "complementry Partners Image 4",
   },
   {
     id: 5,
-    name: "complementry Partners Name 5",
+    logoname: "complementry Partners Name 5",
     src: "complementry Partners Image 5",
   },
 ];
 
-const Industriesdetails = [
-  {
-    id: 1,
-    industryname: "",
-    industrytagline: "",
-    induscolor: "",
-    servicesprovidedfor: "",
-    industryimage: "",
-    displayimage: "Yes",
+const ImageGridItem = styled(Grid)(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-evenly",
+  flexDirection: "column",
+  height: "400px",
+  padding: "10px",
+  // border: "1px solid blue",
+  backgroundColor: "transparent",
+
+  [theme.breakpoints.between("xs", "md")]: {
+    height: "auto",
   },
-  {
-    id: 2,
-    industryname: "",
-    industrytagline: "",
-    induscolor: "",
-    servicesprovidedfor: "",
-    industryimage: "",
+
+  [theme.breakpoints.between("md", "lg")]: {
+    // Desktop
   },
-  {
-    id: 3,
-    industryname: "",
-    industrytagline: "",
-    induscolor: "",
-    servicesprovidedfor: "",
-    industryimage: "",
+
+  [theme.breakpoints.up("xl")]: {},
+}));
+
+const TextGridItem = styled(Grid)(({ theme, backcolor, justify, tcolor }) => ({
+  display: "flex",
+  alignItems: justify,
+  justifyContent: "center",
+  flexDirection: "column",
+  height: "400px",
+  padding: "20px",
+  width: "100%",
+  backgroundColor: backcolor,
+  gap: "10px",
+  color: tcolor,
+  // border: "1px solid blue",
+
+  [theme.breakpoints.between("xs", "sm")]: {
+    height: "280px",
   },
-  {
-    id: 4,
-    industryname: "",
-    industrytagline: "",
-    induscolor: "",
-    servicesprovidedfor: "",
-    industryimage: "",
+  [theme.breakpoints.between("sm", "md")]: {
+    height: "350px",
   },
-  {
-    id: 5,
-    industryname: "",
-    industrytagline: "",
-    induscolor: "",
-    servicesprovidedfor: "",
-    industryimage: "",
+  [theme.breakpoints.between("md", "lg")]: {
+    // Desktop
   },
-];
+
+  [theme.breakpoints.up("xl")]: {},
+}));
 
 function MainHome() {
-  const domain = useSelector((state) => state.domain.domain);
   const Mobile = useMediaQuery((theme) =>
     theme.breakpoints.between("xs", "sm")
   );
@@ -156,35 +159,6 @@ function MainHome() {
 
     return `${currentCount} +`;
   };
-
-  const [partnerslist, setPartnersList] = useState([]);
-
-  useEffect(() => {
-    getLogos()
-      .then((res) => {
-        console.log(res);
-        const status = res.data.success;
-
-        if (status === true) {
-          const data = res.data.response;
-          // console.log(data)
-
-          const domainArray = data.map((item) => item.domain); // Replace with your domain array
-          const filteredData = data.filter((item) => {
-            return item.domain.includes(domain) && item.logotype === "Partner";
-          });
-
-          console.log(filteredData);
-          setPartnersList(filteredData);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
-  console.log(partnerslist);
-
   return (
     <Fragment>
       <Page
@@ -192,16 +166,134 @@ function MainHome() {
         description="Kapil Technologies, an esteemed Infor Alliance Partner, offers a wide array of services including Infor and SAP consulting, as well as custom application development, among others."
         pagename="Home Page"
       />
-      <Home />
-      <Whychoseus />
-      <Ktechapproch />
+      <BannerComponent
+        mainheight="550px"
+        textdispaly={
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="center"
+            sx={{
+              width: "100%",
+              color: "white",
+              height: "inherit",
+              position: "relative",
+            }}
+          >
+            <Typography
+              variant={Mobile ? "body1" : Tab ? "h6" : "h2"}
+              sx={{
+                fontWeight: "bold",
+                position: "absolute",
+
+                left: "10px",
+              }}
+            >
+              Transforming your <br />
+              Digital Future
+            </Typography>
+
+            <Typography
+              variant={Mobile ? "body2" : Tab ? "body1" : "h4"}
+              sx={{
+                position: "absolute",
+                bottom: "10px",
+                right: "10px",
+                fontWeight: "bold",
+              }}
+            >
+              Enabling High Performance
+            </Typography>
+          </Stack>
+        }
+      />
+      <Stack
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+        sx={{ width: "100%" }}
+      >
+        <Typography
+          variant="h6"
+          sx={{
+            width: Mobile || Tab ? "95%" : "75%",
+            textAlign: Mobile || Tab ? "justify" : "center",
+            p: "3px",
+          }}
+        >
+          We combine technology with innovation, creativity, and strategy to
+          solve complex business problems and help you go beyond regular
+          transactions and create memorable experiences.
+        </Typography>
+        <Grid
+          container
+          sx={{
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {HomeZigZag.map((item) =>
+            item.type === "image" ? (
+              <WebPictureComponent reqheight="400px" title={item.name} />
+            ) : (
+              <TextGridItem
+                item
+                xs={12}
+                md={6}
+                key={item.id}
+                backcolor={item.bgcolor}
+                justify={item.justify}
+                tcolor={item.color}
+              >
+                <Typography
+                  variant={Mobile || Tab ? "h5" : "h4"}
+                  sx={{ fontWeight: "bold" }}
+                >
+                  {item.text.t1}
+                </Typography>
+                <Typography
+                  variant={Mobile || Tab ? "h6" : "h5"}
+                  sx={{ fontWeight: "bold" }}
+                >
+                  {item.text.t2}
+                </Typography>
+                <Typography
+                  variant={Mobile || Tab ? "body1" : "h6"}
+                  sx={{ fontWeight: "bold" }}
+                >
+                  {item.text.t3}
+                </Typography>
+                <Typography
+                  variant={Mobile || Tab ? "body2" : "body1"}
+                  sx={{
+                    fontWeight: "bold",
+                    textAlign: item.textalign,
+                    width: Mobile || Tab ? "100%" : "80%",
+                  }}
+                >
+                  {item.text.t4}
+                </Typography>
+                <Typography
+                  variant={Mobile || Tab ? "body1" : "h4"}
+                  sx={{ fontWeight: "bold" }}
+                >
+                  {item.text.t5}
+                </Typography>
+              </TextGridItem>
+            )
+          )}
+        </Grid>
+      </Stack>
+
       {/* <Carousel
         carouselname="Kapil Tech endorsed by "
-        carouselImages={partnerslist}
+        carouselImages={Partners}
       /> */}
-      <Servicesweprovide />
-      <Industries IndustryData={Industriesdetails} />
-      <Stack
+      {/* <Servicesweprovide /> */}
+      {/* <Industries /> */}
+      {/* <Stack
         direction="row"
         alignItems="center"
         justifyContent="center"
@@ -242,19 +334,16 @@ function MainHome() {
             </CardItem>
           ))}
         </Stack>
-      </Stack>
+      </Stack> */}
 
-      <Stack
+      {/* <Stack
         direction="column"
         alignItems="center"
         justifyContent="center"
         sx={{ height: "auto", width: "100%", py: 2, textAlign: "center" }}
         spacing={1}
       >
-        <Typography
-          variant={Mobile || Tab ? "h5" : "h4"}
-          sx={{ fontWeight: "bold" }}
-        >
+        <Typography variant="h4" sx={{ fontWeight: "bold" }}>
           Revitalize Legacy Applications with Kapil Tech
         </Typography>
         <Typography variant="h6">
@@ -306,7 +395,7 @@ function MainHome() {
             </Grid>
           ))}
         </Grid>
-      </Stack>
+      </Stack> */}
     </Fragment>
   );
 }

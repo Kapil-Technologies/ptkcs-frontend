@@ -16,8 +16,6 @@ import { motion } from "framer-motion";
 import { IconDownArrow, IconUpArrow } from "../../../themes/Icons";
 import { styled } from "@mui/material/styles";
 import { useSelector } from "react-redux";
-import { getLAKTECH } from "../../../api/GetRequests";
-import { useSnackbar } from "notistack";
 
 const LAK = [
   {
@@ -107,9 +105,8 @@ export const Line = styled("hr")(({ theme, layercolor }) => ({
 
 function LifeatKCS() {
   const theme = useTheme();
-  const { enqueueSnackbar } = useSnackbar();
   // const domain = useSelector((state) => state.domain.domain);
-  const domain = "kapiltech.com";
+  const domain = "ptkcs.com";
   // console.log(domain);
 
   const Mobile = useMediaQuery((theme) =>
@@ -119,7 +116,6 @@ function LifeatKCS() {
 
   const [expand, setExpand] = useState(false);
   const [imgid, setimgid] = useState(0);
-  const [Limgid, setLimgid] = useState([]);
 
   const handleOpenEvent = (id) => {
     setimgid(id);
@@ -130,24 +126,6 @@ function LifeatKCS() {
     // Automatically expand the accordion for "event name 1" on component mount
     handleOpenEvent(1);
   }, []); // Empty dependency array ensures this effect runs only once on mount
-
-  useEffect(() => {
-    getLAKTECH()
-      .then((res) => {
-        // console.log(res);
-        const status = res.data.success;
-        if (status) {
-          // enqueueSnackbar(res.data.message, { variant: "success" });
-          setLimgid(res.data.response);
-        } else {
-          enqueueSnackbar(res.data.message, { variant: "error" });
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        enqueueSnackbar(err.message, { variant: "error" });
-      });
-  }, []);
 
   return (
     <Stack direction="column" alignItems="center" justifyContent="center">

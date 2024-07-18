@@ -1,15 +1,9 @@
-import { Button, Stack, Typography, useMediaQuery } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function NotFound() {
   const { pathname } = useLocation();
-  const Mobile = useMediaQuery((theme) =>
-    theme.breakpoints.between("xs", "sm")
-  );
-  const Tab = useMediaQuery((theme) => theme.breakpoints.between("sm", "md"));
-
-  const xl = useMediaQuery((theme) => theme.breakpoints.up("xl"));
   const Navigate = useNavigate();
   const handleNavigate = () => {
     if (pathname === "/admin/404") {
@@ -22,10 +16,10 @@ function NotFound() {
       alignItems="center"
       justifyContent="center"
       spacing={2}
-      sx={{ width: "100%", height: "100vh", textAlign: "center" }}
+      sx={{ width: "100%", height: "100vh" }}
     >
       <Typography
-        variant={Mobile || Tab ? "h4" : "h1"}
+        variant="h1"
         sx={{ fontWeight: "bold", textTransform: "uppercase", color: "red" }}
       >
         Error 404

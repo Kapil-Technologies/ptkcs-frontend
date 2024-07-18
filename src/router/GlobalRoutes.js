@@ -12,20 +12,8 @@ import Events from "../pages/website/Joinus/Events";
 import Leadership from "../pages/website/About/Leadership";
 import Jobdescription from "../sections/Joinus/searchjobs/Jobdescription";
 import ApplicantStatus from "../sections/Joinus/searchjobs/ApplicantStatus";
-import DigitalTransformation from "../pages/website/Services/Otherservices/DigitalTransformation";
-import Mpdv from "../pages/website/Solutions/Mpdv";
-import EventDescription from "../sections/Joinus/Events/EventDescription";
-import Staffing from "../pages/website/Services/Otherservices/Staffing";
-import Testing from "../pages/website/Services/Otherservices/Testing";
-import Training from "../pages/website/Services/Otherservices/Training";
-import Odoo from "../pages/website/Solutions/Odoo";
-import Finsta from '../pages/website/Solutions/Finsta'
-import Hexabuild from '../pages/website/Solutions/Hexabuild'
-import Ifca from '../pages/website/Solutions/Ifca'
+import DigitalTransformation from "../pages/website/Services/DigitalTransformation";
 import Oracle from "../pages/website/Services/Oracle";
-import OdooConsulting from "../pages/website/Services/OdooConsulting";
-import MBC from "../pages/website/Services/MBC";
-
 
 // ------------------------------------------------------
 
@@ -96,16 +84,16 @@ function GlobalRoutes() {
               path: "join-us",
               children: [
                 {
-                  path: "search-jobs",
+                  path: "job-openings",
                   element: <Careers />,
                   index: true,
                 },
                 {
                   path: "join-us",
-                  element: <Navigate to="join-us/search-jobs" exact replace />,
+                  element: <Navigate to="join-us/job-openings" exact replace />,
                 },
                 {
-                  path: "job-description/:jobid",
+                  path: "job-openings/:jobid",
                   element: <Jobdescription />,
                 },
                 {
@@ -117,12 +105,8 @@ function GlobalRoutes() {
                   element: <LifeatKCS />,
                 },
                 {
-                  path: "events",
+                  path: "Events",
                   element: <Events />,
-                },
-                {
-                  path: "events/:eventtype/:eventid",
-                  element: <EventDescription />,
                 },
               ],
             },
@@ -146,98 +130,27 @@ function GlobalRoutes() {
             },
 
             {
-              path: "consulting",
+              path: "services",
               children: [
                 {
-                  path: "sap",
+                  path: "sap-consulting",
                   element: <SAP />,
                   index: true,
                 },
                 {
-                  path: "consulting",
-                  element: <Navigate to="consulting/sap" exact replace />,
+                  path: "services",
+                  element: (
+                    <Navigate to="services/sap-consulting" exact replace />
+                  ),
                 },
                 {
-                  path: "infor",
+                  path: "infor-consulting",
                   element: <Infor />,
                 },
+
                 {
                   path: "oracle-netsuite",
                   element: <Oracle />,
-                },
-                {
-                  path: "odoo",
-                  element: <OdooConsulting />,
-                },
-                {
-                  path: "microsoft-dynamics-business-central",
-                  element: <MBC />,
-                },
-              ],
-            },
-
-            {
-              path: "products",
-              children: [
-                {
-                  path: "mpdv",
-                  element: <Mpdv />,
-                  index: true,
-                },
-                {
-                  path: "products",
-                  element: <Navigate to="products/mpdv" exact replace />,
-                },
-                {
-                  path: "odoo",
-                  element: <Odoo />,
-                },
-                {
-                  path: "ifca",
-                  element: <Ifca />,
-                },
-                {
-                  path: "hexabuild",
-                  element: <Hexabuild />,
-                },
-                {
-                  path: "finsta",
-                  element: <Finsta />,
-                },
-              ],
-            },
-
-            {
-              path: "other-services",
-              children: [
-                {
-                  path: "application-development",
-                  element: <DigitalTransformation />,
-                  index: true,
-                },
-                {
-                  path: "other-services",
-                  element: (
-                    <Navigate
-                      to="other-services/application-development"
-                      exact
-                      replace
-                    />
-                  ),
-                },
-
-                {
-                  path: "it-staffing",
-                  element: <Staffing />,
-                  index: true,
-                },
-                {
-                  path: "taas",
-                  element: <Testing />,
-                },
-                {
-                  path: "technology-training-services",
-                  element: <Training />,
                 },
               ],
             },

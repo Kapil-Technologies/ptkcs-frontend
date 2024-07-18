@@ -10,10 +10,10 @@ import { Layer, MainContainer } from "../../Banners/Home";
 import Page from "../../../components/common/Page";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { getPositions } from "../../../api/GetRequests";
+import { getPositions } from "../../../api/Careers";
 import { useSnackbar } from "notistack";
-import JobApplicationForm from "../../../components/Forms/JobApplicationForm";
-import BannerComponent from "../../../components/common/BannerComponent";
+import JobApplicationForm from '../../../components/Forms/JobApplicationForm'
+import { useLoading } from "../../../components/common/LoadingComponent";
 
 function Jobdescription() {
   const theme = useTheme();
@@ -26,28 +26,10 @@ function Jobdescription() {
 
   const [description, setDescription] = useState([]);
 
-  const BannerText = () => {
-    return (
-      <Stack
-        direction="column"
-        alignItems="left"
-        justifyContent="center"
-        sx={{ p: 2, height: "inherit" }}
-        component={motion.div}
-        initial={{ y: "30px" }}
-        animate={{ y: 0 }}
-        exit={{ y: "30px" }}
-        transition={{ duration: 0.5, delay: 0.1 }}
-      >
-        <Typography variant="h6">Job Details</Typography>
-        <Typography variant="h4" sx={{ fontWeight: "bold" }}>
-          Tomorrow's well-being is... Shaping a fresh reality.
-        </Typography>
-      </Stack>
-    );
-  };
+  const { startLoading, stopLoading } = useLoading();
 
   useEffect(() => {
+    startLoading()
     getPositions()
       .then((res) => {
         // console.log(res);
@@ -56,6 +38,7 @@ function Jobdescription() {
           const jobs = res.data.response;
           const filterdata = jobs.filter((item) => item.jobid === jobid);
           // console.log(filterdata);
+          stopLoading()
           setDescription(filterdata);
         } else {
           enqueueSnackbar(res.data.message, { variant: "error" });
@@ -76,15 +59,32 @@ function Jobdescription() {
       sx={{ width: "100%" }}
     >
       <Page name={`Job Details - ${jobid}`} />
-
-      <BannerComponent
-        mainheight="300px"
-        layercolor="rgba(0,0,0,0.3)"
-        // imagename={ }
-        // imagedata={}
-
-        textdispaly={<BannerText />}
-      />
+      <MainContainer mainheight="300px">
+        <Layer
+          direction="column"
+          alignItems="left"
+          justifyContent="left"
+          layercolor={theme.palette.terinary.main}
+          sx={{ width: "inherit", height: "inherit" }}
+        >
+          <Stack
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
+            sx={{ p: 2, height: "inherit" }}
+            component={motion.div}
+            initial={{ y: "30px" }}
+            animate={{ y: 0 }}
+            exit={{ y: "30px" }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            {/* <Typography variant="h6">Job Details</Typography> */}
+            <Typography variant="h4" sx={{ fontWeight: "bold" }}>
+              Tomorrow's well-being is... Shaping a fresh reality.
+            </Typography>
+          </Stack>
+        </Layer>
+      </MainContainer>
       <Stack
         direction="row"
         alignItems="flex-start"
@@ -100,15 +100,15 @@ function Jobdescription() {
           component={Grid}
           item
           xs={12}
-          md={5.5}
+          md={5.6}
           sx={{ px: 2, py: 2 }}
           spacing={1}
         >
           {description.map((item) => (
-            <Fragment key={item.id}>
+            <Fragment>
               <Typography
-                variant="h3"
-                sx={{ fontWeight: "bold", width: "100%" }}
+                variant={Mobile || Tab ? "h5" :"h4"}
+                sx={{ fontWeight: "bold", width: "100%", color: "#cd2028" }}
               >
                 {item.jobtitle}
               </Typography>
@@ -153,8 +153,8 @@ function Jobdescription() {
                   </Typography>
                 </Stack>
               </Stack>
-              {/* 
-              <Stack direction="column" alignItems="left" spacing={0.5}>
+
+              {/* <Stack direction="column" alignItems="left" spacing={0.5}>
                 <Stack direction="row" alignItems="center" spacing={1}>
                   <Typography variant="body1" sx={{ fontWeight: "bold" }}>
                     Job Summary
@@ -163,7 +163,7 @@ function Jobdescription() {
                 </Stack>
               </Stack> */}
 
-              <Stack direction="column" alignItems="left" spacing={0.5}>
+              <Stack direction="column" alignItems="left" spacing={0.5} sx={{width:"100%"}}>
                 <Stack direction="row" alignItems="center" spacing={1}>
                   <Typography variant="body1" sx={{ fontWeight: "bold" }}>
                     Description
@@ -172,12 +172,7 @@ function Jobdescription() {
                 </Stack>
 
                 {item.description.map((item) => (
-                  <Stack
-                    direction="row"
-                    alignItems="flex-start"
-                    spacing={1.5}
-                    key={item.did}
-                  >
+                  <Stack direction="row" alignItems="flex-start" spacing={1.5}>
                     <Stack direction="row" alignItems="center" spacing={0.2}>
                       <Typography variant="body1">{item.did}</Typography>
                       <Typography variant="body1">.</Typography>

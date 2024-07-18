@@ -1,15 +1,28 @@
 import { Stack, Typography } from "@mui/material";
 import React from "react";
+import NewLogo from "../../assets/Ktechlogo1.png";
 
-function LogoComponent({textcolor}) {
+function LogoComponent({ textcolor }) {
   return (
     <Stack
       direction="row"
       alignItems="center"
       spacing={0.5}
-      sx={{ textTransform: "uppercase" }}
+      sx={{
+        textTransform: "uppercase",
+        width: "100%",
+        height: "90px",
+        bgcolor: "white",
+        transform: "rotate(0deg)",
+        borderBottomRightRadius:"25px",
+      }}
     >
-      <Typography
+      <img
+        src={NewLogo}
+        alt="Kapil Technologies"
+        style={{ maxWidth: "100%", maxHeight: "80%", padding: "5px" }}
+      />
+      {/* <Typography
         variant="h6"
         sx={{
           fontWeight: "bold",
@@ -18,11 +31,11 @@ function LogoComponent({textcolor}) {
           px: 0.5,
         }}
       >
-        PT KCS
+        KAPIL
       </Typography>
-      <Typography variant="h6" sx={{ fontWeight: "bold",color:textcolor }}>
+      <Typography variant="h6" sx={{ fontWeight: "bold", color: textcolor }}>
         Technologies
-      </Typography>
+      </Typography> */}
     </Stack>
   );
 }

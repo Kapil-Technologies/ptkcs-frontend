@@ -18,24 +18,34 @@ const filters = {
 
 const Category = [
   {
+    id: 0,
+    cname: "All",
+    value: "",
+  },
+  {
     id: 1,
     cname: "Infor",
+    value: "Infor",
   },
   {
     id: 2,
     cname: "SAP",
+    value: "SAP",
   },
   {
     id: 3,
     cname: "Oracle",
+    value: "Oracle",
   },
   {
     id: 4,
     cname: "Web Technologies",
+    value: "Web Technologies",
   },
   {
     id: 4,
-    cname: "Other",
+    cname: "Others",
+    value: "Others",
   },
 ];
 
@@ -66,19 +76,20 @@ function Jobfilters({ Filters }) {
     setfilter(e.target.value);
     Filters(e.target.value);
   };
+  
 
-  const handleSelectedFilter = (filtername) => {
-    // console.log(filtername);
-    Filters(filtername);
+  const handleSelectedFilter = (e) => {
+    
+    Filters(filterData);
   };
   return (
     <Stack
       direction="row"
       alignItems="center"
       justifyContent="space-evenly"
-      sx={{ width: "80%" }}
+      sx={{ width: "60%" }}
     >
-      {Mobile || Tab ? (
+      {/* {Mobile || Tab ? (
         <Select
           fullWidth
           label="Select Category"
@@ -121,7 +132,9 @@ function Jobfilters({ Filters }) {
             </Typography>
           </Stack>
         ))
-      )}
+      )} */}
+
+     
     </Stack>
   );
 }

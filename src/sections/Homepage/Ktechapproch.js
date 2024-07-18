@@ -1,42 +1,29 @@
-import { Stack, Typography, Grid, Box, useMediaQuery } from "@mui/material";
-import React, { useContext } from "react";
-import { ApprochData } from "../../mock/Homepage";
-import { Icons } from "../../App";
-import IconComponent from "../../components/common/IconComponent";
+import { Stack, Typography, Grid, Box } from "@mui/material";
+import React from "react";
+// import { ApprochData } from "../../mock/Homepage";
 
 function Ktechapproch() {
-  const Icondata = useContext(Icons);
-  // const [icondetails] = Icondata;
-
-  const Mobile = useMediaQuery((theme) =>
-    theme.breakpoints.between("xs", "sm")
-  );
-  const Tab = useMediaQuery((theme) => theme.breakpoints.between("sm", "md"));
   return (
     <Stack
       direction="column"
       alignItems="center"
       justifyContent="center"
-      sx={{ width: "100%", background: "white", py: 2 }}
+      sx={{ width: "100%", background: "white", py: 4 }}
     >
-      <Typography
-        variant={Mobile || Tab ? "h4" : "h3"}
-        sx={{ fontWeight: "bold", textAlign: "center" }}
-        gutterBottom
-      >
-        Kapil Tech Approach
+      <Typography variant="h3" sx={{ fontWeight: "bold" }} gutterBottom>
+        Kapil Tech Approch
       </Typography>
       <Stack
         direction="row"
         alignItems="center"
         justifyContent="center"
-        sx={{ width: "95%" }}
+        sx={{ width: "80%" }}
         component={Grid}
         container
         columnGap={2}
         rowGap={6}
       >
-        {ApprochData.map((item) => (
+        {/* {ApprochData.map((item) => (
           <Stack
             direction="column"
             alignItems="center"
@@ -52,7 +39,7 @@ function Ktechapproch() {
               alignItems="center"
               justifyContent="center"
               sx={{
-                width: Mobile || Tab ? "350px" : "250px",
+                width: "250px",
                 height: "80px",
                 border: "1px solid gray",
                 borderRadius: "5px",
@@ -67,8 +54,8 @@ function Ktechapproch() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                width: Mobile || Tab ? "350px" : "250px",
-                height: Mobile || Tab ? "350px" : "250px",
+                width: "250px",
+                height: "250px",
                 border: "1px solid gray",
                 borderBottomLeftRadius: "20px",
                 borderBottomRightRadius: "20px",
@@ -78,7 +65,7 @@ function Ktechapproch() {
                 textAlign: "center",
               }}
             >
-              <IconComponent title={item.title} size="100px" />
+              {item.icon}
               <Typography variant="h6">{item.text}</Typography>
             </Box>
             <Stack
@@ -104,7 +91,7 @@ function Ktechapproch() {
               </Typography>
             </Stack>
           </Stack>
-        ))}
+        ))} */}
       </Stack>
     </Stack>
   );
