@@ -179,6 +179,26 @@ function Contactus() {
                 alignItems="center"
                 spacing={2}
                 component={Link}
+                to="tel:+62 852 1808 4208"
+                sx={{
+                  color: "white",
+                  textDecoration: "none",
+                  ml: "10px",
+                  fontSize: "20px",
+                  "&:hover": {
+                    textDecoration: "underline",
+                  },
+                }}
+              >
+                <IconMobile />
+                <Typography variant="body1">+62 852 1808 4208</Typography>
+              </Stack>
+
+              <Stack
+                direction="row"
+                alignItems="center"
+                spacing={2}
+                component={Link}
                 to="tel: +1 6099345788"
                 sx={{
                   color: "white",
