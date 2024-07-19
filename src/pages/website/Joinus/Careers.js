@@ -54,7 +54,7 @@ function Careers() {
   const theme = useTheme();
   const Navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
-  const domainname = "ptkcs.com";
+  const domainname = "kcs-tech.com";
   const Mobile = useMediaQuery((theme) =>
     theme.breakpoints.between("xs", "sm")
   );
@@ -113,7 +113,7 @@ function Careers() {
           // enqueueSnackbar(res.data.message, { variant: "success" });
           setJobopenings(res.data.response);
         } else {
-          enqueueSnackbar(res.data.message, { variant: "error" });
+          // enqueueSnackbar(res.data.message, { variant: "error" });
         }
       })
       .catch((err) => {
@@ -204,25 +204,25 @@ function Careers() {
           columnGap={2}
           rowGap={2}
         >
-          {Mobile || Tab ? (
-            jobopenings.length === 0 ? (
-              <Stack
-                direction="row"
-                alignItems="left"
-                justifyContent="left"
-                sx={{ width: "100%", p: 1 }}
-              >
-                <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-                  No Active Positions...
-                </Typography>
-              </Stack>
-            ) : (rowsPerPage > 0
-                ? filterjobs.slice(
-                    page * rowsPerPage,
-                    page * rowsPerPage + rowsPerPage
-                  )
-                : filterjobs
-              ).length === 0 ? (
+          {jobopenings.length === 0 ? (
+            <Stack
+              direction="row"
+              alignItems="center"
+              justifyContent="center"
+              sx={{ width: "100%" }}
+            >
+              <Typography varinat="h4" sx={{ fontWeight: "bold" }}>
+                No Active Positions
+              </Typography>
+            </Stack>
+          ) : Mobile || Tab ? (
+            (rowsPerPage > 0
+              ? filterjobs.slice(
+                  page * rowsPerPage,
+                  page * rowsPerPage + rowsPerPage
+                )
+              : filterjobs
+            ).length === 0 ? (
               <Typography>No Jobs Found !</Typography>
             ) : (
               (rowsPerPage > 0
@@ -294,24 +294,13 @@ function Careers() {
                   </TableRow>
                 </TableHead>
                 <TableBody sx={{ width: "100%" }}>
-                  {jobopenings.length === 0 ? (
-                    <Stack
-                      direction="row"
-                      alignItems="left"
-                      justifyContent="left"
-                      sx={{ width: "100%", p: 1 }}
-                    >
-                      <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-                        Fetching Positions ....
-                      </Typography>
-                    </Stack>
-                  ) : (rowsPerPage > 0
-                      ? filterjobs.slice(
-                          page * rowsPerPage,
-                          page * rowsPerPage + rowsPerPage
-                        )
-                      : filterjobs
-                    ).length === 0 ? (
+                  {(rowsPerPage > 0
+                    ? filterjobs.slice(
+                        page * rowsPerPage,
+                        page * rowsPerPage + rowsPerPage
+                      )
+                    : filterjobs
+                  ).length === 0 ? (
                     <Typography>No Jobs Found !</Typography>
                   ) : (
                     (rowsPerPage > 0
